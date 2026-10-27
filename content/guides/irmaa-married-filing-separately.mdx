@@ -1,0 +1,262 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partB2026 } from '@/data/medicare-part-b';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const standardPremium = partB2026.standardPremium.amount;
+export const separateBase = partB2026.irmaa.marriedSeparate[0];
+export const separateFirst = partB2026.irmaa.marriedSeparate[1];
+export const separateSecond = partB2026.irmaa.marriedSeparate[2];
+export const firstSurcharge = separateFirst.partBAdjustment + separateFirst.partDAdjustment;
+export const firstAnnual = firstSurcharge * 12;
+export const exampleMagi = 120000;
+export const standardMonthly = standardPremium;
+
+<AnswerCapsule>
+  Does IRMAA apply to married filing separately? Yes. The first surcharge begins at a much lower
+  income figure than the joint threshold, and each spouse can be billed separately. The standard
+  tier ends at {formatMoney(separateBase.max ?? 0)} of modified adjusted gross income. Read each
+  notice on its own.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Standard tier ends',
+      value: formatMoney(separateBase.max ?? 0),
+      note: 'Married filing separately.',
+    },
+    {
+      label: 'First surcharge starts',
+      value: formatMoney(separateFirst.min),
+      note: 'One dollar above the standard tier.',
+    },
+    {
+      label: 'First-tier Part B total',
+      value: formatMoney(separateFirst.partBTotal),
+      note: 'Standard premium plus the Part B adjustment.',
+    },
+    {
+      label: 'First-tier Part D add-on',
+      value: formatMoney(separateFirst.partDAdjustment),
+      note: 'Billed with the Medicare premium, not the plan premium.',
+    },
+    {
+      label: 'Top tier starts',
+      value: formatMoney(separateSecond.min),
+      note: 'The highest separate-filer tier.',
+    },
+    {
+      label: 'Lookback',
+      value: `${partB2026.lookbackYears} years`,
+      note: `For ${year}, generally ${year - partB2026.lookbackYears} income.`,
+    },
+  ]}
+/>
+
+## The separate-filer table
+
+Married filing separately does not share the joint table. It has its own thresholds, and the first
+surcharge starts at {formatMoney(separateFirst.min)}. That is far below the joint first threshold of{' '}
+{formatMoney(partB2026.irmaa.marriedJoint[1].min)}.
+
+The difference is intentional. The tax filing status is treated differently for IRMAA, so a couple
+that files separately can reach a surcharge at a lower income than a couple that files jointly. The
+table has fewer tiers, and the jump from the standard tier to the first surcharge is large.
+
+The top separate-filer tier begins at {formatMoney(separateSecond.min)}. At that level the Part B
+total is {formatMoney(separateSecond.partBTotal)} and the Part D add-on is{' '}
+{formatMoney(separateSecond.partDAdjustment)}.
+
+## Why the threshold is lower
+
+The separate-filer table reflects the tax rules for that filing status. It is not a mistake in the
+calculator, and it is not a penalty invented by Medicare. The thresholds are published with the
+other IRMAA tiers and apply to each person who files separately.
+
+A couple may file separately for many reasons, including a legal separation, a disagreement about
+finances, or advice from a tax preparer. Whatever the reason, the Medicare premium follows the
+filing status on the return that SSA receives.
+
+If the filing status changes, the IRMAA table changes with it. That is why a couple should check the
+status on the lookback return, not just the status they plan to use this year.
+
+<AdSlot placement="mid-article" />
+
+## How each spouse is billed
+
+Each spouse has a separate Social Security record and a separate Medicare premium notice. If both
+spouses are enrolled in Medicare, each can receive an IRMAA decision based on that spouse's income.
+The household total can be the sum of two separate surcharges.
+
+Do not double one spouse's number unless both spouses have the same income and the same tier. Read
+each notice. The amounts can differ because the incomes differ, the filing status applies to each
+return, and the Part D coverage can differ.
+
+If only one spouse is enrolled in Medicare, only that spouse's premium is affected. The other
+spouse's income may still matter for the tax return, but it does not create a Medicare premium for
+someone who is not enrolled.
+
+## What to check on the notice
+
+Check the income figure, the tax year it came from, the filing status, and the tier. Then compare the
+Part B amount with the table. If the notice uses joint thresholds for a separate return, or the
+wrong income year, ask Social Security to review it.
+
+Check the Part D line separately. The Part D IRMAA amount is added to the plan premium and can be
+billed in a different way. A zero Part D amount does not mean the Part B surcharge is zero.
+
+Keep the notice with the tax return for the lookback year. If you later file an SSA-44 or ask for a
+review, the notice is the document that shows what SSA decided.
+
+## Can an SSA-44 help
+
+Form SSA-44 can help if a listed life-changing event changed the income used for the decision. The
+form is not limited to joint filers. A marriage, divorce, death of a spouse, retirement, or another
+listed event can support a request to use a newer income figure.
+
+The proof still has to match the event. A separate return does not by itself prove that income
+changed. The event and the documents do. Use the official form and ask SSA what it needs for the
+specific situation.
+
+## Worked example
+
+A married person files separately and reports {formatMoney(exampleMagi)} of modified adjusted gross
+income in the lookback year. That is above the first separate-filer threshold of{' '}
+{formatMoney(separateFirst.min)}, so the first surcharge tier applies.
+
+The Part B total is {formatMoney(separateFirst.partBTotal)}, and the Part D add-on is{' '}
+{formatMoney(separateFirst.partDAdjustment)}. The combined monthly surcharge is{' '}
+{formatMoney(firstSurcharge)}, or {formatMoney(firstAnnual)} a year. The standard premium for the
+same year is {formatMoney(standardMonthly)} a month. The difference is{' '}
+{formatMoney(firstSurcharge)} a month.
+
+If the spouse also has Medicare and a similar income, the household can face a second surcharge.
+That is why the household view matters even when the returns are separate.
+
+## What a joint return would have shown
+
+A joint return uses the joint table. The first surcharge starts at {formatMoney(partB2026.irmaa.marriedJoint[1].min)},
+which is much higher than the separate-filer line. The same combined income can therefore produce a
+standard premium on a joint return and a surcharge on separate returns.
+
+That comparison is not a reason to choose a filing status. The tax return is a legal document, and
+the filing status affects deductions, credits, and liability. Medicare is one factor among many. Use
+a tax preparer to compare the whole picture.
+
+The comparison is useful for understanding the notice. If a couple files separately and one spouse
+sees a surcharge at an income that looks modest, the separate table explains why. The number is not
+a mistake in the calculator or the notice.
+
+## Separate returns and the rest of Medicare
+
+IRMAA is not the only Medicare rule that looks at income. Extra Help and the Medicare Savings
+Programs use different income and resource tests. A separate return can affect those applications
+too, but the rules are not the same as the IRMAA table.
+
+Do not assume that a low IRMAA tier means a household will qualify for Extra Help. The programs have
+their own limits and their own application process. Use the
+[Medicare Savings Program and Extra Help](/calculators/medicare-savings-program-extra-help)
+calculator for that question.
+
+The Part B premium itself is separate from the tax return. A person who files separately still pays
+the standard premium if the income is below the separate-filer line. The filing status changes the
+line, not the basic premium.
+
+## A checklist before you file
+
+Confirm the filing status on the lookback return. Confirm the income figure SSA used. Compare the
+notice with the separate-filer table. Check each spouse’s notice separately. If a life-changing
+event applies, gather the proof before filing Form SSA-44.
+
+Keep the tax return and the Medicare notices together. If the filing status changes in a later year,
+the new return will drive a later premium. A change is not retroactive to an earlier notice unless
+SSA reviews it.
+
+If the numbers do not match, ask Social Security for the calculation in writing. A short letter that
+shows the income, the year, the filing status, and the table is easier to review than a phone call.
+
+## Three honest caveats
+
+1. The separate-filer thresholds are much lower than the joint thresholds. A couple that files
+   separately can owe a surcharge at an income that would be in the standard tier on a joint return.
+2. Each spouse can be billed separately. Do not assume the household cost is one surcharge.
+3. This page is guidance, not tax advice. The filing status on the return drives the table, so
+   confirm the status with a tax preparer before changing it for Medicare reasons.
+
+<Faq
+  items={[
+    {
+      question: 'Does IRMAA apply if we file separately?',
+      answer:
+        'Yes. Married filing separately has its own IRMAA table, and the first surcharge starts at a lower income than the joint threshold.',
+    },
+    {
+      question: 'Is the married filing separately threshold lower than the single threshold?',
+      answer: `In ${year}, the separate-filer first threshold is ${formatMoney(separateFirst.min)}, which is close to the single threshold but far below the joint threshold. The tiers above it differ.`,
+    },
+    {
+      question: 'Can we file separately to avoid IRMAA?',
+      answer:
+        'Filing separately usually makes the threshold lower, not higher. The right filing status depends on the whole tax picture, so ask a tax preparer.',
+    },
+    {
+      question: 'Is each spouse billed separately for IRMAA?',
+      answer:
+        'Yes. Each spouse who is enrolled in Medicare can receive a separate premium decision and a separate surcharge.',
+    },
+    {
+      question: 'Can Form SSA-44 help a separate filer?',
+      answer:
+        'Yes, if a listed life-changing event changed the income used for the decision and the proof supports the newer figure.',
+    },
+    {
+      question: 'Does the Part D IRMAA amount apply to both spouses?',
+      answer:
+        'Each spouse with Part D coverage can have a Part D IRMAA amount. The amount depends on that spouse’s income and tier.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Separate-filer thresholds',
+      value: `${formatMoney(separateFirst.min)} first tier / ${formatMoney(separateSecond.min)} top tier`,
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'Part B standard premium',
+      value: formatMoney(standardPremium),
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'Part B and Part D surcharges',
+      value: `${formatMoney(separateFirst.partBTotal)} Part B / ${formatMoney(separateFirst.partDAdjustment)} Part D`,
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'Two-year lookback',
+      value: `${partB2026.lookbackYears} years`,
+      source: sources.ssaPomsLce,
+      sourceLabel: 'SSA Program Operations Manual',
+    },
+    {
+      label: 'SSA-44 review',
+      value: 'Life-changing event form',
+      source: sources.ssaForm44,
+      sourceLabel: 'Official SSA-44 form',
+    },
+  ]}
+/>
+
+## What to do next
+
+Use the [IRMAA cliff checker](/calculators/irmaa-cliff-checker) and choose the married filing
+separately status to see the separate table. If a life-changing event applies, read the
+[SSA 44 form IRMAA appeal](/guides/ssa-44-form-irmaa-appeal) guide before you file.

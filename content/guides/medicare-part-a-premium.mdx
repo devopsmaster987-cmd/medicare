@@ -1,0 +1,198 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partA2026 } from '@/data/medicare-part-a';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const standardPremium = partA2026.standardPremium.amount;
+export const reducedPremium = partA2026.reducedPremium.amount;
+export const fullPremium = partA2026.fullPremium.amount;
+export const reducedAnnual = reducedPremium * 12;
+export const fullAnnual = fullPremium * 12;
+export const inpatientDeductible = partA2026.inpatientDeductible.amount;
+export const exampleReducedQuarters = 32;
+export const exampleFullQuarters = 24;
+
+<AnswerCapsule>
+  The Medicare Part A premium {year} is {formatMoney(standardPremium)} for most people with 40 or
+  more work quarters, {formatMoney(reducedPremium)} a month with 30 to 39 quarters, and{' '}
+  {formatMoney(fullPremium)} a month with fewer than 30 quarters. Part A covers inpatient hospital
+  care, and the premium is separate from Part B.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Premium with 40 or more quarters',
+      value: formatMoney(standardPremium),
+      note: 'Most people qualify for premium-free Part A.',
+    },
+    {
+      label: 'Premium with 30 to 39 quarters',
+      value: `${formatMoney(reducedPremium)} a month`,
+      note: `The reduced premium for ${year}.`,
+    },
+    {
+      label: 'Annual cost at the reduced premium',
+      value: formatMoney(reducedAnnual),
+      note: 'Twelve months at the reduced amount.',
+    },
+    {
+      label: 'Premium with fewer than 30 quarters',
+      value: `${formatMoney(fullPremium)} a month`,
+      note: `The full premium for ${year}.`,
+    },
+    {
+      label: 'Annual cost at the full premium',
+      value: formatMoney(fullAnnual),
+      note: 'Twelve months at the full amount.',
+    },
+    {
+      label: 'Inpatient deductible',
+      value: formatMoney(inpatientDeductible),
+      note: 'A separate cost for a hospital stay, not part of the premium.',
+    },
+  ]}
+/>
+
+## Who pays no Part A premium
+
+Most people do not pay a monthly Part A premium. The standard rule is that a person needs 40 or more quarters of Medicare-covered work, or qualifying work from a spouse or former spouse. A quarter is a period of work covered by Social Security or the Railroad Retirement Board, and the amount of earnings needed for a quarter is set each year.
+
+People who paid Medicare taxes for at least 40 quarters generally receive premium-free Part A. The work can be their own, a spouse's, or in some cases a deceased or former spouse's. The Social Security Administration makes the quarter determination when a person applies for Medicare.
+
+Premium-free Part A does not mean Part A is free in every sense. A hospital stay can still involve the inpatient deductible and daily coinsurance for a long stay. The premium is only one part of the cost. Part B, Part D, and supplemental coverage have their own premiums and cost sharing.
+
+A person who is not eligible for premium-free Part A can still enroll by paying a premium. The amount depends on the number of work quarters. This is the group that needs the most careful planning, because the premium can be a substantial monthly cost on top of Part B.
+
+## The reduced premium for 30 to 39 quarters
+
+A person with 30 to 39 quarters of Medicare-covered work may pay the reduced Part A premium. For{' '}
+{year}, that amount is {formatMoney(reducedPremium)} a month. Across twelve months, the cost is{' '}
+{formatMoney(reducedAnnual)}. This is not a small amount, and it is separate from the Part B premium.
+
+The reduced premium is available to people who are not eligible for premium-free Part A but who have enough work history to qualify for the lower amount. The quarter count comes from the official record. A person who is close to 30 quarters should check the record before assuming the full premium applies.
+
+A spouse's work history can matter. In some cases, a person can qualify for premium-free Part A through a spouse's work record even if their own record is short. A divorced spouse may also qualify under certain conditions. These rules are fact-specific, so the application and the Social Security record are the place to confirm.
+
+The reduced premium is not an income-based amount. It is based on work history, not on current earnings. A high-income person with 32 quarters pays the reduced premium, and a low-income person with 24 quarters pays the full premium, before any other assistance is considered.
+
+## The full premium for fewer than 30 quarters
+
+A person with fewer than 30 quarters of Medicare-covered work may pay the full Part A premium. For{' '}
+{year}, the full premium is {formatMoney(fullPremium)} a month, or {formatMoney(fullAnnual)} for a year. This is the highest Part A premium and applies only to people who are not eligible for the reduced amount.
+
+The full premium can apply to recent immigrants, people who worked mainly outside the Medicare system, and some people with limited covered work history. It can also apply when a person does not have a qualifying spouse's record. The official determination is made when the person applies.
+
+Some people in this group decide whether to enroll based on the cost of Part A and Part B together. A person who is not eligible for premium-free Part A may also be eligible for Marketplace coverage, and the decision can be complicated. The rule that Marketplace subsidies end when a person is eligible for premium-free Part A does not apply in the same way to someone who must pay for Part A.
+
+The full premium does not include Part B. A person who enrolls in both parts pays both premiums. A person who delays Part B may face a late enrollment penalty later. The enrollment decision should account for all parts, not just the Part A premium.
+
+## How work quarters are counted
+
+A work quarter is based on earnings covered by Social Security. The earnings threshold for a quarter changes each year, and the maximum is four quarters per year. A person who worked for many years in covered employment usually has far more than 40 quarters.
+
+Work under Social Security, the Railroad Retirement Board, and some government employment may count. Work that was not covered by Medicare taxes may not count, even if the person paid other taxes. The Social Security record is the official source, and a person can review it before applying.
+
+A spouse's record can help. A person may qualify for premium-free Part A based on a spouse's work history, including a deceased spouse in some cases. A divorced spouse may qualify if the marriage lasted long enough and other conditions are met. These rules are applied by Social Security when the application is processed.
+
+If the record is wrong or incomplete, a person can ask Social Security to correct it. Pay stubs, tax returns, and employment records can help. The correction should happen before enrollment if possible, because the premium depends on the quarter count.
+
+## What Part A covers and what it does not
+
+Part A helps pay for inpatient hospital care, skilled nursing facility care after a qualifying hospital stay, hospice care, and some home health care. It does not cover most outpatient care, doctor visits, or prescription drugs. Those are handled by Part B and Part D, or by a private plan.
+
+The Part A inpatient deductible applies to each benefit period, not to a calendar year in the same way as the Part B deductible. A benefit period begins when a person enters a hospital and ends after a period without inpatient care. A long stay can involve daily coinsurance after the covered days.
+
+Part A does not cover long-term custodial care in a nursing home. It covers skilled care for a limited time when the coverage rules are met. A person who needs help with daily activities, rather than skilled care, may need to pay privately or use another program.
+
+The Part A premium is only one part of the cost of hospital coverage. The deductible, the coinsurance, and any supplemental policy matter too. A person who is deciding whether to pay for Part A should look at the full cost of coverage, not just the monthly premium.
+
+## Worked example
+
+Consider a person with {exampleReducedQuarters} quarters of covered work. That is enough for the reduced premium but not enough for premium-free Part A. For {year}, the person pays{' '}
+{formatMoney(reducedPremium)} a month, or {formatMoney(reducedAnnual)} for the year. The person also pays the Part B premium and any Part D premium.
+
+Now consider a person with {exampleFullQuarters} quarters. That is below the 30-quarter threshold, so the full premium applies. For {year}, the person pays {formatMoney(fullPremium)} a month, or {formatMoney(fullAnnual)} for the year. The difference between the two examples is substantial, and it comes from the work record, not from income.
+
+A third person has 40 or more quarters and pays no Part A premium. That person still faces the inpatient deductible of{' '}
+{formatMoney(inpatientDeductible)} for a hospital stay and any coinsurance for a long stay. Premium-free Part A is a meaningful benefit, but it is not the same as free hospital care.
+
+The examples use twelve months of coverage. A person who enrolls partway through the year may pay a different total for that year. The monthly amount is the figure to use for planning, and the annual total is an illustration.
+
+## Three honest caveats
+
+1. The quarter count is based on the official work record, not on a person's own estimate. Check the record with Social Security before assuming a premium amount.
+2. The Part A premium is separate from Part B, Part D, and supplemental coverage. A full budget includes all of them.
+3. A person who must pay for Part A may have different Marketplace options than a person who is eligible for premium-free Part A. The decision should be checked against the current rules.
+
+<Faq
+  items={[
+    {
+      question: 'How much is the Part A premium?',
+      answer: `Most people pay no Part A premium with 40 or more quarters. With 30 to 39 quarters, the premium is ${formatMoney(reducedPremium)} a month for ${year}. With fewer than 30 quarters, it is ${formatMoney(fullPremium)} a month.`,
+    },
+    {
+      question: 'Who qualifies for premium-free Part A?',
+      answer:
+        'People with 40 or more quarters of Medicare-covered work, or a qualifying spouse or former spouse record, generally qualify for premium-free Part A.',
+    },
+    {
+      question: 'Does Part A cover hospital stays completely?',
+      answer:
+        'No. Part A has an inpatient deductible and daily coinsurance for longer stays. The premium is separate from those costs.',
+    },
+    {
+      question: 'Can I buy Part A if I do not have 40 quarters?',
+      answer:
+        'Yes, if you meet the enrollment rules. The premium is lower with 30 to 39 quarters and higher with fewer than 30 quarters.',
+    },
+    {
+      question: 'Does a spouse work record count for Part A?',
+      answer:
+        'In some cases, yes. A spouse or former spouse record can help a person qualify for premium-free Part A. Social Security applies the specific rules.',
+    },
+    {
+      question: 'Is the Part A premium based on income?',
+      answer:
+        'No. The Part A premium is based on work quarters. Income can affect Part B and Part D IRMAA, which are separate surcharges.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Part A premiums',
+      value: `${formatMoney(reducedPremium)} or ${formatMoney(fullPremium)} a month`,
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part B premium fact sheet`,
+    },
+    {
+      label: 'Premium-free Part A rule',
+      value: '40 or more quarters',
+      source: sources.medicareCosts,
+      sourceLabel: 'Medicare.gov costs',
+    },
+    {
+      label: 'Part A inpatient deductible',
+      value: formatMoney(inpatientDeductible),
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part B premium fact sheet`,
+    },
+    {
+      label: 'Enrollment and work record',
+      value: 'Social Security determination',
+      source: sources.ssaMedicareSignup,
+      sourceLabel: 'SSA Medicare sign-up',
+    },
+  ]}
+/>
+
+## What to do next
+
+If you are not sure how many work quarters you have, review your Social Security record before you apply. If you must pay a Part A premium, compare the total cost of Part A and Part B with the alternatives available to you. The
+[Medicare vs ACA decision guide](/calculators/medicare-vs-aca) covers the case of people who do not qualify for premium-free Part A. The
+[Medicare Savings Program and Extra Help calculator](/calculators/medicare-savings-program-extra-help)
+can help you check whether you may qualify for help with premiums.

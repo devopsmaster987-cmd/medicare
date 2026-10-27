@@ -1,0 +1,201 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partA2026 } from '@/data/medicare-part-a';
+import { partAPenalty } from '@/data/penalties';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney, formatPercent } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const standardPremium = partA2026.standardPremium.amount;
+export const reducedPremium = partA2026.reducedPremium.amount;
+export const fullPremium = partA2026.fullPremium.amount;
+export const reducedPremiumAnnual = reducedPremium * 12;
+export const fullPremiumAnnual = fullPremium * 12;
+export const penaltyRate = partAPenalty.ratePerFullYear.rate;
+export const quartersNeeded = 40;
+export const reducedThreshold = 30;
+export const reducedQuarters = 32;
+export const fullQuarters = 24;
+
+<AnswerCapsule>
+  The Medicare Part A 40 quarters rule is the work-history test for premium-free hospital coverage.
+  Most people with 40 quarters pay no Part A premium; 30 to 39 quarters generally means a reduced
+  premium, and fewer than 30 means the full premium.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Premium-free threshold',
+      value: `${quartersNeeded} quarters`,
+      note: 'About 10 years of Medicare-covered work.',
+    },
+    {
+      label: 'Reduced premium threshold',
+      value: `${reducedThreshold} to 39 quarters`,
+      note: 'A partial work record can still reduce the premium.',
+    },
+    {
+      label: 'Reduced premium',
+      value: `${formatMoney(reducedPremium)} a month`,
+      note: `The ${year} amount.`,
+    },
+    {
+      label: 'Full premium',
+      value: `${formatMoney(fullPremium)} a month`,
+      note: `The ${year} amount for fewer than ${reducedThreshold} quarters.`,
+    },
+    {
+      label: 'Annual cost at the reduced premium',
+      value: formatMoney(reducedPremiumAnnual),
+      note: 'Twelve months at the reduced amount.',
+    },
+    {
+      label: 'Annual cost at the full premium',
+      value: formatMoney(fullPremiumAnnual),
+      note: 'Twelve months at the full amount.',
+    },
+  ]}
+/>
+
+## What a work quarter is
+
+A work quarter is a three-month period in a calendar year. A person earns quarters by working in jobs where Medicare taxes are paid. The Social Security Administration tracks the record and decides how many quarters a person has.
+
+A person does not need to work in every month of a quarter to earn it. The rules allow earnings within the quarter to count. The exact earnings threshold changes over time, so the safest check is the person's own Social Security record, not a rule of thumb.
+
+A person can earn up to four quarters in a year. Ten years of steady work can therefore produce the 40 quarters needed for premium-free Part A. A person who worked part of each year may still reach 40 quarters, depending on the earnings.
+
+Self-employment can also count. A self-employed person who reported income and paid the relevant taxes may have quarters on record. The record should be checked rather than assumed.
+
+## Why 40 quarters matters
+
+Forty quarters is the usual threshold for premium-free Part A. A person who meets it pays no monthly Part A premium. That is the main reason the rule matters: hospital coverage can be available without a monthly premium, even though other costs still apply.
+
+The 40-quarter rule does not eliminate the inpatient deductible or coinsurance. A person with premium-free Part A still pays the hospital deductible and any coinsurance for extended stays. The premium is only one part of the cost.
+
+The rule also affects the Part A late enrollment penalty. The penalty applies to people who pay a Part A premium. A person with 40 quarters generally does not pay that premium and therefore does not face that penalty.
+
+A person with fewer than 40 quarters may still get Part A, but the premium depends on the exact count. The difference between the reduced and full premium can be significant over a year.
+
+The 40-quarter rule applies to Part A. Part B does not use the same work test. A person who is eligible for Medicare generally pays the Part B premium, regardless of the work record. That is why a person can have premium-free Part A and still pay a monthly Part B premium.
+
+## The reduced and full premium bands
+
+A person with 30 to 39 quarters generally pays the reduced Part A premium. The reduced premium is {formatMoney(reducedPremium)} a month in {year}, or {formatMoney(reducedPremiumAnnual)} a year.
+
+A person with fewer than 30 quarters generally pays the full Part A premium. The full premium is {formatMoney(fullPremium)} a month in {year}, or {formatMoney(fullPremiumAnnual)} a year.
+
+The bands are based on the work record, not on income. A high-income person with a short work record can pay the full premium, and a low-income person with 40 quarters can pay nothing. The Part B income-related premium is a separate rule.
+
+A person who is close to 40 quarters should check the record before enrolling. A few missing quarters can change the premium. In some cases, the person may be able to correct the record or earn additional quarters.
+
+## A spouse's work record
+
+A person may qualify for premium-free Part A through a spouse's work record. That can help a person who did not work long enough or who worked in jobs that did not pay Medicare taxes.
+
+The marriage and divorce rules are specific. A divorced spouse may qualify based on the former spouse's record in some situations. A surviving spouse may also qualify. The Social Security Administration applies the rules.
+
+A person who is applying through a spouse's record should have the spouse's Social Security number and the marriage or divorce records available. The application process may take longer if the records are incomplete.
+
+A person who is not sure whether a spouse's record counts should ask Social Security before paying a Part A premium. The difference can be thousands of dollars over time.
+
+## How to check the record
+
+The Social Security statement is the starting point. A person can create or use a my Social Security account to view the work record. The statement shows the earnings and the quarters credited.
+
+A person who finds an error should contact Social Security. Old employers, missing earnings, or name changes can create gaps. The correction process may require pay stubs, tax records, or employer letters.
+
+A person who is close to 65 should check the record a few months before the initial enrollment period. That leaves time to fix errors before the enrollment decision.
+
+A person who has already enrolled and believes the premium is wrong can ask for a review. The notice should show the quarter count and the premium band.
+
+A person who is short of 40 quarters should not assume the record is final. Missing earnings can sometimes be added if the person has proof. A W-2 form, a tax return, or a pay stub can support a correction. The person should contact Social Security and ask what evidence is needed.
+
+A person who continues to work after 65 can keep earning quarters. Those additional quarters may change the premium later, but the change is not always automatic. The person should ask how and when the record is updated.
+
+A person who is married should check both work records. One spouse may have 40 quarters even if the other does not. The spouse with the stronger record may be able to help the other qualify. The application should identify the record being used.
+
+## Worked example
+
+Consider a person with 32 quarters. The person pays the reduced premium of {formatMoney(reducedPremium)} a month in {year}. Over a year, that is {formatMoney(reducedPremiumAnnual)}.
+
+Now consider a person with 24 quarters. The person pays the full premium of {formatMoney(fullPremium)} a month, or {formatMoney(fullPremiumAnnual)} a year. The difference between the two examples is {formatMoney(fullPremiumAnnual - reducedPremiumAnnual)} a year.
+
+A third person has 40 quarters and pays no Part A premium. That person still pays the inpatient deductible if hospitalized, but the monthly Part A premium is zero.
+
+If the person with 24 quarters delayed enrollment by two years, the Part A penalty could add {formatPercent(penaltyRate)} of the premium for twice the delay. The penalty is separate from the premium band, and both can apply at the same time.
+
+## Three honest caveats
+
+1. The 40-quarter rule is about the work record, not income. A high-income person can still qualify for premium-free Part A.
+2. A spouse's record can help, but the marriage and divorce rules are specific. Check with Social Security.
+3. Premium-free Part A does not mean free care. The hospital deductible and coinsurance still apply.
+
+<Faq
+  items={[
+    {
+      question: 'How many quarters do I need for premium-free Part A?',
+      answer: `You generally need ${quartersNeeded} quarters of Medicare-covered work, which is about 10 years.`,
+    },
+    {
+      question: 'What if I have 30 to 39 quarters?',
+      answer: `You generally pay the reduced Part A premium, which is ${formatMoney(reducedPremium)} a month in ${year}.`,
+    },
+    {
+      question: 'What if I have fewer than 30 quarters?',
+      answer: `You generally pay the full Part A premium, which is ${formatMoney(fullPremium)} a month in ${year}.`,
+    },
+    {
+      question: "Can I use my spouse's work record?",
+      answer:
+        'In many cases, yes. A spouse, divorced spouse, or surviving spouse may qualify based on the worker\'s record. Social Security applies the specific rules.',
+    },
+    {
+      question: 'How do I check my quarters?',
+      answer:
+        'Use your Social Security statement or my Social Security account. If you find an error, contact Social Security to correct it.',
+    },
+    {
+      question: 'Does premium-free Part A cover everything?',
+      answer:
+        'No. You still pay the inpatient deductible and any coinsurance. Part B and Part D have separate premiums and costs.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Part A premium',
+      value: `${formatMoney(reducedPremium)} or ${formatMoney(fullPremium)} a month`,
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part B premium fact sheet`,
+    },
+    {
+      label: 'Premium-free Part A',
+      value: `${quartersNeeded} quarters`,
+      source: sources.medicareCosts,
+      sourceLabel: 'Medicare.gov costs',
+    },
+    {
+      label: 'Work record',
+      value: 'Social Security statement',
+      source: sources.ssaMedicareSignup,
+      sourceLabel: 'SSA Medicare sign-up',
+    },
+    {
+      label: 'Part A penalty',
+      value: `${formatPercent(penaltyRate)} for twice the delay`,
+      source: sources.medicareAvoidPenalties,
+      sourceLabel: 'Medicare.gov avoid penalties',
+    },
+  ]}
+/>
+
+## What to do next
+
+Check your Social Security record before you assume you owe a Part A premium. If you are short of 40 quarters, ask whether a spouse's record or a correction can help. The
+[Medicare Part A premium guide](/guides/medicare-part-a-premium) shows the current premium bands, and the
+[Part A late enrollment penalty guide](/guides/medicare-part-a-late-enrollment-penalty) explains the penalty for people who pay a premium. If you are comparing Medicare with marketplace coverage, use the
+[Medicare vs ACA decision tool](/calculators/medicare-vs-aca).

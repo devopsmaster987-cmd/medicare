@@ -1,0 +1,206 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+
+export const year = figureYears.current;
+export const startMonth = 11;
+export const startDay = 1;
+export const endMonth = 1;
+export const endDay = 15;
+export const coverageStartMonth = 1;
+
+<AnswerCapsule>
+  The ACA open enrollment dates {year} generally run from November 1 of the prior year through
+  January 15 of {year}. Some state marketplaces use different dates. Enroll by the deadline to avoid
+  a gap. Coverage can start on January 1 if you enroll by the December deadline.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Federal window opens',
+      value: 'November 1',
+      note: 'The window is for coverage in the following year.',
+    },
+    {
+      label: 'Federal window closes',
+      value: 'January 15',
+      note: 'The deadline can affect the coverage start month.',
+    },
+    {
+      label: 'January 1 start',
+      value: 'Enroll by December 15',
+      note: 'A later enrollment generally starts the following month.',
+    },
+    {
+      label: 'State marketplaces',
+      value: 'Dates can differ',
+      note: 'Some states extend the window or use a different schedule.',
+    },
+    {
+      label: 'Medicaid and CHIP',
+      value: 'Year-round',
+      note: 'These programs do not use the marketplace window.',
+    },
+    {
+      label: 'Outside the window',
+      value: 'Special enrollment',
+      note: 'A qualifying life event may allow enrollment later.',
+    },
+  ]}
+/>
+
+## The federal open enrollment window
+
+The federal marketplace open enrollment window generally begins on November 1 and ends on January 15. The window that begins in November is for coverage in the following year.
+
+The January 15 deadline is not the same as a January 1 coverage start. A person who enrolls by December 15 generally gets coverage starting January 1. A person who enrolls between December 16 and January 15 generally gets coverage starting February 1.
+
+The dates matter because a person who waits can have a gap. A person who enrolls on January 15 does not get retroactive coverage for January. The plan starts on February 1 in most cases.
+
+A person who needs coverage sooner should enroll earlier. The marketplace processes applications in the order received, and the coverage start depends on the enrollment date.
+
+## What the dates mean for coverage
+
+The open enrollment window is the main chance to buy marketplace coverage for the year. A person who misses the window generally cannot enroll unless a special enrollment period applies.
+
+A person who enrolls during the window can choose a plan, apply for premium tax credits, and compare cost-sharing. The marketplace shows the estimated credit based on household income and family size.
+
+A person who is eligible for Medicaid or the Children's Health Insurance Program can enroll year-round. Those programs do not use the marketplace window. A person who applies through the marketplace may be redirected to the state agency.
+
+A person who has employer coverage should check whether the coverage is affordable and meets the minimum value standard. If it does, the person may not qualify for premium tax credits. If it does not, the person may be able to use the marketplace.
+
+## State marketplaces
+
+Some states run their own marketplaces. Those states may use different open enrollment dates. A state may extend the window, add a special enrollment period, or use a different deadline for coverage starts.
+
+A person should check the state marketplace website, not just the federal site. The state rules can change, and the federal dates may not apply.
+
+A person who moves between states should check both marketplaces. A move can create a special enrollment period, and the new state may have different plan options.
+
+A person who is not sure which marketplace serves their state can use the federal marketplace's state lookup. The marketplace can redirect the person to the right site.
+
+## Who should use the window
+
+A person who does not have employer coverage, Medicare, Medicaid, or another qualifying source of coverage should consider the marketplace. The window is the main chance to enroll for the year.
+
+A self-employed person, a gig worker, an early retiree, and a person between jobs may use the marketplace. The person should estimate household income carefully because the premium tax credit depends on it.
+
+A person who is offered employer coverage should check the affordability rules. A plan may be considered affordable even if the premium feels high. The marketplace uses a specific percentage of household income to decide.
+
+A person who is eligible for Medicare should generally not use the marketplace for the same coverage. Medicare and marketplace coverage have different rules, and the premium tax credit generally ends when a person is eligible for premium-free Part A.
+
+## How to enroll
+
+A person can apply through the marketplace website, by phone, or with the help of a navigator or broker. The application asks about household members, income, immigration status, and current coverage.
+
+The person should have Social Security numbers, income records, and information about any employer coverage. The marketplace may ask for proof of income or other documents.
+
+After the application, the person compares plans. The plan comparison shows the premium, the deductible, the network, and the drug coverage. The person should check the providers and drugs they use.
+
+A person who wants help can contact the marketplace call center or a local navigator. The help is free. A person should be careful with anyone who asks for a fee to apply.
+
+## If you miss the deadline
+
+A person who misses the open enrollment window may still be able to enroll through a special enrollment period. A qualifying life event, such as a move, a birth, a marriage, or a loss of coverage, can open a window.
+
+The person should apply as soon as the event happens. The window is limited, and the coverage start depends on the event and the application date.
+
+A person who does not qualify for a special enrollment period may have to wait until the next open enrollment. That can leave a gap. The person should check whether Medicaid or another program applies.
+
+A person who is uninsured should check the state's rules. The federal individual mandate penalty is no longer in effect, but some states have their own rules. The marketplace can explain the state requirement.
+
+## Worked example
+
+Suppose a person needs coverage for the next year. The person enrolls on December 10. The marketplace processes the application, and coverage starts on January 1.
+
+A second person enrolls on January 10. The coverage generally starts on February 1. The person has a gap in January and should plan for it.
+
+A third person misses the January 15 deadline. The person later moves to a new state and applies through a special enrollment period. The move creates a window, and the coverage starts based on the new state's rules.
+
+A fourth person applies for Medicaid instead of a marketplace plan. The application is accepted year-round, and the state agency decides eligibility.
+
+The examples show that the enrollment date and the coverage start are connected. A small delay can create a month without coverage.
+
+## Common mistakes
+
+One mistake is assuming the federal dates apply in every state. A state marketplace may close earlier or later. Another mistake is waiting until January 15 for a January 1 start. The coverage generally starts in February.
+
+A third mistake is skipping the income estimate. The premium tax credit depends on it, and a wrong estimate can change the cost. A fourth mistake is forgetting to check the provider network. A low premium plan may not include the doctors the person uses.
+
+## Three honest caveats
+
+1. State marketplaces can use different dates. Check the state website, not only the federal site.
+2. The January 15 deadline does not mean January 1 coverage. Enroll by December 15 for a January start.
+3. Missing the window can leave a gap unless a special enrollment period applies.
+
+<Faq
+  items={[
+    {
+      question: 'When does ACA open enrollment start?',
+      answer:
+        'The federal window generally starts on November 1 and runs through January 15 for coverage in the following year.',
+    },
+    {
+      question: 'When does coverage start?',
+      answer:
+        'Enroll by December 15 for a January 1 start. Enroll between December 16 and January 15 for a February 1 start in most cases.',
+    },
+    {
+      question: 'Do all states use the same dates?',
+      answer:
+        'No. State-based marketplaces can use different dates. Check your state marketplace website.',
+    },
+    {
+      question: 'Can I enroll after January 15?',
+      answer:
+        'You may be able to enroll through a special enrollment period if you have a qualifying life event.',
+    },
+    {
+      question: 'Can I get Medicaid during open enrollment?',
+      answer:
+        'Medicaid and CHIP accept applications year-round. The marketplace can redirect you to the state agency.',
+    },
+    {
+      question: 'What documents do I need?',
+      answer:
+        'You generally need Social Security numbers, income records, and information about any employer coverage.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Open enrollment',
+      value: 'Federal dates',
+      source: sources.healthcareOpenEnrollment,
+      sourceLabel: 'HealthCare.gov open enrollment',
+    },
+    {
+      label: 'Special enrollment',
+      value: 'Qualifying events',
+      source: sources.healthcareSep,
+      sourceLabel: 'HealthCare.gov special enrollment',
+    },
+    {
+      label: 'Cost-sharing reduction',
+      value: 'Silver plan help',
+      source: sources.healthcareCsr,
+      sourceLabel: 'HealthCare.gov cost-sharing reduction',
+    },
+    {
+      label: 'Premium tax credit',
+      value: 'Income rules',
+      source: sources.irs1095a,
+      sourceLabel: 'IRS health coverage statements',
+    },
+  ]}
+/>
+
+## What to do next
+
+Check your state marketplace and mark the December 15 and January 15 dates. Gather your income records before you apply. The
+[ACA special enrollment period guide](/guides/aca-special-enrollment-period) explains what to do if you miss the window, and the
+[ACA cost sharing reduction guide](/guides/aca-cost-sharing-reduction) explains the extra help with deductibles and copays. If you are comparing Medicare and marketplace coverage, use the
+[Medicare vs ACA decision tool](/calculators/medicare-vs-aca).

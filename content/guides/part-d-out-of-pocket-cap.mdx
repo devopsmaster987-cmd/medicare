@@ -1,0 +1,249 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partD2026 } from '@/data/medicare-part-d';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const cap = partD2026.outOfPocketCap.amount;
+export const deductible = partD2026.deductible.amount;
+export const basePremium = partD2026.baseBeneficiaryPremium.amount;
+export const annualBasePremium = basePremium * 12;
+export const premiumPlusCap = annualBasePremium + cap;
+
+<AnswerCapsule>
+  The Part D out of pocket cap {year} limits what you pay for covered drugs during the year, not
+  what you pay in premiums. After covered spending reaches the cap, the plan generally pays the rest
+  for covered drugs. The premium and any IRMAA amount stay separate.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Out-of-pocket cap',
+      value: formatMoney(cap),
+      note: `The covered-drug limit for ${year}.`,
+    },
+    {
+      label: 'Deductible',
+      value: formatMoney(deductible),
+      note: 'The amount you pay before the plan begins to share covered costs.',
+    },
+    {
+      label: 'Base beneficiary premium',
+      value: formatMoney(basePremium),
+      note: 'A national reference amount. The actual plan premium varies.',
+    },
+    {
+      label: 'Base premium for a year',
+      value: formatMoney(annualBasePremium),
+      note: 'The monthly base premium multiplied by twelve.',
+    },
+    {
+      label: 'Premium plus cap',
+      value: formatMoney(premiumPlusCap),
+      note: 'A rough illustration before plan differences and IRMAA.',
+    },
+    {
+      label: 'IRMAA',
+      value: 'Separate add-on',
+      note: 'Income-based Part D IRMAA is not part of the cap.',
+    },
+  ]}
+/>
+
+## What the cap covers
+
+Part D has an annual limit on what you pay out of pocket for covered drugs. The limit is not a
+limit on the premium. It is a limit on the cost-sharing that counts toward the plan’s out-of-pocket
+threshold.
+
+After you reach the cap, the plan generally pays for covered drugs for the rest of the year. You may
+still pay a premium, and you may still pay for drugs the plan does not cover. The cap is a protection
+for covered spending, not a promise that the whole year is free.
+
+The cap does not apply to every cost. It does not cover the monthly premium. It does not cover a
+drug that is excluded from the plan formulary. It does not cover a pharmacy that is out of network
+unless the plan allows an exception. Read the plan’s evidence of coverage for the specific rules.
+
+## Part D out of pocket cap {year} amount
+
+The cap for {year} is {formatMoney(cap)}. That is the annual covered-drug limit reflected in the data
+layer. The standard Part D deductible for {year} is {formatMoney(deductible)}, and the base
+beneficiary premium is {formatMoney(basePremium)} a month.
+
+The base premium is a national reference, not the price of every plan. A plan can charge more or
+less. A plan with a higher premium can still be the better choice if its formulary covers the drugs
+you take. Compare total cost, not just the premium.
+
+The cap is not reduced by the deductible in a way that makes the first {formatMoney(deductible)}
+free. The deductible is part of the covered spending that can count toward the cap, but you still
+pay it at the pharmacy under the plan rules.
+
+<AdSlot placement="mid-article" />
+
+## What does not count
+
+Premiums do not count toward the cap. The monthly plan premium and any Part D IRMAA amount are
+separate. Paying a high premium does not move you closer to the cap.
+
+Drugs that are not covered by the plan generally do not count. A drug that requires prior
+authorization and is not approved may not count. A drug purchased outside the plan’s network may not
+count. The plan’s formulary and network rules decide.
+
+Costs that are not for covered Part D drugs generally do not count. That includes most over-the-
+counter products, unless the plan covers them as a covered benefit. It includes services covered by
+Part B, such as doctor visits, even when they happen in the same year.
+
+## How the cap interacts with Extra Help
+
+Extra Help is the Part D low-income subsidy. It can lower the premium, the deductible, and the copays
+for covered drugs. It does not change the out-of-pocket cap into a different number, but it can make
+the costs before the cap much lower.
+
+If you have Extra Help, check the plan’s low-income cost-sharing rules and the Extra Help amount for
+the year. The [Medicare Savings Program and Extra Help](/calculators/medicare-savings-program-extra-help)
+calculator can show whether the income and resource tests are likely met.
+
+If you do not have Extra Help, the cap still applies, but you may reach it only after paying the
+deductible and the plan’s copays. A plan with a lower premium but a restrictive formulary can cost
+more overall.
+
+## Worked example
+
+A person pays the base beneficiary premium of {formatMoney(basePremium)} a month for a full year.
+The premium total is {formatMoney(annualBasePremium)}. The person also reaches the {formatMoney(cap)}
+out-of-pocket cap for covered drugs.
+
+The rough total for the year is {formatMoney(premiumPlusCap)}, before any IRMAA amount and before
+plan-specific premium differences. That is not a quote. It is an illustration of why the premium and
+the cap are separate numbers.
+
+If the same person has a plan premium of a different amount, the premium part changes while the cap
+stays the same. If the person has IRMAA, the IRMAA add-on also stays outside the cap. That is why a
+total-cost estimate needs the plan premium, the drugs, and the income-based add-on.
+
+## How to compare two Part D plans
+
+Start with the drugs you take and the pharmacy you use. Check the formulary, the tier, and the
+network. A plan with a low premium can cost more if a regular drug is on a high tier or requires
+prior authorization.
+
+Add the annual premium, the deductible, and the expected copays for the year. Then compare the total
+with the cap. A plan that reaches the cap quickly may be better for someone with expensive drugs. A
+plan with a low premium may be better for someone with few prescriptions.
+
+Do not compare only the premium or only the cap. The total depends on the drugs, the plan rules, and
+the pharmacy. Use the plan’s own pricing tools and the Medicare Plan Finder for the estimate.
+
+## What to do if a drug is not covered
+
+Ask the plan for a formulary exception or a prior authorization. The plan has a process, and the
+doctor usually supplies the clinical reason. A drug that is not covered may still be approved by
+exception, but the process takes time.
+
+If the drug is not covered and no exception is granted, the cost may not count toward the cap. That
+can make the annual total much higher than the cap suggests. Ask the plan in writing how the drug
+will be treated.
+
+A temporary transition fill may be available when a plan changes its formulary. Ask the plan and the
+pharmacist about the transition rules. Do not assume the old price will continue.
+
+## A checklist for the annual review
+
+List the drugs, doses, and pharmacies. Check the plan’s formulary and network for the coming year.
+Compare the premium, deductible, and expected copays. Confirm whether the plan’s out-of-pocket cap is
+the standard one and whether any drugs are excluded.
+
+Check the Part D IRMAA amount separately. It is not part of the plan premium or the cap. If income
+changed, check the tier before the annual enrollment period.
+
+Keep the plan documents and the pharmacy receipts. If a claim is processed incorrectly, the receipts
+and the explanation of benefits are the evidence. Ask the plan to correct the claim promptly.
+
+Review the plan every year, even if the drugs have not changed. Formularies, tiers, and premiums can
+change, and a plan that was the best fit last year may not be the best fit now.
+
+## Three honest caveats
+
+1. The cap is for covered drugs. A plan can still charge for drugs it does not cover, and a
+   formulary exception is not guaranteed.
+2. The premium and IRMAA are outside the cap. A low drug bill does not mean a low total Medicare
+   cost.
+3. Part D plan premiums and formularies vary. Compare the plan documents for the drugs you take
+   before choosing a plan.
+
+<Faq
+  items={[
+    {
+      question: 'Does the Part D cap include premiums?',
+      answer:
+        'No. The annual out-of-pocket cap applies to covered drug costs. The monthly premium and any Part D IRMAA amount are separate.',
+    },
+    {
+      question: 'What is the Part D deductible for the year?',
+      answer: `The standard Part D deductible in the data layer is ${formatMoney(deductible)} for ${year}. A plan can use a different amount within the rules.`,
+    },
+    {
+      question: 'Does IRMAA count toward the Part D cap?',
+      answer:
+        'No. Part D IRMAA is an income-based add-on to the premium. It is not a covered drug cost and does not count toward the cap.',
+    },
+    {
+      question: 'What happens after I reach the cap?',
+      answer:
+        'The plan generally pays for covered drugs for the rest of the year. You may still owe the premium and costs for drugs the plan does not cover.',
+    },
+    {
+      question: 'Does Extra Help change the cap?',
+      answer:
+        'Extra Help can lower the premium, deductible, and copays. It does not replace the annual cap, but it can make the costs before the cap much lower.',
+    },
+    {
+      question: 'Do drugs not on the formulary count toward the cap?',
+      answer:
+        'Generally no. Costs for drugs the plan does not cover usually do not count toward the out-of-pocket cap. Ask the plan about an exception.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Part D out-of-pocket cap',
+      value: formatMoney(cap),
+      source: sources.medicarePartDCosts,
+      sourceLabel: 'Medicare.gov Part D costs',
+    },
+    {
+      label: 'Part D deductible',
+      value: formatMoney(deductible),
+      source: sources.medicarePartDCosts,
+      sourceLabel: 'Medicare.gov Part D costs',
+    },
+    {
+      label: 'Base beneficiary premium',
+      value: formatMoney(basePremium),
+      source: sources.cms2026PartD,
+      sourceLabel: `CMS ${year} Part D bid information`,
+    },
+    {
+      label: 'Extra Help',
+      value: 'Low-income subsidy',
+      source: sources.ssaExtraHelp,
+      sourceLabel: 'SSA Extra Help',
+    },
+    {
+      label: 'Part D IRMAA',
+      value: 'Separate from the plan premium',
+      source: sources.medicarePartDCosts,
+      sourceLabel: 'Medicare.gov Part D costs',
+    },
+  ]}
+/>
+
+## What to do next
+
+Use the [Medicare Savings Program and Extra Help](/calculators/medicare-savings-program-extra-help)
+calculator if your income and resources are limited. Then compare the total cost of the plans you
+are considering, including the premium, the deductible, the formulary, and any IRMAA amount.

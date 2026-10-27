@@ -1,0 +1,189 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { irs2026 } from '@/data/irs';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+
+export const year = figureYears.current;
+export const windowMonths = irs2026.initialEnrollmentPeriodMonths;
+export const employerSize = irs2026.employerSizeRule.employees;
+export const exampleBirthdayMonth = 'June';
+export const exampleWindowStart = 'March';
+export const exampleWindowEnd = 'September';
+
+<AnswerCapsule>
+  The Medicare initial enrollment period is a seven-month window that begins three months before the
+  month you turn 65 and ends three months after it. Enrolling early can align coverage with your
+  birthday month. If you have qualifying employer coverage, you may be able to delay Part B without
+  a penalty.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Window length',
+      value: `${windowMonths} months`,
+      note: 'Three months before, the birthday month, and three months after.',
+    },
+    {
+      label: 'Typical start',
+      value: 'Three months before the birthday month',
+      note: 'The exact month depends on the birthday and the first-of-month rule.',
+    },
+    {
+      label: 'Typical end',
+      value: 'Three months after the birthday month',
+      note: 'A late enrollment can delay the coverage start date.',
+    },
+    {
+      label: 'Coverage start',
+      value: 'Depends on when you enroll',
+      note: 'Enrolling before the birthday month can start coverage on the first of that month.',
+    },
+    {
+      label: 'Employer coverage',
+      value: `${employerSize} or more employees`,
+      note: 'Current employer coverage may allow a delay in Part B without a penalty.',
+    },
+    {
+      label: 'Missed window',
+      value: 'Later enrollment may cost more',
+      note: 'A penalty and a coverage gap can result.',
+    },
+  ]}
+/>
+
+## What the initial enrollment period is
+
+The initial enrollment period is the first window most people have to sign up for Medicare Part A and Part B. It is built around the month a person turns 65. The window is seven months long: the three months before the birthday month, the birthday month itself, and the three months after.
+
+The window is not a deadline for every person. Someone who is still working and has qualifying employer coverage may be able to delay Part B without a penalty. Someone who is not working and does not have qualifying coverage should treat the window as the main enrollment opportunity.
+
+Part A and Part B are the core of Original Medicare. Part A is hospital insurance, and Part B is medical insurance. A person who wants drug coverage also needs a Part D plan or a Medicare Advantage plan with drug coverage. The initial enrollment period is the time to make those choices together, not one at a time.
+
+The date that matters is the month a person turns 65, not the exact birthday. A person born in the middle of a month still uses the birthday month as the anchor. A person born on the first day of a month is treated as reaching 65 in the prior month for Medicare purposes, which can shift the window.
+
+## The seven-month window in practice
+
+Suppose a person turns 65 in {exampleBirthdayMonth}. The window normally begins in {exampleWindowStart} and ends in {exampleWindowEnd}. If the person enrolls during the three months before the birthday month, coverage can begin on the first day of the birthday month.
+
+If the person enrolls during the birthday month, coverage generally begins the first day of the following month. If the person enrolls during the three months after the birthday month, coverage begins the first day of the month after enrollment, and the start can be later than the birthday month.
+
+The timing is not only about the start date. A late enrollment can create a gap in coverage and, for Part B, a late enrollment penalty. The penalty is generally permanent. A person who is unsure about the exact dates should use the official Medicare tools or contact Social Security before the window closes.
+
+The first-of-month birthday rule is easy to miss. If a birthday falls on the first day of a month, the person is considered to turn 65 in the previous month. That can move the entire window one month earlier. A person born on the first day of {exampleBirthdayMonth}, for example, may need to use the prior month as the anchor.
+
+## What to enroll in during the window
+
+Most people should enroll in Part A and Part B during the initial enrollment period. Part A is premium-free for people with 40 or more work quarters, and Part B has a monthly premium. A person who is not eligible for premium-free Part A may need to decide whether to buy Part A.
+
+Drug coverage is a separate decision. A person who has no creditable prescription drug coverage should consider a Part D plan during the initial enrollment period. Waiting can create a Part D late enrollment penalty. A person with creditable employer or retiree coverage may be able to delay Part D without a penalty.
+
+A Medigap policy is also a separate choice. The Medigap open enrollment period generally begins when Part B starts and lasts six months. During that period, an insurer generally cannot refuse to sell a policy or charge more because of health status, although the rules vary by state. Missing that window can make a policy harder or more expensive to buy later.
+
+A person who chooses a Medicare Advantage plan instead of Original Medicare should compare the plan's network, drug coverage, and cost sharing. This page is about the enrollment window, not about which type of plan is better. The decision should be based on the person's doctors, drugs, travel, and budget.
+
+## If you are still working
+
+A person who is still working may be able to delay Part B if the employer coverage is based on current employment and the employer has {employerSize} or more employees. In that situation, the employer plan generally pays first, and Medicare may be secondary. The person can usually enroll in Part B later through a special enrollment period without a penalty.
+
+The rule is different for a small employer. If the employer has fewer than {employerSize} employees, Medicare generally pays first, and the person should usually enroll in Part B during the initial enrollment period. Delaying in that situation can create a penalty and a gap.
+
+Coverage based on a spouse's current employment can also qualify. A person who is covered through a working spouse's employer plan should check the employer size and the plan's creditable status. Retiree coverage and COBRA are generally not treated the same as current employer coverage for the delay rules.
+
+The employer's human resources office is the best source for the plan's status. A person should ask whether the coverage is creditable for Part D and whether the employer has {employerSize} or more employees. The answers should be in writing, because the enrollment decision may depend on them.
+
+## What happens if you miss the window
+
+A person who misses the initial enrollment period may be able to enroll during the General Enrollment Period, which runs from January 1 through March 31 each year. Coverage may not start immediately, and a Part B late enrollment penalty may apply. The penalty is generally permanent.
+
+The Part B penalty is based on the standard premium and the number of full 12-month periods without Part B. A person who had creditable employer coverage during the gap may be able to avoid the penalty. A person who simply missed the window usually cannot.
+
+The Part D penalty is separate. It is based on the national base beneficiary premium and the number of full months without creditable drug coverage. A person who missed the drug coverage window can owe a penalty even if Part B was handled correctly.
+
+A coverage gap can be expensive. A person who needs care during the gap may pay the full cost or may have limited options. The safest approach is to enroll on time or to confirm in writing that a delay is allowed.
+
+## Worked example
+
+Consider a person who turns 65 in {exampleBirthdayMonth} and has no employer coverage. The initial enrollment period normally runs from {exampleWindowStart} through{' '}
+{exampleWindowEnd}. The person enrolls in {exampleWindowStart}. Because enrollment happened before the birthday month, Part A and Part B can begin on the first day of{' '}
+{exampleBirthdayMonth}.
+
+A second person waits until {exampleWindowEnd} to enroll. Coverage may begin later, and the person may have a gap. If the delay includes a full 12-month period without Part B and no creditable coverage, a Part B late enrollment penalty may apply.
+
+A third person is still working for an employer with {employerSize} or more employees and has creditable coverage. That person may be able to delay Part B and enroll later through a special enrollment period. The employer coverage and the employment status are the key facts.
+
+The examples use the same birthday month but different enrollment dates. The difference in outcome comes from the timing and the coverage available. A person with employer coverage should not automatically delay, and a person without it should not automatically wait.
+
+## Three honest caveats
+
+1. The window is based on the birthday month, and the first-of-month rule can shift it. Confirm the dates for your own birthday.
+2. Employer coverage does not always justify a delay. The employer size, the employment status, and the creditable status all matter.
+3. Missing the window can create both a penalty and a coverage gap. The cost of waiting is usually higher than the cost of checking.
+
+<Faq
+  items={[
+    {
+      question: 'When does the initial enrollment period start?',
+      answer:
+        'It usually starts three months before the month you turn 65. A birthday on the first day of a month can shift the start one month earlier.',
+    },
+    {
+      question: 'How long is the initial enrollment period?',
+      answer: `It is ${windowMonths} months long: three months before the birthday month, the birthday month, and three months after.`,
+    },
+    {
+      question: 'When does coverage start if I enroll early?',
+      answer:
+        'If you enroll during the three months before your birthday month, coverage can start on the first day of your birthday month.',
+    },
+    {
+      question: 'Can I delay Part B if I am still working?',
+      answer: `You may be able to delay if you have coverage based on current employment and the employer has ${employerSize} or more employees. Confirm the details with the employer.`,
+    },
+    {
+      question: 'What if I miss the initial enrollment period?',
+      answer:
+        'You may be able to enroll during the General Enrollment Period, but coverage may be delayed and a late enrollment penalty may apply.',
+    },
+    {
+      question: 'Do I need Part D during the initial enrollment period?',
+      answer:
+        'If you do not have creditable drug coverage, you should consider a Part D plan during the window. Waiting can create a late enrollment penalty.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Initial enrollment window',
+      value: `${windowMonths} months around the birthday month`,
+      source: sources.medicareEmployer,
+      sourceLabel: 'Medicare.gov when to sign up',
+    },
+    {
+      label: 'Employer size rule',
+      value: `${employerSize} or more employees`,
+      source: sources.medicarePaysFirst,
+      sourceLabel: 'Medicare.gov who pays first',
+    },
+    {
+      label: 'Working past 65',
+      value: 'Delay rules and special enrollment',
+      source: sources.medicareWorkingPast65,
+      sourceLabel: 'Medicare.gov working past 65',
+    },
+    {
+      label: 'Sign-up process',
+      value: 'Social Security enrollment',
+      source: sources.ssaMedicareSignup,
+      sourceLabel: 'SSA Medicare sign-up',
+    },
+  ]}
+/>
+
+## What to do next
+
+Write down the month you turn 65 and count backward three months. If you have employer coverage, ask whether it is based on current employment and whether the employer has {employerSize} or more employees. If you are choosing between Medicare and a Marketplace plan, use the
+[Medicare vs ACA decision guide](/calculators/medicare-vs-aca). If you are worried about a late penalty, the
+[Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty) shows how the cost builds.

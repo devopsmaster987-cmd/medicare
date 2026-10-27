@@ -1,0 +1,262 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { aca2026 } from '@/data/aca';
+import { fplAnnual } from '@/data/fpl';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney, formatPercent } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const coverageYear = aca2026.year;
+export const fplYear = aca2026.fplYearForSubsidies;
+export const limitPercent = aca2026.subsidyCliffFplPercent;
+export const sizes = [1, 2, 3, 4, 5, 6, 7, 8];
+export const exampleSize = 3;
+export const exampleFpl = fplAnnual(fplYear, exampleSize);
+export const exampleLimit = exampleFpl * 4;
+export const exampleContribution = exampleLimit * aca2026.affordabilityPercentage.rate;
+
+<AnswerCapsule>
+  The 400 FPL subsidy cliff {year} is the income line where premium tax credits generally end for
+  Marketplace coverage. For {coverageYear} coverage, the limit is 400 percent of the {fplYear}
+  federal poverty guideline. One dollar above the line can remove the credit for the household.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Coverage year',
+      value: String(coverageYear),
+      note: 'The year the Marketplace plan is in force.',
+    },
+    {
+      label: 'Poverty guideline year',
+      value: String(fplYear),
+      note: 'The Marketplace uses the prior-year table.',
+    },
+    {
+      label: 'Cliff',
+      value: `${limitPercent}% of the poverty line`,
+      note: 'Above the line, premium tax credits generally end.',
+    },
+    {
+      label: 'Household of one',
+      value: formatMoney(fplAnnual(fplYear, 1) * 4),
+      note: '400 percent of the prior-year guideline.',
+    },
+    {
+      label: 'Household of four',
+      value: formatMoney(fplAnnual(fplYear, 4) * 4),
+      note: '400 percent of the prior-year guideline.',
+    },
+    {
+      label: 'Enhanced subsidies',
+      value: aca2026.enhancedSubsidies.status,
+      note: 'Check the current law before relying on an extension.',
+    },
+  ]}
+/>
+
+## What the cliff is
+
+Premium tax credits are calculated on a sliding scale below a certain income limit. The scale uses
+the federal poverty guidelines and the applicable percentage table. Above the limit, the credit
+generally stops rather than tapering to zero.
+
+That stopping point is the cliff. A household below the line can receive help. A household above the
+line can lose it, even if the income difference is small. The cliff is the reason a year-end bonus,
+a capital gain, or a Roth conversion can change a Marketplace result.
+
+The cliff is not the only thing that determines the credit. Below the line, the benchmark premium
+and the applicable percentage still matter. A household can be under the cliff and still owe a
+substantial monthly premium.
+
+## ACA subsidy cliff extension {year}
+
+The enhanced subsidy provisions are shown as expired in the current data layer. For {coverageYear},
+the working assumption is that premium tax credits are generally limited to households at or below
+{limitPercent} percent of the poverty line. A household above the line should not assume an
+extension applies.
+
+The law can change. A news article, a campaign proposal, or an old guide is not a substitute for the
+current statute and the official Marketplace page. Check the status before you make an income
+decision that depends on a subsidy.
+
+If an extension is enacted, the cliff may move or disappear for a period. The data layer and this
+guide would need a new official source and a new checked date before the page could say so. Until
+then, the conservative reading is the one in the data.
+
+<AdSlot placement="mid-article" />
+
+## The dollar limits by household size
+
+The table below multiplies the {fplYear} poverty guideline by four. It is the income line for
+{coverageYear} coverage under the current rules. Alaska and Hawaii use higher guidelines, and the
+table adds an amount for each person above eight.
+
+| Household size | 400 percent limit |
+| --- | --- |
+{sizes.map((size) => (
+  <tr key={size}>
+    <td>{size}</td>
+    <td>{formatMoney(fplAnnual(fplYear, size) * 4)}</td>
+  </tr>
+))}
+
+A household of {exampleSize} reaches the line at {formatMoney(exampleLimit)}. The applicable
+percentage at the top of the range is {formatPercent(aca2026.affordabilityPercentage.rate)}. The
+expected contribution toward a benchmark plan at the line is {formatMoney(exampleContribution)} for
+the year.
+
+## What counts toward the limit
+
+The limit is based on modified adjusted gross income for the tax household. It is not based on take-
+home pay, and it is not based on the income of the applicant alone. Add the income items the
+Marketplace instructions include, and use the household members who belong on the tax return.
+
+A one-time event can push a household over the line. A severance payment, a retirement distribution,
+a business sale, or a Roth conversion can all raise MAGI. A tax-exempt interest payment can raise it
+even though it is not taxable in the usual sense.
+
+Do not assume that a deduction you claim on the return is ignored. The starting point is adjusted
+gross income, so deductions that reduce AGI can help. Deductions that do not reduce AGI may not.
+Use the official income page for the specific items.
+
+## What to do near the line
+
+If your estimate is near the cliff, build a cushion. A projection that lands exactly on the line can
+cross it after a late dividend or a corrected form. A small cushion reduces the risk of losing the
+credit because of an unexpected payment.
+
+Ask whether a contribution to a health savings account, a retirement plan, or another tax-advantaged
+account can lower MAGI. Ask whether a planned distribution can move to a different year. These are
+tax decisions, so use a tax preparer.
+
+Do not hide income or understate the projection to stay under the line. The credit is reconciled on
+the tax return, and a wrong estimate can create a repayment. The goal is an accurate projection, not
+a clever one.
+
+## Worked example
+
+A household of {exampleSize} expects {formatMoney(exampleLimit)} of MAGI. That is exactly 400 percent
+of the {fplYear} guideline. At the line, the applicable percentage is{' '}
+{formatPercent(aca2026.affordabilityPercentage.rate)}. The expected annual contribution toward a
+benchmark plan is {formatMoney(exampleContribution)}.
+
+A household just above the line, at {formatMoney(exampleLimit + 1)}, generally falls outside the
+credit range under the current rules. The one-dollar difference can remove the credit, which is why
+the cliff is a planning issue rather than a rounding issue.
+
+The actual credit at the line still depends on the benchmark premium for the household. This page
+does not invent a benchmark premium. It shows the income line, the contribution, and the rule that
+changes at the line.
+
+## Why the benchmark premium matters
+
+The 400 percent line decides whether a household can receive a premium tax credit. It does not
+decide the dollar amount. Below the line, the credit is the difference between the benchmark plan
+premium and the household’s required contribution.
+
+The benchmark is a specific plan used for the calculation, not the plan the household necessarily
+buys. A household can choose a cheaper plan and pay less, or a more expensive plan and pay the
+difference. The credit is tied to the benchmark, so the plan choice changes the out-of-pocket cost.
+
+The cliff is also not a coupon. Being under the line does not mean the coverage is free, and being
+over the line does not mean the household has no options. A household above the line can still buy a
+plan at full price, use an employer offer, or qualify for Medicaid in some states. The credit is one
+path, not the only path.
+
+That is why this page does not show a single credit amount. The income limit and the contribution
+are computable from the data layer. The benchmark premium is plan-specific and changes by area. Use
+the official Marketplace tools for the dollar estimate.
+
+## A checklist for a household near the line
+
+Project the income before the year ends. Include every income source the Marketplace counts. Compare
+the projection with the 400 percent limit for the household size. Write down the headroom.
+
+If the headroom is small, review planned distributions, capital gains, and conversions. Ask whether
+a contribution to a tax-advantaged account can lower MAGI. Ask whether a payment can move to another
+year. Do not hide income or understate the projection.
+
+Update the Marketplace if the income changes during the year. Keep the estimate, the documents, and
+the application confirmation. At tax time, compare the credit received with the credit allowed. A
+reconciliation is easier when the records are complete.
+
+## Three honest caveats
+
+1. The 400 percent line is a rule under the current data, not a permanent feature of the law. Check
+   the current statute before you rely on it.
+2. The cliff uses MAGI and the tax household, not gross pay and the applicant alone.
+3. This page does not calculate a premium tax credit. It explains the income limit and the
+   contribution at the top of the range.
+
+<Faq
+  items={[
+    {
+      question: 'What income is the 400 percent FPL limit based on?',
+      answer:
+        'It is based on modified adjusted gross income for the tax household. The Marketplace uses the prior-year poverty guideline for the coverage year.',
+    },
+    {
+      question: 'What is the 400 percent FPL limit for a family of four?',
+      answer: `For ${coverageYear} coverage, the limit is ${formatMoney(fplAnnual(fplYear, 4) * 4)}, based on the ${fplYear} guideline.`,
+    },
+    {
+      question: 'Did the enhanced subsidies create a different cliff?',
+      answer:
+        'The enhanced provisions are shown as expired in the current data. Under the current rules, credits generally end above 400 percent of the poverty line.',
+    },
+    {
+      question: 'Does a Roth conversion count toward the cliff?',
+      answer:
+        'A taxable Roth conversion generally raises modified adjusted gross income in the conversion year. It can push a household over the line.',
+    },
+    {
+      question: 'What happens if I go over the cliff during the year?',
+      answer:
+        'Update the Marketplace when your income changes. The credit is reconciled on the tax return, and a household above the limit may have to repay some or all of the credit.',
+    },
+    {
+      question: 'Does Alaska or Hawaii use the same limit?',
+      answer:
+        'No. Alaska and Hawaii have higher poverty guidelines, so the dollar limit is higher. Use the official table for those states.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Poverty guidelines',
+      value: formatMoney(fplAnnual(fplYear, 1)) + ' for one person',
+      source: sources.aspePoverty,
+      sourceLabel: 'HHS poverty guidelines',
+    },
+    {
+      label: 'Applicable percentage',
+      value: formatPercent(aca2026.affordabilityPercentage.rate),
+      source: sources.irsRp2025_25,
+      sourceLabel: 'IRS affordability revenue procedure',
+    },
+    {
+      label: 'Enhanced subsidy status',
+      value: aca2026.enhancedSubsidies.status,
+      source: sources.crsEnhancedPtc,
+      sourceLabel: 'Congressional Research Service',
+    },
+    {
+      label: 'Marketplace savings',
+      value: 'Premium tax credit rules',
+      source: sources.healthcareSavings,
+      sourceLabel: 'HealthCare.gov savings page',
+    },
+  ]}
+/>
+
+## What to do next
+
+Use the [employer coverage affordability calculator](/calculators/employer-coverage-affordability)
+if a job-based offer is also on the table. Read
+[what income is used for marketplace subsidies](/guides/what-income-counts-for-marketplace-subsidies)
+for the MAGI rules, and the [family glitch fix explained](/guides/family-glitch-fix-explained) guide
+if family coverage is the issue.

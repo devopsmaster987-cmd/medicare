@@ -1,0 +1,191 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { irs2026 } from '@/data/irs';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+
+export const year = figureYears.current;
+export const employerSize = irs2026.employerSizeRule.employees;
+export const sepMonths = irs2026.specialEnrollmentPeriodMonths;
+export const initialMonths = irs2026.initialEnrollmentPeriodMonths;
+
+<AnswerCapsule>
+  The Medicare special enrollment period while working lets some people delay Part B without a
+  penalty. It generally applies when you or your spouse has coverage based on current employment from
+  an employer with 20 or more employees. When that coverage ends, an eight-month window usually
+  follows.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Employer size rule',
+      value: `${employerSize} or more employees`,
+      note: 'Current employer coverage generally pays first for workers 65 and older.',
+    },
+    {
+      label: 'Special enrollment period',
+      value: `${sepMonths} months`,
+      note: 'It generally starts the month after employment or coverage ends.',
+    },
+    {
+      label: 'Initial enrollment period',
+      value: `${initialMonths} months`,
+      note: 'The window around your 65th birthday.',
+    },
+    {
+      label: 'Coverage based on current work',
+      value: 'Usually allows a delay',
+      note: 'COBRA and retiree coverage generally do not qualify the same way.',
+    },
+    {
+      label: 'Part B penalty',
+      value: 'Generally permanent',
+      note: 'A delay without qualifying coverage can add a surcharge for life.',
+    },
+    {
+      label: 'Part D',
+      value: 'Separate rules',
+      note: 'Check whether the employer drug coverage is creditable.',
+    },
+  ]}
+/>
+
+## The 20-employee rule
+
+The size of the employer matters. If the employer has 20 or more employees, the group health plan generally pays first for a worker who is 65 or older and still employed. In that situation, the worker may be able to delay Part B without a penalty while the coverage continues.
+
+If the employer has fewer than 20 employees, Medicare generally pays first. The employer plan may pay second or may provide limited benefits. A worker in that situation usually should enroll in Medicare when first eligible.
+
+The count is based on the employer, not the number of people on the plan. A small business with 25 employees can meet the rule even if only a few employees are enrolled. A large employer with many part-time workers may still need to apply the rule carefully.
+
+The rule also applies to a spouse who is covered through the working spouse's employer. The working spouse's employer size is the relevant one. A person who is 65 and covered through a spouse's job should check the employer size before delaying Medicare.
+
+The 20-employee rule is about coordination, not about whether the coverage is good. A plan can be expensive and still be the primary payer. A plan can be cheap and still be secondary. The worker should look at both the rules and the actual costs.
+
+## The eight-month special enrollment period
+
+The special enrollment period generally lasts eight months. It usually starts the month after the employment ends or the month after the coverage ends, whichever comes first. A person who is still working and loses coverage for another reason should check whether the special period applies.
+
+The eight months are not the same as the initial enrollment period. The initial period is seven months around the 65th birthday. The special period is for people who delayed because of current employer coverage. The two windows have different rules and different deadlines.
+
+A person who enrolls during the special enrollment period generally avoids the Part B late enrollment penalty. The penalty can still apply if the special period is missed or if the coverage did not qualify. The details depend on the facts.
+
+A person who is still working can also enroll before the coverage ends. That can be useful if the employer plan is ending soon or if the person wants to start Medicare on a particular date. The enrollment rules should be checked before applying.
+
+The special period is not automatic. A person must apply and provide evidence of the employer coverage. The application should be completed before the window closes.
+
+## Family coverage and the working spouse
+
+A person who is covered through a spouse's current employer may be able to delay Part B. The spouse's employer must meet the size rule, and the coverage must be based on current employment. A person who is covered through a spouse's retiree plan generally does not get the same treatment.
+
+If both spouses are 65 or older and both are covered through one employer, each spouse should check their own Medicare status. The working spouse may be able to delay, and the non-working spouse may also be able to delay if the coverage is based on the working spouse's current employment.
+
+A person who is covered through a spouse's employer but is not the employee should keep proof of the coverage. A letter from the employer or the plan can help if there is a question later.
+
+A divorce or a change in the spouse's employment can end the coverage. The special enrollment period may then apply. The person should not wait until after the coverage ends to ask about the rules.
+
+## How to enroll and what proof to keep
+
+The application is generally handled through Social Security. A person who is already receiving Social Security benefits may receive an enrollment package automatically. A person who is not yet receiving benefits may need to apply directly.
+
+The person should keep a letter from the employer that shows the coverage was based on current employment. The letter should include the employer's name, the coverage dates, and the number of employees if possible. The plan's summary of benefits can also help.
+
+The person should keep the Medicare card and the enrollment confirmation. If a penalty notice arrives later, the records can support a review. A phone call without documents is harder to resolve.
+
+A person who is not sure whether the coverage qualifies should ask Social Security before delaying. The answer can depend on the employer size, the type of coverage, and the dates. A short call can prevent a long penalty.
+
+## Part D and drug coverage
+
+Part B is only part of the decision. A person who delays Part B may also need to decide about Part D. If the employer drug coverage is creditable, the person may be able to delay Part D without a penalty. If it is not creditable, the person may owe a Part D penalty later.
+
+The plan must tell the person whether the drug coverage is creditable. The notice is usually provided each year. A person who is not sure should ask the plan for the notice in writing.
+
+A person who enrolls in Part B during the special enrollment period may also enroll in Part D. The timing rules are different, and the person should check the plan's enrollment window.
+
+A person who has employer drug coverage and later loses it may have a special enrollment period for Part D. The person should keep the creditable coverage notice and the dates.
+
+## Worked example
+
+Suppose a person turns 65 in April and is covered by a spouse's employer plan with 30 employees. The person delays Part B. The employment ends on June 30. The special enrollment period generally starts on July 1 and lasts eight months, through February.
+
+If the person enrolls in January, coverage generally starts on February 1. If the person waits until March, the special period may have ended, and the person may face a penalty and a delay.
+
+Now suppose the employer had 15 employees. Medicare would generally pay first, and the person should have enrolled during the initial enrollment period. The same delay could create a penalty even though the person had coverage.
+
+The example shows why the employer size and the coverage dates matter. The person should confirm both before deciding to delay.
+
+## Three honest caveats
+
+1. COBRA and retiree coverage generally do not allow the same delay as coverage based on current employment.
+2. The special enrollment period is time-limited. Missing it can create a permanent Part B penalty.
+3. The employer size rule is about coordination of benefits, not about whether the plan is affordable.
+
+<Faq
+  items={[
+    {
+      question: 'Can I delay Medicare if I am still working?',
+      answer:
+        'Yes, if you or your spouse has coverage based on current employment from an employer with 20 or more employees. You may be able to delay Part B without a penalty.',
+    },
+    {
+      question: 'How long is the special enrollment period?',
+      answer: `It generally lasts ${sepMonths} months and starts the month after employment or coverage ends, whichever comes first.`,
+    },
+    {
+      question: 'Does COBRA count as employer coverage for delaying Medicare?',
+      answer:
+        'Generally no. COBRA is not coverage based on current employment, so it usually does not allow you to delay Part B without a penalty.',
+    },
+    {
+      question: 'What if my employer has fewer than 20 employees?',
+      answer:
+        'Medicare generally pays first, and you should usually enroll when you are first eligible. Check with the plan and Social Security.',
+    },
+    {
+      question: 'Can I enroll in Medicare while still working?',
+      answer:
+        'Yes. You can enroll during the special enrollment period or, in some cases, while the employer coverage is still active.',
+    },
+    {
+      question: 'What documents should I keep?',
+      answer:
+        'Keep an employer letter showing current employment coverage, the coverage dates, the plan summary, and your Medicare enrollment confirmation.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Working past 65',
+      value: 'Employer coverage rules',
+      source: sources.medicareWorkingPast65,
+      sourceLabel: 'Medicare.gov working past 65',
+    },
+    {
+      label: 'Who pays first',
+      value: `${employerSize}-employee rule`,
+      source: sources.medicarePaysFirst,
+      sourceLabel: 'Medicare.gov who pays first',
+    },
+    {
+      label: 'Special enrollment period',
+      value: `${sepMonths} months`,
+      source: sources.medicareAvoidPenalties,
+      sourceLabel: 'Medicare.gov avoid penalties',
+    },
+    {
+      label: 'Enrollment',
+      value: 'Social Security application',
+      source: sources.ssaMedicareSignup,
+      sourceLabel: 'SSA Medicare sign-up',
+    },
+  ]}
+/>
+
+## What to do next
+
+Check the employer size and whether the coverage is based on current employment. If both answers support a delay, keep the employer letter and calendar the end of the eight-month window. The
+[Medicare vs ACA guide](/calculators/medicare-vs-aca) walks through the 20-employee rule, and the
+[Medicare initial enrollment period guide](/guides/medicare-initial-enrollment-period) explains the window you may be delaying. If the coverage is ending, the
+[Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty) shows the cost of missing the window.

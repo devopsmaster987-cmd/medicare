@@ -1,0 +1,204 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+
+export const year = figureYears.current;
+export const sepDays = 60;
+
+<AnswerCapsule>
+  An ACA special enrollment period lets you enroll in marketplace coverage outside open enrollment
+  after a qualifying life event. You generally have 60 days to act. The event and the documents
+  determine your window. The event must be documented, and the start date can vary.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'What it is',
+      value: 'Enrollment outside the window',
+      note: 'A qualifying event opens a new enrollment chance.',
+    },
+    {
+      label: 'Typical window',
+      value: `${sepDays} days`,
+      note: 'The start can be before or after the event, depending on the event.',
+    },
+    {
+      label: 'Common events',
+      value: 'Loss, move, family change',
+      note: 'The event must meet the marketplace rules.',
+    },
+    {
+      label: 'Documents',
+      value: 'Proof of the event',
+      note: 'The marketplace may ask for evidence.',
+    },
+    {
+      label: 'Coverage start',
+      value: 'Varies by event',
+      note: 'Some events allow retroactive coverage.',
+    },
+    {
+      label: 'Medicaid',
+      value: 'Year-round',
+      note: 'Medicaid and CHIP do not need a special enrollment period.',
+    },
+  ]}
+/>
+
+## What a special enrollment period is
+
+A special enrollment period is a window that opens outside the annual open enrollment season. It exists because certain life events change a person's coverage needs or eligibility. The marketplace allows enrollment when one of those events occurs.
+
+The event must qualify. Not every change opens a window. A person who simply decides to buy coverage after the open enrollment deadline generally cannot use a special enrollment period.
+
+The marketplace may ask for documents. A person who claims a move, a loss of coverage, or a new baby should be ready to show proof. A request without evidence can be delayed or denied.
+
+A person who is eligible for Medicaid or the Children's Health Insurance Program can apply year-round. Those programs do not use the special enrollment rules in the same way.
+
+## Common qualifying events
+
+A loss of coverage is a common event. Losing a job-based plan, aging off a parent's plan, or losing coverage because a spouse's job ends can open a window. The loss must generally be involuntary or the result of a specific change.
+
+A move can qualify if the person moves to a new area with different plan options. A move within the same area may not qualify. The marketplace rules explain the details.
+
+A change in household size can qualify. A marriage, a birth, an adoption, or a death can change the household. The new household size can affect the premium tax credit.
+
+A change in income or eligibility can qualify in some cases. A person who becomes eligible or ineligible for premium tax credits may have a window. The rules depend on the change.
+
+## The 60-day window
+
+The window is generally 60 days. The start of the window depends on the event. For a loss of coverage, the window usually starts on the date the coverage ends. For a birth or adoption, the window usually starts on the date of the event.
+
+Some events allow a window before the event. A move may allow enrollment before the move date. A person should check the specific event rules rather than assume a single formula.
+
+A person who misses the window may have to wait until the next open enrollment. That can leave a gap. The person should apply as soon as the event happens.
+
+The marketplace may have different rules for state-based marketplaces. A person should check the state website. The federal 60-day rule is a starting point, not a guarantee for every state.
+
+## Coverage start dates
+
+The coverage start depends on the event and the enrollment date. A person who enrolls during a special enrollment period may get coverage starting the first day of the month after enrollment. Some events allow earlier coverage.
+
+A birth or adoption may allow coverage back to the date of the event. A person should apply quickly and provide the documents. The marketplace can explain the start date for the specific event.
+
+A person who loses coverage may have a gap before the new plan starts. The person should check whether a short-term option or COBRA is available. The marketplace can explain the choices.
+
+A person who enrolls after the event but within the window should not assume retroactive coverage. The start date depends on the event and the plan. The person should read the eligibility notice.
+
+## Documents to keep
+
+The marketplace may ask for proof of the event. A loss of coverage letter, a move lease, a birth certificate, or a marriage certificate can support the application. The document should show the date and the people involved.
+
+A person who cannot find the document should ask the marketplace what alternatives it accepts. A phone call can save time. The person should keep a record of the call.
+
+A person who is self-employed may need income records. The premium tax credit depends on household income, and the marketplace may ask for proof. Pay stubs, tax returns, or a letter from an employer can help.
+
+A person who is applying for Medicaid may need different documents. The state agency can explain the requirements. The marketplace can redirect the application.
+
+## Marketplace, Medicaid, and CHIP
+
+A special enrollment period is a marketplace concept. Medicaid and CHIP accept applications year-round. A person who applies through the marketplace may be found eligible for Medicaid instead.
+
+A person who loses employer coverage may qualify for both marketplace coverage and Medicaid, depending on income. The application asks about income and household size. The marketplace decides which program applies.
+
+A person who is eligible for Medicaid should complete the state application. The coverage may start sooner and cost less than a marketplace plan. The person should not assume the marketplace is the only option.
+
+A person who is not eligible for Medicaid can compare marketplace plans. The premium tax credit and cost-sharing reduction rules apply. The person should check the plan's network and drug coverage.
+
+## Common mistakes
+
+One mistake is waiting until after the event to gather documents. The window is limited, and a missing document can delay the application.
+
+Another mistake is assuming every move qualifies. A move within the same service area may not open a window. The marketplace rules matter.
+
+A third mistake is ignoring Medicaid. A person with low income may qualify for Medicaid, which can be more affordable than a marketplace plan.
+
+A fourth mistake is choosing a plan without checking the network. A low premium plan may not include the doctors or drugs the person needs.
+
+## Worked example
+
+Suppose a person loses employer coverage on June 30. The person applies for marketplace coverage in July and provides the loss of coverage letter. The special enrollment period is open, and the new plan starts on August 1.
+
+A second person has a baby in March. The person applies in March and provides the birth certificate. The coverage can start on the date of the birth, depending on the plan and the marketplace rules.
+
+A third person moves to a new state in September. The person checks the new state's marketplace and applies within the window. The plan options and the network are different from the old state.
+
+A fourth person misses the 60-day window after a job loss. The person may have to wait until open enrollment unless another event applies. The gap can be costly.
+
+## Three honest caveats
+
+1. Not every life change qualifies. Check the specific event rules before you apply.
+2. The window is limited. Apply as soon as the event happens and keep the documents.
+3. State marketplaces can use different rules. Check the state website carefully.
+
+<Faq
+  items={[
+    {
+      question: 'What is a special enrollment period?',
+      answer:
+        'It is a window outside open enrollment that lets you enroll after a qualifying life event.',
+    },
+    {
+      question: 'How long do I have to enroll?',
+      answer:
+        'You generally have 60 days, but the start of the window depends on the event.',
+    },
+    {
+      question: 'What events qualify?',
+      answer:
+        'Common events include a loss of coverage, a move, a marriage, a birth, an adoption, or a change in income or eligibility.',
+    },
+    {
+      question: 'When does coverage start?',
+      answer:
+        'It depends on the event and the enrollment date. Some events allow coverage back to the event date.',
+    },
+    {
+      question: 'What documents do I need?',
+      answer:
+        'You may need a loss of coverage letter, a lease, a birth certificate, a marriage certificate, or income records.',
+    },
+    {
+      question: 'Can I get Medicaid instead?',
+      answer:
+        'Medicaid and CHIP accept applications year-round. The marketplace can redirect your application to the state agency.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Special enrollment',
+      value: 'Qualifying events',
+      source: sources.healthcareSep,
+      sourceLabel: 'HealthCare.gov special enrollment',
+    },
+    {
+      label: 'Open enrollment',
+      value: 'Annual window',
+      source: sources.healthcareOpenEnrollment,
+      sourceLabel: 'HealthCare.gov open enrollment',
+    },
+    {
+      label: 'Cost-sharing reduction',
+      value: 'Silver plan help',
+      source: sources.healthcareCsr,
+      sourceLabel: 'HealthCare.gov cost-sharing reduction',
+    },
+    {
+      label: 'Premium tax credit',
+      value: 'Income rules',
+      source: sources.irs1095a,
+      sourceLabel: 'IRS health coverage statements',
+    },
+  ]}
+/>
+
+## What to do next
+
+Identify the qualifying event and the date it happened. Apply within the window and keep the proof. The
+[ACA open enrollment dates guide](/guides/aca-open-enrollment-dates) explains the annual window, and the
+[ACA cost sharing reduction guide](/guides/aca-cost-sharing-reduction) explains the extra help with deductibles and copays. If you are comparing Medicare and marketplace coverage, use the
+[Medicare vs ACA decision tool](/calculators/medicare-vs-aca).

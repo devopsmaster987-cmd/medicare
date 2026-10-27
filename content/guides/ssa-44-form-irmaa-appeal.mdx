@@ -1,0 +1,255 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partB2026 } from '@/data/medicare-part-b';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const standardPremium = partB2026.standardPremium.amount;
+export const tierTwo = partB2026.irmaa.single[2];
+export const tierTwoSurcharge = tierTwo.partBAdjustment + tierTwo.partDAdjustment;
+export const tierTwoAnnual = tierTwoSurcharge * 12;
+
+<AnswerCapsule>
+  The SSA 44 form IRMAA appeal asks Social Security to replace the income figure used for your
+  Medicare premium after a qualifying life-changing event. It is not a general request to pay less.
+  You must show the event, provide proof, and give SSA the newer income it should use.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Form',
+      value: 'SSA-44',
+      note: 'Medicare Income-Related Monthly Adjustment Amount — Life-Changing Event.',
+    },
+    {
+      label: 'Who files it',
+      value: 'The person who got the IRMAA decision',
+      note: 'A spouse or representative may help, but the facts must match the record.',
+    },
+    {
+      label: 'Standard Part B premium',
+      value: formatMoney(standardPremium),
+      note: `The base premium for ${year} before any IRMAA add-on.`,
+    },
+    {
+      label: 'Typical reason',
+      value: 'Retirement, marriage, divorce, death of a spouse',
+      note: 'SSA publishes the full list of accepted events.',
+    },
+    {
+      label: 'Proof',
+      value: 'Varies by event',
+      note: 'The form and SSA instructions say what is usually needed.',
+    },
+    {
+      label: 'Lookback',
+      value: `${partB2026.lookbackYears} years`,
+      note: `For ${year} premiums, SSA generally starts with ${year - partB2026.lookbackYears} income.`,
+    },
+  ]}
+/>
+
+## What the SSA 44 form does
+
+Social Security sets the Part B and Part D income-related monthly adjustment amount, usually called
+IRMAA, from the tax return it receives from the IRS. In most cases the return is two years old. If a
+life-changing event made that old income a poor guide to your current income, Form SSA-44 asks SSA
+to use a newer figure instead.
+
+The form does not erase the old tax return. It creates a documented reason to use a different
+income amount for the premium decision. SSA reviews the event, the date, and the proof. The agency
+then decides whether the new income changes the IRMAA tier. That review power is why a form alone
+is not a promise of a lower premium.
+
+The form is also not a tax appeal. It does not change your tax return, your taxable income, or a
+Roth conversion you already completed. It only affects the income figure SSA uses for Medicare
+premiums. If the underlying tax return is wrong, that is a separate problem for a tax professional.
+
+## IRMAA life changing event list
+
+SSA publishes a list of events that can support a request. The list below follows the events named
+on the official SSA-44 form. The proof column is a practical starting point, not a guarantee that
+SSA will accept a particular document.
+
+| Event | What SSA is looking for |
+| --- | --- |
+| Death of your spouse | A death certificate or an SSA notice showing the date. |
+| Marriage | A marriage certificate and the date the household changed. |
+| Divorce or annulment | A divorce decree or annulment order. |
+| Work stoppage | An employer statement or pay records showing when work stopped. |
+| Work reduction | Pay records or an employer statement showing lower hours or pay. |
+| Loss of income-producing property | Insurance, disaster, or legal records showing the loss was not a normal investment loss. |
+| Loss of pension income | A pension administrator letter or a plan termination notice. |
+| Employer settlement payment | A settlement agreement or an employer statement. |
+
+The event has to explain the income change. A retirement that happened years before the premium
+year may not help if the income figure already reflects it. A marriage in the current year may
+change the household income even if the old return looks fine.
+
+<AdSlot placement="mid-article" />
+
+## SSA 44 approved reasons
+
+There is no separate list of "approved reasons" that guarantees a result. SSA reviews each request
+against the events and documentation rules in its instructions. A reason on the list is necessary
+in most cases, but the proof has to connect the event to the income figure you want SSA to use.
+
+Two common mistakes cause problems. The first is filing an SSA-44 for a normal investment loss or a
+market decline. The form is not a general hardship appeal, and a normal investment loss is usually
+not one of the listed events. The second is sending a form without the proof SSA asks for. That can
+delay the decision and leave the higher premium in place while the review is pending.
+
+If your event is not on the list, do not guess. Ask Social Security directly and keep a record of
+the answer. A local office or the national number can tell you what the current form accepts. SHIP
+counselors can also help you prepare questions, but they do not decide the case.
+
+## What proof to gather
+
+Gather the documents that show three things: the event, the date, and the income change. A letter
+from an employer can establish a retirement date. A pension statement can show when a payment
+stopped. A marriage certificate can show a new household. A death certificate can show the date a
+spouse died.
+
+Then gather the newer income estimate. SSA may ask for a tax return, a W-2, pay stubs, a Social
+Security statement, or a signed statement of expected income. The exact request depends on the
+event and the office. Keep copies of everything you send, and send the form in a way that gives you
+a delivery record.
+
+Do not send original documents unless SSA tells you to. A copy is normally enough, and originals
+are hard to replace. If you file online or by mail, write down the date and keep the confirmation.
+
+## How to file step by step
+
+1. Open the official SSA-44 form from the Social Security website. Do not use a copy from another
+   site, because the form changes.
+2. Read the event list and choose the event that matches your situation.
+3. Fill in the income SSA should use. Use a realistic figure you can document, not a guess.
+4. Attach the proof for the event and the income estimate.
+5. File the way SSA instructs: online, by mail, or at a local office. Ask for confirmation.
+6. Watch the mail and your Social Security account. A new decision should explain the premium.
+7. If the decision is still wrong, ask for a review and keep the dates.
+
+## Worked example
+
+A single filer had {formatMoney(tierTwo.min)} of modified adjusted gross income in the lookback
+year. That put the person in the second IRMAA tier for {year}. The Part B total for that tier is
+{formatMoney(tierTwo.partBTotal)}, and the Part D add-on is {formatMoney(tierTwo.partDAdjustment)}.
+The combined monthly surcharge is {formatMoney(tierTwoSurcharge)}, or{' '}
+{formatMoney(tierTwoAnnual)} a year.
+
+The person retired during the lookback year and now expects {formatMoney(100000)} of income. If SSA
+accepts the SSA-44 and the newer figure, the standard tier applies and the surcharge falls to zero.
+The monthly difference is {formatMoney(tierTwoSurcharge)}, and the annual difference is{' '}
+{formatMoney(tierTwoAnnual)}.
+
+That is the size of the decision. It is also why the proof matters. Without a documented retirement
+date and a credible new income figure, SSA may keep the old tier.
+
+## Deadlines and what to ask SSA
+
+File as soon as the event happens or as soon as you get a notice that uses the old income. Do not
+wait for a new tax return if the event already changed your income. The longer the higher premium
+stays in place, the more you may have to recover later.
+
+Ask SSA these questions when you call or visit:
+
+- Which event on the current form matches my situation?
+- What proof do you need for that event?
+- Which income figure should I use, and for which months?
+- Will the change apply to Part B and Part D together?
+- How will I be told about the decision, and what do I do if it is wrong?
+
+## If the request is denied
+
+A denial is not the end of the record. Read the notice and find the reason. The office may say the
+event is not on the list, the proof does not match the event, or the income figure is not credible.
+Each reason points to a different next step.
+
+If the problem is proof, gather a better document and ask for a review. If the problem is the event,
+ask whether a different listed event applies. If the problem is the income figure, ask what evidence
+the office will accept for the newer amount. Do not resend the same package without changing
+anything.
+
+Keep the denial with the original filing. If you later ask a SHIP counselor or a tax preparer for
+help, the paperwork shows what SSA has already decided. A clear record is more useful than a story
+reconstructed from memory.
+
+## Three honest caveats
+
+1. Form SSA-44 is a request for review, not an automatic reduction. SSA decides whether the event
+   and the proof support a change.
+2. The form does not change a tax return or undo a Roth conversion. It only changes the income SSA
+   uses for the Medicare premium.
+3. Processing times and document requests vary by office. Keep copies and follow up in writing.
+
+<Faq
+  items={[
+    {
+      question: 'SSA 44 form PDF',
+      answer:
+        'Download the official SSA-44 PDF from ssa.gov. MedicareClear links to the form in the source table but does not host a copy, because SSA can revise the form.',
+    },
+    {
+      question: 'How long does an SSA-44 review take?',
+      answer:
+        'There is no reliable public processing time for every office. Ask the office handling your case, keep a copy of the filing, and follow up if you do not get a decision within the time they quote.',
+    },
+    {
+      question: 'Can I file Form SSA-44 before I get the IRMAA notice?',
+      answer:
+        'You can prepare the form as soon as the event happens, but SSA usually needs a premium decision to correct. Ask the office whether to file now or wait for the notice.',
+    },
+    {
+      question: 'Does retirement always count as a life-changing event?',
+      answer:
+        'Retirement is on the SSA list, but the timing matters. The event should explain why the old income no longer reflects your current income. SSA reviews the proof.',
+    },
+    {
+      question: 'What if my income went up instead of down?',
+      answer:
+        'Form SSA-44 is used to ask SSA to use a newer income figure after a listed event. If your income rose, the form usually will not lower the premium, and a higher tier may apply.',
+    },
+    {
+      question: 'Does an SSA-44 change Part D IRMAA too?',
+      answer:
+        'The IRMAA decision covers both Part B and Part D. If SSA accepts the newer income, ask how the Part D amount will be adjusted and how any overpayment will be handled.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'SSA-44 form and instructions',
+      value: 'Life-changing event review',
+      source: sources.ssaForm44,
+      sourceLabel: 'Official SSA-44 form',
+    },
+    {
+      label: 'Part B standard premium',
+      value: formatMoney(standardPremium),
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'IRMAA brackets and surcharges',
+      value: `${formatMoney(tierTwo.min)} second-tier start`,
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'Life-changing event policy',
+      value: 'SSA review process',
+      source: sources.ssaPomsLce,
+      sourceLabel: 'SSA Program Operations Manual',
+    },
+  ]}
+/>
+
+## What to do next
+
+If a listed event changed your income, open the official form, gather the proof, and ask SSA which
+income figure to use. Then check the result in the IRMAA calculator before you make another large
+income move. The calculator shows the tier, the next cliff, and the headroom between them.

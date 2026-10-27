@@ -1,0 +1,256 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partB2026 } from '@/data/medicare-part-b';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const standardPremium = partB2026.standardPremium.amount;
+export const singleBase = partB2026.irmaa.single[0];
+export const singleFirst = partB2026.irmaa.single[1];
+export const jointFirst = partB2026.irmaa.marriedJoint[1];
+export const separateFirst = partB2026.irmaa.marriedSeparate[1];
+export const tierTwo = partB2026.irmaa.single[2];
+export const tierTwoSurcharge = tierTwo.partBAdjustment + tierTwo.partDAdjustment;
+export const tierTwoAnnual = tierTwoSurcharge * 12;
+
+<AnswerCapsule>
+  How to lower IRMAA: document a life-changing event with Form SSA-44, time large income events
+  before the two-year lookback, and measure the next bracket before a Roth conversion. None of these
+  moves guarantees a lower premium. Social Security reviews the evidence and decides.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Standard tier ends (single)',
+      value: formatMoney(singleBase.max ?? 0),
+      note: 'The surcharge starts one dollar above this line.',
+    },
+    {
+      label: 'First surcharge tier (single)',
+      value: formatMoney(singleFirst.min),
+      note: 'Part B total rises and Part D adds a separate amount.',
+    },
+    {
+      label: 'First surcharge tier (joint)',
+      value: formatMoney(jointFirst.min),
+      note: 'Each enrolled spouse may pay the surcharge.',
+    },
+    {
+      label: 'First surcharge tier (separate)',
+      value: formatMoney(separateFirst.min),
+      note: 'Married filing separately has its own lower threshold.',
+    },
+    {
+      label: 'Standard Part B premium',
+      value: formatMoney(standardPremium),
+      note: `The base premium for ${year}.`,
+    },
+    {
+      label: 'Lookback',
+      value: `${partB2026.lookbackYears} years`,
+      note: `Income from ${year - partB2026.lookbackYears} generally sets the ${year} premium.`,
+    },
+  ]}
+/>
+
+## Start with the two-year lookback
+
+IRMAA is not based on your income this month. It is based on a tax return from two years earlier.
+For {year} premiums, Social Security generally starts with income from{' '}
+{year - partB2026.lookbackYears}. That delay explains most surprises. A bonus, a property sale, or
+a retirement distribution can raise a premium long after the event feels finished.
+
+Before you change anything, find the income figure that was actually used. Compare it with the
+bracket table. If the figure is wrong because of a listed event, you may have a path to a review.
+If the figure is right, the question becomes how to plan the next income year rather than how to
+argue with the current one.
+
+## File Form SSA-44 after a life-changing event
+
+Form SSA-44 is the main correction route. It tells Social Security that a listed event changed your
+income, and it asks the agency to use a newer figure. The form has to match the event and the proof
+has to support the new number.
+
+The strongest filings are specific. A retirement letter with a date is stronger than a statement
+that work became less busy. A pension termination notice is stronger than a general claim that
+income fell. A marriage certificate is stronger than a description of a new household.
+
+File the form, keep a copy, and ask how the office will contact you. An appeal does not lower the
+premium automatically while it is pending. The review has to finish and the decision has to be
+issued. If the decision is still wrong, ask for the next level of review rather than sending the
+same form again.
+
+<AdSlot placement="mid-article" />
+
+## Time large income events
+
+The second lever is timing. Because the premium uses a two-year-old return, income in one year can
+set a premium two years later. If you are near a bracket line, the exact year of a sale or
+distribution can matter more than the size of the event.
+
+Suppose you expect a large one-time distribution. Doing it in a year when your income is otherwise
+low may keep the total below the next bracket. Doing it in an already high-income year may push you
+over a line for two premium years if the income repeats. This is planning, not a guarantee, and it
+needs a tax preparer who can see the whole return.
+
+The same logic applies to a business sale, a large capital gain, or a final paycheck with unused
+leave. The premium year is not the year you feel the cash. It is the year the old return is used.
+
+## Check the next cliff before a Roth conversion
+
+A Roth conversion adds to modified adjusted gross income in the year of the conversion. That can
+move you into a higher IRMAA tier two years later. The right question is not whether the conversion
+is a good idea in general. The right question is how much room you have before the next bracket.
+
+Use the IRMAA calculator with the projected income before the conversion. Read the headroom to the
+next tier. Then decide whether to convert all at once, split the conversion across two years, or
+wait until a lower-income year. A conversion that crosses the line can cost more than expected in
+Medicare premiums, even if it saves tax later.
+
+The calculator does not model the income tax on the conversion. It only shows the IRMAA tier and
+the surcharge. Use a tax preparer for the combined decision.
+
+## Use the right income figure
+
+IRMAA uses modified adjusted gross income, not salary and not taxable income in the everyday sense.
+The figure starts with adjusted gross income and adds certain items the tax rules require. That is
+why a tax-exempt interest payment or a foreign income exclusion can still matter for Medicare.
+
+Do not estimate from your bank balance. Do not use the income you expect next year without saying
+so. Either use the lookback-year return, or use the newer documented figure you are asking SSA to
+accept. Mixing the two produces a number that does not match any official decision.
+
+## What does not lower IRMAA
+
+Choosing a cheaper Medicare Advantage plan does not lower the Part B surcharge. Buying a Medigap
+policy does not lower it. A Medicare Savings Program helps with premiums and cost sharing for people
+with low income and resources, but it does not rewrite the IRMAA table.
+
+A Part D plan with a lower premium can lower the plan premium part of your drug coverage. It does
+not lower the Part D IRMAA add-on, which is set by income. If you have no Part D plan, you generally
+do not pay the Part D IRMAA amount, but the Part B surcharge can still apply.
+
+Be careful with advice that promises a simple fix. The legitimate levers are evidence, timing, and
+the correct income figure. Everything else is either a different program or a sales pitch.
+
+## How much can you earn before IRMAA
+
+For {year}, a single filer pays the standard premium at or below{' '}
+{formatMoney(singleBase.max ?? 0)} of modified adjusted gross income. A married couple filing
+jointly pays the standard premium at or below {formatMoney(partB2026.irmaa.marriedJoint[0].max ?? 0)}.
+Married filing separately has a much lower first threshold at {formatMoney(separateFirst.min)}.
+
+These are cliff lines, not gradual phases. One dollar above the line can start the surcharge for
+the whole year. That is why the headroom number matters more than the tier label.
+
+## Worked example
+
+A single filer expects {formatMoney(tierTwo.min)} of modified adjusted gross income. That is inside
+the second IRMAA tier. The Part B total for that tier is {formatMoney(tierTwo.partBTotal)}, and the
+Part D add-on is {formatMoney(tierTwo.partDAdjustment)}. The combined monthly surcharge is{' '}
+{formatMoney(tierTwoSurcharge)}, or {formatMoney(tierTwoAnnual)} a year.
+
+If the same person had kept income at {formatMoney(singleBase.max ?? 0)}, the standard premium
+would apply and the surcharge would be zero. The difference is {formatMoney(tierTwoSurcharge)} a
+month. That is the amount a timing decision, an appeal, or a conversion plan is trying to protect.
+
+## Keep a paper trail
+
+Every legitimate route depends on evidence. Keep the tax return that produced the income figure,
+the premium notice that shows the tier, and the proof for any event you use in an appeal. If you
+call Social Security, write down the date, the representative’s name if it is given, and what you
+were told to send.
+
+A paper trail also helps at tax time. If a conversion or a sale is planned, keep the projection and
+the final return together. The following year, you can see whether the premium matched the plan.
+That is how a household learns where its own cliffs are.
+
+Do not rely on a verbal promise that the premium will be fixed. Ask for the decision in writing and
+check the next notice. A pending review is not the same as an approved change.
+
+## Three honest caveats
+
+1. A lower IRMAA tier is not the same as a lower tax bill. A Roth conversion can raise both, and the
+   combined effect needs a tax preparer.
+2. Form SSA-44 depends on a listed event and proof. A normal market loss or a general claim that
+   income feels lower is usually not enough.
+3. This page is guidance, not tax or legal advice. Confirm the income year, the filing status, and
+   the current table with the official sources before you act.
+
+<Faq
+  items={[
+    {
+      question: 'How much can you earn before IRMAA?',
+      answer: `For ${year}, the standard tier ends at ${formatMoney(singleBase.max ?? 0)} for a single filer and ${formatMoney(partB2026.irmaa.marriedJoint[0].max ?? 0)} for a married couple filing jointly. The first surcharge starts one dollar above the line.`,
+    },
+    {
+      question: 'Can I appeal IRMAA without a life-changing event?',
+      answer:
+        'Form SSA-44 is built around listed life-changing events. Without one, the usual route is to correct the income record if it is wrong, or to plan the next income year.',
+    },
+    {
+      question: 'Does a Roth conversion always raise IRMAA?',
+      answer:
+        'Only if the conversion raises modified adjusted gross income enough to cross a threshold in the lookback year. A small conversion under the first line may not change the tier.',
+    },
+    {
+      question: 'Can I split a Roth conversion across two years?',
+      answer:
+        'Often you can choose the amount and the year, but the tax rules and your other income determine the result. Ask a tax preparer before splitting a conversion.',
+    },
+    {
+      question: 'Does IRMAA apply to both spouses?',
+      answer:
+        'Each spouse who is enrolled in Medicare can pay the surcharge. A joint return can therefore produce two IRMAA amounts, one for each spouse.',
+    },
+    {
+      question: 'Do Medicare Advantage or Medigap premiums count toward IRMAA?',
+      answer:
+        'No. IRMAA is an income-based add-on to Part B and Part D. It is separate from the premium you pay for a Medicare Advantage or Medigap plan.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Part B standard premium',
+      value: formatMoney(standardPremium),
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'Single and joint thresholds',
+      value: `${formatMoney(singleFirst.min)} single / ${formatMoney(jointFirst.min)} joint`,
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'Married filing separately threshold',
+      value: formatMoney(separateFirst.min),
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'SSA-44 life-changing events',
+      value: 'Official form and review process',
+      source: sources.ssaForm44,
+      sourceLabel: 'Official SSA-44 form',
+    },
+    {
+      label: 'Two-year lookback',
+      value: `${partB2026.lookbackYears} years`,
+      source: sources.ssaPomsLce,
+      sourceLabel: 'SSA Program Operations Manual',
+    },
+  ]}
+/>
+
+## What to do next
+
+Open the [IRMAA cliff checker](/calculators/irmaa-cliff-checker) and enter the income figure that
+was actually used. Read the tier, the next cliff, and the headroom. If a listed event changed your
+income, gather the proof and use the [SSA 44 form IRMAA appeal](/guides/ssa-44-form-irmaa-appeal)
+guide before you file.

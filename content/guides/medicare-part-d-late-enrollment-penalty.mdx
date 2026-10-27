@@ -1,0 +1,196 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partD2026 } from '@/data/medicare-part-d';
+import { partDPenalty } from '@/data/penalties';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney, formatPercent } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const basePremium = partD2026.baseBeneficiaryPremium.amount;
+export const penaltyRate = partDPenalty.ratePerUncoveredMonth.rate;
+export const exampleMonths = 12;
+export const exampleRawPenalty = basePremium * penaltyRate * exampleMonths;
+export const examplePenalty = Math.round(exampleRawPenalty * 10) / 10;
+export const exampleAnnualPenalty = examplePenalty * 12;
+export const exampleMonthlyTotal = basePremium + examplePenalty;
+export const exampleAnnualTotal = exampleMonthlyTotal * 12;
+
+<AnswerCapsule>
+  The Medicare Part D late enrollment penalty adds 1 percent of the national base beneficiary
+  premium for each full month you went without creditable drug coverage. The penalty is permanent
+  and is added to your plan premium. It is separate from the Part B late enrollment penalty and from
+  any Part D IRMAA surcharge.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Penalty rate',
+      value: `${formatPercent(penaltyRate)} per month`,
+      note: 'Applied to the national base beneficiary premium.',
+    },
+    {
+      label: 'Base beneficiary premium',
+      value: formatMoney(basePremium),
+      note: `The national reference amount for ${year}.`,
+    },
+    {
+      label: 'How long it lasts',
+      value: 'Permanent',
+      note: 'The penalty generally continues for as long as you have Part D.',
+    },
+    {
+      label: 'Creditable coverage',
+      value: 'Avoids the penalty',
+      note: 'Drug coverage that is at least as good as Part D can prevent the surcharge.',
+    },
+    {
+      label: 'Rounding',
+      value: 'Nearest 10 cents',
+      note: 'The monthly penalty is rounded under the official method.',
+    },
+    {
+      label: 'Part D IRMAA',
+      value: 'Separate surcharge',
+      note: 'Income-related amounts are not part of the late enrollment penalty.',
+    },
+  ]}
+/>
+
+## How the Part D late enrollment penalty works
+
+Medicare expects people to have drug coverage that is at least as good as the standard Part D benefit. If a person goes without creditable prescription drug coverage for a continuous period after the initial enrollment opportunity, a late enrollment penalty can apply when the person later joins a Part D plan.
+
+The penalty is calculated as 1 percent of the national base beneficiary premium for each full month without creditable coverage. The result is added to the monthly Part D premium. It is not a one-time charge, and it does not go away after a few years. The penalty generally remains for as long as the person has Part D.
+
+The base beneficiary premium is a national figure, not the premium of the plan the person chooses. That means two people with the same number of uncovered months can have the same penalty amount even if they choose different plans. The plan premium and the penalty are separate lines on the bill.
+
+The penalty is not the same as IRMAA. IRMAA is an income-related surcharge that can apply to Part D as well as Part B. A person can owe both a late enrollment penalty and a Part D IRMAA amount. The two are calculated differently and should be checked separately.
+
+## What counts as creditable coverage
+
+Creditable coverage is prescription drug coverage that is expected to pay, on average, at least as much as standard Part D coverage. Employer retiree coverage, some union plans, and certain other drug plans may be creditable. A plan should tell participants each year whether its coverage is creditable.
+
+Having no drug coverage at all is the clearest path to a penalty. Having coverage that is not creditable can also lead to a penalty, even if the person believed the coverage was adequate. The official notice from the plan is the document that matters.
+
+A person who has employer coverage through a current employer may be able to delay Part D without a penalty if the coverage is creditable. The same is true for some retiree plans. The plan administrator should confirm the status in writing. A verbal assurance is not a substitute for the notice.
+
+Medicare Advantage plans with drug coverage and standalone Part D plans are Part D coverage, so they do not create a penalty gap while they are in force. A person who drops a Part D plan and goes without creditable coverage can begin to accrue penalty months.
+
+## When the penalty starts
+
+The penalty is based on months without creditable coverage after the person's initial enrollment period for Part D. The initial enrollment period is generally the same seven-month window around the month a person first becomes eligible for Medicare, but the exact timing depends on the person's situation.
+
+A person who is eligible for Medicare but has creditable employer coverage may delay Part D without a penalty. When that coverage ends, a special enrollment period may allow the person to join a Part D plan without a penalty, provided the enrollment happens within the allowed window and the coverage was creditable.
+
+The penalty is calculated using full months without coverage. A short gap may not create a full month, depending on the dates. A person who is unsure about a gap should keep the plan notices and enrollment confirmations, because the dates determine the result.
+
+The penalty can also apply to a person who had no Part D plan but had no creditable coverage and did not enroll during the initial period. The later the enrollment, the more months can be counted. The number of months is not reduced by paying a higher premium later.
+
+## How the penalty is calculated
+
+The formula uses three numbers: the national base beneficiary premium, the penalty rate, and the number of full uncovered months. Multiply the base premium by 1 percent, then multiply by the number of months. The result is rounded to the nearest 10 cents under the official method.
+
+The base premium can change each year. When it changes, the penalty amount can change too, even if the number of uncovered months stays the same. A person who has a penalty should expect the dollar amount to move when the national base premium moves.
+
+The penalty is added to the plan premium. If a plan premium is {formatMoney(basePremium)} and the penalty is {formatMoney(examplePenalty)}, the monthly total is {formatMoney(exampleMonthlyTotal)} before any IRMAA. The annual total is {formatMoney(exampleAnnualTotal)}. The penalty portion is {formatMoney(exampleAnnualPenalty)}.
+
+The calculation is not based on the person's income, the plan's actual premium, or the cost of the drugs the person uses. It is a fixed percentage of a national reference amount. That is why a lower-cost plan does not eliminate the penalty.
+
+## Worked example
+
+Suppose a person went {exampleMonths} full months without creditable drug coverage and then enrolled in a Part D plan. Using the {year} base beneficiary premium of {formatMoney(basePremium)}, the raw penalty is{' '}
+{formatMoney(exampleRawPenalty)}. Rounded to the nearest 10 cents, the monthly penalty is{' '}
+{formatMoney(examplePenalty)}.
+
+The person's monthly Part D cost is the plan premium plus the penalty. If the plan premium is the base amount in this example, the monthly total is {formatMoney(exampleMonthlyTotal)}. Across a year, the penalty portion alone is {formatMoney(exampleAnnualPenalty)}, and the total is {formatMoney(exampleAnnualTotal)} before any IRMAA.
+
+Now suppose the gap was six months instead of twelve. The penalty would be roughly half as large, because the number of months is the multiplier. The exact amount depends on the base premium and the rounding. A shorter gap is cheaper, but any full month without creditable coverage can add a permanent cost.
+
+If the person had creditable employer coverage during the gap, the months would not count. The employer notice and the dates of coverage are the evidence. A person who is reviewing a penalty notice should compare the months listed with the coverage records.
+
+## How to avoid the penalty
+
+The most reliable way to avoid the penalty is to keep creditable coverage without a gap. If you have employer coverage, ask the plan administrator whether it is creditable and keep the notice. If you are retiring, check the special enrollment window before the coverage ends.
+
+If you are approaching Medicare eligibility and already have drug coverage, compare it with Part D. A plan that is not creditable can leave you exposed even though you have some coverage. The notice should say whether the coverage is creditable.
+
+If you receive a penalty notice that you believe is wrong, contact the plan and Medicare. Keep copies of the coverage letters, enrollment forms, and any explanation of benefits. A successful review depends on showing that the coverage was creditable during the months in question.
+
+Do not assume that a short gap is harmless. A single full month can create a small permanent penalty, and the amount can grow with each additional month. The cost is usually easier to prevent than to remove.
+
+## Three honest caveats
+
+1. The penalty is based on the national base beneficiary premium, not on the plan premium you pay. A cheaper plan does not reduce the penalty.
+2. The amount can change each year when the base premium changes, even though the number of uncovered months does not.
+3. A plan's statement that coverage is creditable is important, but the official rules and the dates still control. Keep the notices.
+
+<Faq
+  items={[
+    {
+      question: 'How much is the Part D late enrollment penalty?',
+      answer: `It is 1 percent of the national base beneficiary premium for each full month without creditable coverage. For ${year}, the base premium is ${formatMoney(basePremium)}.`,
+    },
+    {
+      question: 'Does the penalty ever go away?',
+      answer:
+        'The penalty generally continues for as long as you have Part D. It is not a temporary charge that ends after a set number of years.',
+    },
+    {
+      question: 'What counts as creditable drug coverage?',
+      answer:
+        'Coverage that is expected to pay, on average, at least as much as standard Part D coverage. Employer, retiree, and union plans may qualify, but the plan must confirm the status.',
+    },
+    {
+      question: 'Is the Part D penalty the same as IRMAA?',
+      answer:
+        'No. The late enrollment penalty is based on months without creditable coverage. IRMAA is an income-related surcharge. A person can owe both.',
+    },
+    {
+      question: 'Can I avoid the penalty with employer coverage?',
+      answer:
+        'If the employer coverage is creditable and you enroll within the allowed special enrollment period when it ends, you may avoid the penalty. Confirm the status and dates with the plan.',
+    },
+    {
+      question: 'Does the penalty apply to a Medicare Advantage plan with drug coverage?',
+      answer:
+        'A Medicare Advantage plan with drug coverage is Part D coverage, so it does not create a gap while it is in force. A gap before enrollment can still count.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Penalty rate',
+      value: `${formatPercent(penaltyRate)} per month`,
+      source: sources.medicarePartDCosts,
+      sourceLabel: 'Medicare.gov Part D costs',
+    },
+    {
+      label: 'Base beneficiary premium',
+      value: formatMoney(basePremium),
+      source: sources.cms2026PartD,
+      sourceLabel: `CMS ${year} Part D bid information`,
+    },
+    {
+      label: 'Creditable coverage',
+      value: 'At least as good as standard Part D',
+      source: sources.medicareDrugCosts,
+      sourceLabel: 'Medicare.gov drug costs',
+    },
+    {
+      label: 'Avoiding penalties',
+      value: 'Enrollment and coverage rules',
+      source: sources.medicareAvoidPenalties,
+      sourceLabel: 'Medicare.gov avoid penalties',
+    },
+  ]}
+/>
+
+## What to do next
+
+If you are about to retire or lose employer coverage, ask whether the drug coverage is creditable and note the end date. If you already have a penalty, check the months on the notice against your coverage records. The
+[Part D out of pocket cap guide](/guides/part-d-out-of-pocket-cap) explains the separate annual limit on covered drug spending. The
+[Medicare Savings Program and Extra Help calculator](/calculators/medicare-savings-program-extra-help)
+can help you check whether you may qualify for help with Part D premiums and cost sharing.

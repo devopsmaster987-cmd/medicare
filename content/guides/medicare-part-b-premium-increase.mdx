@@ -1,0 +1,251 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partB2026 } from '@/data/medicare-part-b';
+import { partB2025 } from '@/data/medicare-part-b-2025';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const priorYear = figureYears.prior;
+export const premium = partB2026.standardPremium.amount;
+export const priorPremium = partB2025.standardPremium.amount;
+export const monthlyIncrease = premium - priorPremium;
+export const annualPremium = premium * 12;
+export const annualPriorPremium = priorPremium * 12;
+export const annualIncrease = monthlyIncrease * 12;
+export const deductible = partB2026.deductible.amount;
+export const priorDeductible = partB2025.deductible.amount;
+export const deductibleIncrease = deductible - priorDeductible;
+
+<AnswerCapsule>
+  The Medicare Part B premium increase {year} lifted the standard monthly premium to{' '}
+  {formatMoney(premium)} from {formatMoney(priorPremium)}. The difference is{' '}
+  {formatMoney(monthlyIncrease)} a month, or {formatMoney(annualIncrease)} for the year.
+  Income-related surcharges are separate, and most people pay the standard amount. Social Security
+  sets the final amount each fall for the following year.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Standard monthly premium',
+      value: formatMoney(premium),
+      note: `The base amount for ${year}, before any surcharge.`,
+    },
+    {
+      label: 'Prior standard premium',
+      value: formatMoney(priorPremium),
+      note: `The base amount for ${priorYear}.`,
+    },
+    {
+      label: 'Monthly change',
+      value: formatMoney(monthlyIncrease),
+      note: 'The difference between the two standard premiums.',
+    },
+    {
+      label: 'Annual standard cost',
+      value: formatMoney(annualPremium),
+      note: 'Twelve months at the standard premium.',
+    },
+    {
+      label: 'Part B deductible',
+      value: formatMoney(deductible),
+      note: `The deductible for ${year}.`,
+    },
+    {
+      label: 'Deductible change',
+      value: formatMoney(deductibleIncrease),
+      note: 'The difference from the prior deductible.',
+    },
+  ]}
+/>
+
+## What changed in the standard premium
+
+The standard Part B premium is the amount a person pays before any income-related adjustment or late
+enrollment penalty. For {year}, the standard monthly premium is {formatMoney(premium)}. For{' '}
+{priorYear}, it was {formatMoney(priorPremium)}. The monthly change is{' '}
+{formatMoney(monthlyIncrease)}, and the change across a full year is{' '}
+{formatMoney(annualIncrease)}.
+
+The deductible moved too. For {year}, the Part B deductible is {formatMoney(deductible)}, compared
+with {formatMoney(priorDeductible)} in {priorYear}. The deductible is the amount you pay for covered
+Part B services before Medicare begins to pay its share. After the deductible, the usual Part B
+coinsurance is 20 percent of the Medicare-approved amount, and there is no annual out-of-pocket cap
+in Original Medicare.
+
+The premium and the deductible are different numbers with different jobs. A higher premium is a
+monthly cost that continues all year. A higher deductible is a one-time threshold before cost
+sharing begins. A household budget should account for both, plus the cost of any supplemental
+coverage, Part D, or Medigap policy.
+
+The standard premium is not a quote for everyone. It is the base amount. Two common adjustments can
+raise an individual premium above it: the income-related monthly adjustment amount, usually called
+IRMAA, and the Part B late enrollment penalty. The two adjustments can apply at the same time.
+
+## How Medicare sets the Part B premium
+
+Part B is financed through premiums and federal general revenue. The premium is designed to cover a
+share of program spending, and the deductible and coinsurance are set alongside it. The Centers for
+Medicare and Medicaid Services publishes the amounts, usually in the fall, for the following
+calendar year.
+
+The timing matters because Social Security cost-of-living adjustments are announced around the same
+period. For people who have Part B premiums withheld from Social Security benefits, the net monthly
+benefit depends on both numbers. A premium increase can absorb part or all of a cost-of-living
+increase, even when the gross benefit rises.
+
+Some beneficiaries are protected by the hold-harmless rule. In general, if a person has Part B
+premiums withheld from Social Security and the premium increase would reduce the net benefit below
+the prior year's amount, the premium increase may be limited for that year. The rule has exceptions,
+including people who are new to Medicare, people who pay IRMAA, and people who are not receiving
+Social Security benefits. The official notice is the reliable source for an individual case.
+
+The standard premium is a national figure. It does not vary by state, by doctor, or by the Part B
+services a person uses. What varies is the adjustment applied to the individual, and the amount of
+care that falls outside Part B.
+
+## Why your premium can be higher than the standard amount
+
+IRMAA is based on modified adjusted gross income from two years earlier. A higher income can move a
+person into a higher Part B premium tier. The surcharge is added to the standard premium, not
+subtracted from it. A married couple can each pay the surcharge, so the household effect can be
+larger than a single person's notice suggests.
+
+The two-year lookback is the part that surprises people. Income from a Roth conversion, a large
+capital gain, a business sale, or a retirement distribution can change a premium two years later.
+A person who has a life-changing event, such as retirement or the death of a spouse, may be able to
+ask Social Security to use newer income by filing Form SSA-44. The form does not guarantee a
+reduction, and the accepted reasons and proof requirements matter.
+
+The late enrollment penalty is separate from IRMAA. For Part B, the penalty is generally 10 percent
+of the standard premium for each full 12-month period a person could have had Part B but did not
+enroll, and the penalty is permanent. A person who delayed Part B without creditable employer
+coverage can pay both the penalty and any IRMAA that applies.
+
+Neither adjustment changes the deductible. A person with a higher premium still faces the same
+standard Part B deductible, unless a separate rule applies. The premium notice shows the total
+monthly amount, and the explanation should identify any IRMAA or penalty included.
+
+## What the premium does not include
+
+Part B covers physician services, outpatient care, durable medical equipment, and some preventive
+services. It does not cover most prescription drugs, and it does not replace the hospital coverage
+in Part A. A person usually needs a separate Part D plan for drug coverage, and may choose a Medigap
+policy or another supplemental plan to help with cost sharing.
+
+Part A is premium-free for most people who have 40 or more quarters of Medicare-covered work.
+People with fewer quarters may pay a Part A premium. That premium is separate from the Part B
+premium and is not included in the standard Part B amount shown here.
+
+Part D has its own premium, deductible, and out-of-pocket cap. A Part D plan can also have an
+IRMAA surcharge, which is billed separately from the plan premium in many cases. Medigap premiums
+are set by the insurer and are not part of Medicare's standard premium.
+
+Dental, vision, hearing, and long-term custodial care are generally not covered by Original
+Medicare. A person who wants help with those costs may need a separate policy or another program.
+The Part B premium should be budgeted alongside those choices, not treated as the full cost of
+coverage.
+
+## Worked example
+
+Consider a person who pays the standard Part B premium for all twelve months and has no IRMAA or
+late enrollment penalty. For {year}, the annual standard premium is {formatMoney(annualPremium)}.
+For {priorYear}, the same calculation was {formatMoney(annualPriorPremium)}. The annual difference
+is {formatMoney(annualIncrease)}.
+
+Now add the deductible. The person pays the first {formatMoney(deductible)} of covered Part B
+services before Medicare begins its share. After that, the person generally pays 20 percent of the
+Medicare-approved amount for covered services. The premium does not count toward the deductible, and
+the deductible does not reduce the premium.
+
+If the same person had a Part B late enrollment penalty of one full year, the penalty would add 10
+percent of the standard premium to the monthly amount. That is a permanent addition. The exact
+dollar figure depends on the standard premium in each year, so the penalty can change when the
+standard premium changes.
+
+The example is deliberately simple. It shows the relationship between the monthly premium, the
+annual cost, and the deductible. It does not estimate a person's total health care spending, because
+that depends on the care used, the supplemental coverage chosen, and the prices charged by
+providers.
+
+## Three honest caveats
+
+1. The standard premium is not a personal quote. IRMAA, a late enrollment penalty, and the
+   hold-harmless rule can change the amount actually withheld or billed.
+2. The premium is set for a calendar year and can change again. A budget based on one year should be
+   reviewed when the next official amount is published.
+3. This page explains the standard figures and the common adjustments. It does not calculate an
+   individual IRMAA tier or penalty. Use the official notice and the calculators for those numbers.
+
+<Faq
+  items={[
+    {
+      question: 'How much did the Part B premium go up?',
+      answer: `The standard monthly premium is ${formatMoney(premium)} for ${year}, compared with ${formatMoney(priorPremium)} for ${priorYear}. The monthly difference is ${formatMoney(monthlyIncrease)}.`,
+    },
+    {
+      question: 'Does everyone pay the standard Part B premium?',
+      answer:
+        'No. People with higher modified adjusted gross income may pay an IRMAA surcharge, and people who delayed enrollment without creditable coverage may pay a late enrollment penalty.',
+    },
+    {
+      question: 'Is the Part B deductible included in the premium?',
+      answer:
+        'No. The premium is a monthly payment for coverage. The deductible is a separate amount you pay for covered services before Medicare begins to pay its share.',
+    },
+    {
+      question: 'Can a cost-of-living increase be offset by the premium?',
+      answer:
+        'Yes. For people who have premiums withheld from Social Security, a higher Part B premium can reduce the net increase in the monthly benefit. The hold-harmless rule may limit the effect for some people.',
+    },
+    {
+      question: 'Does IRMAA use this year income or an older year?',
+      answer:
+        'IRMAA generally uses modified adjusted gross income from two years earlier. A life-changing event may allow a request to use newer income, but the request is not automatic.',
+    },
+    {
+      question: 'Is the Part B premium the same in every state?',
+      answer:
+        'The standard premium is national. IRMAA thresholds are also national, although the income on an individual tax return determines the tier. State of residence does not change the standard amount.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Standard Part B premium',
+      value: formatMoney(premium),
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part B premium fact sheet`,
+    },
+    {
+      label: 'Prior standard premium',
+      value: formatMoney(priorPremium),
+      source: sources.cms2025AB,
+      sourceLabel: `CMS ${priorYear} Part B premium fact sheet`,
+    },
+    {
+      label: 'Part B deductible',
+      value: formatMoney(deductible),
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part B premium fact sheet`,
+    },
+    {
+      label: 'Part B costs and coinsurance',
+      value: '20 percent coinsurance after the deductible',
+      source: sources.medicareCosts,
+      sourceLabel: 'Medicare.gov costs',
+    },
+  ]}
+/>
+
+## What to do next
+
+If you are already enrolled, compare the premium notice with the standard amount and check whether
+the notice explains an IRMAA or penalty adjustment. If you are about to enroll, read the
+[Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty) before you
+delay coverage, and use the [IRMAA cliff checker](/calculators/irmaa-cliff-checker) if your income
+is near a threshold. The [Medicare vs ACA decision guide](/calculators/medicare-vs-aca) is the place
+to start if you are still choosing between an employer plan and Medicare.

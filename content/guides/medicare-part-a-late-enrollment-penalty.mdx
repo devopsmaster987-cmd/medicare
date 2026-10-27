@@ -1,0 +1,188 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partA2026 } from '@/data/medicare-part-a';
+import { partAPenalty } from '@/data/penalties';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney, formatPercent } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const reducedPremium = partA2026.reducedPremium.amount;
+export const fullPremium = partA2026.fullPremium.amount;
+export const penaltyRate = partAPenalty.ratePerFullYear.rate;
+export const durationMultiplier = partAPenalty.multiplier;
+export const delayYears = 2;
+export const penaltyMonths = delayYears * durationMultiplier * 12;
+export const reducedPenalty = reducedPremium * penaltyRate;
+export const fullPenalty = fullPremium * penaltyRate;
+export const reducedTotal = reducedPenalty * penaltyMonths;
+export const fullTotal = fullPenalty * penaltyMonths;
+
+<AnswerCapsule>
+  The Medicare Part A late enrollment penalty is generally 10 percent of the Part A premium, applied
+  for twice the number of years you delayed enrollment. It only applies to people who must pay a
+  Part A premium. The penalty is added to the monthly premium and can last for years.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Penalty rate',
+      value: formatPercent(penaltyRate),
+      note: 'Added to the Part A premium for people who pay one.',
+    },
+    {
+      label: 'How long it lasts',
+      value: 'Twice the delay',
+      note: 'If you delayed two years, the penalty can last four years.',
+    },
+    {
+      label: 'Who is affected',
+      value: 'People who pay a Part A premium',
+      note: 'Most people with 40 or more quarters pay no Part A premium.',
+    },
+    {
+      label: 'Reduced premium example',
+      value: formatMoney(reducedPremium),
+      note: `The monthly premium with 30 to 39 quarters for ${year}.`,
+    },
+    {
+      label: 'Full premium example',
+      value: formatMoney(fullPremium),
+      note: `The monthly premium with fewer than 30 quarters for ${year}.`,
+    },
+    {
+      label: 'Penalty duration example',
+      value: `${penaltyMonths} months`,
+      note: 'For a two-year delay, based on the twice-the-years rule.',
+    },
+  ]}
+/>
+
+## Who the Part A penalty applies to
+
+The Part A late enrollment penalty does not apply to most people. It applies to people who must pay a monthly premium for Part A and who did not enroll when they were first eligible. A person with 40 or more quarters of Medicare-covered work usually receives premium-free Part A and faces no Part A premium penalty.
+
+The penalty is separate from the Part B late enrollment penalty. A person can owe one, both, or neither. Part B has a 10 percent penalty for each full 12-month period without coverage, and the penalty is generally permanent. Part A uses a different duration rule, even though the rate is also 10 percent.
+
+A person who is eligible for premium-free Part A but did not enroll could still face a problem if they later need Part A and have to pay for it. The work record determines whether the premium applies. The Social Security Administration makes that determination.
+
+A person who is not eligible for premium-free Part A should treat the enrollment decision as a cost decision. The Part A premium, the Part B premium, and the penalty rules all matter. Waiting can increase the cost of coverage later.
+
+## How the penalty is calculated
+
+The penalty is generally 10 percent of the Part A premium. The duration is the unusual part: it lasts for twice the number of years a person delayed enrollment. A two-year delay can create a penalty that lasts four years. The penalty is added to the monthly premium during that period.
+
+The rate is not multiplied by the number of years. A common mistake is to assume that a two-year delay creates a 20 percent penalty. Under the official rule, the rate is 10 percent, and the number of years affects how long the penalty lasts, not the percentage.
+
+The exact premium depends on the work record. A person with 30 to 39 quarters pays the reduced premium, and a person with fewer than 30 quarters pays the full premium. The penalty is a percentage of whichever premium applies, so the dollar amount differs between the two groups.
+
+The penalty ends after the required duration. That is different from the Part B penalty, which generally continues permanently. A person who pays the Part A penalty should keep the notice and check the end date.
+
+## The twice-the-years rule
+
+Suppose a person delayed Part A for two years. The penalty can last for four years. If the person delayed for three years, the penalty can last for six years. The rule is designed to create a longer consequence for a longer delay, but the monthly rate stays at 10 percent.
+
+The delay is measured in years, not months. A shorter delay may still create a penalty if it crosses the relevant threshold. The official notice should show the calculation and the period.
+
+A person who delayed because of employer coverage may have a special enrollment period and may avoid the penalty. The type of coverage matters. Current employer coverage from a large employer is treated differently from COBRA, retiree coverage, or a private plan.
+
+A person who delayed because of a mistake may still owe the penalty. The rules do not generally excuse a delay because the person did not understand the enrollment window. The best response is to enroll as soon as possible and ask about any review or appeal options.
+
+A person who is unsure about the delay should gather the enrollment dates, the work record, and any coverage letters before calling. The notice usually explains the start and end of the penalty period. If the dates are wrong, the person can ask for a correction. If the work record is wrong, the person can ask Social Security to review it. Small record errors can change both the premium and the penalty.
+
+## How to avoid the penalty
+
+The most reliable way to avoid the Part A penalty is to enroll during the initial enrollment period if you must pay for Part A. If you have premium-free Part A, the penalty does not apply because there is no Part A premium to which a penalty can attach.
+
+If you are still working and have employer coverage, check whether the coverage allows a delay. A person with coverage based on current employment may have a special enrollment period. The employer size and the plan type matter. Confirm the details in writing.
+
+If you are not eligible for premium-free Part A and are considering whether to buy it, compare the total cost of Part A and Part B with the alternatives. A person who delays may face a higher cost later, but a person who enrolls may pay a premium for years. The decision is personal and should be based on the official rules.
+
+If you receive a penalty notice that you believe is wrong, ask for an explanation. Keep the enrollment records, the work history, and any coverage notices. The plan or Social Security can explain how the penalty was calculated.
+
+## Worked example
+
+Consider a person with 32 quarters of covered work. That person pays the reduced Part A premium of{' '}
+{formatMoney(reducedPremium)} a month in {year}. The person delayed enrollment by two years. The penalty is 10 percent of the premium, or {formatMoney(reducedPenalty)} a month. Under the twice-the-years rule, the penalty can last for four years, or {penaltyMonths} months. The total penalty in this example is {formatMoney(reducedTotal)}.
+
+Now consider a person with 24 quarters who pays the full premium of {formatMoney(fullPremium)} a month. The same 10 percent penalty is {formatMoney(fullPenalty)} a month, and the four-year total is {formatMoney(fullTotal)}. The full premium creates a larger dollar penalty even though the rate is the same.
+
+A third person has 40 quarters and pays no Part A premium. That person faces no Part A penalty, although a Part B penalty could still apply if Part B was delayed. The work record is the key difference.
+
+The example assumes the premium stays the same for four years. In reality, the Part A premium can change each year. A change in the premium can change the dollar penalty, even if the percentage stays the same.
+
+## Three honest caveats
+
+1. The Part A penalty applies only to people who pay a Part A premium. Most people with 40 or more quarters are not affected.
+2. The 10 percent rate and the twice-the-years duration are separate rules. Do not multiply the rate by the number of delayed years.
+3. The dollar amount can change when the Part A premium changes. The official notice is the source for an individual calculation.
+
+<Faq
+  items={[
+    {
+      question: 'How much is the Part A late enrollment penalty?',
+      answer: `It is generally ${formatPercent(penaltyRate)} of the Part A premium, and it lasts for twice the number of years you delayed enrollment.`,
+    },
+    {
+      question: 'Does the penalty apply if Part A is premium-free?',
+      answer:
+        'No. If you have 40 or more quarters and pay no Part A premium, there is no Part A premium to which the penalty can attach.',
+    },
+    {
+      question: 'How long does the Part A penalty last?',
+      answer:
+        'It generally lasts for twice the number of years you delayed enrollment. A two-year delay can create a four-year penalty period.',
+    },
+    {
+      question: 'Is the Part A penalty permanent like the Part B penalty?',
+      answer:
+        'No. The Part A penalty has a limited duration under the twice-the-years rule. The Part B penalty is generally permanent.',
+    },
+    {
+      question: 'Can employer coverage prevent the Part A penalty?',
+      answer:
+        'Coverage based on current employment may allow a special enrollment period and may help you avoid a penalty. Confirm the employer size and coverage type.',
+    },
+    {
+      question: 'What if I cannot afford the Part A premium?',
+      answer:
+        'Ask your state Medicaid agency about Medicare Savings Programs and check whether you qualify for Extra Help with drug costs. Eligibility depends on income, resources, and state rules.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Part A premium',
+      value: `${formatMoney(reducedPremium)} or ${formatMoney(fullPremium)} a month`,
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part B premium fact sheet`,
+    },
+    {
+      label: 'Part A penalty rule',
+      value: `${formatPercent(penaltyRate)} for twice the delay`,
+      source: sources.medicareAvoidPenalties,
+      sourceLabel: 'Medicare.gov avoid penalties',
+    },
+    {
+      label: 'Premium-free Part A',
+      value: '40 or more quarters',
+      source: sources.medicareCosts,
+      sourceLabel: 'Medicare.gov costs',
+    },
+    {
+      label: 'Enrollment help',
+      value: 'Social Security application',
+      source: sources.ssaMedicareSignup,
+      sourceLabel: 'SSA Medicare sign-up',
+    },
+  ]}
+/>
+
+## What to do next
+
+If you are not sure whether you pay a Part A premium, check your Social Security record before you delay enrollment. If you already have a penalty notice, compare the dates and the premium with the official rules. The
+[Medicare Part A premium guide](/guides/medicare-part-a-premium) explains the work-quarter thresholds, and the
+[Part A 40 quarters rule](/guides/medicare-part-a-40-quarters-rule) goes deeper into the work record. The
+[Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty) covers the separate Part B penalty.

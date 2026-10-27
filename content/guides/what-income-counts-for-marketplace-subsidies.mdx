@@ -1,0 +1,260 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { aca2026 } from '@/data/aca';
+import { fplAnnual } from '@/data/fpl';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney, formatNumber, formatPercent } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const coverageYear = aca2026.year;
+export const fplYear = aca2026.fplYearForSubsidies;
+export const householdSize = 4;
+export const fpl = fplAnnual(fplYear, householdSize);
+export const exampleIncome = 100000;
+export const examplePercent = (exampleIncome / fpl) * 100;
+export const fourHundred = fpl * 4;
+export const requiredContribution = exampleIncome * aca2026.affordabilityPercentage.rate;
+export const monthlyContribution = requiredContribution / 12;
+
+<AnswerCapsule>
+  What income is used for marketplace subsidies? Modified adjusted gross income for your tax
+  household, not your bank balance or your salary alone. For {year} coverage, the Marketplace uses
+  the prior-year poverty guidelines and the 400 percent limit. Add the income items the tax rules
+  include before you estimate a subsidy.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Income measure',
+      value: 'Modified adjusted gross income',
+      note: 'Often shortened to MAGI.',
+    },
+    {
+      label: 'Poverty guideline year',
+      value: String(fplYear),
+      note: `Used for ${coverageYear} coverage because the Marketplace uses the prior-year table.`,
+    },
+    {
+      label: 'Household size',
+      value: 'Tax household, not just the applicant',
+      note: 'Include the people on the tax return and the dependents claimed.',
+    },
+    {
+      label: 'Upper limit',
+      value: `${aca2026.subsidyCliffFplPercent}% of the poverty line`,
+      note: 'Above the line, premium tax credits generally end.',
+    },
+    {
+      label: 'Required contribution at 100% FPL',
+      value: formatPercent(aca2026.affordabilityPercentage.rate),
+      note: `The share of income a benchmark plan is expected to cost for ${coverageYear}.`,
+    },
+    {
+      label: 'Enhanced subsidies',
+      value: aca2026.enhancedSubsidies.status,
+      note: 'Check the current law before relying on an extension.',
+    },
+  ]}
+/>
+
+## The income figure is MAGI
+
+The Marketplace does not ask for gross pay and stop there. It starts with adjusted gross income and
+adds several items that can be easy to miss. The result is modified adjusted gross income, usually
+called MAGI.
+
+The practical rule is to use the tax return you expect to file, then add the income items the
+Marketplace instructions list. Tax-exempt interest, foreign earned income that is excluded from
+taxable income, and certain other items can raise MAGI even when they do not feel like take-home
+pay. If you are unsure, use the official income page and ask a tax preparer.
+
+Do not use last year's tax return without checking whether this year looks different. A new job, a
+raise, a retirement distribution, or a business profit can change the estimate. The application is
+built around a projection, not a history lesson.
+
+## Whose income counts
+
+Household income is not only the applicant's income. It includes the income of everyone in the tax
+household who is required to file a return, plus the income of people who are claimed as
+dependents in some situations. Marriage, divorce, a new dependent, or a child leaving the household
+can all change the figure.
+
+That is why two people with the same salary can qualify for different amounts. The household
+composition changes the poverty guideline and the income that is counted. A single applicant with a
+child is not compared with a single applicant who lives alone.
+
+If a household member files separately, the rules can be more complicated. Do not assume that one
+person's return is the whole story. Use the official household income rules and, when the facts are
+unusual, ask the Marketplace or a tax preparer.
+
+<AdSlot placement="mid-article" />
+
+## Which poverty guideline year applies
+
+For {coverageYear} coverage, the Marketplace uses the poverty guidelines published for {fplYear}.
+This is a common source of confusion. The table is one year behind the coverage year because the
+Marketplace uses the prior-year guidelines for the premium tax credit calculation.
+
+For a household of {householdSize}, the {fplYear} annual poverty guideline is {formatMoney(fpl)}.
+That figure is the base for the percentage tests. The 400 percent limit for the same household is
+{formatMoney(fourHundred)}.
+
+Alaska and Hawaii use higher guidelines. A household of more than eight people adds an amount for
+each additional person. Use the official table for the exact figure.
+
+## The 400 percent limit
+
+Under the rules reflected in the current data, premium tax credits generally end above 400 percent
+of the federal poverty line. That is a cliff, not a gradual reduction. A household just above the
+line can lose the credit, while a household just below it can still receive help.
+
+The enhanced subsidy provisions are shown as expired in the data layer. That means a household
+above the 400 percent line should not assume an extension exists. The law can change, so check the
+current status before you rely on a guide or an old news article.
+
+The 400 percent rule is not the only limit. Even below the line, the amount of help depends on the
+benchmark plan premium, the household income, and the applicable percentage. A household can be
+below the line and still pay a substantial share of the premium.
+
+## What changes MAGI
+
+Income from a job, self-employment, unemployment, Social Security, pensions, and investments can all
+count. A Roth conversion can count. Tax-exempt interest can count. A one-time capital gain can
+count. The list is broad, and the details depend on the tax return.
+
+Some items are excluded or treated differently. A qualified distribution from a Roth account is
+generally not taxable income, but the rest of the return still matters. A loan is not income. A
+reimbursement is not income. A gift is not income. The labels people use in conversation are not
+the same as the lines on a tax return.
+
+The safest approach is to build the estimate from the return, line by line, then compare it with
+the Marketplace instructions. If the number is close to a cliff, a small error can change the
+result.
+
+## Worked example
+
+A household of {householdSize} expects {formatMoney(exampleIncome)} of MAGI for the coverage year.
+The prior-year poverty guideline is {formatMoney(fpl)}. The household income is about{' '}
+{formatNumber(examplePercent)} percent of the poverty line, which is below the 400 percent limit of{' '}
+{formatMoney(fourHundred)}.
+
+At that income, the applicable percentage is {formatPercent(aca2026.affordabilityPercentage.rate)}.
+The expected annual contribution toward a benchmark plan is {formatMoney(requiredContribution)}, or
+about {formatMoney(monthlyContribution)} a month. The actual premium tax credit depends on the
+benchmark premium for the household and the plan chosen. This page does not invent a benchmark
+premium, so it stops at the contribution figure.
+
+The headroom to the 400 percent line is {formatMoney(fourHundred - exampleIncome)}. That is the
+amount of additional MAGI that would remove the household from the credit range under the current
+rules.
+
+## What to do before you apply
+
+Gather the tax return for the most recent year, pay stubs or a profit-and-loss statement for the
+current year, and documents for any other income. Write down the household members and who claims
+whom. Then use the official income page to check the MAGI items you might have missed.
+
+If the estimate is near the 400 percent line, consider whether a deduction or a timing change is
+available. Do not hide income to stay under the line, and do not assume a small overage will be
+ignored. The application asks for a good-faith projection.
+
+## A checklist for the estimate
+
+Build the estimate in the same order as the tax return. Start with wages, self-employment income,
+and retirement distributions. Add interest, dividends, capital gains, and rental income. Add the
+items the Marketplace instructions require even when they are not taxable in the usual sense.
+
+Then list the household members and confirm who is claimed on the return. Check the prior-year
+poverty guideline for that household size. Compare the projected income with the 400 percent line.
+If the result is close, write down the headroom and keep it with the application.
+
+Finally, note the date of the estimate and the documents used. If the income changes during the
+year, the note shows what was known when the application was filed. That is useful if the credit is
+reconciled later.
+
+## Three honest caveats
+
+1. The poverty guideline year is not the coverage year. Using the wrong table can change the
+   percentage and the credit.
+2. This page does not calculate a premium tax credit because the benchmark premium is not in the
+   data layer. It explains the income test and the limit.
+3. The enhanced subsidy rules can change. Check the current law and the official Marketplace page
+   before relying on any statement about the 400 percent line.
+
+<Faq
+  items={[
+    {
+      question: 'Is marketplace subsidy income based on gross income?',
+      answer:
+        'It is based on modified adjusted gross income, which starts with adjusted gross income and adds certain items. Gross pay alone can overstate or understate the figure.',
+    },
+    {
+      question: 'Do Social Security benefits count for marketplace subsidies?',
+      answer:
+        'Taxable Social Security benefits are generally part of adjusted gross income. The Marketplace instructions and the tax return determine how the benefit is treated in a specific household.',
+    },
+    {
+      question: 'Which poverty level year does the marketplace use?',
+      answer: `For ${coverageYear} coverage, the Marketplace uses the ${fplYear} federal poverty guidelines. That is why the table can look one year behind the coverage year.`,
+    },
+    {
+      question: 'Does a Roth conversion count as income for subsidies?',
+      answer:
+        'A taxable Roth conversion generally raises adjusted gross income in the conversion year. It can therefore affect the premium tax credit estimate.',
+    },
+    {
+      question: 'What happens if my income changes during the year?',
+      answer:
+        'You are expected to update the Marketplace when your income or household changes. A change can adjust the credit and the amount owed at tax time.',
+    },
+    {
+      question: 'Does a dependent’s income count?',
+      answer:
+        'It can, depending on the tax household and the filing rules. Use the official household income instructions for the specific situation.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Marketplace income rules',
+      value: 'MAGI and household income',
+      source: sources.healthcareIncome,
+      sourceLabel: 'HealthCare.gov income page',
+    },
+    {
+      label: 'Premium tax credit basics',
+      value: 'Eligibility and calculation',
+      source: sources.healthcareSavings,
+      sourceLabel: 'HealthCare.gov savings page',
+    },
+    {
+      label: `Poverty guideline for ${fplYear}`,
+      value: formatMoney(fpl) + ' for a household of ' + householdSize,
+      source: sources.aspePoverty,
+      sourceLabel: 'HHS poverty guidelines',
+    },
+    {
+      label: 'Applicable percentage',
+      value: formatPercent(aca2026.affordabilityPercentage.rate),
+      source: sources.irsRp2025_25,
+      sourceLabel: 'IRS affordability revenue procedure',
+    },
+    {
+      label: 'Enhanced subsidy status',
+      value: aca2026.enhancedSubsidies.status,
+      source: sources.crsEnhancedPtc,
+      sourceLabel: 'Congressional Research Service',
+    },
+  ]}
+/>
+
+## What to do next
+
+Check the [employer coverage affordability calculator](/calculators/employer-coverage-affordability)
+if a job-based plan is also in the picture. Then read the
+[400 FPL subsidy cliff](/guides/400-fpl-subsidy-cliff) guide for the household-size limits and the
+[family glitch fix explained](/guides/family-glitch-fix-explained) guide for the family premium
+test.

@@ -1,0 +1,256 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { irs2026 } from '@/data/irs';
+import { partA2026 } from '@/data/medicare-part-a';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const stopMonths = irs2026.hsaContributionStopMonthsBeforeMedicare;
+export const premiumFree = partA2026.standardPremium.amount;
+export const reducedPartA = partA2026.reducedPremium.amount;
+export const fullPartA = partA2026.fullPremium.amount;
+
+<AnswerCapsule>
+  The HSA and Medicare 6 month rule means you must stop HSA contributions six months before your
+  Part A coverage begins, because Part A can be backdated up to six months. Contributions made
+  during those backdated months can become excess contributions. Stop early and check the date.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Stop contributions',
+      value: `${stopMonths} months before Part A`,
+      note: 'Count backward from the Part A effective date, not the enrollment date.',
+    },
+    {
+      label: 'Why',
+      value: 'Part A can be backdated',
+      note: 'The backdate can make earlier months ineligible for HSA contributions.',
+    },
+    {
+      label: 'Backdate limit',
+      value: 'Up to six months',
+      note: 'Part A can start before you apply in some delayed-enrollment cases.',
+    },
+    {
+      label: 'Excess contribution tax',
+      value: '6% excise tax',
+      note: 'Generally charged for each year the excess remains in the HSA.',
+    },
+    {
+      label: 'Premium-free Part A',
+      value: formatMoney(premiumFree),
+      note: 'Most people with 40 or more work credits pay no Part A premium.',
+    },
+    {
+      label: 'Part A premium if buying in',
+      value: `${formatMoney(reducedPartA)} reduced / ${formatMoney(fullPartA)} full`,
+      note: `Monthly amounts for ${year} with the listed work credits.`,
+    },
+  ]}
+/>
+
+## Why the six-month window exists
+
+Medicare Part A can be backdated by up to six months when someone signs up after delaying coverage.
+The backdate is a benefit for people who worked past 65 or missed an enrollment window. It also
+creates a trap for an HSA.
+
+You cannot contribute to an HSA for any month after you are entitled to Medicare. If Part A is
+backdated, you were entitled to Medicare during those earlier months even though the paperwork came
+later. Contributions made for those months are excess contributions, and the tax rules apply.
+
+That is why the safe rule is to stop contributions six months before the expected Part A start. If
+you enroll earlier, the stop date moves earlier too. The date to watch is the effective date on the
+Medicare record, not the day the application was signed.
+
+## When contributions must stop
+
+Start with the date Part A will begin. Count back six months. Stop HSA contributions before that
+date. If Part A starts on the first day of a month, the stop date is the first day of the month six
+months earlier.
+
+For example, if Part A starts on June 1, the six-month window reaches back to December 1 of the
+prior year. Contributions for December through May can be excess because Medicare coverage is
+backdated to December. The exact result depends on the effective date and the months involved, so
+check the Medicare record.
+
+Do not wait for the Medicare card to arrive. By then the backdated months may already contain
+contributions. If you are close to 65 and still working, ask your employer and your HSA custodian
+about the stop date before the birthday month.
+
+<AdSlot placement="mid-article" />
+
+## Can I contribute to an HSA after 65
+
+Age alone does not end HSA eligibility. You can contribute after 65 if you are still enrolled in a
+qualifying high-deductible health plan, you are not enrolled in Medicare, and you have no other
+disqualifying coverage. The tax deduction does not disappear at 65.
+
+Enrollment in Medicare does end HSA eligibility. That includes Part A, even premium-free Part A.
+Once you are entitled to Medicare, you cannot contribute for that month or later months. The
+six-month rule is the practical consequence of that rule when Part A is backdated.
+
+If you are still working at 65 and have employer coverage, the timing depends on the employer plan
+and the Medicare enrollment decision. Read the [Medicare vs ACA](/calculators/medicare-vs-aca)
+calculator and talk to the employer benefits office before you stop or start anything.
+
+## What happens to an excess contribution
+
+An excess contribution is money that went into the HSA for a month when you were not eligible. The
+tax rules generally impose a 6 percent excise tax on the excess for each year it remains in the
+account. The fix is usually to remove the excess and the earnings on it before the tax filing
+deadline.
+
+Do not simply spend the extra money. Removing the contribution is not the same as taking a
+distribution. Ask the HSA custodian for a correction of excess contributions, and report it the way
+the IRS instructions require.
+
+If the amount is small, the paperwork can still matter. A correction keeps the account clean and
+avoids a repeated excise tax. Keep the statements and the correction confirmation with your tax
+records.
+
+## What you can still pay from the HSA
+
+After you stop contributing, you can generally still use the HSA to pay qualified medical expenses.
+That includes many Medicare premiums, such as Part B, Part D, and Medicare Advantage premiums. It
+does not include every insurance premium, and Medigap premiums are generally not qualified. Check
+IRS Publication 969 for the current list.
+
+The account can also pay deductibles, coinsurance, and other qualified medical costs, within the
+rules. Keep receipts. A tax-free distribution has to be for a qualified expense, and the burden of
+proof is on the account owner.
+
+Do not use the HSA for a non-medical expense and assume it will be ignored. A non-qualified
+distribution is generally taxable, and an additional tax can apply.
+
+## Worked example
+
+A person plans to enroll in Medicare and expects Part A to start on June 1. The six-month rule
+reaches back to December 1 of the prior year. The person should stop HSA contributions before
+December 1, not in May.
+
+If the person contributed every month from January through May, those five months fall inside the
+backdated coverage period. They can be treated as excess contributions even though the Medicare card
+had not arrived. The fix is to remove the excess and the earnings, not to wait and hope the account
+is overlooked.
+
+If the person has premium-free Part A, the backdate does not create a Part A premium bill. It still
+affects HSA eligibility. That is the part people miss: no premium does not mean no coverage.
+
+## What counts as a qualifying plan
+
+HSA contributions require a qualifying high-deductible health plan and no disqualifying coverage.
+The plan has to meet the IRS minimum deductible and maximum out-of-pocket rules for the year. A plan
+that looks like a high-deductible plan but fails those rules does not support a contribution.
+
+Other coverage can disqualify you even if the plan itself qualifies. A general-purpose health
+flexible spending account, a traditional Medicare enrollment, or coverage under another person’s
+non-qualifying plan can end eligibility. A limited-purpose account tied to dental or vision costs
+may be treated differently, but the rules are specific.
+
+Do not assume that an employer calls a plan “HSA-eligible” and stop there. Ask for the plan
+documents and check the IRS rules. If the plan changes mid-year, eligibility can change with it.
+
+## A checklist for the stop date
+
+Write down the expected Part A effective date. Count back six months. Tell the payroll or benefits
+office the stop date. Confirm the final contribution and check the HSA custodian statement after the
+change.
+
+If you already contributed after the stop date, ask about a correction before the tax filing
+deadline. Keep the correction confirmation with the return. If you are not sure whether a month
+counts, ask the custodian and a tax preparer rather than guessing.
+
+Review the HSA again when the Medicare card arrives. The card confirms the effective date, and the
+date is what matters. A contribution made in good faith before the card arrived can still be excess
+if the backdate reaches it.
+
+## Three honest caveats
+
+1. The six-month stop date is a planning rule, not a substitute for the official effective date. A
+   different Part A start date changes the calculation.
+2. HSA correction rules have deadlines and reporting requirements. Ask the custodian and a tax
+   preparer before removing or recharacterizing a contribution.
+3. This page is guidance, not tax advice. Confirm the current HSA and Medicare rules with IRS
+   Publication 969 and Medicare.gov.
+
+<Faq
+  items={[
+    {
+      question: 'Why stop HSA contributions six months before Medicare?',
+      answer:
+        'Part A can be backdated up to six months, so Medicare entitlement can begin before the enrollment paperwork. Contributions for those backdated months can be excess contributions.',
+    },
+    {
+      question: 'Can I contribute to an HSA after 65?',
+      answer:
+        'Yes, if you are not enrolled in Medicare and still meet the other HSA eligibility rules, such as coverage under a qualifying high-deductible health plan.',
+    },
+    {
+      question: 'Does premium-free Part A end HSA eligibility?',
+      answer:
+        'Yes. Entitlement to premium-free Part A still counts as Medicare enrollment for HSA purposes, even though there is no Part A premium.',
+    },
+    {
+      question: 'What is the tax on an excess HSA contribution?',
+      answer:
+        'The excise tax is generally 6 percent of the excess contribution for each year it remains in the account. Removing the excess and earnings can stop the tax from repeating.',
+    },
+    {
+      question: 'Can I use my HSA to pay Medicare premiums?',
+      answer:
+        'Many Medicare premiums are qualified medical expenses, including Part B, Part D, and Medicare Advantage premiums. Medigap premiums are generally not qualified. Check IRS Publication 969.',
+    },
+    {
+      question: 'What if I already contributed after my Part A date?',
+      answer:
+        'Treat the contribution as potentially excess and ask the HSA custodian about a correction. Do not wait until the end of the year to review the months.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'HSA contribution rules',
+      value: 'Eligibility and excess contributions',
+      source: sources.irsPub969,
+      sourceLabel: 'IRS Publication 969',
+    },
+    {
+      label: 'Medicare and HSA timing',
+      value: `${stopMonths}-month stop date`,
+      source: sources.medicareWorkingPast65,
+      sourceLabel: 'Medicare.gov working past 65',
+    },
+    {
+      label: 'Premium-free Part A',
+      value: formatMoney(premiumFree),
+      note: 'Most people with 40 or more work credits.',
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'Part A premium amounts',
+      value: `${formatMoney(reducedPartA)} reduced / ${formatMoney(fullPartA)} full`,
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'Medicare enrollment timing',
+      value: 'Initial and special enrollment periods',
+      source: sources.ssaMedicareSignup,
+      sourceLabel: 'SSA Medicare sign-up',
+    },
+  ]}
+/>
+
+## What to do next
+
+If you are close to Medicare, use the [Medicare vs ACA](/calculators/medicare-vs-aca) calculator to
+compare the coverage paths. Then read
+[when does Medicare Part A backdate](/guides/medicare-part-a-backdate) for the six-month date rule
+and the premium effect.

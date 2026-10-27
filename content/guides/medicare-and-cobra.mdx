@@ -1,0 +1,187 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+
+export const year = figureYears.current;
+
+<AnswerCapsule>
+  Medicare and COBRA can overlap, but COBRA usually does not let you delay Medicare. Medicare
+  generally pays first, and an employer may end COBRA once you are eligible for Medicare. Signing up
+  for Medicare on time is usually the safer choice.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'What COBRA is',
+      value: 'Continued group coverage',
+      note: 'A temporary option after certain job or coverage changes.',
+    },
+    {
+      label: 'Who pays first',
+      value: 'Medicare generally',
+      note: 'COBRA is not coverage based on current employment.',
+    },
+    {
+      label: 'Can COBRA delay Part B?',
+      value: 'Generally no',
+      note: 'A delay can create a permanent Part B penalty.',
+    },
+    {
+      label: 'Can COBRA end at Medicare?',
+      value: 'The employer may end it',
+      note: 'Check the plan documents and the timing.',
+    },
+    {
+      label: 'Drug coverage',
+      value: 'Check creditable status',
+      note: 'COBRA drug coverage is not automatically creditable for Part D.',
+    },
+    {
+      label: 'Enrollment window',
+      value: 'Usually the initial period',
+      note: 'Enroll around age 65 unless current employer coverage applies.',
+    },
+  ]}
+/>
+
+## What COBRA does
+
+COBRA lets a person keep group health coverage for a limited time after a qualifying event. A job loss, a reduction in hours, a divorce, or the death of an employee can trigger the option. The person generally pays the full premium, including the part the employer used to pay.
+
+COBRA is a continuation of the same group plan. The network, the deductible, and the drug coverage usually stay the same while the coverage lasts. That can be valuable for someone who is mid-treatment or who wants to keep a familiar doctor.
+
+COBRA is not Medicare. It does not replace Part A, Part B, or Part D. It is a separate way to keep employer coverage, and it interacts with Medicare in ways that surprise people.
+
+The continuation period depends on the event and the plan. A person should read the election notice and the plan documents rather than assume a standard length.
+
+## How Medicare and COBRA coordinate
+
+When a person has Medicare and COBRA at the same time, Medicare generally pays first. COBRA generally pays second. The COBRA plan may cover some of the costs Medicare leaves behind, depending on the plan.
+
+That order is different from active employer coverage. A large employer plan based on current employment can pay first for a worker who is 65 or older. COBRA is not based on current employment, so it does not get that treatment.
+
+A person who already has Medicare and then elects COBRA should tell both the plan and Medicare about the other coverage. The coordination of benefits record should be correct so claims are processed in the right order.
+
+A person who has COBRA and is about to become eligible for Medicare should not assume COBRA will continue. The employer may end the COBRA coverage when the person becomes entitled to Medicare. The plan documents and the election notice are the place to check.
+
+## Why COBRA usually does not delay Part B
+
+The Part B late enrollment penalty is avoided when a person has coverage based on current employment and meets the other rules. COBRA generally does not meet that test. It is continuation coverage, not active employment coverage.
+
+A person who delays Part B because of COBRA can therefore face a penalty. The penalty is generally 10 percent of the standard premium for each full 12-month period without Part B, and it is generally permanent.
+
+The risk is easy to miss because COBRA feels like employer coverage. The plan may even look identical to the coverage the person had while working. The legal category is different, and the Medicare rules follow the category.
+
+A person who is 65 and has COBRA should usually enroll in Part B during the initial enrollment period. The COBRA coverage can then act as secondary coverage or can be dropped if it is no longer worth the cost.
+
+## Drug coverage and Part D
+
+COBRA may include prescription drug coverage. That coverage is not automatically creditable for Part D. A person needs to check the plan's notice to see whether the coverage is at least as good as standard Part D coverage.
+
+If the COBRA drug coverage is creditable, the person may be able to delay Part D without a penalty. If it is not creditable, the person may owe a Part D late enrollment penalty later. The penalty is generally 1 percent of the national base beneficiary premium for each full month without creditable coverage.
+
+A person who enrolls in Part D while keeping COBRA should ask how the two drug plans coordinate. In most cases, a person would not keep both drug plans, but the rules and the costs should be checked.
+
+A person who drops COBRA drug coverage and later enrolls in Part D may have a special enrollment period if the loss of creditable coverage qualifies. The notice and the dates matter.
+
+## Cost and timing
+
+COBRA can be expensive because the person pays the full premium. Medicare Part B also has a premium. A person who keeps both may pay more than necessary, especially if the COBRA plan pays second and covers little that Medicare does not.
+
+A person should compare the total monthly cost of COBRA plus Medicare with the cost of Medicare plus a supplemental or drug plan. The comparison should include premiums, deductibles, copays, and the doctors and drugs the person actually uses.
+
+A person who drops COBRA may have a special enrollment period for a Medicare Advantage or Part D plan. The person should check the timing before dropping the coverage.
+
+A person who keeps COBRA as secondary coverage should confirm that the plan actually pays secondary to Medicare. Some plans reduce benefits or coordinate differently. The plan documents should say.
+
+A person who is under 65 and loses a job may find that COBRA is the best bridge until Medicare begins. In that situation, the COBRA rules are the main rules, and the Medicare penalty risk does not yet apply. The person should still plan for the Medicare enrollment window and avoid letting it pass.
+
+A person who is already 65 should reverse the priority. Medicare is the foundation, and COBRA is optional secondary coverage. The person should enroll in Medicare first, then decide whether the COBRA premium is worth keeping. That order avoids the penalty and keeps the coverage options open.
+
+## Worked example
+
+Suppose a person loses a job at 64 and elects COBRA. The person turns 65 the following year. COBRA feels like a safe bridge, so the person delays Medicare.
+
+The person's initial enrollment period comes and goes. Later, the employer ends COBRA because the person is eligible for Medicare. The person now applies for Part B outside a special enrollment period. A penalty may apply, and coverage may not start immediately.
+
+A better path in the same facts: the person enrolls in Part B during the initial enrollment period at 65. COBRA continues as secondary coverage or is dropped. The person avoids the penalty and has Medicare in place when COBRA ends.
+
+The example does not mean COBRA is useless. It can be a bridge before 65, or secondary coverage after 65. The key is not to treat it as a substitute for Medicare.
+
+## Three honest caveats
+
+1. COBRA is not coverage based on current employment, so it generally does not protect against the Part B penalty.
+2. An employer may end COBRA when you become eligible for Medicare. Check the plan documents.
+3. COBRA drug coverage is not automatically creditable for Part D. Read the notice.
+
+<Faq
+  items={[
+    {
+      question: 'Can I keep COBRA instead of Medicare?',
+      answer:
+        'You can have both for a time, but COBRA generally does not let you delay Part B without a penalty. Enrolling in Medicare on time is usually safer.',
+    },
+    {
+      question: 'Does Medicare pay first with COBRA?',
+      answer:
+        'Generally yes. COBRA is not based on current employment, so Medicare usually pays first and COBRA pays second.',
+    },
+    {
+      question: 'Can my employer end COBRA when I get Medicare?',
+      answer:
+        'The employer may be able to end COBRA when you become entitled to Medicare. Check the election notice and plan documents.',
+    },
+    {
+      question: 'Is COBRA drug coverage creditable for Part D?',
+      answer:
+        'Not automatically. The plan must tell you whether the coverage is creditable. If it is not, a Part D penalty may apply later.',
+    },
+    {
+      question: 'Should I drop COBRA when I enroll in Medicare?',
+      answer:
+        'Compare the total cost and what each plan covers. Some people keep COBRA as secondary coverage; others find it is not worth the premium.',
+    },
+    {
+      question: 'What if I lose COBRA before I am 65?',
+      answer:
+        'You may have marketplace or other options. The end of COBRA can create a special enrollment period for some coverage. Check the rules for your situation.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'COBRA overview',
+      value: 'Continued group coverage',
+      source: sources.dolCobra,
+      sourceLabel: 'U.S. Department of Labor COBRA',
+    },
+    {
+      label: 'Who pays first',
+      value: 'Medicare generally',
+      source: sources.medicarePaysFirst,
+      sourceLabel: 'Medicare.gov who pays first',
+    },
+    {
+      label: 'Working past 65',
+      value: 'Current employment rule',
+      source: sources.medicareWorkingPast65,
+      sourceLabel: 'Medicare.gov working past 65',
+    },
+    {
+      label: 'Part D creditable coverage',
+      value: 'Check the plan notice',
+      source: sources.medicarePartDCosts,
+      sourceLabel: 'Medicare.gov Part D costs',
+    },
+  ]}
+/>
+
+## What to do next
+
+If you are 65 or older and have COBRA, treat Medicare enrollment as the priority. Keep the COBRA election notice and the plan's drug coverage notice. The
+[Medicare vs ACA guide](/calculators/medicare-vs-aca) explains the employer coverage rules, and the
+[Medicare initial enrollment period guide](/guides/medicare-initial-enrollment-period) covers the window. If you are worried about a penalty, the
+[Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty) shows how the cost grows.

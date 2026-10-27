@@ -1,0 +1,257 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { aca2026 } from '@/data/aca';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney, formatPercent } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const rate = aca2026.affordabilityPercentage.rate;
+export const income = 60000;
+export const threshold = income * rate;
+export const employeePremium = 300;
+export const familyPremium = 900;
+export const annualEmployee = employeePremium * 12;
+export const annualFamily = familyPremium * 12;
+export const employeeAffordable = annualEmployee <= threshold;
+export const familyAffordable = annualFamily <= threshold;
+
+<AnswerCapsule>
+  The family glitch fix explained {year}: the employee’s own coverage is tested against the
+  employee-only premium, while family members are tested against the family premium. If family
+  coverage is unaffordable, family members may qualify for Marketplace help even when the employee
+  does not.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Employee test',
+      value: 'Employee-only premium',
+      note: 'Compared with the affordability percentage of household income.',
+    },
+    {
+      label: 'Family test',
+      value: 'Family coverage premium',
+      note: 'Used for the family members, not the employee-only price.',
+    },
+    {
+      label: 'Affordability percentage',
+      value: formatPercent(rate),
+      note: `The required contribution percentage for ${year}.`,
+    },
+    {
+      label: 'Minimum value',
+      value: 'Must also be met',
+      note: 'An unaffordable plan or a plan below minimum value can open the door to help.',
+    },
+    {
+      label: 'Household income',
+      value: 'MAGI, not just salary',
+      note: 'Use the Marketplace income rules for the estimate.',
+    },
+    {
+      label: 'Upper limit',
+      value: `${aca2026.subsidyCliffFplPercent}% of the poverty line`,
+      note: 'Premium tax credits generally end above the line.',
+    },
+  ]}
+/>
+
+## What the family glitch was
+
+Before the fix, the affordability test for a whole family often used only the employee-only premium.
+If that single premium was affordable, the family could be treated as having affordable coverage even
+when family coverage cost far more. The result was a gap: the employee was offered coverage, but the
+family could not afford to add anyone.
+
+The fix changed the test for family members. The family premium now matters when the Marketplace
+decides whether the family members have an affordable offer. The employee’s own test still uses the
+employee-only premium. That split is the heart of the rule.
+
+The change did not make every family eligible for help. The family still has to meet the income
+rules, the minimum value rules, and the other Marketplace requirements. It also has to deal with the
+400 percent limit under the current law.
+
+## The two tests
+
+The first test is for the employee. Compare the annual employee-only premium with the affordability
+percentage of household income. If the premium is at or below the threshold, the employee-only offer
+is affordable for the employee.
+
+The second test is for the family members. Compare the annual family premium with the same
+affordability percentage. If the family premium is above the threshold, the family members may be
+able to get Marketplace help. The employee can still be ineligible because the employee-only offer
+is affordable.
+
+The two results can point in different directions. That is not a contradiction. It is the design of
+the fix. A family can have an affordable offer for the worker and an unaffordable offer for the
+spouse and children.
+
+<AdSlot placement="mid-article" />
+
+## What counts as minimum value
+
+Affordability is only one part of the employer coverage test. The plan also has to provide minimum
+value. A plan that pays a very small share of covered costs may fail the minimum value test even if
+the premium is low.
+
+If the plan fails minimum value, the employee and the family may have a path to Marketplace help.
+The exact test is technical, and the employer plan documents are the place to start. Ask the
+employer for the summary of benefits and coverage and the minimum value statement.
+
+Do not assume that a low premium means good coverage. A cheap plan with a narrow network or a high
+cost-sharing structure can still fail the test. The Marketplace asks about the offer, so the answer
+needs to match the documents.
+
+## A worked example
+
+A household earns {formatMoney(income)}. The affordability threshold is{' '}
+{formatPercent(rate)} of income, or {formatMoney(threshold)} a year. The employee-only premium is{' '}
+{formatMoney(employeePremium)} a month, or {formatMoney(annualEmployee)} a year. That is below the
+threshold, so the employee-only offer is affordable for the employee.
+
+The family premium is {formatMoney(familyPremium)} a month, or {formatMoney(annualFamily)} a year.
+That is above the {formatMoney(threshold)} threshold, so the family coverage is unaffordable for the
+family members under the test. The family members may qualify for Marketplace help, while the
+employee generally does not.
+
+The result changes if the family premium falls. If the family premium were below the threshold, the
+family members would be treated as having an affordable offer. The result also changes if the
+household income is different, because the threshold moves with income.
+
+## What to tell the Marketplace
+
+Tell the Marketplace about the employer offer, the premium for employee-only coverage, and the
+premium for family coverage. Answer the questions about minimum value and the plan’s coverage. Keep
+the employer documents.
+
+Do not say the coverage is unaffordable just because the family premium feels high. The test uses the
+percentage and the actual premium. Do not say the employee is uninsured if the employee declined an
+affordable offer. The facts need to match the records.
+
+If the application asks for the lowest-cost plan, use the lowest-cost option that meets the rules,
+not the plan the family would prefer. The affordability test is about the offer, not the choice.
+
+## How the Marketplace verifies the offer
+
+The application asks whether an employer offered coverage, what the coverage cost, and whether it met
+minimum value. The Marketplace may check the answers against employer reporting and other data. A
+mismatch can trigger a request for documents.
+
+Keep the employer offer letter, the summary of benefits and coverage, and the premium sheet. If the
+offer changes during the year, update the application. A change in the family premium can change the
+affordability result.
+
+Do not describe the offer from memory. Use the documents. The difference between the employee-only
+premium and the family premium is the whole point of the fix, so both numbers need to be right.
+
+## What happens at tax time
+
+Premium tax credits are reconciled on the tax return. If the household received more credit than it
+was allowed, part or all of the excess may have to be repaid. If it received less, the difference may
+be added to the refund.
+
+The reconciliation uses the income and household facts on the return. A mid-year change in income,
+marital status, or dependents can change the result. Report changes to the Marketplace when they
+happen, and keep the year-end tax forms.
+
+The family glitch fix changes the eligibility test, not the reconciliation. A family that qualifies
+because the family premium is unaffordable still has to report income accurately and stay within the
+other rules.
+
+## A checklist for the application
+
+Confirm the tax household and who claims each person. Confirm the employer offer and both premiums.
+Confirm whether the plan meets minimum value. Project the household income using the MAGI rules.
+Check the 400 percent limit before assuming a credit.
+
+Gather the documents and keep a copy of the application. If the Marketplace asks for proof, respond
+by the deadline. If the offer changes, update the application rather than waiting for the tax return.
+
+Write a short note for each answer. For example: “Employee-only premium is this amount per month;
+family premium is that amount; the plan meets minimum value; the household income projection is this
+figure.” A note like that makes the application easier to review and easier to correct if a number
+changes. It also helps a tax preparer see why the family members were treated as eligible while the
+employee was not, and it keeps the reasoning available if the Marketplace asks a follow-up question
+later in the year.
+
+## Three honest caveats
+
+1. The family glitch fix does not create a subsidy for everyone. The household still has to meet the
+   income rules and the other eligibility tests.
+2. The employee and the family can have different results. One affordable offer does not decide the
+   whole household.
+3. The enhanced subsidy rules can change. Check the current law and the official Marketplace page
+   before relying on the 400 percent limit.
+
+<Faq
+  items={[
+    {
+      question: 'What is the family glitch fix?',
+      answer:
+        'It changed the affordability test for family members so the family premium, not just the employee-only premium, can be used. Family members may qualify for Marketplace help when family coverage is unaffordable.',
+    },
+    {
+      question: 'Does the employee qualify if the family premium is unaffordable?',
+      answer:
+        'The employee’s own eligibility still depends on the employee-only premium and minimum value. The family members can have a different result.',
+    },
+    {
+      question: 'What premium does the Marketplace use for the family test?',
+      answer:
+        'It uses the employee’s required contribution for family coverage, generally the lowest-cost family plan that meets the rules.',
+    },
+    {
+      question: 'Does minimum value still matter?',
+      answer:
+        'Yes. A plan that does not provide minimum value can open the door to Marketplace help even if the premium looks affordable.',
+    },
+    {
+      question: 'Does the 400 percent limit still apply?',
+      answer:
+        'Under the current data, premium tax credits generally end above 400 percent of the poverty line. The family glitch fix does not remove that limit.',
+    },
+    {
+      question: 'What documents should I keep?',
+      answer:
+        'Keep the employer offer, the employee-only and family premiums, the summary of benefits and coverage, and the minimum value statement.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Affordability percentage',
+      value: formatPercent(rate),
+      source: sources.irsRp2025_25,
+      sourceLabel: 'IRS affordability revenue procedure',
+    },
+    {
+      label: 'Premium tax credit rules',
+      value: 'Employer coverage and eligibility',
+      source: sources.irsPtcQa,
+      sourceLabel: 'IRS premium tax credit Q&A',
+    },
+    {
+      label: 'Marketplace savings',
+      value: 'How the credit works',
+      source: sources.healthcareSavings,
+      sourceLabel: 'HealthCare.gov savings page',
+    },
+    {
+      label: 'Marketplace income rules',
+      value: 'MAGI and household income',
+      source: sources.healthcareIncome,
+      sourceLabel: 'HealthCare.gov income page',
+    },
+  ]}
+/>
+
+## What to do next
+
+Use the [employer coverage affordability calculator](/calculators/employer-coverage-affordability)
+with the employee-only premium and the family premium. Then read
+[what income is used for marketplace subsidies](/guides/what-income-counts-for-marketplace-subsidies)
+for the MAGI rules and the [400 FPL subsidy cliff](/guides/400-fpl-subsidy-cliff) guide for the
+income limit.

@@ -1,0 +1,268 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partB2026 } from '@/data/medicare-part-b';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const standardPremium = partB2026.standardPremium.amount;
+export const singleBase = partB2026.irmaa.single[0];
+export const singleFirst = partB2026.irmaa.single[1];
+export const singleSecond = partB2026.irmaa.single[2];
+export const firstTierSurcharge = singleFirst.partBAdjustment + singleFirst.partDAdjustment;
+export const firstTierAnnual = firstTierSurcharge * 12;
+export const exampleBefore = 100000;
+export const exampleConversion = 20000;
+export const exampleAfter = exampleBefore + exampleConversion;
+export const exampleHeadroom = singleSecond.min - exampleAfter;
+
+<AnswerCapsule>
+  Roth conversion IRMAA is a timing question: the conversion raises modified adjusted gross income
+  in the year you convert, and Medicare uses that income two years later. The conversion is not
+  automatically a mistake. The question is whether it crosses an IRMAA cliff in the lookback year.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Income the conversion raises',
+      value: 'MAGI in the conversion year',
+      note: 'IRMAA uses modified adjusted gross income, not the Roth balance.',
+    },
+    {
+      label: 'Premium year',
+      value: `${partB2026.lookbackYears} years later`,
+      note: `A conversion in one year can set the premium two years later.`,
+    },
+    {
+      label: 'Standard tier ends (single)',
+      value: formatMoney(singleBase.max ?? 0),
+      note: 'First surcharge starts one dollar above this line.',
+    },
+    {
+      label: 'First surcharge tier',
+      value: formatMoney(singleFirst.min),
+      note: 'Part B total rises and Part D adds a separate amount.',
+    },
+    {
+      label: 'First-tier monthly add-on',
+      value: formatMoney(firstTierSurcharge),
+      note: 'Part B adjustment plus the Part D IRMAA amount.',
+    },
+    {
+      label: 'First-tier annual add-on',
+      value: formatMoney(firstTierAnnual),
+      note: 'The monthly add-on multiplied by twelve.',
+    },
+  ]}
+/>
+
+## Why a conversion can raise a Medicare premium
+
+A Roth conversion moves money from a traditional retirement account into a Roth account. The
+converted amount is generally included in income for the year of the conversion. That income raises
+adjusted gross income and, in most cases, modified adjusted gross income as well.
+
+IRMAA uses modified adjusted gross income from a prior year. The premium for {year} generally uses
+income from {year - partB2026.lookbackYears}. A conversion in that lookback year can therefore raise
+the Part B and Part D amounts for {year}. The Roth account may grow tax-free, but the Medicare
+premium can arrive before the benefit feels real.
+
+The conversion does not have to be enormous to matter. The question is proximity to a cliff. If the
+conversion keeps income under the first threshold, the standard premium may still apply. If it
+crosses the line by one dollar, the surcharge starts for the whole year.
+
+## The two-year lookback in practice
+
+The lookback creates a timing problem. In the year you convert, you may be focused on the income
+tax. The Medicare premium shows up later, based on the same return. A conversion that looks
+affordable in the tax software can still create an IRMAA surprise.
+
+The practical fix is to plan the conversion with both years in view. Ask what the lookback year
+income will be after the conversion, not just what the tax bill will be. Then compare that figure
+with the IRMAA table for the premium year.
+
+If you convert every year, the income may keep you in a higher tier every year. If you convert once,
+the effect may last for the premium year that uses that return. The pattern matters as much as the
+amount.
+
+<AdSlot placement="mid-article" />
+
+## Measure the headroom before you convert
+
+Headroom is the distance from your income to the next bracket line. It is a more useful number than
+the tier label because it tells you how much room a conversion has before the price changes.
+
+Run the [IRMAA cliff checker](/calculators/irmaa-cliff-checker) with the projected income before the
+conversion. Read the next tier start and subtract the projected income. That is the headroom. Then
+decide how much to convert, or whether to split the conversion.
+
+Do not treat headroom as a target. It is a boundary. Converting exactly up to the line leaves no
+margin for a late dividend, a capital gain distribution, or a corrected tax form. A small cushion is
+usually more comfortable than a perfectly optimized number.
+
+## A worked example
+
+A single filer expects {formatMoney(exampleBefore)} of modified adjusted gross income before any
+conversion. That is below the first threshold, so the standard tier applies.
+
+The filer converts {formatMoney(exampleConversion)}. Income becomes {formatMoney(exampleAfter)}.
+That is above the first threshold of {formatMoney(singleFirst.min)}, so the first IRMAA tier
+applies. The Part B total becomes {formatMoney(singleFirst.partBTotal)}, and the Part D add-on is{' '}
+{formatMoney(singleFirst.partDAdjustment)}. The combined monthly surcharge is{' '}
+{formatMoney(firstTierSurcharge)}, or {formatMoney(firstTierAnnual)} a year.
+
+The next tier starts at {formatMoney(singleSecond.min)}. The filer still has{' '}
+{formatMoney(exampleHeadroom)} of headroom before that higher tier. That is the number to watch if
+the filer considers a second conversion or expects more income later in the year.
+
+## Mistakes that create a surprise
+
+The most common mistake is using the income after the conversion for the tax estimate but forgetting
+the two-year Medicare lag. The tax bill and the premium are related but not simultaneous.
+
+Another mistake is converting in a year with an unusually high income, such as a year with a business
+sale or a large capital gain. The combined income can cross several IRMAA tiers. The tax cost and
+the Medicare cost both rise.
+
+A third mistake is assuming that a later market loss undoes the conversion income. The conversion
+income is reported in the year of the conversion. A market decline after the conversion does not
+rewrite the return or the IRMAA decision.
+
+## What to ask a tax preparer
+
+Ask four questions before converting:
+
+- What will modified adjusted gross income be after the conversion, including all income sources?
+- Which IRMAA tier does that figure create in the premium year?
+- How much headroom remains before the next tier?
+- Would splitting the conversion across two years change the total tax and premium cost?
+
+Bring the IRMAA table to the conversation. A tax preparer can model the tax, but the Medicare table
+is a separate rule with its own cliff. The best decision usually considers both.
+
+## Convert in a low-income year
+
+The IRMAA effect is easier to manage when the conversion year is otherwise quiet. A year with no
+salary, no business sale, and no large capital gain leaves more room before the first threshold. A
+retiree who has not started Social Security may have a window with lower income.
+
+That window is not automatic. A pension, an annuity, or a required distribution can fill it. A
+conversion also raises the income used for other tests, including the Marketplace subsidy rules if
+the household is not on Medicare yet. The conversion decision belongs in a whole-year plan.
+
+If the window is short, a smaller conversion may be better than a large one that crosses a cliff.
+The goal is not to convert everything at once. The goal is to use the room you have without paying
+an avoidable premium penalty.
+
+## The Part D side of the same decision
+
+IRMAA has a Part B piece and a Part D piece. The Part B piece changes the medical premium. The Part D
+piece is added to the drug plan premium, and it can apply even when the Part B amount is already
+high.
+
+A conversion that moves a household into a higher tier raises both pieces. The monthly difference in
+the worked example includes both. If one spouse has no Part D plan, that spouse may not pay the Part D
+amount, but the Part B amount can still apply. The household total depends on who is enrolled.
+
+Do not compare only the Part B line. Read the full tier and the enrollment facts for each spouse.
+
+## When a conversion is not worth the premium
+
+A conversion is not worth it if the tax cost, the IRMAA cost, and the loss of other income-based
+benefits together exceed the long-term benefit. That can happen when the conversion pushes income
+over a subsidy cliff or a tax bracket at the same time as an IRMAA cliff.
+
+It can also happen when the money will be spent soon. A Roth account is most valuable when it has
+time to grow and when the owner expects a higher future tax rate. A conversion made only to fill a
+bracket, without a plan for the money, can create costs without a clear benefit.
+
+Run the numbers with a tax preparer. Use the IRMAA calculator for the premium side. Then decide
+whether the combined result supports the conversion, a smaller conversion, or no conversion this
+year.
+
+## Three honest caveats
+
+1. A Roth conversion can be a sound tax move and still raise IRMAA. The two results are not
+   contradictory.
+2. This page does not calculate the income tax on a conversion or promise a tax benefit. It only
+   explains the Medicare premium interaction.
+3. The IRMAA table changes by year. Confirm the current thresholds and the lookback year on the
+   official sources before you convert.
+
+<Faq
+  items={[
+    {
+      question: 'Does a Roth conversion increase IRMAA?',
+      answer:
+        'It can. The conversion raises modified adjusted gross income in the conversion year, and IRMAA uses that income two years later. Whether the tier changes depends on the amount and the thresholds.',
+    },
+    {
+      question: 'Can I avoid IRMAA by converting after I retire?',
+      answer:
+        'Retirement may lower other income, which can leave more room before a cliff. It does not remove the conversion income from the lookback year or the two-year delay.',
+    },
+    {
+      question: 'Is there a Roth conversion limit for IRMAA?',
+      answer:
+        'There is no special IRMAA conversion limit. The limit is the distance to the next income bracket. Convert more than the headroom and the surcharge can apply.',
+    },
+    {
+      question: 'Does a backdoor Roth conversion count?',
+      answer:
+        'The tax treatment depends on the accounts and the steps used. Ask a tax preparer how the transaction is reported, and assume any income it creates can affect IRMAA.',
+    },
+    {
+      question: 'Can I undo a conversion to lower IRMAA?',
+      answer:
+        'Recharacterizing a Roth conversion is generally not available under current rules. Do not assume a conversion can be reversed after the year ends. Ask a tax preparer before acting.',
+    },
+    {
+      question: 'Do both spouses pay IRMAA after a conversion?',
+      answer:
+        'If both spouses are enrolled in Medicare and file a joint return, each may pay the surcharge based on the joint income. The household cost can be double the single estimate.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Part B standard premium',
+      value: formatMoney(standardPremium),
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'First single threshold',
+      value: formatMoney(singleFirst.min),
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'Second single threshold',
+      value: formatMoney(singleSecond.min),
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'Roth conversion tax treatment',
+      value: 'Reported in the conversion year',
+      source: sources.irsPub969,
+      sourceLabel: 'IRS Publication 969',
+    },
+    {
+      label: 'Roth account rules',
+      value: 'IRS retirement plan FAQ',
+      source: sources.irsRothFaq,
+      sourceLabel: 'IRS Roth account FAQs',
+    },
+  ]}
+/>
+
+## What to do next
+
+Before you convert, enter the pre-conversion income and the projected income in the
+[IRMAA cliff checker](/calculators/irmaa-cliff-checker). If the conversion crosses a line, use the
+[How to lower IRMAA](/guides/how-to-lower-irmaa) guide to compare timing options, and ask a tax
+preparer to model the combined tax and premium cost.

@@ -1,0 +1,193 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+
+export const year = figureYears.current;
+
+<AnswerCapsule>
+  A Medicare Part D pharmacy network is the group of pharmacies that accept your plan's terms. Using
+  an in-network pharmacy usually costs less. Preferred pharmacies can lower your copay further. Check
+  the network before you fill, especially if you travel.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'What a network is',
+      value: 'Contracted pharmacies',
+      note: 'The plan has agreed terms with these pharmacies.',
+    },
+    {
+      label: 'Preferred pharmacies',
+      value: 'Usually lower cost',
+      note: 'A plan may have a smaller preferred group.',
+    },
+    {
+      label: 'Out-of-network fills',
+      value: 'Limited situations',
+      note: 'The plan may cover some fills, often at a higher cost.',
+    },
+    {
+      label: 'Mail order',
+      value: 'Often available',
+      note: 'Useful for maintenance drugs and refills.',
+    },
+    {
+      label: 'Travel',
+      value: 'Check before you go',
+      note: 'The network may not follow you to another state.',
+    },
+    {
+      label: 'Plan changes',
+      value: 'Networks can change',
+      note: 'Check the annual notice and the pharmacy directory.',
+    },
+  ]}
+/>
+
+## What a pharmacy network is
+
+A pharmacy network is the group of pharmacies that have agreed to accept a plan's terms. The plan negotiates prices and rules with the pharmacies. A person who uses an in-network pharmacy generally pays the plan's negotiated cost-sharing.
+
+The network is part of the plan's design. Two plans with the same premium can have very different networks. A pharmacy that is in-network for one plan may be out-of-network for another.
+
+A person should check the network before enrolling, not after the first refill. The plan's pharmacy directory lists the participating pharmacies. The directory can change during the year.
+
+A person who uses a local pharmacy should confirm that the specific location is in the network. A chain may have some participating stores and some that are not. The address matters.
+
+## Preferred and standard pharmacies
+
+Some plans have preferred pharmacies and standard pharmacies. A preferred pharmacy may offer a lower copay. A standard in-network pharmacy may offer a higher copay but still be covered.
+
+The difference can be significant for a person who fills several prescriptions each month. A person should compare the total cost at the pharmacies they actually use, not just the plan premium.
+
+A plan may also have a preferred mail-order pharmacy. Mail order can be convenient for maintenance drugs. The person should check the delivery time and the refill rules.
+
+A person who needs a specialty drug may have to use a specialty pharmacy. The plan's directory should say which pharmacies can fill the drug. A local pharmacy may not be able to order it.
+
+## Out-of-network fills
+
+A plan may cover an out-of-network fill in limited situations. A person who is traveling, who has an emergency, or who cannot reach an in-network pharmacy may be able to get a fill. The plan's rules explain the exceptions.
+
+An out-of-network fill often costs more. The plan may require the person to pay the full price and seek reimbursement, or it may pay a reduced amount. The person should ask the plan before assuming the fill is covered.
+
+A person who is traveling should check the plan's network in the destination area. A national chain may have participating stores in many states, but the specific store still matters.
+
+A person who lives in a rural area may have fewer in-network pharmacies. The plan's directory can show the closest options. A mail-order option may be more practical.
+
+## Mail order and refills
+
+Mail order is often available for maintenance drugs. The person orders a larger supply, and the plan mails it to the home. The cost may be lower than a retail pharmacy, but the rules vary.
+
+A person who uses mail order should plan ahead. Delivery can take time, and the person should not wait until the last pill. A new prescription may need to be processed before the first shipment.
+
+A person who needs a drug quickly should use a retail pharmacy if possible. Mail order is not a good fit for a short-term antibiotic or a new drug that may need adjustment.
+
+A person who uses both retail and mail order should check how the plan counts the refills. The plan may have rules about early refills and quantity limits.
+
+## Travel and moving
+
+A person who travels should check the network before leaving. A plan that works well at home may have no participating pharmacies in another state. The person may need to use a different pharmacy or pay more.
+
+A person who moves should update the address with the plan and check the new network. The plan may have a different directory for the new area. A move can also affect the plan's service area.
+
+A person who spends part of the year in another state should compare plans that have networks in both places. The plan's service area and pharmacy directory are the key documents.
+
+A person who travels outside the United States should check the plan's rules. Medicare drug coverage generally does not work outside the country. The person may need travel insurance or another option. A person who cruises or spends long periods abroad should also check the plan's rules before leaving. The plan may not cover drugs purchased outside its service area.
+
+## Changing plans
+
+A person who changes Part D plans should check the new plan's network before the switch. The new plan may not have the same pharmacies. A person who is mid-treatment should confirm that the drugs and the pharmacies are covered.
+
+A person who keeps the same plan should review the annual notice of changes. The plan may change the network, the preferred pharmacies, or the mail-order rules. The notice usually arrives before the next plan year.
+
+A person who is considering a plan with a lower premium should compare the total cost. A lower premium may come with a narrower network or higher copays. The pharmacy counter is where the difference shows up.
+
+A person who is not sure which plan is best can use the plan finder and enter the current drugs. The tool can show the estimated costs at different pharmacies. The person should confirm the results with the plan and check the network carefully.
+
+## Worked example
+
+Suppose a person takes three maintenance drugs and uses a local pharmacy. The person enrolls in a plan with a low premium but does not check the network. The local pharmacy is out-of-network, and the person pays more than expected.
+
+A second person checks the directory before enrolling. The local pharmacy is in-network, and the plan has a preferred pharmacy nearby. The person moves the prescriptions to the preferred pharmacy and lowers the monthly cost.
+
+A third person travels for several months each year. The person chooses a plan with a national network and confirms that the pharmacies in both locations participate. The person avoids out-of-network costs.
+
+A fourth person uses mail order for two drugs and a retail pharmacy for a short-term drug. The person checks the refill rules and the delivery time. The combination works because the person planned ahead.
+
+## Three honest caveats
+
+1. A pharmacy that is in-network for one plan may be out-of-network for another. Check the specific plan.
+2. Networks can change during the year. Review the directory and the annual notice.
+3. Out-of-network fills are limited and often cost more. Ask the plan before you assume coverage.
+
+<Faq
+  items={[
+    {
+      question: 'What is a Part D pharmacy network?',
+      answer:
+        'It is the group of pharmacies that have agreed to accept your plan\'s terms. In-network pharmacies usually cost less.',
+    },
+    {
+      question: 'What is a preferred pharmacy?',
+      answer:
+        'A preferred pharmacy is a pharmacy in the plan\'s network that may offer a lower copay than a standard in-network pharmacy.',
+    },
+    {
+      question: 'Can I use a pharmacy outside the network?',
+      answer:
+        'In limited situations, such as travel or an emergency, the plan may cover an out-of-network fill. The cost is often higher.',
+    },
+    {
+      question: 'Is mail order cheaper?',
+      answer:
+        'It can be, especially for maintenance drugs. Compare the total cost and the delivery time before you switch.',
+    },
+    {
+      question: 'Does the network work when I travel?',
+      answer:
+        'Not always. Check the plan\'s directory for the places you will visit, or ask the plan before you leave.',
+    },
+    {
+      question: 'What if my pharmacy leaves the network?',
+      answer:
+        'You may need to use another in-network pharmacy or ask the plan about an exception. The plan can explain the options.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Part D coverage',
+      value: 'Pharmacy networks',
+      source: sources.medicarePartDCosts,
+      sourceLabel: 'Medicare.gov Part D costs',
+    },
+    {
+      label: 'Plan comparison',
+      value: 'Pharmacy lookup',
+      source: sources.medicarePlanFinder,
+      sourceLabel: 'Medicare.gov plan finder',
+    },
+    {
+      label: 'Appeals',
+      value: 'Coverage determinations',
+      source: sources.medicareAppeals,
+      sourceLabel: 'Medicare.gov claims and appeals',
+    },
+    {
+      label: 'Part D late penalty',
+      value: 'Creditable coverage rules',
+      source: sources.medicarePartDCosts,
+      sourceLabel: 'Medicare.gov Part D costs',
+    },
+  ]}
+/>
+
+## What to do next
+
+Look up your pharmacy in the plan's directory before you enroll or switch plans. Confirm the preferred pharmacies and the mail-order rules. The
+[Part D prior authorization guide](/guides/medicare-part-d-prior-authorization) explains another plan rule that can affect a refill, and the
+[Part D formulary exception guide](/guides/medicare-part-d-formulary-exception) explains what to do when a drug is not covered. If you are comparing plans, use the
+[Medicare Savings Program calculator](/calculators/medicare-savings-program-extra-help) to check for cost help.

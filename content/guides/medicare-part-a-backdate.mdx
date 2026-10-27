@@ -1,0 +1,249 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { irs2026 } from '@/data/irs';
+import { partA2026 } from '@/data/medicare-part-a';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const backdateMonths = 6;
+export const premiumFree = partA2026.standardPremium.amount;
+export const reducedPartA = partA2026.reducedPremium.amount;
+export const fullPartA = partA2026.fullPremium.amount;
+export const sixMonthsFull = fullPartA * backdateMonths;
+export const sixMonthsReduced = reducedPartA * backdateMonths;
+
+<AnswerCapsule>
+  When does Medicare Part A backdate? When you sign up after delaying enrollment, Part A can start up
+  to six months before your application, but not before you were first eligible. The backdate can
+  create a premium bill and can affect HSA contributions.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Backdate limit',
+      value: 'Up to six months',
+      note: 'Measured before the month of application.',
+    },
+    {
+      label: 'Earliest start',
+      value: 'The month you were first eligible',
+      note: 'The backdate cannot go before eligibility.',
+    },
+    {
+      label: 'Premium-free Part A',
+      value: formatMoney(premiumFree),
+      note: 'Most people with 40 or more work credits.',
+    },
+    {
+      label: 'Reduced Part A premium',
+      value: formatMoney(reducedPartA),
+      note: '30 to 39 work credits.',
+    },
+    {
+      label: 'Full Part A premium',
+      value: formatMoney(fullPartA),
+      note: 'Fewer than 30 work credits.',
+    },
+    {
+      label: 'HSA stop date',
+      value: `${irs2026.hsaContributionStopMonthsBeforeMedicare} months before Part A`,
+      note: 'Plan the stop date with the backdate in mind.',
+    },
+  ]}
+/>
+
+## The six-month rule
+
+Part A has a retroactive enrollment rule. If you delay enrollment and sign up later, the coverage
+can start up to six months before the month you apply. The rule helps people who kept working and
+kept employer coverage, because it can close a coverage gap.
+
+The backdate is not unlimited. It cannot go back before the month you first became eligible for
+Medicare. If you were first eligible at 65 and apply at 67, the backdate is measured from the
+application date, not from age 65, and it still stops at the eligibility limit.
+
+The rule applies to Part A. Part B does not use the same retroactive start. That difference is why a
+person can have Part A for earlier months while Part B begins later. The premium notices can arrive
+with different start dates, and that is normal.
+
+## Part A backdate 6 months
+
+Six months is the maximum, not a promise. The exact start date depends on the application date, the
+eligibility date, and the Social Security rules for the situation. A person who applies in June may
+see Part A start in December of the prior year if the eligibility date allows it.
+
+The backdate is why the HSA stop rule exists. If Part A starts in December, the person was entitled
+to Medicare in December, even if the card arrived in June. HSA contributions for December through
+the enrollment months can be excess contributions.
+
+The backdate can also create six months of Part A premiums for someone who is not premium-free. A
+person with fewer than 30 work credits pays the full Part A premium. Six months at that rate can be
+a meaningful bill, and it may be deducted from a benefit or billed directly.
+
+<AdSlot placement="mid-article" />
+
+## Who should check the date
+
+Check the date if you worked past 65, if you had employer coverage and delayed Medicare, if you are
+signing up during a Special Enrollment Period, or if you are helping a parent enroll. The date is
+also important if you have an HSA, because the tax rules follow the Medicare entitlement date.
+
+Check the date before you stop employer coverage. A backdated Part A can overlap with the employer
+plan, and the coordination rules depend on the employer size and the type of coverage. The
+[Medicare vs ACA](/calculators/medicare-vs-aca) calculator walks through the 20-employee rule and
+the premium-free Part A test.
+
+Check the date before you make an HSA contribution for the year. A contribution that looks fine in
+January can become excess if Part A is backdated to December.
+
+## How the date changes the premium
+
+For premium-free Part A, the backdate usually does not create a Part A premium. The person still
+gets the coverage, and the HSA rule still applies. A zero premium does not mean the months are
+ignored.
+
+For reduced or full Part A, the backdate can create a bill for the retroactive months. The monthly
+amounts for {year} are {formatMoney(reducedPartA)} for 30 to 39 work credits and{' '}
+{formatMoney(fullPartA)} for fewer than 30 credits. Six months at the full rate is{' '}
+{formatMoney(sixMonthsFull)}. Six months at the reduced rate is {formatMoney(sixMonthsReduced)}.
+
+The bill can be paid in a lump sum or through a deduction, depending on the SSA process. Ask for the
+amount in writing before you agree to a payment method. The backdate is a coverage decision, and the
+bill is the consequence.
+
+## Worked example
+
+A person worked past 65, kept employer coverage, and applies for Medicare in June. Social Security
+approves a Part A start date in December of the prior year, the earliest date the six-month rule
+allows. The person has 40 or more work credits, so Part A is premium-free. No Part A premium is due
+for the backdated months.
+
+The same person contributed to an HSA from January through May. Because Part A starts in December,
+those contributions fall inside the Medicare entitlement period. They can be excess contributions
+even though the card had not arrived. The fix is to remove the excess and earnings, not to wait.
+
+If the person had fewer than 30 work credits, the same December start could create a Part A bill of
+{formatMoney(sixMonthsFull)} for six months at the full rate. The coverage would be the same, but the
+cost would be different.
+
+## What to ask SSA
+
+Ask these questions before you enroll:
+
+- What is the Part A effective date, and how was it calculated?
+- Does the six-month backdate apply to my situation?
+- Will the backdate create a Part A premium, and how much is it?
+- Does the start date affect my HSA eligibility?
+- When will Part B start, and is it different from Part A?
+
+Write down the answers and compare them with the notice. If the notice shows a different date, ask
+for an explanation before you pay a premium bill.
+
+## How the date interacts with Part B
+
+Part B does not use the same six-month retroactive rule. A person can have Part A for earlier months
+and Part B starting later. The two notices can show different dates, and the premium bill can look
+inconsistent until both are read together.
+
+Part B has its own enrollment periods and its own late-enrollment penalty. The penalty is based on
+how long a person went without Part B after eligibility, with exceptions for creditable employer
+coverage and certain other situations. The Part A backdate does not automatically fix a Part B delay.
+
+If you are working past 65 and the employer plan is primary, the Part B decision may be delayed on
+purpose. Read the [Medicare vs ACA](/calculators/medicare-vs-aca) calculator and the
+[Part B late enrollment penalty](/calculators/part-b-late-enrollment-penalty) calculator before you
+choose a start date.
+
+## A checklist before you apply
+
+Confirm the first month you were eligible for Medicare. Confirm the employer coverage dates and
+whether the coverage is active or retiree coverage. Ask what Part A effective date SSA will use.
+Ask whether the date creates a premium. Ask how the date affects any HSA.
+
+Gather the work history, the employer coverage letter, and the HSA statements. If a spouse or
+dependent is involved, gather the same documents for that person. Keep the application confirmation.
+
+When the notice arrives, compare the effective date with the answers you wrote down. If the date is
+different, ask for the calculation before you pay a bill. A short written question is easier to
+track than a phone call.
+
+## Three honest caveats
+
+1. The six-month backdate is a maximum, not a guaranteed start date. Eligibility and application
+   timing control the result.
+2. A premium-free Part A backdate still affects HSA eligibility. The absence of a premium does not
+   mean the coverage is ignored.
+3. This page is guidance, not a benefits determination. Confirm the effective date with Social
+   Security and keep the notice.
+
+<Faq
+  items={[
+    {
+      question: 'How far back can Medicare Part A be backdated?',
+      answer:
+        'Up to six months before the month you apply, but not before the month you were first eligible for Medicare.',
+    },
+    {
+      question: 'Does Part B backdate with Part A?',
+      answer:
+        'Part B does not use the same six-month retroactive rule. Part A and Part B can have different start dates, so check both notices.',
+    },
+    {
+      question: 'Does a Part A backdate create a premium bill?',
+      answer:
+        'It can, if you are not premium-free. People with fewer than 30 work credits pay the full Part A premium, and the backdated months can be billed.',
+    },
+    {
+      question: 'Can a Part A backdate affect my HSA?',
+      answer:
+        'Yes. Medicare entitlement ends HSA eligibility, so contributions during the backdated months can be excess contributions.',
+    },
+    {
+      question: 'What if I was still working when Part A was backdated?',
+      answer:
+        'The backdate can overlap with employer coverage. The coordination rules depend on the employer size and the coverage type, so check with the employer and Medicare.',
+    },
+    {
+      question: 'How do I confirm my Part A effective date?',
+      answer:
+        'Use your Medicare card, your Social Security account, or a written notice from Social Security. Ask for the calculation if the date is different from what you expected.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Medicare sign-up and effective dates',
+      value: 'Initial and special enrollment',
+      source: sources.ssaMedicareSignup,
+      sourceLabel: 'SSA Medicare sign-up',
+    },
+    {
+      label: 'Working past 65',
+      value: 'Enrollment timing',
+      source: sources.medicareWorkingPast65,
+      sourceLabel: 'Medicare.gov working past 65',
+    },
+    {
+      label: 'Part A premium amounts',
+      value: `${formatMoney(reducedPartA)} reduced / ${formatMoney(fullPartA)} full`,
+      source: sources.cms2026AB,
+      sourceLabel: 'CMS Part B premium fact sheet',
+    },
+    {
+      label: 'HSA stop date',
+      value: `${irs2026.hsaContributionStopMonthsBeforeMedicare} months before Part A`,
+      source: sources.irsPub969,
+      sourceLabel: 'IRS Publication 969',
+    },
+  ]}
+/>
+
+## What to do next
+
+Compare the coverage paths in the [Medicare vs ACA](/calculators/medicare-vs-aca) calculator. If
+you have an HSA, read the [HSA and Medicare 6 month rule](/guides/hsa-and-medicare-6-month-rule)
+guide before you make another contribution.

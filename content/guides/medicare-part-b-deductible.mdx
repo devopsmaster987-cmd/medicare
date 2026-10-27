@@ -1,0 +1,187 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partB2026 } from '@/data/medicare-part-b';
+import { partB2025 } from '@/data/medicare-part-b-2025';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney, formatPercent } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const priorYear = figureYears.prior;
+export const deductible = partB2026.deductible.amount;
+export const priorDeductible = partB2025.deductible.amount;
+export const deductibleChange = deductible - priorDeductible;
+export const coinsurance = partB2026.coinsuranceRate.rate;
+export const exampleApproved = 4000;
+export const exampleAfterDeductible = exampleApproved - deductible;
+export const exampleCoinsurance = exampleAfterDeductible * coinsurance;
+export const exampleTotal = deductible + exampleCoinsurance;
+
+<AnswerCapsule>
+  The Medicare Part B deductible {year} is {formatMoney(deductible)}, up from{' '}
+  {formatMoney(priorDeductible)} in {priorYear}. You pay it once per year for covered Part B
+  services before Medicare pays its share. After the deductible, you generally pay 20 percent of the
+  Medicare-approved amount, and Original Medicare has no annual out-of-pocket cap.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Part B deductible',
+      value: formatMoney(deductible),
+      note: `The amount for ${year}.`,
+    },
+    {
+      label: 'Prior deductible',
+      value: formatMoney(priorDeductible),
+      note: `The amount for ${priorYear}.`,
+    },
+    {
+      label: 'Change',
+      value: formatMoney(deductibleChange),
+      note: 'The difference between the two years.',
+    },
+    {
+      label: 'Usual coinsurance',
+      value: formatPercent(coinsurance),
+      note: 'Your share of the Medicare-approved amount after the deductible.',
+    },
+    {
+      label: 'Annual out-of-pocket cap',
+      value: 'None in Original Medicare',
+      note: 'A Medigap policy or other coverage may help with cost sharing.',
+    },
+    {
+      label: 'Preventive services',
+      value: 'Often no cost sharing',
+      note: 'Many covered preventive services are free when the official rules are met.',
+    },
+  ]}
+/>
+
+## What the Part B deductible is
+
+The Part B deductible is the amount you pay for covered Part B services before Medicare begins to pay its share. It is not a monthly premium, and it is not a copayment for a single visit. It is a threshold that resets each calendar year.
+
+For {year}, the deductible is {formatMoney(deductible)}. For {priorYear}, it was{' '}
+{formatMoney(priorDeductible)}. The change is {formatMoney(deductibleChange)}. The deductible applies to covered services, not to every dollar you spend on health care. A service that Part B does not cover does not count toward the deductible, and a premium payment never counts toward it.
+
+Once you have paid the deductible, Part B generally pays 80 percent of the Medicare-approved amount for covered services, and you generally pay 20 percent. The 20 percent is coinsurance, not a flat copay. It can apply to each service or period, depending on the benefit and the setting.
+
+The deductible is annual, but it is not a cap. Meeting the deductible does not mean the rest of the year is free. It means the coinsurance phase begins. That distinction is the most common source of confusion in a Medicare budget.
+
+## How the deductible interacts with coinsurance
+
+A simple example uses an approved amount of {formatMoney(exampleApproved)} for covered Part B services in one year. The first {formatMoney(deductible)} goes to the deductible. The remaining{' '}
+{formatMoney(exampleAfterDeductible)} is subject to coinsurance. At {formatPercent(coinsurance)}, your share of that remaining amount is {formatMoney(exampleCoinsurance)}. The total in this example is {formatMoney(exampleTotal)} before any supplemental coverage.
+
+Real claims are more complicated. Some services have different cost-sharing rules. Some preventive services are free when you meet the coverage conditions. A provider who does not accept assignment can charge more than the Medicare-approved amount, and that difference may not count toward the deductible or coinsurance.
+
+A Medigap policy may pay some or all of the deductible and coinsurance, depending on the letter plan and the state rules. A Medicare Advantage plan has its own cost-sharing structure, and the Original Medicare deductible does not apply in the same way. This page is about Original Medicare, not a private plan.
+
+The deductible is also separate from the Part A deductible for hospital stays and the Part D deductible for drugs. A person with Original Medicare, a Part D plan, and a Medigap policy is managing three different cost-sharing structures at once. Reading each notice separately avoids double counting.
+
+## What counts toward the deductible
+
+The deductible counts covered Part B services for which you are responsible for the first dollar. It does not count the monthly premium, a Part D premium, a Medigap premium, or a service that Medicare does not cover. It also does not count amounts paid by another insurer if that insurer is the primary payer for the service.
+
+If you have employer coverage that pays primary, the amount that coverage pays may affect what you owe under Medicare. Coordination of benefits rules decide who pays first. The Part B deductible may not apply in the same way when another payer is primary, so the explanation of benefits is the document to read.
+
+If you have Medicaid as well as Medicare, Medicaid may pay the Part B premium and some cost sharing for covered services. The Medicare Savings Programs are designed to help with premiums and, for some programs, deductibles and coinsurance. Eligibility depends on income, resources, and the state rules.
+
+The deductible is based on the calendar year, not on a policy anniversary or a birthday. A person who enrolls in Part B in the middle of the year starts the deductible at zero for that year. The full deductible can apply even if enrollment begins in December, although the amount of care used in the remaining weeks may be small.
+
+## Why some people pay less than the full deductible
+
+Some people appear to pay less than the full deductible because a supplemental policy pays part of it, because a preventive service is free, or because a service is not subject to the deductible. The deductible is a coverage rule, not a bill that arrives in one piece. It is satisfied through claims over the year.
+
+A Medigap plan may cover the Part B deductible. The availability of that benefit depends on the plan letter and when the policy was purchased. Plans sold to newly eligible beneficiaries in most states have standardized benefits, but the details still matter. A plan that covers the deductible can make the first months of the year easier to budget.
+
+Some beneficiaries receive help through a Medicare Savings Program. The Qualified Medicare Beneficiary program, for example, is designed to help with premiums and cost sharing for people who meet the income and resource limits. The rules vary by state, and an application is required. A person who is close to the limit should ask the state Medicaid agency rather than assume the answer.
+
+People with limited income may also qualify for Extra Help with Part D costs. Extra Help is separate from the Part B deductible, but it can change the total cost of coverage. The Social Security Administration and the state Medicaid agency are the official places to apply.
+
+## Worked example
+
+Suppose a person has Original Medicare and sees a doctor for a covered service with a Medicare-approved amount of {formatMoney(exampleApproved)}. The person has not yet met the {formatMoney(deductible)} deductible for {year}. The first {formatMoney(deductible)} is the person's responsibility. The remaining {formatMoney(exampleAfterDeductible)} is subject to the {formatPercent(coinsurance)} coinsurance, which is {formatMoney(exampleCoinsurance)}. The total is {formatMoney(exampleTotal)}.
+
+If the same person had a Medigap policy that pays the Part B deductible and coinsurance, the out-of-pocket amount for that claim could be zero, depending on the policy. The premium for the Medigap policy is a separate monthly cost. The trade-off is lower cost sharing in exchange for a premium.
+
+If the person had a Medicare Advantage plan instead, the plan's copay or coinsurance would apply instead of the Original Medicare deductible. The plan may have a different network and prior authorization rules. Comparing an Advantage plan with Original Medicare plus Medigap requires comparing the full package, not just the deductible.
+
+The example does not include the Part B premium, the Part D premium, or any care that Medicare does not cover. Those costs belong in a complete budget. The purpose of the example is to show how the deductible and coinsurance fit together.
+
+## Three honest caveats
+
+1. The deductible is not the same as an out-of-pocket maximum. Original Medicare does not have an annual out-of-pocket cap, so a serious illness can create substantial coinsurance.
+2. The amount you pay depends on whether a service is covered, whether the provider accepts assignment, and whether another payer is primary.
+3. A Medigap policy or Medicare Advantage plan can change the cost sharing, but those products have their own premiums, networks, and rules.
+
+<Faq
+  items={[
+    {
+      question: 'How much is the Part B deductible?',
+      answer: `The Part B deductible is ${formatMoney(deductible)} for ${year}, compared with ${formatMoney(priorDeductible)} for ${priorYear}.`,
+    },
+    {
+      question: 'Does the Part B premium count toward the deductible?',
+      answer:
+        'No. The premium is the monthly cost of coverage. The deductible is a separate amount you pay for covered services before Medicare pays its share.',
+    },
+    {
+      question: 'Is the deductible charged once per year?',
+      answer:
+        'Yes. It is an annual deductible for covered Part B services. It resets at the start of each calendar year.',
+    },
+    {
+      question: 'Does Medigap cover the Part B deductible?',
+      answer:
+        'Some Medigap policies cover some or all of the Part B deductible. The benefit depends on the plan letter, the state, and when the policy was purchased.',
+    },
+    {
+      question: 'What happens after I meet the deductible?',
+      answer:
+        'Medicare generally pays 80 percent of the Medicare-approved amount for covered services, and you generally pay 20 percent coinsurance. There is no annual out-of-pocket cap in Original Medicare.',
+    },
+    {
+      question: 'Do free preventive services count toward the deductible?',
+      answer:
+        'Many covered preventive services are free when you meet the coverage rules, so there may be no amount to count toward the deductible for those services.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Part B deductible',
+      value: formatMoney(deductible),
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part B premium fact sheet`,
+    },
+    {
+      label: 'Prior deductible',
+      value: formatMoney(priorDeductible),
+      source: sources.cms2025AB,
+      sourceLabel: `CMS ${priorYear} Part B premium fact sheet`,
+    },
+    {
+      label: 'Coinsurance',
+      value: formatPercent(coinsurance),
+      source: sources.medicareCosts,
+      sourceLabel: 'Medicare.gov costs',
+    },
+    {
+      label: 'Preventive services',
+      value: 'Coverage rules and cost sharing',
+      source: sources.medicareCostsPub,
+      sourceLabel: 'Medicare costs publication',
+    },
+  ]}
+/>
+
+## What to do next
+
+If you have Original Medicare and no supplemental coverage, budget for the deductible and the 20 percent coinsurance, not just the premium. If you are comparing a Medigap policy, read the plan benefits carefully and ask whether the Part B deductible is covered. If your income is limited, use the
+[Medicare Savings Program and Extra Help calculator](/calculators/medicare-savings-program-extra-help)
+to see whether you may qualify for help with premiums and cost sharing. The
+[Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty) explains a separate cost that can raise the monthly premium.

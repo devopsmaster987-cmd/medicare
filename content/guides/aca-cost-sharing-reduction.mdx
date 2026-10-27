@@ -1,0 +1,206 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { aca2026 } from '@/data/aca';
+import { fplAnnual } from '@/data/fpl';
+import { sources } from '@/data/sources';
+import { figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const fplUsedYear = aca2026.fplYearForSubsidies;
+export const maxFplPercent = 2.5;
+export const fplOne = fplAnnual(fplUsedYear, 1);
+export const fplFour = fplAnnual(fplUsedYear, 4);
+export const maxIncomeOne = fplOne * maxFplPercent;
+export const maxIncomeFour = fplFour * maxFplPercent;
+export const oopMaxSelf = aca2026.outOfPocketMaxSelfOnly.amount;
+export const oopMaxFamily = aca2026.outOfPocketMaxFamily.amount;
+
+<AnswerCapsule>
+  An ACA cost sharing reduction lowers deductibles, copays, and the out-of-pocket maximum for
+  eligible people who enroll in a Silver plan. Eligibility is based on household income and family
+  size. You must buy through the marketplace. The help is applied when you enroll.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'What it lowers',
+      value: 'Deductibles and copays',
+      note: 'It can also lower the out-of-pocket maximum.',
+    },
+    {
+      label: 'Income limit',
+      value: 'Up to 250% of FPL',
+      note: 'The exact limit depends on family size and state rules.',
+    },
+    {
+      label: 'Plan requirement',
+      value: 'Silver plan',
+      note: 'The reduction applies only to Silver plans.',
+    },
+    {
+      label: 'Where to buy',
+      value: 'Marketplace',
+      note: 'The plan must be purchased through the marketplace.',
+    },
+    {
+      label: 'Standard out-of-pocket maximum',
+      value: formatMoney(oopMaxSelf),
+      note: `The self-only maximum for ${year} before any reduction.`,
+    },
+    {
+      label: 'Family maximum',
+      value: formatMoney(oopMaxFamily),
+      note: `The family maximum for ${year} before any reduction.`,
+    },
+  ]}
+/>
+
+## What a cost sharing reduction is
+
+A cost sharing reduction is a form of help with the costs of using a health plan. It is separate from the premium tax credit. The premium tax credit lowers the monthly premium. The cost sharing reduction lowers what the person pays when using care.
+
+The reduction can lower the deductible, the copay, and the out-of-pocket maximum. The exact effect depends on the person's income and the plan. The plan's summary of benefits shows the reduced numbers.
+
+A person who qualifies must enroll in a Silver plan. A Bronze, Gold, or Catastrophic plan does not get the reduction. That is an important difference because a lower premium Bronze plan may end up costing more when care is needed.
+
+The reduction is applied automatically when a person applies through the marketplace and qualifies. The person does not need to apply separately. The marketplace sends the information to the plan.
+
+## Who qualifies
+
+Eligibility is based on household income and family size. A person generally must have income between 100 percent and 250 percent of the federal poverty level. Some states have different rules for people below 100 percent.
+
+A person must also be eligible for a premium tax credit. That generally means the person does not have affordable employer coverage and is not eligible for Medicare or Medicaid.
+
+A person who is eligible for Medicaid may not qualify for the reduction. The marketplace may direct the person to Medicaid instead. The state agency decides Medicaid eligibility.
+
+A person who is lawfully present and meets the other rules may qualify. Immigration status and household rules are complex. The marketplace can explain the requirements for a specific situation.
+
+## The Silver plan rule
+
+The Silver plan requirement is strict. A person who buys a Bronze plan does not get the cost sharing reduction, even if the income is low enough. The person may still get a premium tax credit, but the deductible and copays stay at the Bronze level.
+
+A person who wants the reduction should compare Silver plans, not just the lowest premium. The premium tax credit can make a Silver plan more affordable than it first appears. The reduced cost-sharing can make the total cost lower.
+
+A person who is comparing plans should look at the summary of benefits for each Silver plan. The summary shows the deductible, the copays, and the out-of-pocket maximum. The reduced numbers apply to people who qualify.
+
+A person who chooses a Silver plan but does not qualify for the reduction gets the standard Silver cost-sharing. The plan is still a Silver plan, but the extra help is not included.
+
+## How it works with premium tax credits
+
+The premium tax credit and the cost sharing reduction can work together. The credit lowers the monthly premium. The reduction lowers the cost of care. A person can qualify for one, both, or neither.
+
+The marketplace estimates the credit based on household income and family size. The estimate is reconciled on the tax return using Form 1095-A and Form 8962. If the income changes, the credit may need to be adjusted.
+
+The cost sharing reduction does not need to be reconciled in the same way. It is applied at enrollment based on the income estimate. A change in income during the year can affect eligibility for the following year.
+
+A person who reports a change in income should ask the marketplace how it affects both the premium tax credit and the cost sharing reduction. The answer can change the plan choice.
+
+## The out-of-pocket maximum
+
+The out-of-pocket maximum is the most a person pays for covered care in a year, not counting the premium. The standard maximum for a self-only plan is {formatMoney(oopMaxSelf)} in {year}. The family maximum is {formatMoney(oopMaxFamily)}.
+
+A person who qualifies for the cost sharing reduction may have a lower maximum. The reduced maximum is shown in the plan's summary of benefits. The reduction can make a big difference for a person who needs expensive care.
+
+A person should check which services count toward the maximum. Premiums, balance billing, and non-covered services generally do not count. The plan's documents explain the rules.
+
+A person who expects high costs should compare the reduced maximum across Silver plans. A plan with a slightly higher premium may have a much lower maximum. The total cost can be lower.
+
+## Reporting changes
+
+A person should report changes in household income, family size, address, and other coverage. The changes can affect the premium tax credit and the cost sharing reduction.
+
+A person who gets a raise or a new job should report the change. A person who has a baby or gets married should update the household. A person who moves should check the new plan options.
+
+The marketplace may ask for documents to verify the income. A person should respond promptly. A missing document can delay the help or change the plan.
+
+A person who is not sure how to report a change can call the marketplace. The representative can explain the steps. The person should keep a record of the call.
+
+## Worked example
+
+Suppose a household of one has income below 250 percent of the federal poverty level. For the year used to set the help, 250 percent of the poverty level for one person is about {formatMoney(maxIncomeOne)}. The person enrolls in a Silver plan through the marketplace.
+
+The marketplace applies the cost sharing reduction. The deductible and copays are lower than the standard Silver amounts. The out-of-pocket maximum is also lower.
+
+A second household of four has income below about {formatMoney(maxIncomeFour)}, which is 250 percent of the poverty level for four people. The household enrolls in a Silver plan and qualifies for the reduction.
+
+A third person chooses a Bronze plan. The premium may be lower, but the person does not get the cost sharing reduction. The deductible and copays are higher.
+
+The examples show why the Silver plan choice matters. The lowest premium is not always the lowest total cost. A household should compare the reduced maximum, not only the premium, because a serious illness can make the difference larger than the monthly savings. The plan's summary of benefits shows the reduced numbers for each Silver plan.
+
+## Three honest caveats
+
+1. The reduction applies only to Silver plans. A Bronze plan does not get the extra help.
+2. The income estimate matters. A change during the year can affect the help.
+3. State rules and family size can change the result. The marketplace is the official source for an individual estimate.
+
+<Faq
+  items={[
+    {
+      question: 'What is a cost sharing reduction?',
+      answer:
+        'It is help that lowers deductibles, copays, and the out-of-pocket maximum for eligible marketplace enrollees.',
+    },
+    {
+      question: 'Who qualifies?',
+      answer:
+        'Eligibility is based on household income and family size, and the person must be eligible for a premium tax credit and enroll in a Silver plan.',
+    },
+    {
+      question: 'Do I have to choose a Silver plan?',
+      answer:
+        'Yes. The cost sharing reduction applies only to Silver plans purchased through the marketplace.',
+    },
+    {
+      question: 'Is it the same as the premium tax credit?',
+      answer:
+        'No. The premium tax credit lowers the monthly premium. The cost sharing reduction lowers the cost of care.',
+    },
+    {
+      question: 'How do I apply?',
+      answer:
+        'You apply through the marketplace. The reduction is applied automatically if you qualify and choose a Silver plan.',
+    },
+    {
+      question: 'What happens if my income changes?',
+      answer:
+        'Report the change to the marketplace. It can affect your premium tax credit, your cost sharing reduction, or both.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Cost-sharing reduction',
+      value: 'Silver plan help',
+      source: sources.healthcareCsr,
+      sourceLabel: 'HealthCare.gov cost-sharing reduction',
+    },
+    {
+      label: 'Out-of-pocket maximum',
+      value: `${formatMoney(oopMaxSelf)} self-only`,
+      source: sources.hhs2026CostSharing,
+      sourceLabel: `HHS ${year} cost-sharing rule`,
+    },
+    {
+      label: 'Federal poverty level',
+      value: `Used for ${year} help`,
+      source: sources.aspePoverty,
+      sourceLabel: 'ASPE poverty guidelines',
+    },
+    {
+      label: 'Premium tax credit',
+      value: 'Income rules',
+      source: sources.irs1095a,
+      sourceLabel: 'IRS health coverage statements',
+    },
+  ]}
+/>
+
+## What to do next
+
+Apply through the marketplace and compare Silver plans, not just the lowest premium. Report income changes promptly. The
+[ACA open enrollment dates guide](/guides/aca-open-enrollment-dates) explains the enrollment window, and the
+[ACA special enrollment period guide](/guides/aca-special-enrollment-period) explains what to do after a life event. If you are comparing Medicare and marketplace coverage, use the
+[Medicare vs ACA decision tool](/calculators/medicare-vs-aca).
