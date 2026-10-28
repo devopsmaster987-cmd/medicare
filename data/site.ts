@@ -1,4 +1,4 @@
-const defaultSiteUrl = 'https://medicareclear.example';
+const defaultSiteUrl = 'https://medicareclear.top';
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 const adsensePublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID?.trim() || '';
 const adsenseSlotId = process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID?.trim() || '';
@@ -15,7 +15,7 @@ export const site = {
   mailingAddress: 'Punjab, Pakistan',
   governingLaw: 'Punjab, Pakistan',
   siteUrl: configuredSiteUrl || defaultSiteUrl,
-  siteUrlIsPlaceholder: !configuredSiteUrl,
+  siteUrlIsPlaceholder: false,
   socialProfiles: [] as string[],
   responseTime: '2 to 3 business days',
   analytics: {
