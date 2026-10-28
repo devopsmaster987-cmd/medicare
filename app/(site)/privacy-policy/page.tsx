@@ -108,7 +108,10 @@ export default function PrivacyPolicyPage() {
         .
       </p>
       <p>
-        Read the <Link href="/cookie-policy">cookie policy</Link> for the current settings.
+        For visitors in the EEA, the UK, or Switzerland, Google requires a Google-certified consent
+        management platform before personalized ads are served. We will use the consent message
+        provided through AdSense before enabling personalized ads in those regions. Read the{' '}
+        <Link href="/cookie-policy">cookie policy</Link> for the current settings.
       </p>
 
       <h2>Your privacy rights</h2>

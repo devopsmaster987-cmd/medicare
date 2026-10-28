@@ -1,5 +1,11 @@
 const defaultSiteUrl = 'https://medicareclear.example';
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+const adsensePublisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID?.trim() || '';
+const adsenseSlotId = process.env.NEXT_PUBLIC_ADSENSE_SLOT_ID?.trim() || '';
+const adsEnabled =
+  process.env.NEXT_PUBLIC_ADS_ENABLED === 'true' &&
+  adsensePublisherId !== '' &&
+  adsenseSlotId !== '';
 
 export const site = {
   siteName: 'MedicareClear',
@@ -19,14 +25,14 @@ export const site = {
   integrations: {
     formspreeId: '',
     buttondownUser: '',
-    adsensePublisherId: '',
-    adsenseSlotId: '',
+    adsensePublisherId,
+    adsenseSlotId,
     indexNowKey: '',
     googleSiteVerification: '',
     bingSiteVerification: '',
   },
   features: {
-    ads: false,
+    ads: adsEnabled,
     emailCapture: false,
     emailCaptureProvider: 'buttondown' as const,
     allowTrainingCrawlers: true,

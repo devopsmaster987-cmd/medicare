@@ -7,6 +7,16 @@ import { isConsentRequired } from '@/lib/consent';
 import { getPrefsInitScript } from '@/lib/prefs';
 import './globals.css';
 
+const verificationOther: Record<string, string> = {};
+if (site.integrations.bingSiteVerification) {
+  verificationOther['msvalidate.01'] = site.integrations.bingSiteVerification;
+}
+if (site.integrations.adsensePublisherId) {
+  verificationOther['google-adsense-account'] = site.integrations.adsensePublisherId.startsWith('ca-')
+    ? site.integrations.adsensePublisherId
+    : `ca-${site.integrations.adsensePublisherId}`;
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.siteUrl),
   title: {
@@ -46,9 +56,7 @@ export const metadata: Metadata = {
   },
   verification: {
     google: site.integrations.googleSiteVerification || undefined,
-    other: site.integrations.bingSiteVerification
-      ? { 'msvalidate.01': site.integrations.bingSiteVerification }
-      : undefined,
+    other: Object.keys(verificationOther).length > 0 ? verificationOther : undefined,
   },
 };
 

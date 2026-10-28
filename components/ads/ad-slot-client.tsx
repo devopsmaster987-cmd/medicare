@@ -18,11 +18,12 @@ function loadAdsense(): void {
   if (document.getElementById(ADSENSE_SCRIPT_ID)) return;
   const publisher = site.integrations.adsensePublisherId;
   if (!publisher) return;
+  const client = publisher.startsWith('ca-') ? publisher : `ca-${publisher}`;
   const script = document.createElement('script');
   script.id = ADSENSE_SCRIPT_ID;
   script.async = true;
   script.crossOrigin = 'anonymous';
-  script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisher}`;
+  script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`;
   document.head.appendChild(script);
 }
 
@@ -73,6 +74,7 @@ export function AdSlotClient({ placement }: { placement: AdPlacement }) {
   if (!available) return null;
 
   const publisher = site.integrations.adsensePublisherId;
+  const client = publisher.startsWith('ca-') ? publisher : `ca-${publisher}`;
   const slot = site.integrations.adsenseSlotId;
   const canServe = consented && publisher !== '' && slot !== '';
 
@@ -90,7 +92,7 @@ export function AdSlotClient({ placement }: { placement: AdPlacement }) {
           <ins
             className="adsbygoogle"
             style={{ display: 'block' }}
-            data-ad-client={publisher}
+            data-ad-client={client}
             data-ad-slot={slot}
             data-ad-format="auto"
             data-full-width-responsive="true"

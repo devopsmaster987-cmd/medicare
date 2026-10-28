@@ -83,7 +83,9 @@ export default function CookiePolicyPage() {
         <a href="https://policies.google.com/technologies/partner-sites" rel="noreferrer">
           policies.google.com/technologies/partner-sites
         </a>
-        . You can manage Google ads at{' '}
+        . For visitors in the EEA, the UK, or Switzerland, personalized ads require a
+        Google-certified consent management platform. We will use the consent message provided
+        through AdSense before enabling personalized ads in those regions. You can manage Google ads at{' '}
         <a href="https://adssettings.google.com/" rel="noreferrer">
           adssettings.google.com
         </a>{' '}
