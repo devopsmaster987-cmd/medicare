@@ -66,6 +66,117 @@ describe('mspEligibility', () => {
     expect(result.programs.find((program) => program.key === 'extraHelp')?.eligible).toBe(false);
   });
 
+  it('applies California income and asset limits', () => {
+    const atQmb = mspEligibility({
+      ...base,
+      stateAbbr: 'CA',
+      state: stateFor('CA'),
+      monthlyIncome: 1330,
+      countableAssets: 130000,
+    });
+    const overQmb = mspEligibility({
+      ...base,
+      stateAbbr: 'CA',
+      state: stateFor('CA'),
+      monthlyIncome: 1331,
+      countableAssets: 130000,
+    });
+    const overAssets = mspEligibility({
+      ...base,
+      stateAbbr: 'CA',
+      state: stateFor('CA'),
+      monthlyIncome: 1000,
+      countableAssets: 130001,
+    });
+    expect(atQmb.programs.find((program) => program.key === 'qmb')?.eligible).toBe(true);
+    expect(overQmb.programs.find((program) => program.key === 'qmb')?.eligible).toBe(false);
+    expect(overQmb.programs.find((program) => program.key === 'slmb')?.eligible).toBe(true);
+    expect(overAssets.programs.find((program) => program.key === 'qmb')?.eligible).toBe(false);
+  });
+
+  it('extends California rules to a three-person household', () => {
+    const result = mspEligibility({
+      ...base,
+      stateAbbr: 'CA',
+      state: stateFor('CA'),
+      householdSize: 3,
+      monthlyIncome: 2277,
+      countableAssets: 260000,
+    });
+    const qmb = result.programs.find((program) => program.key === 'qmb');
+    expect(qmb?.incomeLimitMonthly).toBe(2277);
+    expect(qmb?.resourceLimit).toBe(260000);
+    expect(qmb?.eligible).toBe(true);
+    expect(result.stateNote).toContain('three or more');
+  });
+
+  it('applies New York limits and removes the separate SLMB program', () => {
+    const atQmb = mspEligibility({
+      ...base,
+      stateAbbr: 'NY',
+      state: stateFor('NY'),
+      monthlyIncome: 1856,
+      countableAssets: 500000,
+    });
+    const overQmb = mspEligibility({
+      ...base,
+      stateAbbr: 'NY',
+      state: stateFor('NY'),
+      monthlyIncome: 1857,
+      countableAssets: 500000,
+    });
+    const atQi = mspEligibility({
+      ...base,
+      stateAbbr: 'NY',
+      state: stateFor('NY'),
+      monthlyIncome: 2494,
+      countableAssets: 500000,
+    });
+    expect(atQmb.programs.find((program) => program.key === 'qmb')?.eligible).toBe(true);
+    expect(overQmb.programs.find((program) => program.key === 'qmb')?.eligible).toBe(false);
+    expect(overQmb.programs.find((program) => program.key === 'slmb')?.available).toBe(false);
+    expect(atQi.programs.find((program) => program.key === 'qi')?.eligible).toBe(true);
+
+    const family = mspEligibility({
+      ...base,
+      stateAbbr: 'NY',
+      state: stateFor('NY'),
+      householdSize: 3,
+      monthlyIncome: 3162,
+      countableAssets: 500000,
+    });
+    expect(family.programs.find((program) => program.key === 'qmb')?.incomeLimitMonthly).toBe(3162);
+    expect(family.programs.find((program) => program.key === 'qmb')?.eligible).toBe(true);
+  });
+
+  it('applies Arizona SLMB and QI limits without an asset test', () => {
+    const atSlmb = mspEligibility({
+      ...base,
+      stateAbbr: 'AZ',
+      state: stateFor('AZ'),
+      monthlyIncome: 1596,
+      countableAssets: 500000,
+    });
+    const overSlmb = mspEligibility({
+      ...base,
+      stateAbbr: 'AZ',
+      state: stateFor('AZ'),
+      monthlyIncome: 1597,
+      countableAssets: 500000,
+    });
+    const atQi = mspEligibility({
+      ...base,
+      stateAbbr: 'AZ',
+      state: stateFor('AZ'),
+      monthlyIncome: 1796,
+      countableAssets: 500000,
+    });
+    expect(atSlmb.programs.find((program) => program.key === 'slmb')?.eligible).toBe(true);
+    expect(overSlmb.programs.find((program) => program.key === 'slmb')?.eligible).toBe(false);
+    expect(overSlmb.programs.find((program) => program.key === 'qi')?.eligible).toBe(true);
+    expect(atQi.programs.find((program) => program.key === 'qi')?.eligible).toBe(true);
+  });
+
   it('uses the two-person limits', () => {
     const result = mspEligibility({
       ...base,

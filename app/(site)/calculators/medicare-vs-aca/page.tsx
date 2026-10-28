@@ -14,6 +14,7 @@ import { EmailCapture } from '@/components/calc/email-capture';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
+import { CiteThisPage } from '@/components/trust/cite-this-page';
 import { IndependenceNote } from '@/components/trust/independence-note';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { aca2026 } from '@/data/aca';
@@ -452,6 +453,7 @@ export default function MedicareVsAcaPage() {
 
       <section className="section section-tight">
         <div className="wrap">
+          <CiteThisPage title={'Medicare vs ACA'} path="/calculators/medicare-vs-aca" />
           <EmailCapture />
           <TakeHomePack pageTitle="Medicare vs ACA" />
           <p className="disclaimer">

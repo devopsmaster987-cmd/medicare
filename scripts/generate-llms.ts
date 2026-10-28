@@ -1,8 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { guides, resolveGuide } from '../content/guides/meta';
+import { aca2026 } from '../data/aca';
+import { fplAnnual } from '../data/fpl';
+import { partB2026 } from '../data/medicare-part-b';
+import { partD2026 } from '../data/medicare-part-d';
+import { mspPrograms } from '../data/msp';
 import { site } from '../data/site';
 import { dataVerifiedOn, figureYears } from '../data/verified';
+import { formatMoney } from '../lib/utils';
 import { root } from './file-walk';
 
 const calculators = [
@@ -38,6 +44,17 @@ const lines = [
   `- [Methodology](${site.siteUrl}/methodology)`,
   `- [Glossary](${site.siteUrl}/glossary)`,
   `- [Sitemap](${site.siteUrl}/sitemap-page)`,
+  `- [Corrections](${site.siteUrl}/corrections)`,
+  '',
+  '## Key verified facts',
+  '',
+  `- ${figureYears.current} Part B standard premium: ${formatMoney(partB2026.standardPremium.amount)} per month. Deductible: ${formatMoney(partB2026.deductible.amount)}.`,
+  `- ${figureYears.current} IRMAA first threshold: ${formatMoney(partB2026.irmaa.single[0].max ?? 0)} for a single filer and ${formatMoney(partB2026.irmaa.marriedJoint[0].max ?? 0)} for married filing jointly. The first tier adds ${formatMoney(partB2026.irmaa.single[1].partBAdjustment)} to Part B and ${formatMoney(partB2026.irmaa.single[1].partDAdjustment)} to Part D.`,
+  `- ${figureYears.current} Part D base beneficiary premium: ${formatMoney(partD2026.baseBeneficiaryPremium.amount)} per month. Deductible: ${formatMoney(partD2026.deductible.amount)}. Out-of-pocket cap: ${formatMoney(partD2026.outOfPocketCap.amount)}.`,
+  `- ${figureYears.current} federal Medicare Savings Program: QMB ${formatMoney(mspPrograms.qmb.anchorMonthlySingle ?? 0)} single / ${formatMoney(mspPrograms.qmb.anchorMonthlyCouple ?? 0)} couple; SLMB ${formatMoney(mspPrograms.slmb.anchorMonthlySingle ?? 0)} / ${formatMoney(mspPrograms.slmb.anchorMonthlyCouple ?? 0)}; QI ${formatMoney(mspPrograms.qi.anchorMonthlySingle ?? 0)} / ${formatMoney(mspPrograms.qi.anchorMonthlyCouple ?? 0)}.`,
+  `- ${figureYears.current} Extra Help income limit: ${formatMoney(23_940)} single / ${formatMoney(32_460)} couple. Resource limit: ${formatMoney(mspPrograms.extraHelp.resourceSingle.amount)} / ${formatMoney(mspPrograms.extraHelp.resourceCouple.amount)} including the burial exclusion.`,
+  `- ${figureYears.current} federal poverty level for the 48 contiguous states and DC: ${formatMoney(fplAnnual(figureYears.current, 1))} for one person and ${formatMoney(fplAnnual(figureYears.current, 2))} for two.`,
+  `- ${figureYears.current} ACA affordability percentage: ${(aca2026.affordabilityPercentage.rate * 100).toFixed(2)}%. Self-only out-of-pocket maximum: ${formatMoney(aca2026.outOfPocketMaxSelfOnly.amount)}; family: ${formatMoney(aca2026.outOfPocketMaxFamily.amount)}.`,
   '',
   '## Source policy',
   '',

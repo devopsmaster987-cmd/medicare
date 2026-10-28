@@ -21,8 +21,10 @@ export type EmployerAffordabilityResult = {
   familyCoverageAffordable: boolean | null;
   employeeHeadroom: number;
   familyHeadroom: number | null;
-  familyMembersMayQualifyForHelp: boolean;
+  familyMembersMayQualifyForHelp: boolean | null;
   minimumValueStatus: 'meets' | 'does-not-meet' | 'unknown';
+  employeeSubsidyEligibility: 'likely-qualify' | 'likely-none' | 'unknown';
+  familySubsidyEligibility: 'likely-qualify' | 'likely-none' | 'unknown' | null;
   subsidyEligibility: 'likely-qualify' | 'likely-none' | 'unknown';
   explanation: string;
 };
@@ -71,17 +73,30 @@ export function employerAffordability(
       : input.planMeetsMinimumValue
         ? 'meets'
         : 'does-not-meet';
+  const employeeSubsidyEligibility =
+    minimumValueStatus === 'unknown'
+      ? ('unknown' as const)
+      : !employeeCoverageAffordable || minimumValueStatus === 'does-not-meet'
+        ? ('likely-qualify' as const)
+        : ('likely-none' as const);
+  const familySubsidyEligibility =
+    annualFamilyPremium === null
+      ? null
+      : minimumValueStatus === 'unknown'
+        ? ('unknown' as const)
+        : !familyCoverageAffordable || minimumValueStatus === 'does-not-meet'
+          ? ('likely-qualify' as const)
+          : ('likely-none' as const);
   const familyMembersMayQualifyForHelp =
-    !employeeCoverageAffordable || minimumValueStatus === 'does-not-meet';
+    familySubsidyEligibility === null ? null : familySubsidyEligibility === 'likely-qualify';
 
-  let subsidyEligibility: EmployerAffordabilityResult['subsidyEligibility'] = 'unknown';
-  if (minimumValueStatus === 'unknown') {
-    subsidyEligibility = 'unknown';
-  } else if (!employeeCoverageAffordable || minimumValueStatus === 'does-not-meet') {
-    subsidyEligibility = 'likely-qualify';
-  } else {
-    subsidyEligibility = 'likely-none';
-  }
+  const subsidyEligibility =
+    minimumValueStatus === 'unknown'
+      ? ('unknown' as const)
+      : employeeSubsidyEligibility === 'likely-qualify' ||
+          familySubsidyEligibility === 'likely-qualify'
+        ? ('likely-qualify' as const)
+        : ('likely-none' as const);
 
   const explanation = employeeCoverageAffordable
     ? `The employee-only premium is ${roundMoney(annualThreshold - annualEmployeeOnlyPremium)} below the ${aca2026.year} affordability threshold.`
@@ -102,6 +117,8 @@ export function employerAffordability(
         : roundMoney(annualThreshold - annualFamilyPremium),
     familyMembersMayQualifyForHelp,
     minimumValueStatus,
+    employeeSubsidyEligibility,
+    familySubsidyEligibility,
     subsidyEligibility,
     explanation,
   };

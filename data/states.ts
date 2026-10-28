@@ -35,6 +35,15 @@ function launchState(
   agencyUrl: string,
   options: { assetTest?: boolean; phone?: string } = {},
 ): StateInfo {
+  const stateSpecific = ['CA', 'NY', 'AZ'].includes(abbr);
+  const note =
+    abbr === 'CA'
+      ? 'California uses its own MSP income and asset limits. DHCS publishes the current figures; the calculator applies them.'
+      : abbr === 'NY'
+        ? 'New York uses its own QMB and QI limits, has no asset test, and no longer runs SLMB as a separate program.'
+        : abbr === 'AZ'
+          ? 'Arizona uses its own MSP income limits and does not list a resource test for QMB, SLMB, or QI.'
+          : 'Federal MSP limits are used in this version. Confirm state-specific income disregards, asset rules, and program names with the state agency.';
   return {
     name,
     abbr,
@@ -46,8 +55,8 @@ function launchState(
     source: agencyUrl,
     verifiedOn: dataVerifiedOn,
     year: 2026,
-    verify: true,
-    note: 'Federal MSP limits are used in this version. Confirm state-specific income disregards, asset rules, and program names with the state agency.',
+    verify: !stateSpecific,
+    note,
   };
 }
 

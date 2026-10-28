@@ -10,7 +10,7 @@ import {
   ScenarioCompare,
   ShowMath,
   StickySummary,
-} from '@/components/calc/content';
+} from '@/components/calc/calculator-blocks';
 import { contactByKey } from '@/data/contacts';
 import type { GlossaryTipEntry } from '@/data/glossary';
 import { irmaaBracketsFor } from '@/data/medicare-part-b';
@@ -200,6 +200,21 @@ export function IrmaaCalculator({ tips }: { tips: Record<string, GlossaryTipEntr
                   </p>
                 )}
               </div>
+
+              {result.cliffCost.additionalAnnualSurcharge !== null ? (
+                <div className="result-section">
+                  <h3>What crossing the next cliff costs</h3>
+                  <p>
+                    One dollar of MAGI over the next threshold adds{' '}
+                    <strong>{formatMoney(result.cliffCost.additionalAnnualSurcharge)}</strong> a year
+                    in surcharges for one person
+                    {result.marriedCouple.bothSpousesMayPay
+                      ? `, or ${formatMoney(result.cliffCost.householdAdditionalAnnualSurcharge ?? 0)} for a married couple when both spouses are enrolled`
+                      : ''}
+                    . The increase is a premium change, not a tax.
+                  </p>
+                </div>
+              ) : null}
 
               {result.projected ? (
                 <div className="result-section">

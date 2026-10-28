@@ -28,6 +28,10 @@ export type IrmaaResult = {
   tier: IrmaaTierResult;
   nextTier: IrmaaTierResult | null;
   headroomToNextBracket: number | null;
+  cliffCost: {
+    additionalAnnualSurcharge: number | null;
+    householdAdditionalAnnualSurcharge: number | null;
+  };
   monthlyPartB: number;
   monthlyPartD: number;
   monthlySurcharge: number;
@@ -89,6 +93,9 @@ export function irmaaCalculator(input: IrmaaInput): IrmaaResult {
     nextBracket && nextBracket.min > 0
       ? roundMoney(nextBracket.min - input.magiTwoYearsBack)
       : null;
+  const additionalAnnualSurcharge = nextTier
+    ? roundMoney(nextTier.annualSurcharge - tier.annualSurcharge)
+    : null;
 
   let projected: IrmaaResult['projected'] = null;
   if (input.projectedMagi !== undefined) {
@@ -120,6 +127,13 @@ export function irmaaCalculator(input: IrmaaInput): IrmaaResult {
     tier,
     nextTier,
     headroomToNextBracket,
+    cliffCost: {
+      additionalAnnualSurcharge,
+      householdAdditionalAnnualSurcharge:
+        additionalAnnualSurcharge === null
+          ? null
+          : roundMoney(additionalAnnualSurcharge * (input.filingStatus === 'marriedJoint' ? 2 : 1)),
+    },
     monthlyPartB,
     monthlyPartD,
     monthlySurcharge: tier.monthlySurcharge,

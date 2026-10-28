@@ -11,6 +11,28 @@ export function organizationSchema(): Schema {
     url: organization.url,
     description: organization.description,
     email: organization.email,
+    foundingLocation: {
+      '@type': 'Place',
+      name: 'Punjab, Pakistan',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'United States',
+    },
+    knowsAbout: [
+      'Medicare Part A',
+      'Medicare Part B',
+      'Medicare Part D',
+      'Medicare Savings Programs',
+      'IRMAA',
+      'Affordable Care Act marketplace coverage',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: organization.email,
+      availableLanguage: 'English',
+    },
   };
 }
 
@@ -37,6 +59,12 @@ export function personSchema(): Schema {
       '@type': 'Place',
       name: author.location,
     },
+    knowsAbout: [
+      'Medicare',
+      'Medicare Savings Programs',
+      'IRMAA',
+      'Affordable Care Act marketplace coverage',
+    ],
   };
 }
 
@@ -74,6 +102,7 @@ export function articleSchema(input: {
   url: string;
   datePublished: string;
   dateModified: string;
+  citation?: string[];
 }): Schema {
   return {
     '@context': 'https://schema.org',
@@ -87,6 +116,12 @@ export function articleSchema(input: {
     author: personSchema(),
     publisher: organizationSchema(),
     inLanguage: 'en-US',
+    isAccessibleForFree: true,
+    ...(input.citation && input.citation.length > 0 ? { citation: input.citation } : {}),
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['#answer-capsule', '.page-title'],
+    },
   };
 }
 
@@ -103,8 +138,26 @@ export function calculatorSchema(input: {
     url: input.url,
     applicationCategory: 'HealthApplication',
     operatingSystem: 'Any',
+    browserRequirements: 'Requires JavaScript. Works in current mobile and desktop browsers.',
     isAccessibleForFree: true,
+    inLanguage: 'en-US',
     dateModified: dataVerifiedOn,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    featureList: [
+      'Live results without a Calculate button',
+      'Official source links with checked dates',
+      'Action plan and deadline',
+      'Print or save as PDF',
+      'Inputs stay in the browser',
+    ],
     publisher: organizationSchema(),
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['#answer-capsule', '#calculator-title'],
+    },
   };
 }

@@ -11,7 +11,7 @@ import {
   ScenarioCompare,
   ShowMath,
   StickySummary,
-} from '@/components/calc/content';
+} from '@/components/calc/calculator-blocks';
 import { contactByKey } from '@/data/contacts';
 import type { GlossaryTipEntry } from '@/data/glossary';
 import { figureYears } from '@/data/verified';
@@ -102,11 +102,14 @@ export function EmployerCalculator({ tips }: { tips: Record<string, GlossaryTipE
     : 'Enter your details';
 
   const subsidyLabel = result
-    ? result.subsidyEligibility === 'likely-qualify'
+    ? result.employeeSubsidyEligibility === 'likely-qualify'
       ? 'You may qualify for Marketplace help'
-      : result.subsidyEligibility === 'likely-none'
-        ? 'No subsidy expected from this test'
-        : 'Answer the minimum value question'
+      : result.familySubsidyEligibility === 'likely-qualify'
+        ? 'Family members may qualify for Marketplace help'
+        : result.employeeSubsidyEligibility === 'unknown' ||
+            result.familySubsidyEligibility === 'unknown'
+          ? 'Answer the minimum value question'
+          : 'No subsidy expected from this test'
     : 'Waiting for inputs';
 
   const reportSummary = result
@@ -233,9 +236,11 @@ export function EmployerCalculator({ tips }: { tips: Record<string, GlossaryTipE
                   <strong>{subsidyLabel}.</strong>{' '}
                   {result.minimumValueStatus === 'unknown'
                     ? 'The affordability test is separate from the minimum value test. Answer the minimum value question to refine the signal.'
-                    : result.subsidyEligibility === 'likely-qualify'
+                    : result.employeeSubsidyEligibility === 'likely-qualify'
                       ? 'The employee-only premium is above the line or the plan does not meet minimum value. Check the Marketplace application.'
-                      : 'The employee-only premium passes and the plan meets minimum value under the answer you selected.'}
+                      : result.familySubsidyEligibility === 'likely-qualify'
+                        ? 'Employee-only coverage passes, but the family premium is above the line, so family members may qualify. Check the Marketplace application for each person.'
+                        : 'The employee-only premium passes and the plan meets minimum value under the answer you selected.'}
                 </p>
               </div>
 
@@ -247,11 +252,13 @@ export function EmployerCalculator({ tips }: { tips: Record<string, GlossaryTipE
                   <p>
                     The annual family premium is{' '}
                     <strong>{formatMoney(result.annualFamilyPremium)}</strong>. That is{' '}
-                    {result.familyCoverageAffordable ? 'at or below' : 'above'} the
-                    employee-only threshold. This comparison is context, not a separate subsidy
-                    test: the legal test is whether the employee-only premium is affordable. If it
-                    is not, or the plan does not meet minimum value, family members may qualify
-                    too.
+                    {result.familyCoverageAffordable ? 'at or below' : 'above'} the same
+                    affordability threshold. Under the family glitch fix, family members are
+                    tested with the family premium: {result.familySubsidyEligibility === 'likely-qualify'
+                      ? 'they may qualify for Marketplace help.'
+                      : result.familySubsidyEligibility === 'likely-none'
+                        ? 'they are not expected to qualify from this test.'
+                        : 'answer the minimum value question to finish the test.'}
                   </p>
                 )}
               </div>
@@ -295,7 +302,7 @@ export function EmployerCalculator({ tips }: { tips: Record<string, GlossaryTipE
                   {
                     title: 'If family coverage is expensive',
                     detail:
-                      'A high family premium alone does not create a family glitch subsidy when employee-only coverage is affordable. If the employee-only premium is unaffordable, family members may qualify too. Check the application for each person.',
+                      'Family members are tested against the annual family premium and the same income threshold. If that premium is above the line, or the plan does not meet minimum value, family members may qualify even when employee-only coverage is affordable. Check the application for each person.',
                   },
                 ]}
               />

@@ -11,10 +11,18 @@ export const sources = {
     'https://www.cms.gov/files/document/fact-sheet-final-cy-2025-part-d-redesign-program-instructions.pdf',
   cms2026Lis:
     'https://www.cms.gov/files/document/cy2026-lis-resource-limits-memo.pdf',
+  ecfrBurial:
+    'https://www.ecfr.gov/current/title-20/section-416.1231',
   cms2026MspCib:
     'https://www.medicaid.gov/federal-policy-guidance/downloads/cib12092025.pdf',
   medicareMsp:
     'https://www.medicare.gov/basics/costs/help/medicare-savings-programs',
+  caDhcsMsp:
+    'https://www.dhcs.ca.gov/individuals/Pages/Medicare-Savings-Programs-in-California.aspx',
+  azAhcccsMsp:
+    'https://www.azahcccs.gov/Members/Downloads/EligibilityRequirements.pdf',
+  nyDohMsp:
+    'https://www.health.ny.gov/health_care/medicaid/program/update/savingsprogram/medicaresavingsprogram.htm',
   medicareDrugCosts:
     'https://www.medicare.gov/basics/costs/help/drug-costs',
   medicarePartDCosts:
@@ -43,6 +51,8 @@ export const sources = {
   irsRp2024_35: 'https://www.irs.gov/pub/irs-drop/rp-24-35.pdf',
   irsPtcQa:
     'https://www.irs.gov/affordable-care-act/individuals-and-families/questions-and-answers-on-the-premium-tax-credit',
+  treasuryFamilyGlitch:
+    'https://www.federalregister.gov/documents/2022/10/13/2022-22184/affordability-of-employer-coverage-for-family-members',
   hhs2026CostSharing:
     'https://www.federalregister.gov/documents/2025/06/25/2025-11606/patient-protection-and-affordable-care-act-marketplace-integrity-and-affordability',
   cms2025CostSharing:

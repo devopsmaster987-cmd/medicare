@@ -2,7 +2,7 @@
 
 > Independent Medicare and ACA calculators and plain-language guides. Operator: Abdul Samad, Punjab, Pakistan.
 
-Every figure is stored with its year, an official source URL, and the date it was checked (2026-10-26). The site is not affiliated with CMS, SSA, Medicare.gov, or the IRS. Calculator inputs stay in the browser.
+Every figure is stored with its year, an official source URL, and the date it was checked (2026-10-28). The site is not affiliated with CMS, SSA, Medicare.gov, or the IRS. Calculator inputs stay in the browser.
 
 ## Calculators
 
@@ -57,6 +57,17 @@ Every figure is stored with its year, an official source URL, and the date it wa
 - [Methodology](https://medicareclear.example/methodology)
 - [Glossary](https://medicareclear.example/glossary)
 - [Sitemap](https://medicareclear.example/sitemap-page)
+- [Corrections](https://medicareclear.example/corrections)
+
+## Key verified facts
+
+- 2026 Part B standard premium: $202.90 per month. Deductible: $283.00.
+- 2026 IRMAA first threshold: $109,000.00 for a single filer and $218,000.00 for married filing jointly. The first tier adds $81.20 to Part B and $14.50 to Part D.
+- 2026 Part D base beneficiary premium: $38.99 per month. Deductible: $615.00. Out-of-pocket cap: $2,100.00.
+- 2026 federal Medicare Savings Program: QMB $1,350.00 single / $1,824.00 couple; SLMB $1,616.00 / $2,184.00; QI $1,816.00 / $2,455.00.
+- 2026 Extra Help income limit: $23,940.00 single / $32,460.00 couple. Resource limit: $18,090.00 / $36,100.00 including the burial exclusion.
+- 2026 federal poverty level for the 48 contiguous states and DC: $15,960.00 for one person and $21,640.00 for two.
+- 2026 ACA affordability percentage: 9.96%. Self-only out-of-pocket maximum: $10,600.00; family: $21,200.00.
 
 ## Source policy
 

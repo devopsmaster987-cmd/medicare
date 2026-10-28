@@ -10,7 +10,7 @@ import {
   ScenarioCompare,
   ShowMath,
   StickySummary,
-} from '@/components/calc/content';
+} from '@/components/calc/calculator-blocks';
 import { contactByKey } from '@/data/contacts';
 import type { GlossaryTipEntry } from '@/data/glossary';
 import { partA2026 } from '@/data/medicare-part-a';

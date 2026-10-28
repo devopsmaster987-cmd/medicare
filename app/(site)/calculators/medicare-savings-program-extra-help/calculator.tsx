@@ -10,12 +10,11 @@ import {
   ScenarioCompare,
   ShowMath,
   StickySummary,
-} from '@/components/calc/content';
+} from '@/components/calc/calculator-blocks';
 import { contactByKey } from '@/data/contacts';
 import type { GlossaryTipEntry } from '@/data/glossary';
 import { mspPrograms } from '@/data/msp';
-import type { StateInfo } from '@/data/states';
-import { mspEligibility } from '@/lib/formulas/msp-eligibility';
+import { mspEligibility, type MspStateInput } from '@/lib/formulas/msp-eligibility';
 import { mspEligibilitySchema, parseMoneyInput } from '@/lib/validation';
 import { useHashState } from '@/lib/use-hash-state';
 import { formatMoney, formatPercent } from '@/lib/utils';
@@ -52,7 +51,7 @@ export function MspCalculator({
   states,
 }: {
   tips: Record<string, GlossaryTipEntry>;
-  states: StateInfo[];
+  states: MspStateInput[];
 }) {
   const { values, update } = useHashState(defaults);
   const stateOptions = useMemo(
@@ -261,6 +260,11 @@ export function MspCalculator({
                   <div className="result-section">
                     <h3>Why this result</h3>
                     <p>{result.message}</p>
+                    {result.stateNote ? (
+                      <p>
+                        <strong>{result.stateName} rule:</strong> {result.stateNote}
+                      </p>
+                    ) : null}
                     <p>
                       The income test uses {formatMoney(result.fplAnnual)} as the federal poverty
                       level for a household of {parsed.data?.householdSize}. The agency makes the
@@ -272,7 +276,9 @@ export function MspCalculator({
                     <h3>Programs checked</h3>
                     <div className="table-scroll">
                       <table className="fact-table">
-                        <caption>Federal MSP and Extra Help results</caption>
+                        <caption>
+                          MSP and Extra Help results for {result.stateName}
+                        </caption>
                         <thead>
                           <tr>
                             <th scope="col">Program</th>
@@ -329,8 +335,8 @@ export function MspCalculator({
                                 ?.incomeLimitMonthly ?? 0,
                             )
                           : 'See agency'}
-                        . The limit uses the FPL percentage and the monthly disregard in the data
-                        layer.
+                        . The limit uses the state rule when one is published, otherwise the FPL
+                        percentage and monthly disregard in the data layer.
                       </li>
                       <li>
                         Extra Help annual limit:{' '}

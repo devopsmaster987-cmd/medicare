@@ -14,14 +14,18 @@ import { EmailCapture } from '@/components/calc/email-capture';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
+import { CiteThisPage } from '@/components/trust/cite-this-page';
 import { IndependenceNote } from '@/components/trust/independence-note';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { fplAnnual } from '@/data/fpl';
 import {
   extraHelpAnnualIncomeLimit,
+  burialExclusion,
+  extraHelpBaseResource,
   mspMonthlyIncomeLimit,
   mspPrograms,
   mspResourceLimit,
+  stateMspRules,
 } from '@/data/msp';
 import { partB2025 } from '@/data/medicare-part-b-2025';
 import { partB2026 } from '@/data/medicare-part-b';
@@ -97,7 +101,7 @@ const faqItems = [
   },
   {
     question: `QMB income limit ${year} single`,
-    answer: `The federal QMB monthly income limit for one person is ${formatMoney(qmbSingle ?? 0)}. The resource limit is ${formatMoney(mspResourceLimit(mspPrograms.qmb, 1))} in states that use an asset test. QMB can pay Part A and Part B premiums and cost sharing.`,
+    answer: `The federal QMB monthly income limit for one person is ${formatMoney(qmbSingle ?? 0)}. California publishes ${formatMoney(stateMspRules.CA.programs.qmb?.monthlySingle ?? 0)}, New York ${formatMoney(stateMspRules.NY.programs.qmb?.monthlySingle ?? 0)}, and Arizona ${formatMoney(stateMspRules.AZ.programs.qmb?.monthlySingle ?? 0)}. The resource limit is ${formatMoney(mspResourceLimit(mspPrograms.qmb, 1))} in states that use the federal asset test. QMB can pay Part A and Part B premiums and cost sharing.`,
   },
   {
     question: `QMB income limit ${year} married`,
@@ -145,9 +149,9 @@ export default function MedicareSavingsProgramPage() {
           <p className="eyebrow">MSP · {year}</p>
           <h1 className="page-title">Medicare Savings Program income limits {year}</h1>
           <p className="page-lede">
-            Check the federal QMB, SLMB, QI, and Extra Help limits for your household, then open the
-            state agency that makes the final decision. State disregards can be more generous than
-            the federal table.
+            Check the QMB, SLMB, QI, and Extra Help limits for your household. The calculator uses
+            published state rules for California, New York, and Arizona, and federal limits for the
+            other launch states. The state agency makes the final decision.
           </p>
           <LastUpdated />
           <AuthorLine />
@@ -171,7 +175,7 @@ export default function MedicareSavingsProgramPage() {
               {
                 label: 'QMB monthly income',
                 value: `${formatMoney(qmbSingle ?? 0)} single / ${formatMoney(qmbCouple ?? 0)} couple`,
-                note: 'Federal limit before state disregards.',
+                note: 'Federal baseline. California, New York, and Arizona use the state figures below.',
               },
               {
                 label: 'SLMB monthly income',
@@ -199,7 +203,17 @@ export default function MedicareSavingsProgramPage() {
       </section>
 
       <div className="wrap">
-        <MspCalculator tips={glossaryTips} states={states} />
+        <MspCalculator
+          tips={glossaryTips}
+          states={states.map((state) => ({
+            abbr: state.abbr,
+            name: state.name,
+            agencyName: state.agencyName,
+            agencyUrl: state.agencyUrl,
+            assetTest: state.assetTest,
+            mspCovered: state.mspCovered,
+          }))}
+        />
         <AdSlot placement="below-calculator" />
       </div>
 
@@ -253,6 +267,14 @@ export default function MedicareSavingsProgramPage() {
             or pay the Part B premium, so a person can be eligible for both an MSP and
             Extra Help.
           </p>
+          <p>
+            The {formatMoney(mspResourceLimit(mspPrograms.extraHelp, 1))} and{' '}
+            {formatMoney(mspResourceLimit(mspPrograms.extraHelp, 2))} resource figures include the
+            standard {formatMoney(burialExclusion.amount)} per person burial exclusion. The CMS base limits without that exclusion
+            are {formatMoney(extraHelpBaseResource.single.amount)} for one person and{' '}
+            {formatMoney(extraHelpBaseResource.couple.amount)} for a couple. If you are close to
+            either number, apply and let Social Security count the exclusion.
+          </p>
 
           <h2>Medicare Savings Program asset limits {year}</h2>
           <p>
@@ -268,6 +290,71 @@ export default function MedicareSavingsProgramPage() {
               : ''}
             Other states may count assets differently or disregard some of them. The agency makes
             the final decision.
+          </p>
+
+          <h2>Medicare Savings Program income limits by state</h2>
+          <p>
+            Three launch states publish limits that differ from the federal table. New York sets a
+            higher QMB limit and no longer runs SLMB as a separate program. California and Arizona
+            publish their own income figures, and California uses much higher asset limits.
+          </p>
+          <div className="table-scroll">
+            <table className="fact-table">
+              <caption>State MSP income and asset limits used in this version</caption>
+              <thead>
+                <tr>
+                  <th scope="col">State</th>
+                  <th scope="col">QMB monthly</th>
+                  <th scope="col">SLMB monthly</th>
+                  <th scope="col">QI monthly</th>
+                  <th scope="col">Assets</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(['CA', 'NY', 'AZ'] as const).map((abbr) => {
+                  const rules = stateMspRules[abbr];
+                  const qmb = rules.programs.qmb;
+                  const slmb = rules.programs.slmb;
+                  const qi = rules.programs.qi;
+                  return (
+                    <tr key={abbr}>
+                      <th scope="row">{getState(abbr)?.name ?? abbr}</th>
+                      <td>
+                        {qmb?.available
+                          ? `${formatMoney(qmb.monthlySingle)} / ${formatMoney(qmb.monthlyCouple)}`
+                          : 'Not offered'}
+                      </td>
+                      <td>
+                        {slmb?.available
+                          ? `${formatMoney(slmb.monthlySingle)} / ${formatMoney(slmb.monthlyCouple)}`
+                          : 'Not offered'}
+                      </td>
+                      <td>
+                        {qi?.available
+                          ? `${formatMoney(qi.monthlySingle)} / ${formatMoney(qi.monthlyCouple)}`
+                          : 'Not offered'}
+                      </td>
+                      <td>
+                        {rules.assetTest
+                          ? `${formatMoney(rules.resourceSingle ?? 0)} / ${formatMoney(rules.resourceCouple ?? 0)}`
+                          : 'No asset test'}
+                      </td>
+                    </tr>
+                  );
+                })}
+                <tr>
+                  <th scope="row">Other launch states</th>
+                  <td colSpan={3}>Federal limits shown above</td>
+                  <td>Federal limits</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            The state table is checked against each state agency&apos;s published {year} figures. The
+            other seven launch states use the federal limits in this version. A state can still
+            disregard part of your income, so apply through the agency even when a table result
+            looks close.
           </p>
 
           <h2>QMB vs SLMB vs QI</h2>
@@ -389,6 +476,11 @@ export default function MedicareSavingsProgramPage() {
             </table>
           </div>
           <p className="stat-note">
+            The table shows one-person and couple figures. For a household of three or more, the
+            calculator applies the state&apos;s published FPL percentage and disregard. California
+            also adds {formatMoney(stateMspRules.CA.resourcePerAdditional ?? 0)} of resource room for each person after the first.
+          </p>
+          <p className="stat-note">
             The estimate combines the Part B standard premium with the Part D base premium. Actual
             Extra Help value depends on the drug plan and the income tier.
           </p>
@@ -400,8 +492,9 @@ export default function MedicareSavingsProgramPage() {
           <h2>Three honest caveats</h2>
           <ol>
             <li>
-              These are federal limits. States can disregard income, count assets differently, or
-              use different program names. The agency&apos;s decision controls.
+              The main table shows federal limits. California, New York, and Arizona use the state
+              figures in the table above. Other states can disregard income, count assets
+              differently, or use different program names. The agency&apos;s decision controls.
             </li>
             <li>
               This version checks QMB, SLMB, QI, and Extra Help. It does not check QDWI or every
@@ -414,9 +507,10 @@ export default function MedicareSavingsProgramPage() {
           </ol>
           <p>
             MedicareClear links the state Medicaid agency for {formatNumber(launchStateCount)}{' '}
-            launch states and the federal directory for the rest. The income and resource tests on
-            this page are the federal baseline for every state, not a state-specific limit. Your
-            state may be more generous, so apply through the agency even if a test here fails.
+            launch states and the federal directory for the rest. The calculator applies the
+            published state rules for California, New York, and Arizona, and the federal limits for
+            the other seven launch states. A state may still be more generous, so apply through the
+            agency even if a test here fails.
           </p>
           <IndependenceNote />
         </div>
@@ -471,6 +565,24 @@ export default function MedicareSavingsProgramPage() {
                 sourceLabel: 'Medicare.gov MSP page',
               },
               {
+                label: 'California MSP income and asset limits',
+                value: `${formatMoney(stateMspRules.CA.programs.qmb?.monthlySingle ?? 0)} QMB single / ${formatMoney(stateMspRules.CA.resourceSingle ?? 0)} assets`,
+                source: sources.caDhcsMsp,
+                sourceLabel: 'California DHCS MSP page',
+              },
+              {
+                label: 'New York QMB and QI limits',
+                value: `${formatMoney(stateMspRules.NY.programs.qmb?.monthlySingle ?? 0)} QMB single / ${formatMoney(stateMspRules.NY.programs.qi?.monthlySingle ?? 0)} QI single`,
+                source: sources.nyDohMsp,
+                sourceLabel: 'New York State Department of Health',
+              },
+              {
+                label: 'Arizona MSP limits',
+                value: `${formatMoney(stateMspRules.AZ.programs.qmb?.monthlySingle ?? 0)} QMB single / ${formatMoney(stateMspRules.AZ.programs.qi?.monthlySingle ?? 0)} QI single`,
+                source: sources.azAhcccsMsp,
+                sourceLabel: 'AHCCCS eligibility chart',
+              },
+              {
                 label: 'Extra Help income and resource limits',
                 value: `${formatMoney(extraHelpSingle)} single / ${formatMoney(extraHelpCouple)} couple`,
                 source: sources.medicareDrugCosts,
@@ -495,6 +607,7 @@ export default function MedicareSavingsProgramPage() {
 
       <section className="section section-tight">
         <div className="wrap">
+          <CiteThisPage title={`Medicare Savings Program income limits ${year}`} path="/calculators/medicare-savings-program-extra-help" />
           <EmailCapture />
           <TakeHomePack pageTitle={`Medicare Savings Program income limits ${year}`} />
           <p className="disclaimer">

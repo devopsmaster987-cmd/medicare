@@ -6,6 +6,7 @@ import { EmailCapture } from '@/components/calc/email-capture';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
+import { CiteThisPage } from '@/components/trust/cite-this-page';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { ReportError } from '@/components/trust/report-error';
 import { guideBySlug, guideSlugs, resolveGuide } from '@/content/guides/meta';
@@ -42,6 +43,9 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
       description,
       url: `/guides/${slug}`,
       type: 'article',
+      publishedTime: guide.publishedOn,
+      modifiedTime: guide.updatedOn,
+      authors: [site.ownerName],
       images: [
         {
           url: `/og/guides/${slug}.png`,
@@ -129,6 +133,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
 
       <section className="section section-tight">
         <div className="wrap">
+          <CiteThisPage title={h1} path={`/guides/${slug}`} />
           <EmailCapture />
           <ReportError pageTitle={h1} />
           <LastUpdated label="Last updated" />

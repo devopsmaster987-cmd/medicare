@@ -19,6 +19,7 @@ export type MspProgram = {
   source: string;
   verifiedOn: string;
   year: number;
+  note?: string;
 };
 
 const sharedMspResources = {
@@ -111,10 +112,185 @@ export const mspPrograms: Record<MspProgramKey, MspProgram> = {
     source: sources.medicareDrugCosts,
     verifiedOn: dataVerifiedOn,
     year: 2026,
+    note: 'The $18,090 and $36,100 figures include the $1,500 per person burial exclusion. Without that exclusion, the CMS base limits are $16,590 and $33,100.',
   },
 };
 
+export const burialExclusion = {
+  amount: 1500,
+  year: 2026,
+  source: sources.ecfrBurial,
+  verifiedOn: dataVerifiedOn,
+} satisfies Money;
+
+export const extraHelpBaseResource = {
+  single: {
+    amount: 16590,
+    year: 2026,
+    source: sources.cms2026Lis,
+    verifiedOn: dataVerifiedOn,
+  } satisfies Money,
+  couple: {
+    amount: 33100,
+    year: 2026,
+    source: sources.cms2026Lis,
+    verifiedOn: dataVerifiedOn,
+  } satisfies Money,
+};
+
 export const mspProgramOrder: MspProgramKey[] = ['qmb', 'slmb', 'qi', 'qdwi', 'extraHelp'];
+
+export type StateMspProgramRule = {
+  available: boolean;
+  monthlySingle: number;
+  monthlyCouple: number;
+  fplPercent: number;
+  monthlyDisregard: number;
+  note?: string;
+};
+
+export type StateMspRules = {
+  year: number;
+  source: string;
+  verifiedOn: string;
+  assetTest: boolean;
+  resourceSingle?: number;
+  resourceCouple?: number;
+  resourcePerAdditional?: number;
+  programs: Partial<Record<'qmb' | 'slmb' | 'qi', StateMspProgramRule>>;
+  note?: string;
+};
+
+export const stateMspRules: Record<string, StateMspRules> = {
+  CA: {
+    year: 2026,
+    source: sources.caDhcsMsp,
+    verifiedOn: dataVerifiedOn,
+    assetTest: true,
+    resourceSingle: 130000,
+    resourceCouple: 195000,
+    resourcePerAdditional: 65000,
+    programs: {
+      qmb: {
+        available: true,
+        monthlySingle: 1330,
+        monthlyCouple: 1804,
+        fplPercent: 1,
+        monthlyDisregard: 0,
+        note: 'DHCS publishes a gross monthly income limit at 100% of the federal poverty level.',
+      },
+      slmb: {
+        available: true,
+        monthlySingle: 1596,
+        monthlyCouple: 2165,
+        fplPercent: 1.2,
+        monthlyDisregard: 0,
+      },
+      qi: {
+        available: true,
+        monthlySingle: 1796,
+        monthlyCouple: 2436,
+        fplPercent: 1.35,
+        monthlyDisregard: 0,
+      },
+    },
+    note: 'California uses higher asset limits than the federal MSP limits: $130,000 for an individual and $195,000 for a couple starting January 1, 2026.',
+  },
+  NY: {
+    year: 2026,
+    source: sources.nyDohMsp,
+    verifiedOn: dataVerifiedOn,
+    assetTest: false,
+    programs: {
+      qmb: {
+        available: true,
+        monthlySingle: 1856,
+        monthlyCouple: 2509,
+        fplPercent: 1.38,
+        monthlyDisregard: 20,
+        note: 'New York sets QMB at 138% of the federal poverty level plus the $20 disregard.',
+      },
+      slmb: {
+        available: false,
+        monthlySingle: 0,
+        monthlyCouple: 0,
+        fplPercent: 1.2,
+        monthlyDisregard: 20,
+        note: 'New York no longer runs SLMB as a separate program. Use the QMB and QI tests.',
+      },
+      qi: {
+        available: true,
+        monthlySingle: 2494,
+        monthlyCouple: 3375,
+        fplPercent: 1.86,
+        monthlyDisregard: 20,
+        note: 'New York sets QI below 186% of the federal poverty level plus the $20 disregard.',
+      },
+    },
+    note: 'New York has no asset test for QMB or QI, and SLMB is no longer a separate program in the state.',
+  },
+  AZ: {
+    year: 2026,
+    source: sources.azAhcccsMsp,
+    verifiedOn: dataVerifiedOn,
+    assetTest: false,
+    programs: {
+      qmb: {
+        available: true,
+        monthlySingle: 1330,
+        monthlyCouple: 1804,
+        fplPercent: 1,
+        monthlyDisregard: 0,
+        note: 'AHCCCS lists 100% of the federal poverty level as the QMB income limit.',
+      },
+      slmb: {
+        available: true,
+        monthlySingle: 1596,
+        monthlyCouple: 2164,
+        fplPercent: 1.2,
+        monthlyDisregard: 0,
+      },
+      qi: {
+        available: true,
+        monthlySingle: 1796,
+        monthlyCouple: 2435,
+        fplPercent: 1.35,
+        monthlyDisregard: 0,
+      },
+    },
+    note: 'AHCCCS does not list a resource test for QMB, SLMB, or QI in its February 2026 eligibility chart.',
+  },
+};
+
+export function stateMspRulesFor(stateAbbr: string): StateMspRules | undefined {
+  return stateMspRules[stateAbbr.toUpperCase()];
+}
+
+export function stateMspMonthlyLimit(
+  stateAbbr: string,
+  programKey: 'qmb' | 'slmb' | 'qi',
+  householdSize: number,
+): number | null {
+  const rule = stateMspRulesFor(stateAbbr)?.programs[programKey];
+  if (!rule || !rule.available) return null;
+  if (householdSize <= 1) return rule.monthlySingle;
+  if (householdSize === 2) return rule.monthlyCouple;
+  return Math.ceil(fplMonthly(2026, householdSize) * rule.fplPercent + rule.monthlyDisregard);
+}
+
+export function stateMspResourceLimit(
+  stateAbbr: string,
+  householdSize: number,
+): number | null | undefined {
+  const rules = stateMspRulesFor(stateAbbr);
+  if (!rules) return undefined;
+  if (!rules.assetTest) return null;
+  if (householdSize <= 1) return rules.resourceSingle ?? null;
+  if (rules.resourcePerAdditional !== undefined && rules.resourceSingle !== undefined) {
+    return rules.resourceSingle + (householdSize - 1) * rules.resourcePerAdditional;
+  }
+  return rules.resourceCouple ?? null;
+}
 
 export function mspMonthlyIncomeLimit(
   program: MspProgram,

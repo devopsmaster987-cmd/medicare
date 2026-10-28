@@ -14,6 +14,7 @@ import { EmailCapture } from '@/components/calc/email-capture';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
+import { CiteThisPage } from '@/components/trust/cite-this-page';
 import { IndependenceNote } from '@/components/trust/independence-note';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { aca2026 } from '@/data/aca';
@@ -77,7 +78,7 @@ const faqItems = [
   {
     question: 'Employer health insurance affordability test',
     answer:
-      'The test uses the employee-only premium, not the family premium and not the deductible. If you are offered more than one plan, use the lowest-cost self-only option that meets the minimum value standard.',
+      'For the employee, the test uses the lowest-cost self-only premium, not the deductible. For a spouse and children, the family glitch fix uses the premium you must pay for family coverage. If you are offered more than one plan, use the lowest-cost option that meets the minimum value standard.',
   },
   {
     question: 'What income do I use for the Marketplace?',
@@ -87,7 +88,7 @@ const faqItems = [
   {
     question: 'Does the family premium decide family subsidies?',
     answer:
-      'No. The family glitch fix looks at whether the employee-only premium is affordable. A high family premium by itself does not create a subsidy for family members when employee-only coverage is affordable.',
+      'Yes, for family members. Under the family glitch fix, a spouse and children are tested against the annual premium for family coverage compared with the same share of household income. A high family premium can qualify them even when the employee-only premium is affordable.',
   },
   {
     question: 'What if my employer plan changes during the year?',
@@ -123,8 +124,8 @@ export default function EmployerCoverageAffordabilityPage() {
           <h1 className="page-title">Is employer health insurance affordable {year}?</h1>
           <p className="page-lede">
             Start with the premium for the lowest-cost self-only plan. The IRS compares it with a
-            share of household income, and the family glitch rule uses the same employee-only test
-            for family members.
+            share of household income. Family members are tested separately with the family
+            premium, so a high family cost can open Marketplace help.
           </p>
           <LastUpdated />
           <AuthorLine />
@@ -135,9 +136,9 @@ export default function EmployerCoverageAffordabilityPage() {
         <AnswerCapsule>
           Is employer health insurance affordable {year}? The IRS compares your annual
           employee-only premium with {formatPercent(irs2026.employerAffordabilityPercentage.rate)}{' '}
-          of household income. If the premium is above that line, or the plan does not meet minimum
-          value, you may qualify for Marketplace help. Family members use the employee-only test,
-          not the family premium.
+          of household income. Above that line, or if the plan fails minimum value, you may get
+          Marketplace help. Family members use the family premium, so a high family cost can
+          qualify them.
         </AnswerCapsule>
       </div>
 
@@ -153,8 +154,8 @@ export default function EmployerCoverageAffordabilityPage() {
               },
               {
                 label: 'Premium tested',
-                value: 'Lowest-cost self-only plan',
-                note: 'Not the family premium, deductible, or richest plan.',
+                value: 'Two separate tests',
+                note: 'Employee-only premium for you; family premium for your spouse and children.',
               },
               {
                 label: 'Minimum value',
@@ -163,8 +164,8 @@ export default function EmployerCoverageAffordabilityPage() {
               },
               {
                 label: 'Family glitch rule',
-                value: 'Employee-only premium controls',
-                note: 'A high family premium alone does not create a subsidy.',
+                value: 'Family premium controls family test',
+                note: 'A high family premium can qualify family members even when your own coverage is affordable.',
               },
               {
                 label: 'Subsidy cliff',
@@ -221,15 +222,16 @@ export default function EmployerCoverageAffordabilityPage() {
 
           <h2>Family glitch fix calculator</h2>
           <p>
-            The family glitch fix did not turn the family premium into the test. Family members may
-            qualify when the employee-only premium is unaffordable. If employee-only coverage is
-            affordable, a high family premium by itself generally does not open premium tax credits
-            for the family.
+            The family glitch fix changed who is tested against which premium. An employee is
+            tested with the lowest-cost self-only premium. A spouse and children are tested with
+            the annual premium the employee must pay for family coverage, compared with the same
+            share of household income.
           </p>
           <p>
-            The family premium field in this calculator is context. It shows what the family plan
-            costs, but the eligibility signal comes from the employee-only test and the minimum
-            value answer.
+            That means a family can face two different answers. Employee-only coverage may be
+            affordable while the family premium is above the line, which can open premium tax
+            credits for the spouse and children. The calculator shows both signals and never adds
+            the family premium to the employee-only premium.
           </p>
         </div>
       </section>
@@ -285,7 +287,7 @@ export default function EmployerCoverageAffordabilityPage() {
                   <td>{example.employeeCoverageAffordable ? 'Affordable' : 'Not affordable'}</td>
                 </tr>
                 <tr>
-                  <th scope="row">Family premium, context only</th>
+                  <th scope="row">Annual family premium</th>
                   <td>
                     {example.annualFamilyPremium === null
                       ? 'Not entered'
@@ -293,21 +295,34 @@ export default function EmployerCoverageAffordabilityPage() {
                   </td>
                 </tr>
                 <tr>
+                  <th scope="row">Family coverage result</th>
+                  <td>
+                    {example.familyCoverageAffordable === null
+                      ? 'Not tested'
+                      : example.familyCoverageAffordable
+                        ? 'Affordable'
+                        : 'Not affordable'}
+                  </td>
+                </tr>
+                <tr>
                   <th scope="row">Marketplace signal</th>
                   <td>
-                    {example.subsidyEligibility === 'likely-none'
-                      ? 'No subsidy expected'
-                      : example.subsidyEligibility === 'likely-qualify'
-                        ? 'May qualify'
-                        : 'Needs minimum value answer'}
+                    {example.employeeSubsidyEligibility === 'likely-qualify'
+                      ? 'Employee may qualify'
+                      : example.familySubsidyEligibility === 'likely-qualify'
+                        ? 'Family members may qualify'
+                        : example.subsidyEligibility === 'likely-none'
+                          ? 'No subsidy expected'
+                          : 'Needs minimum value answer'}
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p className="stat-note">
-            The family premium is higher than the employee-only threshold in this example, but that
-            comparison does not create a subsidy. The employee-only test is the legal test.
+            In this example the employee-only premium is affordable, but the family premium is
+            above the same threshold. The family glitch fix therefore lets the spouse and children
+            seek Marketplace help while the employee stays on the employer plan.
           </p>
           <IndependenceNote />
         </div>
@@ -378,6 +393,12 @@ export default function EmployerCoverageAffordabilityPage() {
                 sourceLabel: 'IRS revenue procedure',
               },
               {
+                label: 'Family member affordability rule',
+                value: 'Family premium compared with the same income share',
+                source: sources.treasuryFamilyGlitch,
+                sourceLabel: 'Treasury final rule (Federal Register)',
+              },
+              {
                 label: 'Prior-year affordability percentage',
                 value: formatPercent(irs2025.employerAffordabilityPercentage.rate),
                 source: sources.irsRp2024_35,
@@ -408,6 +429,7 @@ export default function EmployerCoverageAffordabilityPage() {
 
       <section className="section section-tight">
         <div className="wrap">
+          <CiteThisPage title={`Is employer health insurance affordable ${year}?`} path="/calculators/employer-coverage-affordability" />
           <EmailCapture />
           <TakeHomePack pageTitle={`Is employer health insurance affordable ${year}?`} />
           <p className="disclaimer">

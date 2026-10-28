@@ -1,11 +1,11 @@
 # Verification log
 
-All figures were checked against the official source listed in each section on 2026-10-26. The owner, Abdul Samad, still needs to sign off before launch. "Policy maths" means a hand-worked application of the published rule because the agency does not publish a worked example with these exact inputs.
+All figures were checked against the official source listed in each section on 2026-10-26. The employer family rule and the California, New York, and Arizona MSP rules were rechecked on 2026-10-28. The owner, Abdul Samad, still needs to sign off before launch. "Policy maths" means a hand-worked application of the published rule because the agency does not publish a worked example with these exact inputs.
 
 ## employerAffordability
 
 Source: https://www.irs.gov/pub/irs-drop/rp-25-25.pdf
-Supporting source: https://www.irs.gov/affordable-care-act/individuals-and-families/questions-and-answers-on-the-premium-tax-credit
+Supporting sources: https://www.irs.gov/affordable-care-act/individuals-and-families/questions-and-answers-on-the-premium-tax-credit and https://www.federalregister.gov/documents/2022/10/13/2022-22184/affordability-of-employer-coverage-for-family-members
 
 Example 1
 - Inputs: household income $30,000; employee-only premium $200 per month; monthly pay frequency.
@@ -21,20 +21,24 @@ Example 2
 - Actual: `employeeCoverageAffordable: false`, `annualEmployeeOnlyPremium: 2988.12`, `annualThreshold: 2988`, `employeeHeadroom: -0.12`.
 - Checked on: 2026-10-26
 
-Policy note: the family premium is shown as context only. The eligibility signal uses the employee-only premium and the minimum value answer, consistent with the family glitch fix. A high family premium does not create premium tax credit eligibility when employee-only coverage is affordable.
+Policy note: under the family glitch fix (Treasury final rule, 2022), the employee is tested with the lowest-cost self-only premium, while a spouse and children are tested with the employee's required contribution for family coverage. Both comparisons use the same household income and affordability percentage. The calculator reports the employee and family signals separately.
 
 Example 3
 - Inputs: household income $30,000; employee-only premium $200 per month; family premium $600 per month; monthly pay frequency; plan meets minimum value.
-- Hand calculation: employee-only annual premium $2,400 is below the $2,988 threshold; family annual premium $7,200 is above the same threshold, but that comparison is not the legal subsidy test.
-- Expected: employee-only coverage affordable; `familyMembersMayQualifyForHelp: false`; `subsidyEligibility: 'likely-none'`.
-- Actual: `employeeCoverageAffordable: true`, `annualFamilyPremium: 7200`, `familyMembersMayQualifyForHelp: false`, `subsidyEligibility: 'likely-none'`.
-- Checked on: 2026-10-26
+- Hand calculation: employee-only annual premium $2,400 is below the $2,988 threshold. Family annual premium $7,200 is above the same $2,988 threshold, so family members are tested as unaffordable and may qualify for premium tax credits.
+- Expected: employee-only coverage affordable; `employeeSubsidyEligibility: 'likely-none'`; `familyCoverageAffordable: false`; `familySubsidyEligibility: 'likely-qualify'`; `familyMembersMayQualifyForHelp: true`; overall `subsidyEligibility: 'likely-qualify'`.
+- Actual: `employeeCoverageAffordable: true`, `annualFamilyPremium: 7200`, `familyCoverageAffordable: false`, `employeeSubsidyEligibility: 'likely-none'`, `familySubsidyEligibility: 'likely-qualify'`, `familyMembersMayQualifyForHelp: true`, `subsidyEligibility: 'likely-qualify'`.
+- Checked on: 2026-10-28
 
 ## mspEligibility
 
 Source: https://www.medicare.gov/basics/costs/help/medicare-savings-programs
-Supporting source: https://www.cms.gov/files/document/cy2026-lis-resource-limits-memo.pdf
-Policy maths: the published 2026 federal limits are used for Texas; state-specific disregards are not applied by the calculator.
+Supporting sources:
+- https://www.cms.gov/files/document/cy2026-lis-resource-limits-memo.pdf
+- California: https://www.dhcs.ca.gov/individuals/Pages/Medicare-Savings-Programs-in-California.aspx
+- New York: https://www.health.ny.gov/health_care/medicaid/program/update/savingsprogram/medicaresavingsprogram.htm
+- Arizona: https://www.azahcccs.gov/Members/Downloads/EligibilityRequirements.pdf
+Policy maths: the published federal limits are used for Texas and the other launch states without a published override. California, New York, and Arizona use the state figures below. State-specific disregards beyond those published figures are not applied by the calculator.
 
 Example 1
 - Inputs: Texas; one person; $1,350 monthly income; $9,950 countable assets.
@@ -49,6 +53,36 @@ Example 2
 - Expected: Extra Help only; estimated value is the Part D base beneficiary premium.
 - Actual: `likelyPrograms: ['extraHelp']`; `estimatedMonthlyValue: 38.99`; `applyAnyway: true` because income is within 10% of a missed limit.
 - Checked on: 2026-10-26
+
+Example 3 (California)
+- Inputs: California; one person; $1,330 monthly income; $130,000 countable assets.
+- Hand calculation: DHCS publishes a $1,330 monthly QMB limit for one person and a $130,000 asset limit from January 1, 2026. Income is at the limit and assets are at the limit.
+- Expected: QMB eligible; `assetTestApplied: true`; `resourceLimit: 130000`.
+- Actual: `likelyPrograms` includes `qmb`; QMB `incomeLimitMonthly: 1330`; `resourceLimit: 130000`; `assetTestApplied: true`.
+- Checked on: 2026-10-28
+
+Example 4 (New York)
+- Inputs: New York; one person; $1,856 monthly income; $500,000 countable assets.
+- Hand calculation: New York publishes a $1,856 monthly QMB limit (138% of FPL plus the $20 disregard), no asset test, and no separate SLMB program.
+- Expected: QMB eligible despite high assets; SLMB `available: false`; `assetTestApplied: false`.
+- Actual: QMB `eligible: true`; SLMB `available: false`; `resourceLimit: null`; `assetTestApplied: false`.
+- Checked on: 2026-10-28
+
+Example 5 (Arizona)
+- Inputs: Arizona; one person; $1,596 monthly income; $500,000 countable assets.
+- Hand calculation: AHCCCS publishes $1,596 as the top of the SLMB band and $1,796 as the top of the QI-1 band for one person, with no listed resource test.
+- Expected: SLMB eligible at $1,596; QI eligible at $1,796; no asset test.
+- Actual: SLMB `eligible: true` at $1,596; at $1,597 SLMB is not eligible and QI is eligible; `assetTestApplied: false`.
+- Checked on: 2026-10-28
+
+Example 6 (California, three people)
+- Inputs: California; three people; $2,277 monthly income; $260,000 countable assets.
+- Hand calculation: 2026 FPL for three is $27,320 a year, or $2,276.67 a month. QMB at 100% rounds up to $2,277. California publishes $130,000 for one person and $65,000 for each additional person, so three people = $130,000 + 2 x $65,000 = $260,000.
+- Expected: QMB income limit $2,277; resource limit $260,000; QMB eligible; state note explains the FPL method for households of three or more.
+- Actual: `incomeLimitMonthly: 2277`; `resourceLimit: 260000`; `eligible: true`; state note includes "three or more".
+- Checked on: 2026-10-28
+
+Extra Help resource note: CMS publishes base 2026 LIS resource limits of $16,590 single / $33,100 married. The consumer figures of $18,090 / $36,100 include the $1,500 per person burial exclusion (20 CFR 416.1231). The calculator uses the consumer figures and the page explains the difference.
 
 ## partBPenaltyCalculator
 
@@ -77,8 +111,8 @@ Supporting source: https://www.ssa.gov/benefits/medicare/prescriptionhelp.html
 Example 1
 - Inputs: single; $109,001 modified adjusted gross income from the two-year lookback.
 - Hand calculation: the first IRMAA tier starts at $109,001 for a single filer. Part B becomes $284.10, Part D adds $14.50, and the monthly surcharge is $95.70. Annual surcharge = $95.70 x 12 = $1,148.40. Headroom to the next tier ($137,001) = $28,000.
-- Expected: tier index 1; $284.10 Part B; $14.50 Part D; $95.70 monthly surcharge; $1,148.40 annual surcharge; $28,000 headroom.
-- Actual: tier index 1; `monthlyPartB: 284.1`; `monthlyPartD: 14.5`; `monthlySurcharge: 95.7`; `annualSurcharge: 1148.4`; `headroomToNextBracket: 28000`.
+- Expected: tier index 1; $284.10 Part B; $14.50 Part D; $95.70 monthly surcharge; $1,148.40 annual surcharge; $28,000 headroom; crossing the next cliff adds $1,736.40 a year for one person.
+- Actual: tier index 1; `monthlyPartB: 284.1`; `monthlyPartD: 14.5`; `monthlySurcharge: 95.7`; `annualSurcharge: 1148.4`; `headroomToNextBracket: 28000`; `cliffCost.additionalAnnualSurcharge: 1736.4`.
 - Checked on: 2026-10-26
 
 Example 2

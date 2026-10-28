@@ -42,7 +42,7 @@ describe('employerAffordability', () => {
     expect(overLimit.employeeCoverageAffordable).toBe(false);
   });
 
-  it('does not use the family premium as a separate subsidy test', () => {
+  it('tests family members against the family premium under the family glitch fix', () => {
     const result = employerAffordability({
       householdIncome: 30000,
       employeeOnlyPremium: 200,
@@ -53,7 +53,42 @@ describe('employerAffordability', () => {
     expect(result.employeeCoverageAffordable).toBe(true);
     expect(result.annualFamilyPremium).toBe(7200);
     expect(result.familyCoverageAffordable).toBe(false);
-    expect(result.familyMembersMayQualifyForHelp).toBe(false);
+    expect(result.employeeSubsidyEligibility).toBe('likely-none');
+    expect(result.familySubsidyEligibility).toBe('likely-qualify');
+    expect(result.familyMembersMayQualifyForHelp).toBe(true);
+    expect(result.subsidyEligibility).toBe('likely-qualify');
+  });
+
+  it('marks family coverage affordable at the exact family threshold', () => {
+    const atLimit = employerAffordability({
+      householdIncome: 30000,
+      employeeOnlyPremium: 200,
+      familyPremium: 249,
+      payFrequency: 'monthly',
+      planMeetsMinimumValue: true,
+    });
+    const overLimit = employerAffordability({
+      householdIncome: 30000,
+      employeeOnlyPremium: 200,
+      familyPremium: 249.01,
+      payFrequency: 'monthly',
+      planMeetsMinimumValue: true,
+    });
+    expect(atLimit.familyCoverageAffordable).toBe(true);
+    expect(atLimit.familyMembersMayQualifyForHelp).toBe(false);
+    expect(overLimit.familyCoverageAffordable).toBe(false);
+    expect(overLimit.familyMembersMayQualifyForHelp).toBe(true);
+  });
+
+  it('returns a null family signal when no family premium is entered', () => {
+    const result = employerAffordability({
+      householdIncome: 30000,
+      employeeOnlyPremium: 200,
+      payFrequency: 'monthly',
+      planMeetsMinimumValue: true,
+    });
+    expect(result.familySubsidyEligibility).toBeNull();
+    expect(result.familyMembersMayQualifyForHelp).toBeNull();
     expect(result.subsidyEligibility).toBe('likely-none');
   });
 
@@ -103,6 +138,7 @@ describe('employerAffordability', () => {
       planMeetsMinimumValue: true,
     });
     expect(result.employeeCoverageAffordable).toBe(false);
+    expect(result.employeeSubsidyEligibility).toBe('likely-qualify');
     expect(result.familyMembersMayQualifyForHelp).toBe(true);
     expect(result.subsidyEligibility).toBe('likely-qualify');
   });

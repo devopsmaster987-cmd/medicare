@@ -22,7 +22,7 @@ Run this checklist when CMS, SSA, HHS, or the IRS publish new figures. Do not ch
 4. Update the federal poverty guideline array. Confirm the 48-state figure, Alaska, and Hawaii before publishing.
 5. Recheck the IRS affordability percentage and update `data/irs.ts`.
 6. Recheck the ACA out-of-pocket maximum and the status of enhanced premium tax credits.
-7. Recheck MSP and Extra Help income and resource limits, including the 10 launch states.
+7. Recheck MSP and Extra Help income and resource limits, including the 10 launch states. California, New York, and Arizona use `stateMspRules` in `data/msp.ts`; update those overrides from the state agency page before changing the federal table. Extra Help uses the consumer resource figures that include the $1,500 burial exclusion; check the CMS LIS memo and explain any difference from the SSA base figures.
 8. Run `npm run typecheck`, `npm test`, `npm run verify:data`, and `npm run build`.
 9. Add two hand-worked examples to `docs/verification-log.md` for every changed formula.
 10. Change the visible "Last updated" date only through `dataVerifiedOn`; never type a new date into a page.

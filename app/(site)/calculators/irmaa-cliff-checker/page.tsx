@@ -14,6 +14,7 @@ import { EmailCapture } from '@/components/calc/email-capture';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
+import { CiteThisPage } from '@/components/trust/cite-this-page';
 import { IndependenceNote } from '@/components/trust/independence-note';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { partB2025 } from '@/data/medicare-part-b-2025';
@@ -537,6 +538,7 @@ export default function IrmaaPage() {
 
       <section className="section section-tight">
         <div className="wrap">
+          <CiteThisPage title={`IRMAA brackets ${year}`} path="/calculators/irmaa-cliff-checker" />
           <EmailCapture />
           <TakeHomePack pageTitle={`IRMAA brackets ${year}`} />
           <p className="disclaimer">

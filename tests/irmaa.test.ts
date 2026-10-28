@@ -91,6 +91,15 @@ describe('irmaaCalculator', () => {
     ]);
   });
 
+  it('shows the annual cost of crossing the next cliff', () => {
+    const atCliff = irmaaCalculator({ filingStatus: 'single', magiTwoYearsBack: 109000 });
+    const oneOver = irmaaCalculator({ filingStatus: 'single', magiTwoYearsBack: 109001 });
+    const joint = irmaaCalculator({ filingStatus: 'marriedJoint', magiTwoYearsBack: 218000 });
+    expect(atCliff.cliffCost.additionalAnnualSurcharge).toBe(1148.4);
+    expect(oneOver.cliffCost.additionalAnnualSurcharge).toBe(1736.4);
+    expect(joint.cliffCost.householdAdditionalAnnualSurcharge).toBe(2296.8);
+  });
+
   it('rejects negative MAGI', () => {
     expect(() => irmaaCalculator({ filingStatus: 'single', magiTwoYearsBack: -1 })).toThrow();
   });

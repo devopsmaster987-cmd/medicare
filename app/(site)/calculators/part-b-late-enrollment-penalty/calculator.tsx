@@ -11,7 +11,7 @@ import {
   ScenarioCompare,
   ShowMath,
   StickySummary,
-} from '@/components/calc/content';
+} from '@/components/calc/calculator-blocks';
 import { contactByKey } from '@/data/contacts';
 import type { GlossaryTipEntry } from '@/data/glossary';
 import { partB2026 } from '@/data/medicare-part-b';

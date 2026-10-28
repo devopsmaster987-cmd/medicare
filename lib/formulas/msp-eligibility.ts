@@ -4,16 +4,24 @@ import {
   mspMonthlyIncomeLimit,
   mspPrograms,
   mspResourceLimit,
+  stateMspMonthlyLimit,
+  stateMspResourceLimit,
+  stateMspRulesFor,
   type MspProgramKey,
 } from '@/data/msp';
 import { partB2026 } from '@/data/medicare-part-b';
 import { partD2026 } from '@/data/medicare-part-d';
 import type { StateInfo } from '@/data/states';
+
+export type MspStateInput = Pick<
+  StateInfo,
+  'abbr' | 'name' | 'agencyName' | 'agencyUrl' | 'assetTest' | 'mspCovered'
+>;
 import { isFiniteNonNegative, roundMoney } from './shared';
 
 export type MspInput = {
   stateAbbr: string;
-  state: StateInfo;
+  state: MspStateInput;
   householdSize: number;
   monthlyIncome: number;
   countableAssets: number;
@@ -23,6 +31,8 @@ export type MspInput = {
 export type MspProgramResult = {
   key: MspProgramKey;
   name: string;
+  available: boolean;
+  stateSpecific: boolean;
   incomeLimitMonthly: number | null;
   incomeLimitAnnual: number | null;
   resourceLimit: number | null;
@@ -34,6 +44,7 @@ export type MspProgramResult = {
   estimatedMonthlyValue: number;
   estimatedAnnualValue: number;
   whatItPays: string;
+  note?: string;
 };
 
 export type MspResult = {
@@ -51,6 +62,7 @@ export type MspResult = {
   estimatedAnnualValue: number;
   applyAnyway: boolean;
   message: string;
+  stateNote?: string;
 };
 
 export function mspEligibility(input: MspInput): MspResult {
@@ -93,31 +105,53 @@ export function mspEligibility(input: MspInput): MspResult {
   }
 
   const programKeys: MspProgramKey[] = ['qmb', 'slmb', 'qi', 'extraHelp'];
+  const stateRules = stateMspRulesFor(state.abbr);
   const programs = programKeys.map((key): MspProgramResult => {
     const program = mspPrograms[key];
-    const incomeLimitMonthly = mspMonthlyIncomeLimit(program, input.householdSize, year);
+    const stateRule = key === 'qmb' || key === 'slmb' || key === 'qi'
+      ? stateRules?.programs[key]
+      : undefined;
+    const available = key === 'extraHelp' ? true : stateRule ? stateRule.available : true;
+    const stateMonthly =
+      key === 'qmb' || key === 'slmb' || key === 'qi'
+        ? stateMspMonthlyLimit(state.abbr, key, input.householdSize)
+        : null;
+    const incomeLimitMonthly = available
+      ? stateMonthly ?? mspMonthlyIncomeLimit(program, input.householdSize, year)
+      : null;
     const incomeLimitAnnual =
       key === 'extraHelp'
         ? extraHelpAnnualIncomeLimit(input.householdSize, year)
         : incomeLimitMonthly === null
           ? null
           : roundMoney(incomeLimitMonthly * 12);
-    const assetTestApplied = key !== 'extraHelp' ? state.assetTest : true;
-    const resourceLimit = assetTestApplied
-      ? mspResourceLimit(program, input.householdSize)
-      : null;
-    const incomeEligible =
+    const stateResource =
+      key === 'qmb' || key === 'slmb' || key === 'qi'
+        ? stateMspResourceLimit(state.abbr, input.householdSize)
+        : undefined;
+    const assetTestApplied =
+      key !== 'extraHelp' ? stateRules?.assetTest ?? state.assetTest : true;
+    const resourceLimit = !available
+      ? null
+      : assetTestApplied
+        ? stateResource !== undefined
+          ? stateResource
+          : mspResourceLimit(program, input.householdSize)
+        : null;
+    const incomeEligible = available && (
       key === 'extraHelp'
         ? annualIncome <= (incomeLimitAnnual ?? 0)
-        : incomeLimitMonthly !== null && input.monthlyIncome <= incomeLimitMonthly;
+        : incomeLimitMonthly !== null && input.monthlyIncome <= incomeLimitMonthly
+    );
     const assetEligible =
-      resourceLimit === null || input.countableAssets <= resourceLimit;
+      available && (resourceLimit === null || input.countableAssets <= resourceLimit);
     const eligible = incomeEligible && assetEligible;
-    const incomeClose =
+    const incomeClose = available && (
       (incomeLimitMonthly !== null && input.monthlyIncome <= incomeLimitMonthly * 1.1) ||
-      (incomeLimitAnnual !== null && annualIncome <= incomeLimitAnnual * 1.1);
+      (incomeLimitAnnual !== null && annualIncome <= incomeLimitAnnual * 1.1)
+    );
     const assetClose =
-      resourceLimit === null || input.countableAssets <= resourceLimit * 1.1;
+      available && (resourceLimit === null || input.countableAssets <= resourceLimit * 1.1);
     const closeToLimit = incomeClose && assetClose;
 
     let estimatedMonthlyValue = 0;
@@ -132,6 +166,8 @@ export function mspEligibility(input: MspInput): MspResult {
     return {
       key,
       name: program.name,
+      available,
+      stateSpecific: stateRule !== undefined,
       incomeLimitMonthly,
       incomeLimitAnnual,
       resourceLimit,
@@ -143,6 +179,7 @@ export function mspEligibility(input: MspInput): MspResult {
       estimatedMonthlyValue: roundMoney(estimatedMonthlyValue),
       estimatedAnnualValue: roundMoney(estimatedMonthlyValue * 12),
       whatItPays: program.whatItPays,
+      note: stateRule?.note,
     };
   });
 
@@ -175,9 +212,19 @@ export function mspEligibility(input: MspInput): MspResult {
     applyAnyway,
     message:
       likelyPrograms.length > 0
-        ? 'You appear to meet the federal income and resource tests for at least one program. Apply through your state agency because state disregards and rules can change the result.'
+        ? stateRules
+          ? 'You appear to meet the limits used for this state in this version. Apply through your state agency because disregards and rules can change the result.'
+          : 'You appear to meet the federal income and resource tests for at least one program. Apply through your state agency because state disregards and rules can change the result.'
         : applyAnyway
           ? 'You are close to a limit. Apply anyway: some states disregard part of your income, and the agency makes the final decision.'
-          : 'You appear to be over the federal limits in this version. State rules can be more generous, so check with your state agency.',
+          : 'You appear to be over the limits used in this version. State rules can be more generous, so check with your state agency.',
+    stateNote: [
+      stateRules?.note,
+      stateRules && input.householdSize > 2
+        ? 'For households of three or more, this version applies the published FPL percentage and disregard. Confirm the exact figure with the agency.'
+        : undefined,
+    ]
+      .filter((note): note is string => Boolean(note))
+      .join(' ') || undefined,
   };
 }
