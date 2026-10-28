@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cross-env ALLOW_PLACEHOLDERS=1 npm run verify:data && npm run generate:llms && npm run generate:og && npm run verify:tokens && next build && npm run verify:og && npm run verify:seo",
+    "build": "cross-env ALLOW_PLACEHOLDERS=1 npm run verify:data && npm run generate:llms && npm run generate:og && npm run verify:tokens && next build && npm run verify:og && npm run verify:seo && npm run verify:indexing",
     "start": "serve out",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
@@ -26,7 +26,8 @@
     "verify:aeo": "tsx scripts/verify-aeo.ts",
     "verify:features": "tsx scripts/verify-features.ts",
     "verify:log": "tsx scripts/verify-log.ts",
-    "check:all": "npm run verify && npm run verify:tokens && npm run verify:emails && npm run verify:hardcode && npm run verify:keywords && npm run verify:aeo && npm run verify:features && npm run verify:log && npm run verify:guides"
+    "check:all": "npm run verify && npm run verify:tokens && npm run verify:emails && npm run verify:hardcode && npm run verify:keywords && npm run verify:aeo && npm run verify:features && npm run verify:log && npm run verify:guides && npm run verify:indexing",
+    "verify:indexing": "tsx scripts/verify-indexing.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

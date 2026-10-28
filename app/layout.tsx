@@ -3,6 +3,7 @@ import { AnalyticsScript } from '@/components/analytics/analytics-script';
 import { ConsentBanner } from '@/components/consent/consent-banner';
 import { ConsentModeScript } from '@/components/consent/consent-mode-script';
 import { site } from '@/data/site';
+import { isConsentRequired } from '@/lib/consent';
 import { getPrefsInitScript } from '@/lib/prefs';
 import './globals.css';
 
@@ -59,6 +60,10 @@ export const viewport: Viewport = {
 };
 
 const prefsInitScript = getPrefsInitScript();
+const trackingEnabled = isConsentRequired({
+  analyticsDomain: site.analytics.domain,
+  adsEnabled: site.features.ads,
+});
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -74,8 +79,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <ConsentModeScript />
         {children}
-        <AnalyticsScript />
-        <ConsentBanner />
+        {trackingEnabled && <AnalyticsScript />}
+        {trackingEnabled && <ConsentBanner />}
       </body>
     </html>
   );
