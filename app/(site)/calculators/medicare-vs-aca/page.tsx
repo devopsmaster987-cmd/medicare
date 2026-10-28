@@ -31,6 +31,7 @@ import { medicareVsAca } from '@/lib/formulas/medicare-vs-aca';
 import { calculatorSchema } from '@/lib/schema';
 import { formatMoney, formatNumber, formatPercent } from '@/lib/utils';
 import { site } from '@/data/site';
+import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
 const priorYear = figureYears.prior;
@@ -38,8 +39,8 @@ const path = '/calculators/medicare-vs-aca';
 const glossaryTips = glossaryTipsFor(['Creditable coverage', 'Part A', 'Part B', 'HSA']);
 
 export const metadata: Metadata = {
-  title: 'Medicare vs ACA: Medicare or Marketplace at 65?',
-  description: `Medicare vs ACA: compare Medicare and Marketplace paths at 65 using the ${year} 20-employee rule, Part A work credits, HSA rules, and subsidy eligibility.`,
+  title: { absolute: 'Medicare vs ACA: Medicare or Marketplace at 65?' },
+  description: clampMetaDescription( `Medicare vs ACA: compare Medicare and Marketplace paths at 65 using the ${year} 20-employee rule, Part A work credits, HSA rules, and subsidy eligibility.`),
   alternates: { canonical: path },
   openGraph: {
     title: 'Medicare vs ACA: Medicare or Marketplace at 65?',

@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { guides } from '@/content/guides/meta';
 import { glossary, glossarySlug } from '@/data/glossary';
 import { site } from '@/data/site';
-import { dataVerifiedOn } from '@/data/verified';
+import { dataVerifiedOn, figureYears } from '@/data/verified';
 
 export const dynamic = 'force-static';
 
@@ -18,10 +18,14 @@ const calculatorRoutes = [
 const siteRoutes = [
   '/guides',
   '/glossary',
+  `/what-changed-${figureYears.current}`,
+  '/medicare-deadlines',
+  '/scenarios',
   '/about',
   '/contact',
   '/authors/abdul-samad',
   '/methodology',
+  '/verification-log',
   '/editorial-policy',
   '/corrections',
   '/privacy-policy',

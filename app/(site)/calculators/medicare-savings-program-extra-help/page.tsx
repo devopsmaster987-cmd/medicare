@@ -39,6 +39,7 @@ import { mspEligibility } from '@/lib/formulas/msp-eligibility';
 import { calculatorSchema } from '@/lib/schema';
 import { formatMoney, formatNumber, formatPercent } from '@/lib/utils';
 import { site } from '@/data/site';
+import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
 const priorYear = figureYears.prior;
@@ -46,8 +47,8 @@ const path = '/calculators/medicare-savings-program-extra-help';
 const glossaryTips = glossaryTipsFor(['MAGI', 'FPL', 'Countable assets', 'MSP']);
 
 export const metadata: Metadata = {
-  title: `Medicare Savings Program income limits ${year}`,
-  description: `Medicare Savings Program income limits ${year}: check QMB, SLMB, QI, and Extra Help income and asset limits for a single person or a married couple.`,
+  title: { absolute: `Medicare Savings Program income limits ${year}` },
+  description: clampMetaDescription( `Medicare Savings Program income limits ${year}: check QMB, SLMB, QI, and Extra Help income and asset limits for a single person or a married couple.`),
   alternates: { canonical: path },
   openGraph: {
     title: `Medicare Savings Program income limits ${year}`,

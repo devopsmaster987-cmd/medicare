@@ -68,6 +68,34 @@
   --step-bg: rgb(18 38 35 / 70%);
 }
 
+[data-theme="contrast"] {
+  --bg: #000000;
+  --surface: #000000;
+  --surface-strong: #111111;
+  --ink: #ffffff;
+  --ink-soft: #f2f2f2;
+  --primary: #ffe066;
+  --primary-dark: #fff3a3;
+  --primary-soft: #333333;
+  --accent: #ffb000;
+  --accent-soft: #332600;
+  --gold: #ffe066;
+  --line: #ffffff;
+  --focus: #00ffff;
+  --shadow: none;
+  --glow-a: transparent;
+  --glow-b: transparent;
+  --on-primary: #000000;
+  --footer-bg: #000000;
+  --footer-text: #ffffff;
+  --footer-link: #ffe066;
+  --footer-muted: #f2f2f2;
+  --notice-bg: #111111;
+  --notice-border: #ffffff;
+  --notice-text: #ffffff;
+  --step-bg: #111111;
+}
+
 html[data-text-size="a-plus"] {
   font-size: 112.5%;
 }
@@ -595,6 +623,11 @@ a:hover {
 .page-title {
   max-width: 18ch;
   font-size: clamp(2.3rem, 5vw, 3.8rem);
+}
+
+.summary-label {
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .page-lede {

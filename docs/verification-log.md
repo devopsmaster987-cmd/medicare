@@ -103,6 +103,20 @@ Example 2
 - Actual: `penaltyRate: 0.1`, `monthlyPenalty: 20.29`, `totalMonthlyPremium: 223.19`, `tenYearPenalty: 2434.8`.
 - Checked on: 2026-10-26
 
+Example 3 (creditable coverage during the delay)
+- Inputs: 24 months without Part B; employer coverage reported as creditable; no missed Special Enrollment Period.
+- Hand calculation: the published exception is coverage through current employment that is creditable. Those 24 months are excluded, so `monthsCounted` is 0 and the penalty is $0.
+- Expected: no penalty; `monthsCounted: 0`; `monthsExcluded: 24`; `canAvoid` includes the creditable-coverage reason.
+- Actual: `penaltyRate: 0`, `monthlyPenalty: 0`, `monthsCounted: 0`, `monthsExcluded: 24`; `canAvoid` includes `creditableCoverage`.
+- Checked on: 2026-10-28
+
+Example 4 (creditable coverage, but the Special Enrollment Period was missed)
+- Inputs: 24 months without Part B; employer coverage reported as creditable; user reports the Special Enrollment Period was missed.
+- Hand calculation: the coverage exception does not apply after the SEP is missed, so the full 24 months count. Two periods x 10% = 20%. 20% of $202.90 = $40.58.
+- Expected: $40.58 monthly penalty; `monthsCounted: 24`; `monthsExcluded: 0`; `canAvoid` does not include creditable coverage.
+- Actual: `penaltyRate: 0.2`, `monthlyPenalty: 40.58`, `monthsCounted: 24`, `monthsExcluded: 0`.
+- Checked on: 2026-10-28
+
 ## irmaaCalculator
 
 Source: https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles

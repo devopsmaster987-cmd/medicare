@@ -6,6 +6,16 @@ import { root } from './file-walk';
 const out = path.join(root, 'out');
 const errors: string[] = [];
 
+function decodeEntities(value: string): string {
+  return value
+    .replaceAll('&#x27;', "'")
+    .replaceAll('&#39;', "'")
+    .replaceAll('&quot;', '"')
+    .replaceAll('&amp;', '&')
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>');
+}
+
 function walk(directory: string): string[] {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const full = path.join(directory, entry.name);
@@ -32,19 +42,24 @@ for (const file of pages) {
   if (route === '/404/') continue;
 
   const html = fs.readFileSync(file, 'utf8');
-  const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
-  const description = html.match(/name="description" content="([^"]+)"/)?.[1];
+  const rawTitle = html.match(/<title>([^<]+)<\/title>/)?.[1];
+  const rawDescription = html.match(/name="description" content="([^"]+)"/)?.[1];
+  const title = rawTitle ? decodeEntities(rawTitle) : undefined;
+  const description = rawDescription ? decodeEntities(rawDescription) : undefined;
   const canonical = html.match(/rel="canonical" href="([^"]+)"/)?.[1];
   const lang = html.match(/<html[^>]*lang="([^"]+)"/)?.[1];
   const h1Count = (html.match(/<h1[\s>]/g) ?? []).length;
   const schemas = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)];
 
   if (!title) errors.push(`${route}: missing title`);
+  else if (title.length > 60) errors.push(`${route}: title is ${title.length} characters (max 60)`);
   else if (titles.has(title)) errors.push(`${route}: duplicate title shared with ${titles.get(title)}`);
   else titles.set(title, route);
 
   if (!description) errors.push(`${route}: missing meta description`);
-  else if (descriptions.has(description)) {
+  else if (description.length > 160) {
+    errors.push(`${route}: meta description is ${description.length} characters (max 160)`);
+  } else if (descriptions.has(description)) {
     errors.push(`${route}: duplicate meta description shared with ${descriptions.get(description)}`);
   } else descriptions.set(description, route);
 

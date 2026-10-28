@@ -69,7 +69,7 @@ describe('prefs', () => {
     expect(isTheme('light')).toBe(true);
     expect(isTheme('dark')).toBe(true);
     expect(isTheme('hc')).toBe(false);
-    expect(isTheme('contrast')).toBe(false);
+    expect(isTheme('contrast')).toBe(true);
     expect(isTheme(null)).toBe(false);
 
     expect(isTextSize('a')).toBe(true);

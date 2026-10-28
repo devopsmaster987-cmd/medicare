@@ -96,6 +96,26 @@ const sitePages: OgPage[] = [
     kicker: 'Every page in one place',
   },
   {
+    file: 'what-changed-2026.png',
+    title: 'What changed for 2026',
+    kicker: 'Part B, Part D, IRMAA, Part A, and ACA figures beside 2025',
+  },
+  {
+    file: 'medicare-deadlines.png',
+    title: 'Medicare enrollment deadlines',
+    kicker: 'Initial, general, special, annual, HSA, and ACA windows',
+  },
+  {
+    file: 'scenarios.png',
+    title: 'Medicare decisions, worked through',
+    kicker: 'Three common situations with the numbers and next steps',
+  },
+  {
+    file: 'verification-log.png',
+    title: 'Verification log',
+    kicker: 'Hand-worked examples, sources, and checked dates',
+  },
+  {
     file: 'authors/abdul-samad.png',
     title: author.name,
     kicker: 'Independent publisher, Punjab, Pakistan',

@@ -26,6 +26,7 @@ import { irmaaCalculator } from '@/lib/formulas/irmaa';
 import { calculatorSchema } from '@/lib/schema';
 import { formatMoney } from '@/lib/utils';
 import { site } from '@/data/site';
+import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
 const priorYear = figureYears.prior;
@@ -34,8 +35,8 @@ const glossaryTips = glossaryTipsFor(['MAGI', 'IRMAA']);
 const lookbackYear = year - partB2026.lookbackYears;
 
 export const metadata: Metadata = {
-  title: `IRMAA brackets ${year}: Part B and Part D surcharge checker`,
-  description: `IRMAA brackets ${year}: see the single, married, and married-filing-separately thresholds, your Part B and Part D surcharge, and the next cliff.`,
+  title: { absolute: `IRMAA brackets ${year}: Part B and Part D surcharge checker` },
+  description: clampMetaDescription( `IRMAA brackets ${year}: see the single, married, and married-filing-separately thresholds, your Part B and Part D surcharge, and the next cliff.`),
   alternates: { canonical: path },
   openGraph: {
     title: `IRMAA brackets ${year}: Part B and Part D surcharge checker`,

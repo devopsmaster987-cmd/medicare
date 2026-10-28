@@ -1,11 +1,15 @@
 import Link from 'next/link';
 import { CookieSettingsLink } from '@/components/consent/cookie-settings-link';
 import { site } from '@/data/site';
+import { figureYears } from '@/data/verified';
 
 const exploreLinks = [
   { href: '/calculators', label: 'All calculators' },
   { href: '/guides', label: 'Guides' },
   { href: '/glossary', label: 'Medicare glossary' },
+  { href: `/what-changed-${figureYears.current}`, label: `What changed for ${figureYears.current}` },
+  { href: '/medicare-deadlines', label: 'Medicare deadlines' },
+  { href: '/scenarios', label: 'Medicare scenarios' },
   { href: '/sitemap-page', label: 'Sitemap' },
 ];
 
@@ -13,6 +17,7 @@ const aboutLinks = [
   { href: '/about', label: 'About' },
   { href: '/authors/abdul-samad', label: 'Author' },
   { href: '/methodology', label: 'Methodology' },
+  { href: '/verification-log', label: 'Verification log' },
   { href: '/editorial-policy', label: 'Editorial policy' },
   { href: '/corrections', label: 'Corrections' },
 ];

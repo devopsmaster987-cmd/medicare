@@ -18,7 +18,7 @@ import { organizationSchema, websiteSchema } from '@/lib/schema';
 export const metadata: Metadata = {
   title: 'Free Medicare Calculator',
   description:
-    "Use MedicareClear's free Medicare calculator to check Medicare costs, late penalties, IRMAA, Medicare Savings Programs, and ACA choices with dated official sources.",
+    'Free Medicare calculator for costs, late penalties, IRMAA, Medicare Savings Programs, and ACA choices. Every figure links to a dated official source.',
   alternates: { canonical: '/' },
   openGraph: {
     title: 'Free Medicare Calculator',
@@ -234,6 +234,30 @@ export default function HomePage() {
           <p className="stat-note">
             <Link href="/guides">Read all {guides.length} guides</Link>
           </p>
+        </div>
+      </section>
+
+      <section className="section section-tight" id="reference">
+        <div className="wrap">
+          <h2 className="section-heading">Reference shelf</h2>
+          <p className="section-intro">
+            The yearly changes, the enrollment windows, and worked decisions in one place. Each
+            page uses the same dated data as the calculators.
+          </p>
+          <ul className="related-list">
+            <li>
+              <Link href={`/what-changed-${figureYears.current}`}>What changed for {figureYears.current}</Link>
+            </li>
+            <li>
+              <Link href="/medicare-deadlines">Medicare deadlines</Link>
+            </li>
+            <li>
+              <Link href="/scenarios">Medicare scenarios</Link>
+            </li>
+            <li>
+              <Link href="/verification-log">Verification log</Link>
+            </li>
+          </ul>
         </div>
       </section>
 

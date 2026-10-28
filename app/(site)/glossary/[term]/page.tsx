@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: TermPageProps): Promise<Metad
   if (!entry) return {};
 
   return {
-    title: `${entry.term} Definition`,
-    description: `${entry.definition} Read the plain-language definition and see the MedicareClear calculators that use this term.`,
+    title: `${entry.term} definition`,
+    description: `What ${entry.term} means in Medicare and ACA rules, in plain language, with links to the calculators and official sources that use it.`,
     alternates: { canonical: `/glossary/${term}` },
     openGraph: {
       title: `${entry.term} Definition`,

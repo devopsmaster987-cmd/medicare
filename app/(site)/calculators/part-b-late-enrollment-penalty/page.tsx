@@ -27,6 +27,7 @@ import { partBPenaltyCalculator } from '@/lib/formulas/part-b-penalty';
 import { calculatorSchema } from '@/lib/schema';
 import { formatMoney } from '@/lib/utils';
 import { site } from '@/data/site';
+import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
 const priorYear = figureYears.prior;
@@ -34,8 +35,8 @@ const path = '/calculators/part-b-late-enrollment-penalty';
 const glossaryTips = glossaryTipsFor(['Part B', 'SEP', 'Creditable coverage']);
 
 export const metadata: Metadata = {
-  title: `Part B late enrollment penalty calculator (${year})`,
-  description: `Part B late enrollment penalty calculator: see the monthly penalty, total premium, and 10-year and 20-year cost from the ${year} standard premium.`,
+  title: { absolute: `Part B late enrollment penalty calculator (${year})` },
+  description: clampMetaDescription( `Part B late enrollment penalty calculator: see the monthly penalty, total premium, and 10-year and 20-year cost from the ${year} standard premium.`),
   alternates: { canonical: path },
   openGraph: {
     title: `Part B late enrollment penalty calculator (${year})`,

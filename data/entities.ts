@@ -9,6 +9,8 @@ export const organization = {
   location: site.location,
 } as const;
 
+// TODO(owner): add a verified professional background or credential here only if supplied.
+// Do not invent a license, degree, employer, or years of experience.
 export const author = {
   name: site.ownerName,
   slug: 'abdul-samad',

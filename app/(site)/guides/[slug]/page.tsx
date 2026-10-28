@@ -12,8 +12,10 @@ import { ReportError } from '@/components/trust/report-error';
 import { guideBySlug, guideSlugs, resolveGuide } from '@/content/guides/meta';
 import { guideContent } from '@/content/guides/registry';
 import { site } from '@/data/site';
-import { figureYears } from '@/data/verified';
+import { dataVerifiedOn, figureYears } from '@/data/verified';
 import { articleSchema } from '@/lib/schema';
+import { formatDate } from '@/lib/utils';
+import { clampMetaDescription } from '@/lib/seo';
 
 export const dynamicParams = false;
 
@@ -31,11 +33,11 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   if (!guide) return {};
 
   const year = figureYears.current;
-  const title = resolveGuide(guide.title, year);
-  const description = resolveGuide(guide.description, year);
+  const title = resolveGuide(guide.h1, year);
+  const description = clampMetaDescription(resolveGuide(guide.description, year));
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: `/guides/${slug}` },
     openGraph: {
@@ -97,7 +99,9 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <div className="wrap">
           <p className="eyebrow">Guide · {year}</p>
           <h1 className="page-title">{h1}</h1>
-          <p className="page-lede">{guide.summary}</p>
+          <p className="page-lede">
+            <span className="summary-label">In plain language:</span> {guide.summary}
+          </p>
           <LastUpdated />
           <AuthorLine />
         </div>
@@ -106,6 +110,31 @@ export default async function GuidePage({ params }: GuidePageProps) {
       <section className="section section-tight">
         <div className="wrap prose">
           <Content />
+        </div>
+      </section>
+
+      <section className="section section-tight">
+        <div className="wrap">
+          <AdSlot placement="mid-article" />
+        </div>
+      </section>
+
+      <section className="section section-tight">
+        <div className="wrap prose guide-sources-note">
+          <h2>Sources and how we check them</h2>
+          <p>
+            This guide uses figures and rules stored with an official source and a checked date.
+            The hand-worked examples behind the calculators are in the{' '}
+            <Link href="/verification-log">public verification log</Link>. The{' '}
+            <Link href="/methodology">methodology page</Link> explains the boundary tests and the
+            limits of each tool.
+          </p>
+          <p>
+            Last checked against the sources on{' '}
+            <time dateTime={dataVerifiedOn}>{formatDate(dataVerifiedOn)}</time>. If a rule changes
+            after that date, the official source controls. Send a correction to the address on the{' '}
+            <Link href="/contact">contact page</Link>.
+          </p>
         </div>
       </section>
 

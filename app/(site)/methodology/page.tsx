@@ -57,10 +57,52 @@ export default function MethodologyPage() {
         state program is checked at its income and resource limits.
       </p>
       <p>
-        Each formula also has hand-worked examples recorded in the project&apos;s verification log. The
-        examples use published tables or official worked examples where one exists. Where no official
-        worked example exists, the entry says so and shows the hand calculation from the published
-        rule.
+        Each formula also has hand-worked examples recorded in the{' '}
+        <Link href="/verification-log">public verification log</Link>. The examples use published
+        tables or official worked examples where one exists. Where no official worked example
+        exists, the entry says so and shows the hand calculation from the published rule.
+      </p>
+
+      <h2>Boundary checks by formula</h2>
+      <div className="table-scroll">
+        <table className="fact-table">
+          <caption>Examples of the boundary cases in the test suite</caption>
+          <thead>
+            <tr>
+              <th scope="col">Formula</th>
+              <th scope="col">Boundary checked</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Employer affordability</th>
+              <td>The annual premium one cent below, at, and above the income threshold.</td>
+            </tr>
+            <tr>
+              <th scope="row">Medicare Savings Program</th>
+              <td>Income at each program limit and countable assets at the resource limit.</td>
+            </tr>
+            <tr>
+              <th scope="row">Part B late enrollment penalty</th>
+              <td>11 months, 12 months, 23 months, and 24 months, plus creditable coverage.</td>
+            </tr>
+            <tr>
+              <th scope="row">IRMAA</th>
+              <td>Income one dollar below, at, and above each filing-status threshold.</td>
+            </tr>
+            <tr>
+              <th scope="row">Medicare vs ACA</th>
+              <td>19 and 20 employees, 30 and 40 work credits, and active versus retiree coverage.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>How to reproduce a result</h2>
+      <p>
+        Open the <Link href="/verification-log">verification log</Link>, find the formula, and use
+        the inputs in one of the worked examples. The expected result and the actual result are shown
+        side by side. If the code and the log disagree, the log entry is the first place to check.
       </p>
 
       <h2>What the calculators do not cover</h2>

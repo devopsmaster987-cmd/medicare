@@ -33,6 +33,16 @@ export const aca2026 = {
     verifiedOn: dataVerifiedOn,
   } satisfies Money,
   fplYearForSubsidies: 2025,
+  openEnrollment: {
+    startMonth: 11,
+    startDay: 1,
+    endMonth: 1,
+    endDay: 15,
+    year: 2026,
+    source: sources.healthcareOpenEnrollment,
+    verifiedOn: dataVerifiedOn,
+    note: 'The federal Marketplace window generally runs from November 1 through January 15 for coverage in the next year. State marketplaces can use different dates.',
+  },
   subsidyCliffFplPercent: 400,
   enhancedSubsidies: {
     status: 'expired',

@@ -43,6 +43,53 @@ describe('partBPenaltyCalculator', () => {
     expect(result.monthlyPenalty).toBe(20.29);
   });
 
+  it('does not count months covered by creditable coverage', () => {
+    const result = partBPenaltyCalculator({
+      monthsDelayed: 12,
+      hadCreditableCoverage: true,
+    });
+    expect(result.monthsCounted).toBe(0);
+    expect(result.monthsExcluded).toBe(12);
+    expect(result.fullTwelveMonthPeriods).toBe(0);
+    expect(result.monthlyPenalty).toBe(0);
+    expect(result.totalMonthlyPremium).toBe(202.9);
+    expect(result.canAvoid).toBe(true);
+    expect(result.avoidanceNote).toContain('creditable coverage');
+  });
+
+  it('counts months when creditable coverage is reported but the SEP has ended', () => {
+    const result = partBPenaltyCalculator({
+      monthsDelayed: 12,
+      hadCreditableCoverage: true,
+      sepEligible: false,
+    });
+    expect(result.monthsCounted).toBe(12);
+    expect(result.monthsExcluded).toBe(0);
+    expect(result.fullTwelveMonthPeriods).toBe(1);
+    expect(result.monthlyPenalty).toBe(20.29);
+    expect(result.avoidanceNote).toContain('Special Enrollment Period ends');
+  });
+
+  it('keeps the penalty when there was no creditable coverage', () => {
+    const result = partBPenaltyCalculator({
+      monthsDelayed: 12,
+      hadCreditableCoverage: false,
+    });
+    expect(result.monthsCounted).toBe(12);
+    expect(result.monthlyPenalty).toBe(20.29);
+  });
+
+  it('keeps the boundary at 11 and 12 countable months', () => {
+    expect(
+      partBPenaltyCalculator({ monthsDelayed: 11, hadCreditableCoverage: false })
+        .fullTwelveMonthPeriods,
+    ).toBe(0);
+    expect(
+      partBPenaltyCalculator({ monthsDelayed: 12, hadCreditableCoverage: false })
+        .fullTwelveMonthPeriods,
+    ).toBe(1);
+  });
+
   it('rejects negative months', () => {
     expect(() => partBPenaltyCalculator({ monthsDelayed: -1 })).toThrow();
   });

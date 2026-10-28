@@ -73,17 +73,62 @@ export default function AboutPage() {
             complicated rules in original, plain-language content.
           </p>
 
+          <h2>Publisher facts</h2>
+          <div className="table-scroll">
+            <table className="fact-table">
+              <caption>Who publishes MedicareClear</caption>
+              <tbody>
+                <tr>
+                  <th scope="row">Publisher</th>
+                  <td>{site.ownerName}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Location</th>
+                  <td>{site.location}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Role</th>
+                  <td>Independent publisher and researcher</td>
+                </tr>
+                <tr>
+                  <th scope="row">Contact</th>
+                  <td>
+                    <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Funding</th>
+                  <td>Advertising, currently off</td>
+                </tr>
+                <tr>
+                  <th scope="row">US license or agency affiliation</th>
+                  <td>None claimed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <h2>How the calculators are built</h2>
           <p>
             Each figure in the data layer carries a year, an official source link, and the date it
             was checked. The formulas are tested at boundaries, and the worked examples are recorded
-            in the public verification log. When a rule varies by state or depends on a fact we do
-            not have, the page says so instead of guessing.
+            in the <Link href="/verification-log">public verification log</Link>. When a rule varies
+            by state or depends on a fact we do not have, the page says so instead of guessing.
           </p>
           <p>
             Your calculator inputs stay in your browser. The site does not ask for a Social Security
             number, and it does not send the income or asset amounts you type to analytics.
           </p>
+
+          <h2>How the research is done</h2>
+          <ol>
+            <li>Start with the official publication, not a summary from another calculator.</li>
+            <li>Record the figure, the year, the source link, and the date it was checked.</li>
+            <li>Work at least two examples by hand from the published table or worked example.</li>
+            <li>Test the formula one unit below, at, and above each threshold.</li>
+            <li>Publish the result with its limits, and say when a state rule is not covered.</li>
+            <li>Correct the page and the change log when a source changes or a reader finds an error.</li>
+          </ol>
 
           <h2>How the site is funded</h2>
           <p>

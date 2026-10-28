@@ -13,6 +13,8 @@ export type PartBPenaltyInput = {
 export type PartBPenaltyResult = {
   year: number;
   monthsDelayed: number;
+  monthsCounted: number;
+  monthsExcluded: number;
   fullTwelveMonthPeriods: number;
   penaltyRate: number;
   standardPremium: number;
@@ -35,27 +37,35 @@ export function partBPenaltyCalculator(input: PartBPenaltyInput): PartBPenaltyRe
     throw new Error('Standard premium must be zero or greater.');
   }
 
-  const fullTwelveMonthPeriods = Math.floor(
-    input.monthsDelayed / partBPenalty.fullPeriodMonths,
-  );
+  const creditableCoversDelay =
+    input.hadCreditableCoverage === true && input.sepEligible !== false;
+  const monthsCounted = creditableCoversDelay ? 0 : input.monthsDelayed;
+  const monthsExcluded = input.monthsDelayed - monthsCounted;
+  const fullTwelveMonthPeriods = Math.floor(monthsCounted / partBPenalty.fullPeriodMonths);
   const penaltyRate = roundMoney(fullTwelveMonthPeriods * partBPenalty.ratePerFullYear.rate);
   const monthlyPenalty = roundMoney(monthlyStandardPremium * penaltyRate);
   const totalMonthlyPremium = roundMoney(monthlyStandardPremium + monthlyPenalty);
   const annualPenalty = roundMoney(monthlyPenalty * 12);
-  const canAvoid = Boolean(input.sepEligible || input.exceptionApplies);
+  const canAvoid = Boolean(input.sepEligible || input.exceptionApplies || creditableCoversDelay);
 
-  let avoidanceNote = 'A full 12-month delay adds 10% to the standard premium for as long as you have Part B.';
-  if (canAvoid) {
+  let avoidanceNote =
+    'A full 12-month delay adds 10% to the standard premium for as long as you have Part B.';
+  if (creditableCoversDelay) {
+    avoidanceNote =
+      'You reported creditable coverage and did not say your Special Enrollment Period had ended, so those months are not counted here. Keep the written creditable coverage notice. If the Special Enrollment Period had already ended, a penalty can still apply.';
+  } else if (input.hadCreditableCoverage && input.sepEligible === false) {
+    avoidanceNote =
+      'Creditable coverage does not erase a delay after your Special Enrollment Period ends. Those months are counted here. Ask Social Security to confirm the exact dates.';
+  } else if (canAvoid) {
     avoidanceNote =
       'You may be able to avoid the penalty if you qualify for a Special Enrollment Period or an exception. Confirm with Social Security before delaying.';
-  } else if (input.hadCreditableCoverage) {
-    avoidanceNote =
-      'Creditable coverage can help you qualify for a Special Enrollment Period, but it does not erase a delay that already happened. Confirm your dates with Social Security.';
   }
 
   return {
     year: partB2026.year,
     monthsDelayed: input.monthsDelayed,
+    monthsCounted,
+    monthsExcluded,
     fullTwelveMonthPeriods,
     penaltyRate,
     standardPremium: monthlyStandardPremium,

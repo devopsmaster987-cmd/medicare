@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 import { dataVerifiedOn } from '@/data/verified';
 import { formatDate } from '@/lib/utils';
 import { JsonLd } from '@/components/seo/json-ld';
@@ -78,6 +79,9 @@ export function WhatChanged({
           </tbody>
         </table>
       </div>
+      <p className="stat-note">
+        <Link href={`/what-changed-${year}`}>See every figure that changed for {year}</Link>
+      </p>
     </section>
   );
 }
@@ -126,6 +130,9 @@ export function SourceTable({
           </tbody>
         </table>
       </div>
+      <p className="stat-note">
+        <Link href="/verification-log">See the hand-worked examples in the verification log</Link>
+      </p>
     </section>
   );
 }

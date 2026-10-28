@@ -8,7 +8,7 @@ export function AdSenseScript() {
   return (
     <Script
       id="adsense-script"
-      strategy="beforeInteractive"
+      strategy="afterInteractive"
       crossOrigin="anonymous"
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}`}
     />

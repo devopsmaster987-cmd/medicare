@@ -27,6 +27,7 @@ import { employerAffordability } from '@/lib/formulas/employer-affordability';
 import { calculatorSchema } from '@/lib/schema';
 import { formatDate, formatMoney, formatNumber, formatPercent } from '@/lib/utils';
 import { site } from '@/data/site';
+import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
 const priorYear = figureYears.prior;
@@ -34,8 +35,8 @@ const path = '/calculators/employer-coverage-affordability';
 const glossaryTips = glossaryTipsFor(['Household income', 'W-2 wages', 'Minimum value', 'Affordability percentage']);
 
 export const metadata: Metadata = {
-  title: `Is employer health insurance affordable ${year}?`,
-  description: `Is employer health insurance affordable ${year}? Check the employee-only premium against the ${formatPercent(irs2026.employerAffordabilityPercentage.rate)} income test and the family glitch rule with dated IRS sources.`,
+  title: { absolute: `Is employer health insurance affordable ${year}?` },
+  description: clampMetaDescription( `Is employer health insurance affordable ${year}? Check the employee-only premium against the ${formatPercent(irs2026.employerAffordabilityPercentage.rate)} income test and the family glitch rule with dated IRS sources.`),
   alternates: { canonical: path },
   openGraph: {
     title: `Is employer health insurance affordable ${year}?`,

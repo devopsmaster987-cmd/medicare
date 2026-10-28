@@ -1,4 +1,3 @@
-import Script from 'next/script';
 import { site } from '@/data/site';
 import { isConsentRequired } from '@/lib/consent';
 
@@ -21,8 +20,9 @@ window.gtag('consent', 'default', {
 export function ConsentModeScript() {
   if (!required) return null;
   return (
-    <Script id="consent-mode-v2" strategy="beforeInteractive">
-      {consentDefault}
-    </Script>
+    <script
+      id="consent-mode-v2"
+      dangerouslySetInnerHTML={{ __html: consentDefault }}
+    />
   );
 }

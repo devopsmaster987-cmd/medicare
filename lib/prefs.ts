@@ -1,7 +1,7 @@
 export const THEME_KEY = 'medicareclear-theme';
 export const TEXT_SIZE_KEY = 'medicareclear-text-size';
 
-export const THEMES = ['light', 'dark'] as const;
+export const THEMES = ['light', 'dark', 'contrast'] as const;
 export const TEXT_SIZES = ['a', 'a-plus', 'a-plus-plus'] as const;
 
 export type Theme = (typeof THEMES)[number];

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { LegalPage } from '@/components/site/legal-page';
 import { site } from '@/data/site';
-import { dataVerifiedOn } from '@/data/verified';
+import { dataVerifiedOn, figureYears } from '@/data/verified';
 import { formatDate } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -33,13 +33,37 @@ export const metadata: Metadata = {
 const changes = [
   {
     date: dataVerifiedOn,
+    title: 'Public verification log published',
+    detail:
+      'Added a public log with hand-worked examples, official source links, expected results, actual results, and the date checked for all five formulas.',
+  },
+  {
+    date: dataVerifiedOn,
+    title: 'Guide content audit',
+    detail:
+      'Rewrote repeated section headings, removed a duplicated SSA-44 denial paragraph, and tightened repeated caveats across the guide library.',
+  },
+  {
+    date: dataVerifiedOn,
+    title: 'Part B creditable coverage fix',
+    detail:
+      'The Part B penalty calculator now excludes months covered by creditable coverage when the user reports it, and explains when a missed Special Enrollment Period still counts.',
+  },
+  {
+    date: dataVerifiedOn,
+    title: 'Reference pages published',
+    detail:
+      `Published the ${figureYears.current} change summary, the Medicare deadlines reference, three worked scenarios, and the verification log.`,
+  },
+  {
+    date: dataVerifiedOn,
     title: 'Calculator source review',
     detail:
       'Reviewed the current-year figures, source links, and worked examples for the five calculator pages.',
   },
   {
     date: dataVerifiedOn,
-    title: 'Reference pages published',
+    title: 'Owner and policy pages published',
     detail:
       'Published the glossary, owner and policy pages, and the human-readable sitemap. The source-linked calculators remain the primary tools.',
   },

@@ -80,7 +80,10 @@ function mdxHeadings(text: string): string[] {
 }
 
 function metadataValue(text: string, key: 'title' | 'description'): string {
-  const pattern = new RegExp(`${key}:\\s*(?:'([^']*)'|"([^"]*)"|\`([^\`]*)\`)`, 'i');
+  const pattern = new RegExp(
+    `${key}:\\s*(?:clampMetaDescription\\(\\s*)?(?:'([^']*)'|"([^"]*)"|\`([^\`]*)\`)`,
+    'i',
+  );
   const match = text.match(pattern);
   return match?.[1] ?? match?.[2] ?? match?.[3] ?? '';
 }

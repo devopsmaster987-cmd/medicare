@@ -96,15 +96,17 @@ export function PartBPenaltyCalculator({ tips }: { tips: Record<string, Glossary
   }, [parsed.data, alternateMonths, values.alternateMonths]);
 
   const verdict = result
-    ? result.fullTwelveMonthPeriods === 0
-      ? 'No full-year penalty yet'
-      : result.canAvoid
-        ? 'Possible path to avoid the penalty'
-        : 'Penalty applies'
+    ? result.monthsCounted === 0 && result.monthsDelayed > 0
+      ? 'No penalty counted'
+      : result.fullTwelveMonthPeriods === 0
+        ? 'No full-year penalty yet'
+        : result.canAvoid
+          ? 'Possible path to avoid the penalty'
+          : 'Penalty applies'
     : 'Enter your details';
 
   const reportSummary = result
-    ? `Part B late enrollment penalty (${result.year}). Months delayed: ${result.monthsDelayed}. Full 12-month periods: ${result.fullTwelveMonthPeriods}. Monthly penalty: ${formatMoney(result.monthlyPenalty)}. Total monthly premium: ${formatMoney(result.totalMonthlyPremium)}. 10-year penalty total: ${formatMoney(result.tenYearPenalty)}. 20-year penalty total: ${formatMoney(result.twentyYearPenalty)}.`
+    ? `Part B late enrollment penalty (${result.year}). Months without Part B: ${result.monthsDelayed}. Months counted: ${result.monthsCounted}. Full 12-month periods: ${result.fullTwelveMonthPeriods}. Monthly penalty: ${formatMoney(result.monthlyPenalty)}. Total monthly premium: ${formatMoney(result.totalMonthlyPremium)}. 10-year penalty total: ${formatMoney(result.tenYearPenalty)}. 20-year penalty total: ${formatMoney(result.twentyYearPenalty)}.`
     : 'No result yet.';
 
   return (
@@ -116,9 +118,9 @@ export function PartBPenaltyCalculator({ tips }: { tips: Record<string, Glossary
             <p className="calculator-kicker">Your inputs</p>
             <h2 id="calculator-title">Check the Part B penalty</h2>
             <p>
-              Count only months you delayed Part B after your first chance to enroll and did not
-              have qualifying coverage. Results update as you type. Your inputs stay in the page
-              address after the hash.
+              Enter the months you went without Part B after your first chance to enroll. If you
+              had creditable coverage, say so below and those months are not counted. Results
+              update as you type. Your inputs stay in the page address after the hash.
             </p>
           </div>
 
@@ -129,7 +131,7 @@ export function PartBPenaltyCalculator({ tips }: { tips: Record<string, Glossary
             onChange={(value) => update('months', value)}
             min={0}
             max={600}
-            hint="Only full 12-month periods count. A delay of 11 months adds no full-year penalty."
+            hint="Enter every month without Part B. If you had creditable coverage, tell us below and those months are not counted."
             error={parsed.monthsError}
           />
           <div className="field-glossary">
@@ -177,7 +179,7 @@ export function PartBPenaltyCalculator({ tips }: { tips: Record<string, Glossary
           </div>
           <p className="sr-only" role="status" aria-live="polite">
             {result
-              ? `${verdict}. Monthly penalty ${formatMoney(result.monthlyPenalty)}. Total monthly premium ${formatMoney(result.totalMonthlyPremium)}.`
+              ? `${verdict}. Months counted ${result.monthsCounted}. Monthly penalty ${formatMoney(result.monthlyPenalty)}. Total monthly premium ${formatMoney(result.totalMonthlyPremium)}.`
               : 'Enter the months without Part B to see the result.'}
           </p>
 
@@ -193,9 +195,11 @@ export function PartBPenaltyCalculator({ tips }: { tips: Record<string, Glossary
                 {verdict}
               </div>
               <p className="result-copy">
-                {result.fullTwelveMonthPeriods === 0
-                  ? 'Your delay does not include a full 12-month period, so this estimate adds no Part B penalty.'
-                  : `Each full 12-month period adds 10% of the standard premium. Your estimate adds ${formatMoney(result.monthlyPenalty)} a month to the ${formatMoney(result.standardPremium)} standard premium.`}
+                {result.monthsCounted === 0 && result.monthsDelayed > 0
+                  ? `You reported ${result.monthsDelayed} months without Part B and creditable coverage during that time, so those months are not counted in this estimate. Keep the written notice. If your Special Enrollment Period had already ended, the penalty can still apply.`
+                  : result.fullTwelveMonthPeriods === 0
+                    ? 'Your delay does not include a full 12-month period, so this estimate adds no Part B penalty.'
+                    : `Each full 12-month period adds 10% of the standard premium. Your estimate adds ${formatMoney(result.monthlyPenalty)} a month to the ${formatMoney(result.standardPremium)} standard premium.`}
               </p>
 
               <div className="result-card-grid">
@@ -234,6 +238,10 @@ export function PartBPenaltyCalculator({ tips }: { tips: Record<string, Glossary
                         <td>{formatMoney(result.twentyYearPenalty)}</td>
                       </tr>
                       <tr>
+                        <th scope="row">Months counted</th>
+                        <td>{result.monthsCounted}</td>
+                      </tr>
+                      <tr>
                         <th scope="row">Full 12-month periods</th>
                         <td>{result.fullTwelveMonthPeriods}</td>
                       </tr>
@@ -250,19 +258,27 @@ export function PartBPenaltyCalculator({ tips }: { tips: Record<string, Glossary
                 <h3>Can you avoid it?</h3>
                 <p>{result.avoidanceNote}</p>
                 <p>
-                  {values.creditable === 'yes'
-                    ? 'You indicated creditable coverage. Keep the plan notice that confirms it and the exact start and end dates.'
-                    : values.creditable === 'no'
-                      ? 'You indicated no creditable coverage. That usually means the delay counts toward the penalty, but an exception may still change the result.'
-                      : 'Creditable coverage is not confirmed. Ask the plan for a written creditable coverage notice before you rely on this result.'}
+                  {values.creditable === 'yes' && values.sep !== 'no'
+                    ? 'You indicated creditable coverage and did not say the Special Enrollment Period had ended. That is why those months are not counted. Keep the plan notice that confirms the coverage and the exact start and end dates.'
+                    : values.creditable === 'yes' && values.sep === 'no'
+                      ? 'You indicated creditable coverage but also said the Special Enrollment Period had ended. Creditable coverage alone does not erase a delay after that window, so the months are counted.'
+                      : values.creditable === 'no'
+                        ? 'You indicated no creditable coverage. That usually means the delay counts toward the penalty, but an exception may still change the result.'
+                        : 'Creditable coverage is not confirmed. Ask the plan for a written creditable coverage notice before you rely on this result.'}
                 </p>
               </div>
 
               <ShowMath>
                 <ul>
+                  <li>Months without Part B: {result.monthsDelayed}.</li>
+                  {result.monthsExcluded > 0 ? (
+                    <li>
+                      Months excluded because of creditable coverage: {result.monthsExcluded}.
+                    </li>
+                  ) : null}
                   <li>
-                    Full 12-month periods: {result.monthsDelayed} months ÷{' '}
-                    {penaltyRule.fullPeriodMonths} = {result.fullTwelveMonthPeriods} full periods.
+                    Countable months: {result.monthsCounted} ÷ {penaltyRule.fullPeriodMonths} ={' '}
+                    {result.fullTwelveMonthPeriods} full periods.
                   </li>
                   <li>
                     Penalty rate: {result.fullTwelveMonthPeriods} × 10% ={' '}

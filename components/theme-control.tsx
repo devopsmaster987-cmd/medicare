@@ -16,6 +16,7 @@ const useIsomorphicLayoutEffect =
 const themes: Array<{ value: Theme; label: string; aria: string }> = [
   { value: 'light', label: 'L', aria: 'L light theme' },
   { value: 'dark', label: 'D', aria: 'D dark theme' },
+  { value: 'contrast', label: 'H', aria: 'H high-contrast theme' },
 ];
 
 export function ThemeControl() {

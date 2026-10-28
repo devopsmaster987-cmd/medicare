@@ -10,7 +10,7 @@ import { figureYears } from '@/data/verified';
 export const metadata: Metadata = {
   title: 'Medicare and ACA guides',
   description:
-    'Plain-language guides to the rules behind the calculators: IRMAA appeals, Roth conversions, HSA timing, Part A backdating, the 400% poverty line, and the family glitch fix.',
+    'Plain-language guides to IRMAA, Roth conversions, HSA timing, Part A backdating, Marketplace income, and the family glitch fix.',
   alternates: { canonical: '/guides' },
   openGraph: {
     title: 'Medicare and ACA guides',

@@ -86,6 +86,41 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
             sources, corrections, and advertising are handled.
           </p>
 
+          <h2>Publisher facts</h2>
+          <div className="table-scroll">
+            <table className="fact-table">
+              <caption>Verified publisher details</caption>
+              <tbody>
+                <tr>
+                  <th scope="row">Name</th>
+                  <td>{author.name}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Location</th>
+                  <td>{author.location}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Role</th>
+                  <td>Independent publisher and researcher</td>
+                </tr>
+                <tr>
+                  <th scope="row">Professional credentials</th>
+                  <td>None claimed</td>
+                </tr>
+                <tr>
+                  <th scope="row">US license or agency affiliation</th>
+                  <td>None claimed</td>
+                </tr>
+                <tr>
+                  <th scope="row">Contact</th>
+                  <td>
+                    <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <h2>What the publisher makes</h2>
           <p>
             The calculators cover employer coverage affordability, Medicare Savings Programs, Part B
@@ -95,6 +130,19 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
           <p>
             The writing aims to be useful before it is comprehensive. A page should help a reader
             understand a cost, a deadline, or the next official step without a sales call.
+          </p>
+
+          <h2>How the work is checked</h2>
+          <p>
+            A figure is not published until it has an official source, a checked date, and a
+            hand-worked example. The examples are listed in the{' '}
+            <Link href="/verification-log">verification log</Link>, and the testing approach is
+            described on the <Link href="/methodology">methodology page</Link>.
+          </p>
+          <p>
+            The publisher does not claim a US insurance license, tax credential, legal credential,
+            medical credential, or government affiliation. The site provides general information,
+            not advice for an individual situation.
           </p>
 
           <h2>Contact</h2>

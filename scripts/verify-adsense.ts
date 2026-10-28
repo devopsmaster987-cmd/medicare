@@ -14,7 +14,9 @@ const cookies = fs.readFileSync(
   'utf8',
 );
 const publisher = site.integrations.adsensePublisherId;
-const adsRequested = process.env.NEXT_PUBLIC_ADS_ENABLED === 'true';
+const adsRequested =
+  process.env.NEXT_PUBLIC_ADS_ENABLED?.trim() === 'true' ||
+  process.env.ADS_ENABLED?.trim() === 'true';
 
 if (adsRequested && !site.features.ads) {
   errors.push(
@@ -51,7 +53,9 @@ if (site.features.ads) {
     errors.push('cookie policy does not mention AdSense');
   }
 } else {
-  warnings.push('ads are off; set NEXT_PUBLIC_ADS_ENABLED=true and the AdSense IDs to enable them');
+  warnings.push(
+    'ads are off; set ADS_ENABLED=true (or NEXT_PUBLIC_ADS_ENABLED=true) and the AdSense client and slot IDs to enable them',
+  );
   if (publisher) warnings.push('a publisher ID is set but ads are disabled');
 }
 

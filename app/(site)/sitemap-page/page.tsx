@@ -55,7 +55,11 @@ const siteLinks = [
   { href: '/contact', label: 'Contact' },
   { href: '/authors/abdul-samad', label: 'Author: Abdul Samad' },
   { href: '/glossary', label: 'Medicare glossary' },
+  { href: `/what-changed-${figureYears.current}`, label: `What changed for ${figureYears.current}` },
+  { href: '/medicare-deadlines', label: 'Medicare deadlines' },
+  { href: '/scenarios', label: 'Medicare scenarios' },
   { href: '/methodology', label: 'Methodology' },
+  { href: '/verification-log', label: 'Verification log' },
   { href: '/editorial-policy', label: 'Editorial policy' },
   { href: '/corrections', label: 'Corrections and change log' },
 ];
