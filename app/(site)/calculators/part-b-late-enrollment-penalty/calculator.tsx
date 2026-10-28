@@ -24,11 +24,11 @@ import { formatMoney } from '@/lib/utils';
 const path = '/calculators/part-b-late-enrollment-penalty';
 
 const defaults = {
-  months: '24',
+  months: '',
   creditable: 'yes',
   sep: 'not-sure',
   exception: 'no',
-  alternateMonths: '12',
+  alternateMonths: '',
 };
 
 const yesNoOptions = [
@@ -55,6 +55,9 @@ export function PartBPenaltyCalculator({ tips }: { tips: Record<string, Glossary
   const { values, update } = useHashState(defaults);
 
   const parsed = useMemo(() => {
+    if (values.months.trim() === '') {
+      return { data: null, monthsError: '' };
+    }
     const months = Number(values.months);
     const result = partBPenaltySchema.safeParse({
       monthsDelayed: months,

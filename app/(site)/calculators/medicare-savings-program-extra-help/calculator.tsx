@@ -24,9 +24,9 @@ const path = '/calculators/medicare-savings-program-extra-help';
 const defaults = {
   state: 'TX',
   householdSize: '1',
-  income: '1350',
-  assets: '9000',
-  alternateIncome: '2500',
+  income: '',
+  assets: '',
+  alternateIncome: '',
 };
 
 const householdOptions = Array.from({ length: 12 }, (_, index) => {

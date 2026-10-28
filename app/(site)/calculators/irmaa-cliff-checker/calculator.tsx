@@ -25,9 +25,9 @@ const path = '/calculators/irmaa-cliff-checker';
 
 const defaults = {
   filing: 'single',
-  magi: '110000',
-  projected: '130000',
-  alternateProjected: '150000',
+  magi: '',
+  projected: '',
+  alternateProjected: '',
 };
 
 const filingOptions = [
@@ -168,7 +168,7 @@ export function IrmaaCalculator({ tips }: { tips: Record<string, GlossaryTipEntr
                 monthly surcharge is <strong>{formatMoney(result.monthlySurcharge)}</strong>.
               </p>
 
-              <div className="result-card-grid">
+              <div className="result-card-grid result-card-grid--four">
                 <div className="result-card">
                   <span>Monthly Part B</span>
                   <strong>{formatMoney(result.monthlyPartB)}</strong>

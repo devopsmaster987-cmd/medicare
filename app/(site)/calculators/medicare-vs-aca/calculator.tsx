@@ -15,7 +15,6 @@ import { contactByKey } from '@/data/contacts';
 import type { GlossaryTipEntry } from '@/data/glossary';
 import { partA2026 } from '@/data/medicare-part-a';
 import { partB2026 } from '@/data/medicare-part-b';
-import { figureYears } from '@/data/verified';
 import type { CoverageType } from '@/lib/formulas/medicare-vs-aca';
 import { medicareVsAca } from '@/lib/formulas/medicare-vs-aca';
 import { medicareVsAcaSchema } from '@/lib/validation';
@@ -23,18 +22,16 @@ import { useHashState } from '@/lib/use-hash-state';
 import { formatDate, formatMoney } from '@/lib/utils';
 
 const path = '/calculators/medicare-vs-aca';
-const year = figureYears.current;
-
 const defaults = {
-  age: '65',
+  age: '',
   coverage: 'active',
-  employerSize: '25',
+  employerSize: '',
   creditable: 'yes',
   hsa: 'no',
   credits: '40',
-  turning65: `${year}-06`,
+  turning65: '',
   coverageEnd: '',
-  alternateAge: '63',
+  alternateAge: '',
 };
 
 const coverageOptions = [
@@ -107,6 +104,9 @@ export function MedicareVsAcaCalculator({ tips }: { tips: Record<string, Glossar
   const { values, update } = useHashState(defaults);
 
   const parsed = useMemo(() => {
+    if (values.age.trim() === '') {
+      return { data: null, ageError: '', employerError: '' };
+    }
     const age = Number(values.age);
     const employerSize =
       values.employerSize.trim() === '' ? undefined : Number(values.employerSize);
@@ -320,7 +320,7 @@ export function MedicareVsAcaCalculator({ tips }: { tips: Record<string, Glossar
                 estimate is <strong>{formatMoney(result.annualMedicarePremiumEstimate)}</strong>.
               </p>
 
-              <div className="result-card-grid">
+              <div className="result-card-grid result-card-grid--four">
                 <div className="result-card">
                   <span>Part A status</span>
                   <strong>{partALabel}</strong>

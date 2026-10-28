@@ -26,12 +26,12 @@ import { formatMoney, formatPercent } from '@/lib/utils';
 const path = '/calculators/employer-coverage-affordability';
 
 const defaults = {
-  income: '30000',
-  premium: '200',
-  familyPremium: '600',
+  income: '',
+  premium: '',
+  familyPremium: '',
   frequency: 'monthly',
   minValue: 'unknown',
-  alternateIncome: '40000',
+  alternateIncome: '',
 };
 
 const frequencyOptions = [
