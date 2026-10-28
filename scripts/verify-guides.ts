@@ -8,6 +8,19 @@ import { root, relative } from './file-walk';
 const errors: string[] = [];
 const year = figureYears.current;
 const minimumWords = 1200;
+const cornerstoneMinimumWords = 1500;
+const cornerstoneSlugs = new Set([
+  'ssa-44-form-irmaa-appeal',
+  'how-to-lower-irmaa',
+  'roth-conversion-irmaa',
+  'what-income-counts-for-marketplace-subsidies',
+  'irmaa-married-filing-separately',
+  'hsa-and-medicare-6-month-rule',
+  'medicare-part-a-backdate',
+  '400-fpl-subsidy-cliff',
+  'part-d-out-of-pocket-cap',
+  'family-glitch-fix-explained',
+]);
 
 function stripMdx(text: string): string {
   let output = text
@@ -36,8 +49,11 @@ for (const guide of guides) {
   const resolved = source.replaceAll('{year}', String(year));
   const visible = stripMdx(resolved);
   const words = visible.split(/\s+/).filter(Boolean).length;
-  if (words < minimumWords) {
-    errors.push(`${label}: ${words} visible words (minimum ${minimumWords})`);
+  const requiredWords = cornerstoneSlugs.has(guide.slug)
+    ? cornerstoneMinimumWords
+    : minimumWords;
+  if (words < requiredWords) {
+    errors.push(`${label}: ${words} visible words (minimum ${requiredWords})`);
   }
 
   const faqCount = (source.match(/question:/g) ?? []).length;
@@ -81,4 +97,6 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`verify:guides passed (${guides.length} guides, minimum ${minimumWords} words)`);
+console.log(
+  `verify:guides passed (${guides.length} guides; ${cornerstoneSlugs.size} cornerstone guides at ${cornerstoneMinimumWords}+ words; all guides at ${minimumWords}+ words)`,
+);

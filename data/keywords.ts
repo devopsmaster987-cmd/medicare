@@ -354,24 +354,54 @@ export const keywords: Keyword[] = [
     page: '/guides/ssa-44-form-irmaa-appeal',
     headingLevel: 2,
   },
+  {
+    keyword: 'how long does ssa 44 take',
+    role: 'secondary',
+    page: '/guides/ssa-44-form-irmaa-appeal',
+    headingLevel: 2,
+  },
   { keyword: 'ssa 44 form pdf', role: 'faq', page: '/guides/ssa-44-form-irmaa-appeal' },
 
   { keyword: 'how to lower irmaa', role: 'primary', page: '/guides/how-to-lower-irmaa' },
   { keyword: 'how much can you earn before irmaa', role: 'faq', page: '/guides/how-to-lower-irmaa' },
+  {
+    keyword: 'can you lower irmaa after retirement',
+    role: 'secondary',
+    page: '/guides/how-to-lower-irmaa',
+    headingLevel: 2,
+  },
   { keyword: 'how to avoid irmaa', role: 'synonym', page: '/guides/how-to-lower-irmaa' },
 
   { keyword: 'roth conversion irmaa', role: 'primary', page: '/guides/roth-conversion-irmaa' },
+  {
+    keyword: 'how much roth conversion before irmaa',
+    role: 'secondary',
+    page: '/guides/roth-conversion-irmaa',
+    headingLevel: 2,
+  },
 
   {
     keyword: 'what income is used for marketplace subsidies',
     role: 'primary',
     page: '/guides/what-income-counts-for-marketplace-subsidies',
   },
+  {
+    keyword: 'marketplace magi vs taxable income',
+    role: 'secondary',
+    page: '/guides/what-income-counts-for-marketplace-subsidies',
+    headingLevel: 2,
+  },
 
   {
     keyword: 'does irmaa apply to married filing separately',
     role: 'primary',
     page: '/guides/irmaa-married-filing-separately',
+  },
+  {
+    keyword: 'married filing separately irmaa thresholds',
+    role: 'secondary',
+    page: '/guides/irmaa-married-filing-separately',
+    headingLevel: 2,
   },
 
   {
@@ -381,6 +411,12 @@ export const keywords: Keyword[] = [
   },
   {
     keyword: 'can i contribute to an hsa after 65',
+    role: 'secondary',
+    page: '/guides/hsa-and-medicare-6-month-rule',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'hsa contributions after medicare enrollment',
     role: 'secondary',
     page: '/guides/hsa-and-medicare-6-month-rule',
     headingLevel: 2,
@@ -397,6 +433,12 @@ export const keywords: Keyword[] = [
     page: '/guides/medicare-part-a-backdate',
     headingLevel: 2,
   },
+  {
+    keyword: 'part a backdate effective date',
+    role: 'secondary',
+    page: '/guides/medicare-part-a-backdate',
+    headingLevel: 2,
+  },
 
   {
     keyword: '400 fpl subsidy cliff {year}',
@@ -405,6 +447,12 @@ export const keywords: Keyword[] = [
   },
   {
     keyword: 'aca subsidy cliff extension {year}',
+    role: 'secondary',
+    page: '/guides/400-fpl-subsidy-cliff',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'aca subsidy income limit {year}',
     role: 'secondary',
     page: '/guides/400-fpl-subsidy-cliff',
     headingLevel: 2,
@@ -422,6 +470,12 @@ export const keywords: Keyword[] = [
     headingLevel: 2,
   },
   {
+    keyword: 'does part d out of pocket cap include premiums',
+    role: 'secondary',
+    page: '/guides/part-d-out-of-pocket-cap',
+    headingLevel: 2,
+  },
+  {
     keyword: 'medicare part d out of pocket cap {year}',
     role: 'synonym',
     page: '/guides/part-d-out-of-pocket-cap',
@@ -431,6 +485,12 @@ export const keywords: Keyword[] = [
     keyword: 'family glitch fix explained {year}',
     role: 'primary',
     page: '/guides/family-glitch-fix-explained',
+  },
+  {
+    keyword: 'family glitch fix and premium tax credits',
+    role: 'secondary',
+    page: '/guides/family-glitch-fix-explained',
+    headingLevel: 2,
   },
 
   {
