@@ -14,6 +14,13 @@ const cookies = fs.readFileSync(
   'utf8',
 );
 const publisher = site.integrations.adsensePublisherId;
+const adsRequested = process.env.NEXT_PUBLIC_ADS_ENABLED === 'true';
+
+if (adsRequested && !site.features.ads) {
+  errors.push(
+    'NEXT_PUBLIC_ADS_ENABLED is true but the AdSense publisher ID or slot ID is missing',
+  );
+}
 
 if (site.siteUrlIsPlaceholder) {
   const message = 'siteUrl is still the example domain; set NEXT_PUBLIC_SITE_URL before launch';

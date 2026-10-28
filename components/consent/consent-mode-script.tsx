@@ -21,7 +21,7 @@ window.gtag('consent', 'default', {
 export function ConsentModeScript() {
   if (!required) return null;
   return (
-    <Script id="consent-mode-v2" strategy="afterInteractive">
+    <Script id="consent-mode-v2" strategy="beforeInteractive">
       {consentDefault}
     </Script>
   );

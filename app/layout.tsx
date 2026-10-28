@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { AdSenseScript } from '@/components/ads/adsense-script';
 import { AnalyticsScript } from '@/components/analytics/analytics-script';
 import { ConsentBanner } from '@/components/consent/consent-banner';
 import { ConsentModeScript } from '@/components/consent/consent-mode-script';
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         <ConsentModeScript />
+        <AdSenseScript />
         {children}
         {trackingEnabled && <AnalyticsScript />}
         {trackingEnabled && <ConsentBanner />}
