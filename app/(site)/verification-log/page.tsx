@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'Verification log',
   description:
     'Hand-worked examples for every MedicareClear formula, with the official source, expected result, actual result, and the date checked.',
-  alternates: { canonical: '/verification-log' },
+  alternates: { canonical: '/verification-log/' },
   openGraph: {
     title: 'MedicareClear verification log',
     description:
       'Hand-worked examples for every MedicareClear formula, with the official source and the date checked.',
-    url: '/verification-log',
+    url: '/verification-log/',
     images: [
       {
         url: '/og/verification-log.png',
@@ -35,7 +35,7 @@ export default function VerificationLogPage() {
   return (
     <LegalPage
       title="Verification log"
-      path="/verification-log"
+      path="/verification-log/"
       eyebrow="How we check the math"
       lede="Every formula is worked by hand against the official rule before it ships. This page shows the source, the expected result, the result the code produced, and the date checked."
     >
@@ -47,7 +47,7 @@ export default function VerificationLogPage() {
       <p>
         The current data year is {dataVerifiedOn.slice(0, 4)}. Every entry below was last checked on{' '}
         <time dateTime={dataVerifiedOn}>{formatDate(dataVerifiedOn)}</time>. The{' '}
-        <Link href="/methodology">methodology page</Link> explains the boundary tests and known
+        <Link href="/methodology/">methodology page</Link> explains the boundary tests and known
         limits.
       </p>
 
@@ -134,7 +134,7 @@ export default function VerificationLogPage() {
         If an entry is wrong or a source has changed, email{' '}
         <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> with the formula name, the
         example label, and the official source you used. The{' '}
-        <Link href="/corrections">corrections page</Link> explains what happens next. The site owner
+        <Link href="/corrections/">corrections page</Link> explains what happens next. The site owner
         usually replies in {site.responseTime}.
       </p>
     </LegalPage>

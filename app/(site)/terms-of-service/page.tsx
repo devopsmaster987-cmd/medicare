@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
     'The terms that apply when you use MedicareClear calculators, guides, and other pages.',
-  alternates: { canonical: '/terms-of-service' },
+  alternates: { canonical: '/terms-of-service/' },
   openGraph: {
     title: 'Terms of Service',
     description:
       'The terms that apply when you use MedicareClear calculators, guides, and other pages.',
-    url: '/terms-of-service',
+    url: '/terms-of-service/',
     images: [
       {
         url: '/og/terms-of-service.png',
@@ -32,7 +32,7 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="Terms of Service"
-      path="/terms-of-service"
+      path="/terms-of-service/"
       eyebrow="Terms"
       lede="These terms explain the basis for using MedicareClear. By using the site, you agree to them."
     >
@@ -105,8 +105,8 @@ export default function TermsPage() {
       <p>
         Questions about these terms can be sent to{' '}
         <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>. Read the{' '}
-        <Link href="/disclaimer">disclaimer</Link> and{' '}
-        <Link href="/privacy-policy">privacy policy</Link> for more detail.
+        <Link href="/disclaimer/">disclaimer</Link> and{' '}
+        <Link href="/privacy-policy/">privacy policy</Link> for more detail.
       </p>
     </LegalPage>
   );

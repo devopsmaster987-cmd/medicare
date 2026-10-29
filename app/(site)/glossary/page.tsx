@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'Medicare Glossary',
   description:
     'Plain-language definitions for Medicare, ACA, IRMAA, Medicare Savings Program, and enrollment terms used across MedicareClear calculators.',
-  alternates: { canonical: '/glossary' },
+  alternates: { canonical: '/glossary/' },
   openGraph: {
     title: 'Medicare Glossary',
     description:
       'Plain-language definitions for Medicare, ACA, IRMAA, Medicare Savings Program, and enrollment terms.',
-    url: '/glossary',
+    url: '/glossary/',
     images: [
       {
         url: '/og/glossary.png',
@@ -46,7 +46,7 @@ export default function GlossaryPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Glossary', href: '/glossary' },
+            { name: 'Glossary', href: '/glossary/' },
           ]}
         />
       </div>
@@ -108,16 +108,16 @@ export default function GlossaryPage() {
         <div className="wrap prose">
           <h2>How to use this glossary</h2>
           <p>
-            The calculators show a short definition beside the inputs that need one. Use this page
-            when you want the full entry, or when a letter from Social Security, Medicare, or a state
-            agency uses a term you do not recognize.
+            Every entry goes beyond a one-line definition: it explains the rule the term controls,
+            gives the current figure with its official source and the date it was checked, walks a
+            worked number with real figures, and links the calculators where the term does its work.
           </p>
           <p>
             A definition explains a rule in general terms. It does not replace the official source,
             your plan documents, or a decision about your own situation.
           </p>
           <p>
-            <Link href="/calculators">Open the calculator hub</Link> to see the tools that use these
+            <Link href="/calculators/">Open the calculator hub</Link> to see the tools that use these
             terms.
           </p>
           <ReportError pageTitle="Medicare glossary" />

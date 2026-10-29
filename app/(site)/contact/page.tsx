@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'Contact',
   description:
     'Contact MedicareClear about a calculator result, a source, a correction, or a page that needs attention.',
-  alternates: { canonical: '/contact' },
+  alternates: { canonical: '/contact/' },
   openGraph: {
     title: 'Contact MedicareClear',
     description:
       'Contact MedicareClear about a calculator result, a source, a correction, or a page that needs attention.',
-    url: '/contact',
+    url: '/contact/',
     images: [
       {
         url: '/og/contact.png',
@@ -38,7 +38,7 @@ export default function ContactPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Contact', href: '/contact' },
+            { name: 'Contact', href: '/contact/' },
           ]}
         />
       </div>
@@ -91,7 +91,7 @@ export default function ContactPage() {
               ))}
             </ul>
             <p className="stat-note">
-              <Link href="/methodology">Read how figures and sources are checked</Link>
+              <Link href="/methodology/">Read how figures and sources are checked</Link>
             </p>
           </aside>
         </div>

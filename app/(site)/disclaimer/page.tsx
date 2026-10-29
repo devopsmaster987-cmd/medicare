@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Disclaimer',
   description:
     'MedicareClear provides general information and estimates. It is not affiliated with any government agency and does not provide professional advice.',
-  alternates: { canonical: '/disclaimer' },
+  alternates: { canonical: '/disclaimer/' },
   openGraph: {
     title: 'Disclaimer',
     description:
       'MedicareClear provides general information and estimates. It is not affiliated with any government agency and does not provide professional advice.',
-    url: '/disclaimer',
+    url: '/disclaimer/',
     images: [
       {
         url: '/og/disclaimer.png',
@@ -32,7 +32,7 @@ export default function DisclaimerPage() {
   return (
     <LegalPage
       title="Disclaimer"
-      path="/disclaimer"
+      path="/disclaimer/"
       eyebrow="Disclaimer"
       lede="MedicareClear is an independent information site. A calculator result is an estimate, not an official decision or professional advice."
     >
@@ -77,9 +77,9 @@ export default function DisclaimerPage() {
       <p>
         If a page is wrong or unclear, email{' '}
         <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>. The{' '}
-        <Link href="/corrections">corrections page</Link> explains what to include. Read the{' '}
-        <Link href="/terms-of-service">terms of service</Link> and{' '}
-        <Link href="/privacy-policy">privacy policy</Link> for more detail.
+        <Link href="/corrections/">corrections page</Link> explains what to include. Read the{' '}
+        <Link href="/terms-of-service/">terms of service</Link> and{' '}
+        <Link href="/privacy-policy/">privacy policy</Link> for more detail.
       </p>
     </LegalPage>
   );

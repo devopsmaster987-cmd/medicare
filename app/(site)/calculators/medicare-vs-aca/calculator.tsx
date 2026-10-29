@@ -21,7 +21,7 @@ import { medicareVsAcaSchema } from '@/lib/validation';
 import { useHashState } from '@/lib/use-hash-state';
 import { formatDate, formatMoney } from '@/lib/utils';
 
-const path = '/calculators/medicare-vs-aca';
+const path = '/calculators/medicare-vs-aca/';
 const defaults = {
   age: '',
   coverage: 'active',

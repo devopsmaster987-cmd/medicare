@@ -43,7 +43,7 @@ import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
 const priorYear = figureYears.prior;
-const path = '/calculators/medicare-savings-program-extra-help';
+const path = '/calculators/medicare-savings-program-extra-help/';
 const glossaryTips = glossaryTipsFor(['MAGI', 'FPL', 'Countable assets', 'MSP']);
 
 export const metadata: Metadata = {
@@ -139,7 +139,7 @@ export default function MedicareSavingsProgramPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Calculators', href: '/calculators' },
+            { name: 'Calculators', href: '/calculators/' },
             { name: 'Medicare Savings Program and Extra Help', href: path },
           ]}
         />
@@ -528,12 +528,12 @@ export default function MedicareSavingsProgramPage() {
           <h2>Related help</h2>
           <ul className="related-list">
             <li>
-              <Link href="/calculators/employer-coverage-affordability">
+              <Link href="/calculators/employer-coverage-affordability/">
                 Employer coverage affordability
               </Link>
             </li>
             <li>
-              <Link href="/calculators">All Medicare calculators</Link>
+              <Link href="/calculators/">All Medicare calculators</Link>
             </li>
             <li>
               <a href={sources.medicareMsp} target="_blank" rel="noreferrer">
@@ -608,7 +608,7 @@ export default function MedicareSavingsProgramPage() {
 
       <section className="section section-tight">
         <div className="wrap">
-          <CiteThisPage title={`Medicare Savings Program income limits ${year}`} path="/calculators/medicare-savings-program-extra-help" />
+          <CiteThisPage title={`Medicare Savings Program income limits ${year}`} path="/calculators/medicare-savings-program-extra-help/" />
           <EmailCapture />
           <TakeHomePack pageTitle={`Medicare Savings Program income limits ${year}`} />
           <p className="disclaimer">

@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Cookie Policy',
   description:
     'How MedicareClear uses cookies and local browser storage, and the current analytics, advertising, and email settings.',
-  alternates: { canonical: '/cookie-policy' },
+  alternates: { canonical: '/cookie-policy/' },
   openGraph: {
     title: 'Cookie Policy',
     description:
       'How MedicareClear uses cookies and local browser storage, and the current analytics, advertising, and email settings.',
-    url: '/cookie-policy',
+    url: '/cookie-policy/',
     images: [
       {
         url: '/og/cookie-policy.png',
@@ -36,7 +36,7 @@ export default function CookiePolicyPage() {
   return (
     <LegalPage
       title="Cookie Policy"
-      path="/cookie-policy"
+      path="/cookie-policy/"
       eyebrow="Cookies"
       lede="MedicareClear uses local browser storage for display preferences. It does not currently use advertising or analytics cookies."
     >
@@ -113,7 +113,7 @@ export default function CookiePolicyPage() {
 
       <h2>More information</h2>
       <p>
-        Read the <Link href="/privacy-policy">privacy policy</Link> for data practices and privacy
+        Read the <Link href="/privacy-policy/">privacy policy</Link> for data practices and privacy
         rights. Questions can be sent to{' '}
         <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
       </p>

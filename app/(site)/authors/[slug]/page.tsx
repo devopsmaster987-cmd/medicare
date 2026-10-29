@@ -136,8 +136,8 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
           <p>
             A figure is not published until it has an official source, a checked date, and a
             hand-worked example. The examples are listed in the{' '}
-            <Link href="/verification-log">verification log</Link>, and the testing approach is
-            described on the <Link href="/methodology">methodology page</Link>.
+            <Link href="/verification-log/">verification log</Link>, and the testing approach is
+            described on the <Link href="/methodology/">methodology page</Link>.
           </p>
           <p>
             The publisher does not claim a US insurance license, tax credential, legal credential,
@@ -149,9 +149,9 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
           <p>
             Questions, corrections, and source suggestions can be sent to{' '}
             <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>. Read the{' '}
-            <Link href="/about">About page</Link>,{' '}
-            <Link href="/editorial-policy">editorial policy</Link>, and{' '}
-            <Link href="/methodology">methodology</Link> for more detail.
+            <Link href="/about/">About page</Link>,{' '}
+            <Link href="/editorial-policy/">editorial policy</Link>, and{' '}
+            <Link href="/methodology/">methodology</Link> for more detail.
           </p>
         </div>
       </section>

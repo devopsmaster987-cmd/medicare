@@ -12,7 +12,7 @@ export function CookieSettingsLink({ className }: { className?: string }) {
   return (
     <a
       className={className}
-      href="/cookie-policy#cookie-settings"
+      href="/cookie-policy/#cookie-settings"
       onClick={(event) => {
         if (!consentRequired) return;
         event.preventDefault();

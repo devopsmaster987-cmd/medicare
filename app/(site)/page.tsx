@@ -44,35 +44,35 @@ const calculators = [
   {
     number: '01',
     title: 'Employer coverage affordability',
-    href: '/calculators/employer-coverage-affordability',
+    href: '/calculators/employer-coverage-affordability/',
     question: 'Does your employer plan pass the affordability test?',
     detail: 'Check the employee-only premium against the current IRS percentage and the family glitch rule.',
   },
   {
     number: '02',
     title: 'Medicare Savings Program and Extra Help',
-    href: '/calculators/medicare-savings-program-extra-help',
+    href: '/calculators/medicare-savings-program-extra-help/',
     question: 'Do you meet the QMB, SLMB, QI, or Extra Help limits?',
     detail: 'Compare income and countable assets with the federal tests, then see the next state step.',
   },
   {
     number: '03',
     title: 'Part B late enrollment penalty',
-    href: '/calculators/part-b-late-enrollment-penalty',
+    href: '/calculators/part-b-late-enrollment-penalty/',
     question: 'What does a delay cost now and over time?',
     detail: 'See the monthly penalty, the annual cost, and the 10-year and 20-year totals.',
   },
   {
     number: '04',
     title: 'IRMAA cliff checker',
-    href: '/calculators/irmaa-cliff-checker',
+    href: '/calculators/irmaa-cliff-checker/',
     question: 'Which income bracket applies, and how close is the next one?',
     detail: 'Check the two-year lookback, the Part B and Part D surcharges, and Roth conversion headroom.',
   },
   {
     number: '05',
     title: 'Medicare vs ACA',
-    href: '/calculators/medicare-vs-aca',
+    href: '/calculators/medicare-vs-aca/',
     question: 'Should you take Medicare or keep Marketplace coverage?',
     detail: 'Follow the 20-employee rule, the premium-free Part A test, and the subsidy consequences.',
   },
@@ -146,7 +146,7 @@ export default function HomePage() {
               sales call or a lead form.
             </p>
             <div className="hero-actions">
-              <Link className="button button-primary" href="/calculators">
+              <Link className="button button-primary" href="/calculators/">
                 Browse the calculators
               </Link>
               <Link className="button button-secondary" href="#how-it-works">
@@ -232,7 +232,7 @@ export default function HomePage() {
             ))}
           </ul>
           <p className="stat-note">
-            <Link href="/guides">Read all {guides.length} guides</Link>
+            <Link href="/guides/">Read all {guides.length} guides</Link>
           </p>
         </div>
       </section>
@@ -249,13 +249,13 @@ export default function HomePage() {
               <Link href={`/what-changed-${figureYears.current}`}>What changed for {figureYears.current}</Link>
             </li>
             <li>
-              <Link href="/medicare-deadlines">Medicare deadlines</Link>
+              <Link href="/medicare-deadlines/">Medicare deadlines</Link>
             </li>
             <li>
-              <Link href="/scenarios">Medicare scenarios</Link>
+              <Link href="/scenarios/">Medicare scenarios</Link>
             </li>
             <li>
-              <Link href="/verification-log">Verification log</Link>
+              <Link href="/verification-log/">Verification log</Link>
             </li>
           </ul>
         </div>

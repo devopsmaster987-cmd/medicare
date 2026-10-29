@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: 'About',
   description:
     'MedicareClear is an independent publisher in Punjab, Pakistan, turning official US Medicare and ACA rules into free, source-linked calculators.',
-  alternates: { canonical: '/about' },
+  alternates: { canonical: '/about/' },
   openGraph: {
     title: 'About MedicareClear',
     description:
       'An independent publisher in Punjab, Pakistan, turning official US Medicare and ACA rules into free, source-linked calculators.',
-    url: '/about',
+    url: '/about/',
     images: [
       {
         url: '/og/about.png',
@@ -40,7 +40,7 @@ export default function AboutPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'About', href: '/about' },
+            { name: 'About', href: '/about/' },
           ]}
         />
       </div>
@@ -112,7 +112,7 @@ export default function AboutPage() {
           <p>
             Each figure in the data layer carries a year, an official source link, and the date it
             was checked. The formulas are tested at boundaries, and the worked examples are recorded
-            in the <Link href="/verification-log">public verification log</Link>. When a rule varies
+            in the <Link href="/verification-log/">public verification log</Link>. When a rule varies
             by state or depends on a fact we do not have, the page says so instead of guessing.
           </p>
           <p>
@@ -151,14 +151,14 @@ export default function AboutPage() {
           <p>
             If a figure, source link, or explanation looks wrong, send the page and the official
             source you used to <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>. The{' '}
-            <Link href="/corrections">corrections page</Link> explains what to include and records
+            <Link href="/corrections/">corrections page</Link> explains what to include and records
             changes.
           </p>
           <p>
             You can read more about the owner on the{' '}
-            <Link href="/authors/abdul-samad">author page</Link>, or review the{' '}
-            <Link href="/methodology">methodology</Link> and{' '}
-            <Link href="/editorial-policy">editorial policy</Link>.
+            <Link href="/authors/abdul-samad/">author page</Link>, or review the{' '}
+            <Link href="/methodology/">methodology</Link> and{' '}
+            <Link href="/editorial-policy/">editorial policy</Link>.
           </p>
         </div>
       </section>

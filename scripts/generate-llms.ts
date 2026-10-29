@@ -19,6 +19,10 @@ const calculators = [
   ['Medicare vs ACA', '/calculators/medicare-vs-aca'],
 ] as const;
 
+function withTrailingSlash(url: string): string {
+  return url.endsWith('/') ? url : `${url}/`;
+}
+
 const lines = [
   `# ${site.siteName}`,
   '',
@@ -28,23 +32,23 @@ const lines = [
   '',
   '## Calculators',
   '',
-  ...calculators.map(([label, href]) => `- [${label}](${site.siteUrl}${href})`),
+  ...calculators.map(([label, href]) => `- [${label}](${withTrailingSlash(`${site.siteUrl}${href}`)})`),
   '',
   '## Guides',
   '',
   ...guides.map((guide) => {
     const label = resolveGuide(guide.h1, figureYears.current).replace(/\s+/g, ' ').trim();
-    return `- [${label}](${site.siteUrl}/guides/${guide.slug})`;
+    return `- [${label}](${withTrailingSlash(`${site.siteUrl}/guides/${guide.slug}/`)})`;
   }),
   '',
   '## Site pages',
   '',
-  `- [About](${site.siteUrl}/about)`,
-  `- [Contact](${site.siteUrl}/contact)`,
-  `- [Methodology](${site.siteUrl}/methodology)`,
-  `- [Glossary](${site.siteUrl}/glossary)`,
-  `- [Sitemap](${site.siteUrl}/sitemap-page)`,
-  `- [Corrections](${site.siteUrl}/corrections)`,
+  `- [About](${site.siteUrl}/about/)`,
+  `- [Contact](${site.siteUrl}/contact/)`,
+  `- [Methodology](${site.siteUrl}/methodology/)`,
+  `- [Glossary](${site.siteUrl}/glossary/)`,
+  `- [Sitemap](${site.siteUrl}/sitemap-page/)`,
+  `- [Corrections](${site.siteUrl}/corrections/)`,
   '',
   '## Key verified facts',
   '',

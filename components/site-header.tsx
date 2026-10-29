@@ -4,11 +4,11 @@ import { TextSizeControl } from './text-size-control';
 import { ThemeControl } from './theme-control';
 
 const navigation = [
-  { href: '/calculators', label: 'Calculators' },
-  { href: '/guides', label: 'Guides' },
-  { href: '/glossary', label: 'Glossary' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/calculators/', label: 'Calculators' },
+  { href: '/guides/', label: 'Guides' },
+  { href: '/glossary/', label: 'Glossary' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
 ];
 
 export function SiteHeader() {

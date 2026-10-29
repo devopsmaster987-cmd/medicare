@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Editorial Policy',
   description:
     'How MedicareClear chooses topics, checks official sources, handles corrections, and keeps advertising away from editorial decisions.',
-  alternates: { canonical: '/editorial-policy' },
+  alternates: { canonical: '/editorial-policy/' },
   openGraph: {
     title: 'Editorial Policy',
     description:
       'How MedicareClear chooses topics, checks official sources, handles corrections, and keeps advertising away from editorial decisions.',
-    url: '/editorial-policy',
+    url: '/editorial-policy/',
     images: [
       {
         url: '/og/editorial-policy.png',
@@ -32,7 +32,7 @@ export default function EditorialPolicyPage() {
   return (
     <LegalPage
       title="Editorial Policy"
-      path="/editorial-policy"
+      path="/editorial-policy/"
       eyebrow="Editorial"
       lede="The editorial rule is simple: publish what helps a reader decide or act, and show the official source behind every figure."
     >
@@ -86,7 +86,7 @@ export default function EditorialPolicyPage() {
       <h2>Corrections</h2>
       <p>
         A factual error is corrected when it is confirmed. The correction process is described on the{' '}
-        <Link href="/corrections">corrections page</Link>, including what to send and how the change
+        <Link href="/corrections/">corrections page</Link>, including what to send and how the change
         log works. A correction is not hidden by silently editing the page.
       </p>
 
@@ -101,7 +101,7 @@ export default function EditorialPolicyPage() {
       <p>
         Editorial questions and corrections can be sent to{' '}
         <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>. Read the{' '}
-        <Link href="/methodology">methodology</Link> for the source and testing standard in more
+        <Link href="/methodology/">methodology</Link> for the source and testing standard in more
         detail.
       </p>
     </LegalPage>

@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   title: 'Medicare deadlines',
   description:
     'The Medicare Initial Enrollment Period, General Enrollment Period, Special Enrollment Period, and annual window, with the dates and official sources.',
-  alternates: { canonical: '/medicare-deadlines' },
+  alternates: { canonical: '/medicare-deadlines/' },
   openGraph: {
     title: 'Medicare deadlines | MedicareClear',
     description:
       'The Medicare enrollment windows and the dates that matter, with official sources and checked dates.',
-    url: '/medicare-deadlines',
+    url: '/medicare-deadlines/',
     images: [
       {
         url: '/og/medicare-deadlines.png',
@@ -89,7 +89,7 @@ export default function MedicareDeadlinesPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Medicare deadlines', href: '/medicare-deadlines' },
+            { name: 'Medicare deadlines', href: '/medicare-deadlines/' },
           ]}
         />
       </div>
@@ -172,9 +172,9 @@ export default function MedicareDeadlinesPage() {
             your birthday month, while enrolling after it can leave a gap.
           </p>
           <p>
-            Read the <Link href="/guides/medicare-initial-enrollment-period">Initial Enrollment Period guide</Link>{' '}
+            Read the <Link href="/guides/medicare-initial-enrollment-period/">Initial Enrollment Period guide</Link>{' '}
             for the month-by-month rules, or use the{' '}
-            <Link href="/calculators/medicare-vs-aca">Medicare vs ACA tool</Link> if you are still
+            <Link href="/calculators/medicare-vs-aca/">Medicare vs ACA tool</Link> if you are still
             working.
           </p>
         </div>
@@ -192,7 +192,7 @@ export default function MedicareDeadlinesPage() {
           <p>
             A Part B late-enrollment penalty can apply for the months you went without Part B. The
             penalty is generally permanent. The{' '}
-            <Link href="/calculators/part-b-late-enrollment-penalty">Part B penalty calculator</Link>{' '}
+            <Link href="/calculators/part-b-late-enrollment-penalty/">Part B penalty calculator</Link>{' '}
             shows the monthly and long-term cost.
           </p>
         </div>
@@ -210,7 +210,7 @@ export default function MedicareDeadlinesPage() {
           <p>
             Keep the employer&apos;s written confirmation that the coverage is creditable and the exact
             start and end dates. The{' '}
-            <Link href="/guides/medicare-special-enrollment-period-while-working">
+            <Link href="/guides/medicare-special-enrollment-period-while-working/">
               working past 65 guide
             </Link>{' '}
             explains the 20-employee rule and the proof to keep.
@@ -229,7 +229,7 @@ export default function MedicareDeadlinesPage() {
           </p>
           <p>
             Before the window, compare the plan&apos;s premium, deductible, formulary, and pharmacy
-            network. The <Link href="/guides/part-d-out-of-pocket-cap">Part D out-of-pocket cap guide</Link>{' '}
+            network. The <Link href="/guides/part-d-out-of-pocket-cap/">Part D out-of-pocket cap guide</Link>{' '}
             explains what the annual cap does and does not cover.
           </p>
         </div>
@@ -245,7 +245,7 @@ export default function MedicareDeadlinesPage() {
             become an excess contribution.
           </p>
           <p>
-            The <Link href="/guides/hsa-and-medicare-6-month-rule">HSA and Medicare six-month rule guide</Link>{' '}
+            The <Link href="/guides/hsa-and-medicare-6-month-rule/">HSA and Medicare six-month rule guide</Link>{' '}
             explains the backdate and the correction steps.
           </p>
         </div>
@@ -260,9 +260,9 @@ export default function MedicareDeadlinesPage() {
             event, such as losing other coverage, moving, or a change in household size.
           </p>
           <p>
-            The <Link href="/guides/aca-open-enrollment-dates">ACA open enrollment guide</Link>{' '}
+            The <Link href="/guides/aca-open-enrollment-dates/">ACA open enrollment guide</Link>{' '}
             explains the federal dates and the state exceptions. The{' '}
-            <Link href="/calculators/employer-coverage-affordability">employer affordability tool</Link>{' '}
+            <Link href="/calculators/employer-coverage-affordability/">employer affordability tool</Link>{' '}
             checks whether a job-based offer affects Marketplace help.
           </p>
         </div>
@@ -280,9 +280,9 @@ export default function MedicareDeadlinesPage() {
             <li>Confirm every date with Social Security or the official Medicare page before you rely on it.</li>
           </ol>
           <p>
-            The <Link href="/calculators/part-b-late-enrollment-penalty">Part B penalty tool</Link>{' '}
+            The <Link href="/calculators/part-b-late-enrollment-penalty/">Part B penalty tool</Link>{' '}
             can show what a missed window costs. The{' '}
-            <Link href="/calculators/irmaa-cliff-checker">IRMAA tool</Link> covers a different
+            <Link href="/calculators/irmaa-cliff-checker/">IRMAA tool</Link> covers a different
             deadline: the two-year income lookback.
           </p>
         </div>
@@ -338,7 +338,7 @@ export default function MedicareDeadlinesPage() {
           />
           <p className="stat-note">
             The Part B standard premium for {year} is {formatMoney(partB2026.standardPremium.amount)} a month. Use the{' '}
-            <Link href="/calculators/part-b-late-enrollment-penalty">penalty calculator</Link> for
+            <Link href="/calculators/part-b-late-enrollment-penalty/">penalty calculator</Link> for
             a result based on your own months, not the standard amount alone.
           </p>
           <ReportError pageTitle="Medicare deadlines" />

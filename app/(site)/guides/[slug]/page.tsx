@@ -89,7 +89,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Guides', href: '/guides' },
+            { name: 'Guides', href: '/guides/' },
             { name: h1, href: `/guides/${slug}` },
           ]}
         />
@@ -125,15 +125,15 @@ export default async function GuidePage({ params }: GuidePageProps) {
           <p>
             This guide uses figures and rules stored with an official source and a checked date.
             The hand-worked examples behind the calculators are in the{' '}
-            <Link href="/verification-log">public verification log</Link>. The{' '}
-            <Link href="/methodology">methodology page</Link> explains the boundary tests and the
+            <Link href="/verification-log/">public verification log</Link>. The{' '}
+            <Link href="/methodology/">methodology page</Link> explains the boundary tests and the
             limits of each tool.
           </p>
           <p>
             Last checked against the sources on{' '}
             <time dateTime={dataVerifiedOn}>{formatDate(dataVerifiedOn)}</time>. If a rule changes
             after that date, the official source controls. Send a correction to the address on the{' '}
-            <Link href="/contact">contact page</Link>.
+            <Link href="/contact/">contact page</Link>.
           </p>
         </div>
       </section>
@@ -155,7 +155,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
             ))}
           </ul>
           <p className="stat-note">
-            <Link href="/guides">All Medicare and ACA guides</Link>
+            <Link href="/guides/">All Medicare and ACA guides</Link>
           </p>
         </div>
       </section>

@@ -13,6 +13,7 @@ for (const directory of directories) {
     const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
     lines.forEach((line, index) => {
       if (moduleSpecifierPattern.test(line)) return;
+      if (line.includes('www.w3.org/2000/svg')) return;
       const location = `${relative(file)}:${index + 1}`;
       if (dollarPattern.test(line)) {
         errors.push(`${location}: hardcoded dollar amount`);

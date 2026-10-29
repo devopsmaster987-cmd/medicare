@@ -53,6 +53,12 @@ const sitemapPath = path.join(outDir, 'sitemap.xml');
 let sitemapUrls: string[] = [];
 if (fs.existsSync(sitemapPath)) {
   const sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  if (!sitemap.startsWith('<?xml')) {
+    errors.push('sitemap.xml is missing the <?xml?> declaration');
+  }
+  if (!/<urlset\s[^>]*xmlns=["']http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9["']/.test(sitemap)) {
+    errors.push('sitemap.xml does not use the 0.9 urlset namespace');
+  }
   sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
   if (sitemapUrls.length === 0) errors.push('sitemap.xml contains no URLs');
 
@@ -64,9 +70,13 @@ if (fs.existsSync(sitemapPath)) {
       errors.push(`sitemap.xml has an invalid URL: ${rawUrl}`);
       continue;
     }
+    const parsed = new URL(rawUrl);
+    if (parsed.pathname.length > 1 && !parsed.pathname.endsWith('/')) {
+      errors.push(`sitemap.xml URL is missing a trailing slash: ${rawUrl}`);
+    }
     if (seen.has(rawUrl)) errors.push(`sitemap.xml repeats a URL: ${rawUrl}`);
     seen.add(rawUrl);
-    if (new URL(rawUrl).host !== expectedHost) {
+    if (parsed.host !== expectedHost) {
       errors.push(`sitemap.xml uses a different host: ${rawUrl}`);
       continue;
     }
@@ -77,6 +87,18 @@ if (fs.existsSync(sitemapPath)) {
     const html = read(relative);
     if (!/<link[^>]+rel=["']canonical["']/i.test(html)) {
       errors.push(`${relative}: missing canonical link`);
+    }
+  }
+}
+
+const llmsPath = path.join(outDir, 'llms.txt');
+if (fs.existsSync(llmsPath)) {
+  const llms = fs.readFileSync(llmsPath, 'utf8');
+  const llmsLinks = [...llms.matchAll(/\]\((https:\/\/[^)\s]+)\)/g)].map((match) => match[1]);
+  for (const link of llmsLinks) {
+    const parsed = new URL(link);
+    if (parsed.host === new URL(site.siteUrl).host && parsed.pathname.length > 1 && !parsed.pathname.endsWith('/')) {
+      errors.push(`llms.txt link is missing a trailing slash: ${link}`);
     }
   }
 }

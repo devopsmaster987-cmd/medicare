@@ -31,7 +31,7 @@ import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
 const priorYear = figureYears.prior;
-const path = '/calculators/employer-coverage-affordability';
+const path = '/calculators/employer-coverage-affordability/';
 const glossaryTips = glossaryTipsFor(['Household income', 'W-2 wages', 'Minimum value', 'Affordability percentage']);
 
 export const metadata: Metadata = {
@@ -113,7 +113,7 @@ export default function EmployerCoverageAffordabilityPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Calculators', href: '/calculators' },
+            { name: 'Calculators', href: '/calculators/' },
             { name: 'Employer coverage affordability', href: path },
           ]}
         />
@@ -362,12 +362,12 @@ export default function EmployerCoverageAffordabilityPage() {
           <h2>Related help</h2>
           <ul className="related-list">
             <li>
-              <Link href="/calculators/medicare-savings-program-extra-help">
+              <Link href="/calculators/medicare-savings-program-extra-help/">
                 Medicare Savings Program and Extra Help limits
               </Link>
             </li>
             <li>
-              <Link href="/calculators">All Medicare calculators</Link>
+              <Link href="/calculators/">All Medicare calculators</Link>
             </li>
             <li>
               <a href={sources.irsPtcQa} target="_blank" rel="noreferrer">
@@ -430,7 +430,7 @@ export default function EmployerCoverageAffordabilityPage() {
 
       <section className="section section-tight">
         <div className="wrap">
-          <CiteThisPage title={`Is employer health insurance affordable ${year}?`} path="/calculators/employer-coverage-affordability" />
+          <CiteThisPage title={`Is employer health insurance affordable ${year}?`} path="/calculators/employer-coverage-affordability/" />
           <EmailCapture />
           <TakeHomePack pageTitle={`Is employer health insurance affordable ${year}?`} />
           <p className="disclaimer">

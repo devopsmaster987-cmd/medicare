@@ -35,7 +35,7 @@ import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
 const priorYear = figureYears.prior;
-const path = '/calculators/medicare-vs-aca';
+const path = '/calculators/medicare-vs-aca/';
 const glossaryTips = glossaryTipsFor(['Creditable coverage', 'Part A', 'Part B', 'HSA']);
 
 export const metadata: Metadata = {
@@ -122,7 +122,7 @@ export default function MedicareVsAcaPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Calculators', href: '/calculators' },
+            { name: 'Calculators', href: '/calculators/' },
             { name: 'Medicare vs ACA', href: path },
           ]}
         />
@@ -386,15 +386,15 @@ export default function MedicareVsAcaPage() {
           <h2>Related help</h2>
           <ul className="related-list">
             <li>
-              <Link href="/calculators/part-b-late-enrollment-penalty">
+              <Link href="/calculators/part-b-late-enrollment-penalty/">
                 Part B late enrollment penalty calculator
               </Link>
             </li>
             <li>
-              <Link href="/calculators/irmaa-cliff-checker">IRMAA brackets and surcharge checker</Link>
+              <Link href="/calculators/irmaa-cliff-checker/">IRMAA brackets and surcharge checker</Link>
             </li>
             <li>
-              <Link href="/calculators/employer-coverage-affordability">
+              <Link href="/calculators/employer-coverage-affordability/">
                 Employer coverage affordability
               </Link>
             </li>
@@ -454,7 +454,7 @@ export default function MedicareVsAcaPage() {
 
       <section className="section section-tight">
         <div className="wrap">
-          <CiteThisPage title={'Medicare vs ACA'} path="/calculators/medicare-vs-aca" />
+          <CiteThisPage title={'Medicare vs ACA'} path="/calculators/medicare-vs-aca/" />
           <EmailCapture />
           <TakeHomePack pageTitle="Medicare vs ACA" />
           <p className="disclaimer">

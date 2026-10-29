@@ -10,7 +10,7 @@ export default function NotFound() {
           The link may be old, or the page may still be in build. Start from the calculator hub to
           find a tool that is ready.
         </p>
-        <Link className="button button-primary" href="/calculators">
+        <Link className="button button-primary" href="/calculators/">
           Go to the calculators
         </Link>
       </div>

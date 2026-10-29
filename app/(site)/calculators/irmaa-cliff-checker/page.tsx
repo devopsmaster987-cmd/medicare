@@ -30,7 +30,7 @@ import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
 const priorYear = figureYears.prior;
-const path = '/calculators/irmaa-cliff-checker';
+const path = '/calculators/irmaa-cliff-checker/';
 const glossaryTips = glossaryTipsFor(['MAGI', 'IRMAA']);
 const lookbackYear = year - partB2026.lookbackYears;
 
@@ -117,7 +117,7 @@ export default function IrmaaPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Calculators', href: '/calculators' },
+            { name: 'Calculators', href: '/calculators/' },
             { name: 'IRMAA cliff checker', href: path },
           ]}
         />
@@ -475,17 +475,17 @@ export default function IrmaaPage() {
           <h2>Related help</h2>
           <ul className="related-list">
             <li>
-              <Link href="/calculators/part-b-late-enrollment-penalty">
+              <Link href="/calculators/part-b-late-enrollment-penalty/">
                 Part B late enrollment penalty calculator
               </Link>
             </li>
             <li>
-              <Link href="/calculators/medicare-vs-aca">
+              <Link href="/calculators/medicare-vs-aca/">
                 Medicare vs ACA: Medicare or Marketplace at 65
               </Link>
             </li>
             <li>
-              <Link href="/calculators/medicare-savings-program-extra-help">
+              <Link href="/calculators/medicare-savings-program-extra-help/">
                 Medicare Savings Program and Extra Help
               </Link>
             </li>
@@ -539,7 +539,7 @@ export default function IrmaaPage() {
 
       <section className="section section-tight">
         <div className="wrap">
-          <CiteThisPage title={`IRMAA brackets ${year}`} path="/calculators/irmaa-cliff-checker" />
+          <CiteThisPage title={`IRMAA brackets ${year}`} path="/calculators/irmaa-cliff-checker/" />
           <EmailCapture />
           <TakeHomePack pageTitle={`IRMAA brackets ${year}`} />
           <p className="disclaimer">

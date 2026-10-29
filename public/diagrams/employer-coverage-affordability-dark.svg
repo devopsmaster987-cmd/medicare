@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs><pattern id="daHatch" patternUnits="userSpaceOnUse" width="12" height="12" patternTransform="rotate(45)">
+      <rect width="12" height="12" fill="none"/>
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#ff9d72" stroke-width="3"/>
+    </pattern></defs>
+  <rect x="1" y="1" width="1198" height="673" rx="10" fill="#0d1412" stroke="rgba(127, 209, 196, 0.14)" stroke-width="2"/>
+  
+  <text x="598" y="118" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" text-anchor="end" fill="#7fd1c4">IRS affordability line</text>
+  <path d="M 690 104 L 681 118 L 699 118 Z" fill="#ff9d72"/>
+  <line x1="690" y1="126" x2="690" y2="556" stroke="#ff9d72" stroke-width="2" stroke-dasharray="7 8"/>
+  <rect x="170" y="188" width="833" height="64" fill="none" stroke="#7fd1c4" stroke-width="2" stroke-dasharray="3 6"/>
+  <text x="170" y="172" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" text-anchor="start" fill="#7fd1c4">Affordability threshold (share of income)</text>
+  <rect x="170" y="402" width="700" height="64" fill="rgba(127, 209, 196, 0.14)" stroke="#7fd1c4" stroke-width="2"/>
+  <text x="170" y="386" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" text-anchor="start" fill="#7fd1c4">Employee-only premium</text>
+  <rect x="690" y="402" width="180" height="64" fill="url(#daHatch)" stroke="#ff9d72" stroke-width="2"/>
+  
+  <line x1="170" y1="556" x2="1030" y2="556" stroke="#9fd8cc" stroke-width="2"/>
+  <line x1="170" y1="546" x2="170" y2="566" stroke="#9fd8cc" stroke-width="2"/>
+  <line x1="870" y1="546" x2="870" y2="566" stroke="#9fd8cc" stroke-width="2"/>
+  <line x1="690" y1="546" x2="690" y2="566" stroke="#ff9d72" stroke-width="2"/>
+</svg>

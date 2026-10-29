@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs></defs>
+  <rect x="1" y="1" width="1198" height="673" rx="10" fill="#f7f9f8" stroke="rgba(11, 79, 74, 0.12)" stroke-width="2"/>
+  
+  <path d="M 250 170 C 360 240, 480 330, 600 350" fill="none" stroke="#0b4f4a" stroke-width="4"/>
+  <path d="M 950 170 C 840 240, 720 330, 600 350" fill="none" stroke="#0b4f4a" stroke-width="4"/>
+  <path d="M 170 560 C 340 560, 450 430, 592 358" fill="none" stroke="#0b4f4a" stroke-width="4"/>
+  <circle cx="600" cy="350" r="16" fill="#c2410c"/>
+
+  <text x="250" y="150" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#0b4f4a">Medicare</text>
+  <text x="250" y="178" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" text-anchor="middle" fill="#40615c">Part A, Part B, and Part D</text>
+  <text x="950" y="150" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#0b4f4a">Marketplace</text>
+  <text x="950" y="178" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" text-anchor="middle" fill="#40615c">Marketplace plan with premium tax credit</text>
+  <text x="150" y="590" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="15" font-weight="500" text-anchor="start" fill="#40615c">You turn 65</text>
+</svg>

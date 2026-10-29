@@ -21,7 +21,7 @@ import { irmaaSchema, parseMoneyInput, parseOptionalMoneyInput } from '@/lib/val
 import { useHashState } from '@/lib/use-hash-state';
 import { formatMoney } from '@/lib/utils';
 
-const path = '/calculators/irmaa-cliff-checker';
+const path = '/calculators/irmaa-cliff-checker/';
 
 const defaults = {
   filing: 'single',

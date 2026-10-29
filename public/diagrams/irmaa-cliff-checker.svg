@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs></defs>
+  <rect x="1" y="1" width="1198" height="673" rx="10" fill="#f7f9f8" stroke="rgba(11, 79, 74, 0.12)" stroke-width="2"/>
+  
+  <line x1="160" y1="130" x2="160" y2="520" stroke="#40615c" stroke-width="2"/>
+  <line x1="160" y1="520" x2="1080" y2="520" stroke="#40615c" stroke-width="2"/>
+  <text x="430" y="140" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" text-anchor="middle" fill="#40615c">Part B + Part D premium, from $202.90</text>
+  <text x="360" y="452" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" text-anchor="middle" fill="#40615c">Income below the threshold</text>
+  <text x="830" y="232" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" text-anchor="middle" fill="#40615c">Income above the threshold</text>
+
+  <line x1="200" y1="470" x2="640" y2="470" stroke="#0b4f4a" stroke-width="3"/>
+  <line x1="200" y1="250" x2="1020" y2="250" stroke="#0b4f4a" stroke-width="3"/>
+  <line x1="640" y1="470" x2="640" y2="250" stroke="#c2410c" stroke-width="4"/>
+
+  <path d="M 658 250 L 658 206 L 706 217 L 658 230 Z" fill="#c2410c"/>
+  <text x="718" y="222" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" text-anchor="start" fill="#c2410c">Cliff</text>
+
+  <circle cx="560" cy="470" r="9" fill="#0b4f4a"/>
+  <line x1="560" y1="470" x2="640" y2="470" stroke="#c2410c" stroke-width="2" stroke-dasharray="5 6"/>
+  <line x1="560" y1="502" x2="640" y2="502" stroke="#c2410c" stroke-width="2"/>
+  <line x1="560" y1="494" x2="560" y2="510" stroke="#c2410c" stroke-width="2"/>
+  <line x1="640" y1="494" x2="640" y2="510" stroke="#c2410c" stroke-width="2"/>
+  <text x="600" y="548" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" text-anchor="middle" fill="#c2410c">Headroom left</text>
+</svg>

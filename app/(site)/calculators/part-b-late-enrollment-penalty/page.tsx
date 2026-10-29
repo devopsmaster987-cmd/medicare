@@ -31,7 +31,7 @@ import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
 const priorYear = figureYears.prior;
-const path = '/calculators/part-b-late-enrollment-penalty';
+const path = '/calculators/part-b-late-enrollment-penalty/';
 const glossaryTips = glossaryTipsFor(['Part B', 'SEP', 'Creditable coverage']);
 
 export const metadata: Metadata = {
@@ -110,7 +110,7 @@ export default function PartBPenaltyPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Calculators', href: '/calculators' },
+            { name: 'Calculators', href: '/calculators/' },
             { name: 'Part B late enrollment penalty', href: path },
           ]}
         />
@@ -345,15 +345,15 @@ export default function PartBPenaltyPage() {
           <h2>Related help</h2>
           <ul className="related-list">
             <li>
-              <Link href="/calculators/irmaa-cliff-checker">IRMAA brackets and surcharge checker</Link>
+              <Link href="/calculators/irmaa-cliff-checker/">IRMAA brackets and surcharge checker</Link>
             </li>
             <li>
-              <Link href="/calculators/medicare-vs-aca">
+              <Link href="/calculators/medicare-vs-aca/">
                 Medicare vs ACA: Medicare or Marketplace at 65
               </Link>
             </li>
             <li>
-              <Link href="/calculators/employer-coverage-affordability">
+              <Link href="/calculators/employer-coverage-affordability/">
                 Employer coverage affordability
               </Link>
             </li>
@@ -407,7 +407,7 @@ export default function PartBPenaltyPage() {
 
       <section className="section section-tight">
         <div className="wrap">
-          <CiteThisPage title={'Part B late enrollment penalty calculator'} path="/calculators/part-b-late-enrollment-penalty" />
+          <CiteThisPage title={'Part B late enrollment penalty calculator'} path="/calculators/part-b-late-enrollment-penalty/" />
           <EmailCapture />
           <TakeHomePack pageTitle="Part B late enrollment penalty calculator" />
           <p className="disclaimer">

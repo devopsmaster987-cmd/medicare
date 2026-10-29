@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: 'Corrections',
   description:
     'How to report a MedicareClear error, what to include, and the visible change log for corrections.',
-  alternates: { canonical: '/corrections' },
+  alternates: { canonical: '/corrections/' },
   openGraph: {
     title: 'Corrections',
     description:
       'How to report a MedicareClear error, what to include, and the visible change log for corrections.',
-    url: '/corrections',
+    url: '/corrections/',
     images: [
       {
         url: '/og/corrections.png',
@@ -73,7 +73,7 @@ export default function CorrectionsPage() {
   return (
     <LegalPage
       title="Corrections"
-      path="/corrections"
+      path="/corrections/"
       eyebrow="Corrections"
       lede="A correction is part of the product, not an exception. Report the page and the source, and the change is recorded here."
     >
@@ -115,8 +115,8 @@ export default function CorrectionsPage() {
 
       <h2>Other ways to check the site</h2>
       <p>
-        The <Link href="/methodology">methodology</Link> explains the source and testing standard.
-        The <Link href="/editorial-policy">editorial policy</Link> explains how corrections fit into
+        The <Link href="/methodology/">methodology</Link> explains the source and testing standard.
+        The <Link href="/editorial-policy/">editorial policy</Link> explains how corrections fit into
         publication. Every calculator also links to the official source used for its main figures.
       </p>
     </LegalPage>

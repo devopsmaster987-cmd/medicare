@@ -23,7 +23,7 @@ import { employerAffordabilitySchema, parseMoneyInput } from '@/lib/validation';
 import { useHashState } from '@/lib/use-hash-state';
 import { formatMoney, formatPercent } from '@/lib/utils';
 
-const path = '/calculators/employer-coverage-affordability';
+const path = '/calculators/employer-coverage-affordability/';
 
 const defaults = {
   income: '',

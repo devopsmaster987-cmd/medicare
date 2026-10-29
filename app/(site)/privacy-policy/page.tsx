@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
     'How MedicareClear handles calculator inputs, local browser storage, contact messages, analytics, advertising, and privacy rights.',
-  alternates: { canonical: '/privacy-policy' },
+  alternates: { canonical: '/privacy-policy/' },
   openGraph: {
     title: 'Privacy Policy',
     description:
       'How MedicareClear handles calculator inputs, local browser storage, contact messages, analytics, advertising, and privacy rights.',
-    url: '/privacy-policy',
+    url: '/privacy-policy/',
     images: [
       {
         url: '/og/privacy-policy.png',
@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
-      path="/privacy-policy"
+      path="/privacy-policy/"
       eyebrow="Privacy"
       lede="This policy explains what MedicareClear does with the information you type, the limited data a static site can receive, and the choices you have."
     >
@@ -111,7 +111,7 @@ export default function PrivacyPolicyPage() {
         For visitors in the EEA, the UK, or Switzerland, Google requires a Google-certified consent
         management platform before personalized ads are served. We will use the consent message
         provided through AdSense before enabling personalized ads in those regions. Read the{' '}
-        <Link href="/cookie-policy">cookie policy</Link> for the current settings.
+        <Link href="/cookie-policy/">cookie policy</Link> for the current settings.
       </p>
 
       <h2>Your privacy rights</h2>

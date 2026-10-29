@@ -38,6 +38,11 @@
   --notice-border: rgb(169 122 32 / 35%);
   --notice-text: #5f4510;
   --step-bg: rgb(255 253 247 / 55%);
+  --diagram-ink: #0b4f4a;
+  --diagram-field: #f7f9f8;
+  --diagram-accent: #c2410c;
+  --diagram-soft: rgb(11 79 74 / 12%);
+  --diagram-muted: #40615c;
 }
 
 [data-theme="dark"] {
@@ -66,6 +71,11 @@
   --notice-border: rgb(230 188 107 / 40%);
   --notice-text: #f4dfb0;
   --step-bg: rgb(18 38 35 / 70%);
+  --diagram-ink: #7fd1c4;
+  --diagram-field: #0d1412;
+  --diagram-accent: #c2410c;
+  --diagram-soft: rgb(127 209 196 / 14%);
+  --diagram-muted: #9fd8cc;
 }
 
 [data-theme="contrast"] {
@@ -94,6 +104,11 @@
   --notice-border: #ffffff;
   --notice-text: #ffffff;
   --step-bg: #111111;
+  --diagram-ink: #ffffff;
+  --diagram-field: #000000;
+  --diagram-accent: #ffb000;
+  --diagram-soft: rgb(255 224 102 / 25%);
+  --diagram-muted: #ffffff;
 }
 
 html[data-text-size="a-plus"] {
@@ -2279,4 +2294,29 @@ a:hover {
   .consent-link {
     margin-left: 0;
   }
+}
+
+.calc-diagram {
+  margin: 1.75rem 0 0;
+}
+
+.calc-diagram-frame {
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background: var(--diagram-field);
+  aspect-ratio: 1200 / 675;
+}
+
+.calc-diagram-frame svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.calc-diagram-caption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
 }

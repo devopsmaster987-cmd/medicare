@@ -160,7 +160,7 @@ export default function WhatChangedPage() {
             A higher premium does not change the penalty rate. The Part B penalty is still 10% of
             the standard premium for each full 12-month period without qualifying coverage. Because
             the standard premium is higher, the same penalty percentage now costs more in dollars.
-            The <Link href="/calculators/part-b-late-enrollment-penalty">Part B penalty calculator</Link>{' '}
+            The <Link href="/calculators/part-b-late-enrollment-penalty/">Part B penalty calculator</Link>{' '}
             shows the current amount.
           </p>
         </div>
@@ -182,7 +182,7 @@ export default function WhatChangedPage() {
             outside the cap.
           </p>
           <p>
-            Read the <Link href="/guides/part-d-out-of-pocket-cap">Part D out-of-pocket cap guide</Link>{' '}
+            Read the <Link href="/guides/part-d-out-of-pocket-cap/">Part D out-of-pocket cap guide</Link>{' '}
             for what counts toward the cap and what stays outside it.
           </p>
         </div>
@@ -241,9 +241,9 @@ export default function WhatChangedPage() {
             </table>
           </div>
           <p>
-            The <Link href="/calculators/irmaa-cliff-checker">IRMAA cliff checker</Link> shows the
+            The <Link href="/calculators/irmaa-cliff-checker/">IRMAA cliff checker</Link> shows the
             full table, the next bracket, and the headroom before a Roth conversion. The{' '}
-            <Link href="/guides/how-to-lower-irmaa">guide to lowering IRMAA</Link> explains the
+            <Link href="/guides/how-to-lower-irmaa/">guide to lowering IRMAA</Link> explains the
             SSA-44 appeal and the income timing rules.
           </p>
         </div>
@@ -262,7 +262,7 @@ export default function WhatChangedPage() {
           <p>
             The inpatient hospital deductible is {formatMoney(partA2026.inpatientDeductible.amount)},
             up {formatMoney(partADeductibleChange)} from {priorYear}. The{' '}
-            <Link href="/guides/medicare-part-a-premium">Part A premium guide</Link> explains the
+            <Link href="/guides/medicare-part-a-premium/">Part A premium guide</Link> explains the
             work-quarter test.
           </p>
         </div>
@@ -288,7 +288,7 @@ export default function WhatChangedPage() {
             The enhanced premium tax credit provisions expired at the end of{' '}
             {aca2026.enhancedSubsidies.expiredOn.slice(0, 4)}. For {year}, premium tax credits are
             generally limited to households at or below 400% of the federal poverty level. The{' '}
-            <Link href="/guides/400-fpl-subsidy-cliff">400% FPL guide</Link> explains the current
+            <Link href="/guides/400-fpl-subsidy-cliff/">400% FPL guide</Link> explains the current
             status and the dollar limits.
           </p>
         </div>

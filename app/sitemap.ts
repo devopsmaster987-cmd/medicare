@@ -7,33 +7,37 @@ import { dataVerifiedOn, figureYears } from '@/data/verified';
 export const dynamic = 'force-static';
 
 const calculatorRoutes = [
-  '/calculators',
-  '/calculators/employer-coverage-affordability',
-  '/calculators/medicare-savings-program-extra-help',
-  '/calculators/part-b-late-enrollment-penalty',
-  '/calculators/irmaa-cliff-checker',
-  '/calculators/medicare-vs-aca',
+  '/calculators/',
+  '/calculators/employer-coverage-affordability/',
+  '/calculators/medicare-savings-program-extra-help/',
+  '/calculators/part-b-late-enrollment-penalty/',
+  '/calculators/irmaa-cliff-checker/',
+  '/calculators/medicare-vs-aca/',
 ];
 
 const siteRoutes = [
-  '/guides',
-  '/glossary',
-  `/what-changed-${figureYears.current}`,
-  '/medicare-deadlines',
-  '/scenarios',
-  '/about',
-  '/contact',
-  '/authors/abdul-samad',
-  '/methodology',
-  '/verification-log',
-  '/editorial-policy',
-  '/corrections',
-  '/privacy-policy',
-  '/terms-of-service',
-  '/disclaimer',
-  '/cookie-policy',
-  '/sitemap-page',
+  '/guides/',
+  '/glossary/',
+  `/what-changed-${figureYears.current}/`,
+  '/medicare-deadlines/',
+  '/scenarios/',
+  '/about/',
+  '/contact/',
+  '/authors/abdul-samad/',
+  '/methodology/',
+  '/verification-log/',
+  '/editorial-policy/',
+  '/corrections/',
+  '/privacy-policy/',
+  '/terms-of-service/',
+  '/disclaimer/',
+  '/cookie-policy/',
+  '/sitemap-page/',
 ];
+
+function withTrailingSlash(url: string): string {
+  return url.endsWith('/') ? url : `${url}/`;
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -44,25 +48,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     ...calculatorRoutes.map((route) => ({
-      url: `${site.siteUrl}${route}`,
+      url: withTrailingSlash(`${site.siteUrl}${route}`),
       lastModified: dataVerifiedOn,
       changeFrequency: 'monthly' as const,
       priority: 0.9,
     })),
     ...siteRoutes.map((route) => ({
-      url: `${site.siteUrl}${route}`,
+      url: withTrailingSlash(`${site.siteUrl}${route}`),
       lastModified: dataVerifiedOn,
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     })),
     ...guides.map((guide) => ({
-      url: `${site.siteUrl}/guides/${guide.slug}`,
+      url: withTrailingSlash(`${site.siteUrl}/guides/${guide.slug}`),
       lastModified: guide.updatedOn,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
     ...glossary.map((entry) => ({
-      url: `${site.siteUrl}/glossary/${glossarySlug(entry.term)}`,
+      url: withTrailingSlash(`${site.siteUrl}/glossary/${glossarySlug(entry.term)}`),
       lastModified: dataVerifiedOn,
       changeFrequency: 'yearly' as const,
       priority: 0.4,

@@ -21,7 +21,7 @@ import { partBPenaltySchema } from '@/lib/validation';
 import { useHashState } from '@/lib/use-hash-state';
 import { formatMoney } from '@/lib/utils';
 
-const path = '/calculators/part-b-late-enrollment-penalty';
+const path = '/calculators/part-b-late-enrollment-penalty/';
 
 const defaults = {
   months: '',

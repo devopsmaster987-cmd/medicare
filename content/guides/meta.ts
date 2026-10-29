@@ -26,10 +26,10 @@ export const guides: GuideMeta[] = [
     summary:
       'How Form SSA-44 works, which life-changing events qualify, what proof to gather, and what to ask Social Security before you file.',
     related: [
-      { href: '/calculators/irmaa-cliff-checker', label: 'IRMAA cliff checker' },
-      { href: '/guides/how-to-lower-irmaa', label: 'How to lower IRMAA' },
+      { href: '/calculators/irmaa-cliff-checker/', label: 'IRMAA cliff checker' },
+      { href: '/guides/how-to-lower-irmaa/', label: 'How to lower IRMAA' },
       {
-        href: '/guides/irmaa-married-filing-separately',
+        href: '/guides/irmaa-married-filing-separately/',
         label: 'IRMAA and married filing separately',
       },
     ],
@@ -45,9 +45,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The practical levers for an IRMAA reduction, the deadlines that matter, and the moves that do not change the surcharge.',
     related: [
-      { href: '/calculators/irmaa-cliff-checker', label: 'IRMAA cliff checker' },
-      { href: '/guides/ssa-44-form-irmaa-appeal', label: 'SSA 44 form IRMAA appeal' },
-      { href: '/guides/roth-conversion-irmaa', label: 'Roth conversion and IRMAA' },
+      { href: '/calculators/irmaa-cliff-checker/', label: 'IRMAA cliff checker' },
+      { href: '/guides/ssa-44-form-irmaa-appeal/', label: 'SSA 44 form IRMAA appeal' },
+      { href: '/guides/roth-conversion-irmaa/', label: 'Roth conversion and IRMAA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -61,10 +61,10 @@ export const guides: GuideMeta[] = [
     summary:
       'Why a conversion can raise a Medicare premium two years later, how to measure the headroom, and what to confirm with a tax preparer.',
     related: [
-      { href: '/calculators/irmaa-cliff-checker', label: 'IRMAA cliff checker' },
-      { href: '/guides/how-to-lower-irmaa', label: 'How to lower IRMAA' },
+      { href: '/calculators/irmaa-cliff-checker/', label: 'IRMAA cliff checker' },
+      { href: '/guides/how-to-lower-irmaa/', label: 'How to lower IRMAA' },
       {
-        href: '/guides/irmaa-married-filing-separately',
+        href: '/guides/irmaa-married-filing-separately/',
         label: 'IRMAA and married filing separately',
       },
     ],
@@ -81,11 +81,11 @@ export const guides: GuideMeta[] = [
       'A plain walk through MAGI, household composition, the prior-year poverty guideline, and the 400% limit that still matters.',
     related: [
       {
-        href: '/calculators/employer-coverage-affordability',
+        href: '/calculators/employer-coverage-affordability/',
         label: 'Employer coverage affordability',
       },
-      { href: '/guides/400-fpl-subsidy-cliff', label: '400 FPL subsidy cliff' },
-      { href: '/guides/family-glitch-fix-explained', label: 'Family glitch fix explained' },
+      { href: '/guides/400-fpl-subsidy-cliff/', label: '400 FPL subsidy cliff' },
+      { href: '/guides/family-glitch-fix-explained/', label: 'Family glitch fix explained' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -99,8 +99,8 @@ export const guides: GuideMeta[] = [
     summary:
       'The separate-filer IRMAA table, why the thresholds are lower, and how to check each spouse’s notice.',
     related: [
-      { href: '/calculators/irmaa-cliff-checker', label: 'IRMAA cliff checker' },
-      { href: '/guides/ssa-44-form-irmaa-appeal', label: 'SSA 44 form IRMAA appeal' },
+      { href: '/calculators/irmaa-cliff-checker/', label: 'IRMAA cliff checker' },
+      { href: '/guides/ssa-44-form-irmaa-appeal/', label: 'SSA 44 form IRMAA appeal' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -114,8 +114,8 @@ export const guides: GuideMeta[] = [
     summary:
       'Why contributions must stop months before Part A, how the six-month backdate works, and how to handle a contribution that went in too late.',
     related: [
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
-      { href: '/guides/medicare-part-a-backdate', label: 'When does Medicare Part A backdate' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
+      { href: '/guides/medicare-part-a-backdate/', label: 'When does Medicare Part A backdate' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -129,8 +129,8 @@ export const guides: GuideMeta[] = [
     summary:
       'How the six-month Part A backdate works, who it affects, and why the date can matter more than the enrollment form.',
     related: [
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
-      { href: '/guides/hsa-and-medicare-6-month-rule', label: 'HSA and Medicare 6 month rule' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
+      { href: '/guides/hsa-and-medicare-6-month-rule/', label: 'HSA and Medicare 6 month rule' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -145,14 +145,14 @@ export const guides: GuideMeta[] = [
       'The 400% poverty-line limit for premium tax credits, the dollar amounts by household size, and the status of the enhanced subsidies.',
     related: [
       {
-        href: '/calculators/employer-coverage-affordability',
+        href: '/calculators/employer-coverage-affordability/',
         label: 'Employer coverage affordability',
       },
       {
-        href: '/guides/what-income-counts-for-marketplace-subsidies',
+        href: '/guides/what-income-counts-for-marketplace-subsidies/',
         label: 'What income is used for marketplace subsidies',
       },
-      { href: '/guides/family-glitch-fix-explained', label: 'Family glitch fix explained' },
+      { href: '/guides/family-glitch-fix-explained/', label: 'Family glitch fix explained' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -167,10 +167,10 @@ export const guides: GuideMeta[] = [
       'How the annual Part D cap works, which spending counts toward it, and why the premium and IRMAA stay separate.',
     related: [
       {
-        href: '/calculators/medicare-savings-program-extra-help',
+        href: '/calculators/medicare-savings-program-extra-help/',
         label: 'Medicare Savings Program and Extra Help',
       },
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -185,14 +185,14 @@ export const guides: GuideMeta[] = [
       'What changed, which premium is tested for the employee and for the family, and how to avoid the most common mistake.',
     related: [
       {
-        href: '/calculators/employer-coverage-affordability',
+        href: '/calculators/employer-coverage-affordability/',
         label: 'Employer coverage affordability',
       },
       {
-        href: '/guides/what-income-counts-for-marketplace-subsidies',
+        href: '/guides/what-income-counts-for-marketplace-subsidies/',
         label: 'What income is used for marketplace subsidies',
       },
-      { href: '/guides/400-fpl-subsidy-cliff', label: '400 FPL subsidy cliff' },
+      { href: '/guides/400-fpl-subsidy-cliff/', label: '400 FPL subsidy cliff' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -206,9 +206,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The standard premium, the dollar change from last year, and the reasons your own Part B amount can be higher.',
     related: [
-      { href: '/calculators/part-b-late-enrollment-penalty', label: 'Part B late enrollment penalty' },
-      { href: '/calculators/irmaa-cliff-checker', label: 'IRMAA cliff checker' },
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+      { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
+      { href: '/calculators/irmaa-cliff-checker/', label: 'IRMAA cliff checker' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -222,9 +222,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The annual deductible, the coinsurance that follows, and the coverage choices that can change your out-of-pocket cost.',
     related: [
-      { href: '/guides/medicare-part-b-premium-increase', label: 'Medicare Part B premium increase' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
-      { href: '/calculators/part-b-late-enrollment-penalty', label: 'Part B late enrollment penalty' },
+      { href: '/guides/medicare-part-b-premium-increase/', label: 'Medicare Part B premium increase' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
+      { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -238,9 +238,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The 40-quarter rule, the reduced and full premiums, and the work records that decide which one applies.',
     related: [
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
-      { href: '/guides/medicare-part-b-premium-increase', label: 'Medicare Part B premium increase' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
+      { href: '/guides/medicare-part-b-premium-increase/', label: 'Medicare Part B premium increase' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -254,9 +254,9 @@ export const guides: GuideMeta[] = [
     summary:
       'How the penalty is calculated, which coverage prevents it, and why waiting can cost more than the premium itself.',
     related: [
-      { href: '/guides/part-d-out-of-pocket-cap', label: 'Part D out of pocket cap' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
-      { href: '/calculators/part-b-late-enrollment-penalty', label: 'Part B late enrollment penalty' },
+      { href: '/guides/part-d-out-of-pocket-cap/', label: 'Part D out of pocket cap' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
+      { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -270,9 +270,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The seven-month window, the first-of-month rule, and the employer coverage that can change the timing.',
     related: [
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
-      { href: '/calculators/part-b-late-enrollment-penalty', label: 'Part B late enrollment penalty' },
-      { href: '/calculators/employer-coverage-affordability', label: 'Employer coverage affordability' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
+      { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
+      { href: '/calculators/employer-coverage-affordability/', label: 'Employer coverage affordability' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -286,9 +286,9 @@ export const guides: GuideMeta[] = [
     summary:
       'Who the yearly window is for, when coverage begins, and the penalties that do not disappear.',
     related: [
-      { href: '/guides/medicare-initial-enrollment-period', label: 'Medicare initial enrollment period' },
-      { href: '/calculators/part-b-late-enrollment-penalty', label: 'Part B late enrollment penalty' },
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+      { href: '/guides/medicare-initial-enrollment-period/', label: 'Medicare initial enrollment period' },
+      { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -302,9 +302,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The premium test, the twice-the-years rule, and the work record that decides whether the penalty applies.',
     related: [
-      { href: '/guides/medicare-part-a-premium', label: 'Medicare Part A premium' },
-      { href: '/guides/medicare-part-a-40-quarters-rule', label: 'Part A 40 quarters rule' },
-      { href: '/calculators/part-b-late-enrollment-penalty', label: 'Part B late enrollment penalty' },
+      { href: '/guides/medicare-part-a-premium/', label: 'Medicare Part A premium' },
+      { href: '/guides/medicare-part-a-40-quarters-rule/', label: 'Part A 40 quarters rule' },
+      { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -318,9 +318,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The employer size test, the eight-month window, and the coverage types that do not qualify.',
     related: [
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
-      { href: '/guides/medicare-initial-enrollment-period', label: 'Medicare initial enrollment period' },
-      { href: '/calculators/employer-coverage-affordability', label: 'Employer coverage affordability' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
+      { href: '/guides/medicare-initial-enrollment-period/', label: 'Medicare initial enrollment period' },
+      { href: '/calculators/employer-coverage-affordability/', label: 'Employer coverage affordability' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -334,9 +334,9 @@ export const guides: GuideMeta[] = [
     summary:
       'How work quarters are earned, how the 40-quarter threshold works, and what to do if the record is short.',
     related: [
-      { href: '/guides/medicare-part-a-premium', label: 'Medicare Part A premium' },
-      { href: '/guides/medicare-part-a-late-enrollment-penalty', label: 'Part A late enrollment penalty' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
+      { href: '/guides/medicare-part-a-premium/', label: 'Medicare Part A premium' },
+      { href: '/guides/medicare-part-a-late-enrollment-penalty/', label: 'Part A late enrollment penalty' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -350,9 +350,9 @@ export const guides: GuideMeta[] = [
     summary:
       'How the two coverages coordinate, why COBRA is not current employment coverage, and the drug coverage trap.',
     related: [
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
-      { href: '/guides/medicare-initial-enrollment-period', label: 'Medicare initial enrollment period' },
-      { href: '/guides/medicare-and-retiree-health-coverage', label: 'Medicare and retiree coverage' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
+      { href: '/guides/medicare-initial-enrollment-period/', label: 'Medicare initial enrollment period' },
+      { href: '/guides/medicare-and-retiree-health-coverage/', label: 'Medicare and retiree coverage' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -366,9 +366,9 @@ export const guides: GuideMeta[] = [
     summary:
       'Coordination rules, the risk of delaying Part B, and the drug coverage notice that decides Part D.',
     related: [
-      { href: '/guides/medicare-and-cobra', label: 'Medicare and COBRA' },
-      { href: '/guides/medicare-part-d-late-enrollment-penalty', label: 'Part D late enrollment penalty' },
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+      { href: '/guides/medicare-and-cobra/', label: 'Medicare and COBRA' },
+      { href: '/guides/medicare-part-d-late-enrollment-penalty/', label: 'Part D late enrollment penalty' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -382,9 +382,9 @@ export const guides: GuideMeta[] = [
     summary:
       'How the two systems fit together, the Part D creditable coverage issue, and the care choices veterans face.',
     related: [
-      { href: '/guides/medicare-part-d-late-enrollment-penalty', label: 'Part D late enrollment penalty' },
-      { href: '/guides/medicare-initial-enrollment-period', label: 'Medicare initial enrollment period' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
+      { href: '/guides/medicare-part-d-late-enrollment-penalty/', label: 'Part D late enrollment penalty' },
+      { href: '/guides/medicare-initial-enrollment-period/', label: 'Medicare initial enrollment period' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -398,9 +398,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The coordination rules for federal retirees and active employees, the Part B timing, and the FEHB drug coverage notice.',
     related: [
-      { href: '/guides/medicare-and-retiree-health-coverage', label: 'Medicare and retiree coverage' },
-      { href: '/guides/medicare-and-tricare', label: 'Medicare and TRICARE' },
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+      { href: '/guides/medicare-and-retiree-health-coverage/', label: 'Medicare and retiree coverage' },
+      { href: '/guides/medicare-and-tricare/', label: 'Medicare and TRICARE' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -414,9 +414,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The Part B requirement, the order of payment, and the drug coverage rules for military retirees.',
     related: [
-      { href: '/guides/medicare-and-va-benefits', label: 'Medicare and VA benefits' },
-      { href: '/guides/medicare-and-fehb', label: 'Medicare and FEHB' },
-      { href: '/calculators/part-b-late-enrollment-penalty', label: 'Part B late enrollment penalty' },
+      { href: '/guides/medicare-and-va-benefits/', label: 'Medicare and VA benefits' },
+      { href: '/guides/medicare-and-fehb/', label: 'Medicare and FEHB' },
+      { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -430,9 +430,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The SSDI waiting period, the exceptions, the enrollment window, and the work incentives that can affect coverage.',
     related: [
-      { href: '/guides/medicare-and-als', label: 'Medicare and ALS' },
-      { href: '/guides/medicare-and-end-stage-renal-disease', label: 'Medicare and ESRD' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
+      { href: '/guides/medicare-and-als/', label: 'Medicare and ALS' },
+      { href: '/guides/medicare-and-end-stage-renal-disease/', label: 'Medicare and ESRD' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -446,9 +446,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The ESRD eligibility path, the treatment-based start date, and the coordination with employer group coverage.',
     related: [
-      { href: '/guides/medicare-for-people-with-disabilities', label: 'Medicare for people with disabilities' },
-      { href: '/guides/medicare-and-als', label: 'Medicare and ALS' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
+      { href: '/guides/medicare-for-people-with-disabilities/', label: 'Medicare for people with disabilities' },
+      { href: '/guides/medicare-and-als/', label: 'Medicare and ALS' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -462,9 +462,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The waived waiting period, the enrollment window, and the equipment and drug coverage that matter after diagnosis.',
     related: [
-      { href: '/guides/medicare-for-people-with-disabilities', label: 'Medicare for people with disabilities' },
-      { href: '/guides/medicare-and-end-stage-renal-disease', label: 'Medicare and ESRD' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
+      { href: '/guides/medicare-for-people-with-disabilities/', label: 'Medicare for people with disabilities' },
+      { href: '/guides/medicare-and-end-stage-renal-disease/', label: 'Medicare and ESRD' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -478,9 +478,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The request process, the prescriber evidence, and the appeal steps when a plan denies coverage.',
     related: [
-      { href: '/guides/medicare-part-d-late-enrollment-penalty', label: 'Part D late enrollment penalty' },
-      { href: '/guides/part-d-out-of-pocket-cap', label: 'Part D out of pocket cap' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
+      { href: '/guides/medicare-part-d-late-enrollment-penalty/', label: 'Part D late enrollment penalty' },
+      { href: '/guides/part-d-out-of-pocket-cap/', label: 'Part D out of pocket cap' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -494,9 +494,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The review process, the prescriber evidence, and the appeal steps when a drug needs advance approval.',
     related: [
-      { href: '/guides/medicare-part-d-formulary-exception', label: 'Part D formulary exception' },
-      { href: '/guides/medicare-part-d-pharmacy-network', label: 'Part D pharmacy network' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
+      { href: '/guides/medicare-part-d-formulary-exception/', label: 'Part D formulary exception' },
+      { href: '/guides/medicare-part-d-pharmacy-network/', label: 'Part D pharmacy network' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -510,9 +510,9 @@ export const guides: GuideMeta[] = [
     summary:
       'Preferred pharmacies, out-of-network fills, mail order, and the network checks that prevent a costly refill.',
     related: [
-      { href: '/guides/medicare-part-d-prior-authorization', label: 'Part D prior authorization' },
-      { href: '/guides/medicare-part-d-formulary-exception', label: 'Part D formulary exception' },
-      { href: '/calculators/medicare-savings-program-extra-help', label: 'Medicare Savings Program' },
+      { href: '/guides/medicare-part-d-prior-authorization/', label: 'Part D prior authorization' },
+      { href: '/guides/medicare-part-d-formulary-exception/', label: 'Part D formulary exception' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -526,9 +526,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The federal window, the December deadline for a January start, and the state marketplaces that use different dates.',
     related: [
-      { href: '/guides/aca-special-enrollment-period', label: 'ACA special enrollment period' },
-      { href: '/guides/aca-cost-sharing-reduction', label: 'ACA cost sharing reduction' },
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+      { href: '/guides/aca-special-enrollment-period/', label: 'ACA special enrollment period' },
+      { href: '/guides/aca-cost-sharing-reduction/', label: 'ACA cost sharing reduction' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -542,9 +542,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The qualifying events, the 60-day window, and the proof the marketplace may ask for.',
     related: [
-      { href: '/guides/aca-open-enrollment-dates', label: 'ACA open enrollment dates' },
-      { href: '/guides/aca-cost-sharing-reduction', label: 'ACA cost sharing reduction' },
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+      { href: '/guides/aca-open-enrollment-dates/', label: 'ACA open enrollment dates' },
+      { href: '/guides/aca-cost-sharing-reduction/', label: 'ACA cost sharing reduction' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -558,9 +558,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The Silver plan requirement, the income limits, and the out-of-pocket savings for eligible households.',
     related: [
-      { href: '/guides/aca-form-1095-a', label: 'ACA Form 1095-A' },
-      { href: '/guides/aca-open-enrollment-dates', label: 'ACA open enrollment dates' },
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+      { href: '/guides/aca-form-1095-a/', label: 'ACA Form 1095-A' },
+      { href: '/guides/aca-open-enrollment-dates/', label: 'ACA open enrollment dates' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -574,9 +574,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The monthly figures, the Form 8962 reconciliation, and the common errors that delay a refund.',
     related: [
-      { href: '/guides/aca-cost-sharing-reduction', label: 'ACA cost sharing reduction' },
-      { href: '/guides/aca-special-enrollment-period', label: 'ACA special enrollment period' },
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+      { href: '/guides/aca-cost-sharing-reduction/', label: 'ACA cost sharing reduction' },
+      { href: '/guides/aca-special-enrollment-period/', label: 'ACA special enrollment period' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,
@@ -590,9 +590,9 @@ export const guides: GuideMeta[] = [
     summary:
       'The age limit, the marriage and job rules, and the coverage options when the young adult turns 26.',
     related: [
-      { href: '/guides/aca-special-enrollment-period', label: 'ACA special enrollment period' },
-      { href: '/guides/aca-open-enrollment-dates', label: 'ACA open enrollment dates' },
-      { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+      { href: '/guides/aca-special-enrollment-period/', label: 'ACA special enrollment period' },
+      { href: '/guides/aca-open-enrollment-dates/', label: 'ACA open enrollment dates' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
     updatedOn: dataVerifiedOn,

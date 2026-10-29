@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   title: 'Medicare Calculator',
   description:
     "MedicareClear's Medicare calculator hub covers employer affordability, Medicare Savings Programs, Part B penalties, IRMAA, and Medicare vs ACA decisions.",
-  alternates: { canonical: '/calculators' },
+  alternates: { canonical: '/calculators/' },
   openGraph: {
     title: 'Medicare Calculator',
     description:
       "MedicareClear's Medicare calculator hub covers employer affordability, Medicare Savings Programs, Part B penalties, IRMAA, and Medicare vs ACA decisions.",
-    url: '/calculators',
+    url: '/calculators/',
     images: [
       {
         url: '/og/calculators.png',
@@ -33,27 +33,27 @@ export const metadata: Metadata = {
 const tools = [
   {
     title: 'Employer coverage affordability',
-    href: '/calculators/employer-coverage-affordability',
+    href: '/calculators/employer-coverage-affordability/',
     copy: 'Test the employee-only premium against the IRS affordability percentage and the family glitch rule.',
   },
   {
     title: 'Medicare Savings Program and Extra Help',
-    href: '/calculators/medicare-savings-program-extra-help',
+    href: '/calculators/medicare-savings-program-extra-help/',
     copy: 'Check the federal QMB, SLMB, QI, and Extra Help income and resource limits for your household.',
   },
   {
     title: 'Part B late enrollment penalty',
-    href: '/calculators/part-b-late-enrollment-penalty',
+    href: '/calculators/part-b-late-enrollment-penalty/',
     copy: 'Estimate the monthly penalty, annual cost, and the 10-year and 20-year totals.',
   },
   {
     title: 'IRMAA cliff checker',
-    href: '/calculators/irmaa-cliff-checker',
+    href: '/calculators/irmaa-cliff-checker/',
     copy: 'Find the current bracket, the monthly surcharge, and the room before the next threshold.',
   },
   {
     title: 'Medicare vs ACA',
-    href: '/calculators/medicare-vs-aca',
+    href: '/calculators/medicare-vs-aca/',
     copy: 'Compare the 20-employee rule, premium-free Part A, Marketplace subsidies, and enrollment timing.',
   },
 ];
@@ -65,7 +65,7 @@ export default function CalculatorsPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Calculators', href: '/calculators' },
+            { name: 'Calculators', href: '/calculators/' },
           ]}
         />
       </div>

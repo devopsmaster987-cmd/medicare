@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: 'Medicare and ACA guides',
   description:
     'Plain-language guides to IRMAA, Roth conversions, HSA timing, Part A backdating, Marketplace income, and the family glitch fix.',
-  alternates: { canonical: '/guides' },
+  alternates: { canonical: '/guides/' },
   openGraph: {
     title: 'Medicare and ACA guides',
     description:
       'Plain-language guides to IRMAA, HSA timing, Part A backdating, Marketplace income, and the family glitch fix.',
-    url: '/guides',
+    url: '/guides/',
     images: [
       {
         url: '/og/guides.png',
@@ -41,7 +41,7 @@ export default function GuidesPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Guides', href: '/guides' },
+            { name: 'Guides', href: '/guides/' },
           ]}
         />
       </div>

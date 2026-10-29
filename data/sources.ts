@@ -84,6 +84,7 @@ export const sources = {
   healthcareOpenEnrollment: 'https://www.healthcare.gov/glossary/open-enrollment-period/',
   healthcareSep: 'https://www.healthcare.gov/glossary/special-enrollment-period/',
   healthcareCsr: 'https://www.healthcare.gov/glossary/cost-sharing-reduction/',
+  healthcareMinimumValue: 'https://www.healthcare.gov/glossary/minimum-value/',
   irs1095a:
     'https://www.irs.gov/affordable-care-act/individuals-and-families/health-coverage-statements',
   healthcareYoungAdults: 'https://www.healthcare.gov/young-adults/children-under-26/',

@@ -131,7 +131,7 @@ export function SourceTable({
         </table>
       </div>
       <p className="stat-note">
-        <Link href="/verification-log">See the hand-worked examples in the verification log</Link>
+        <Link href="/verification-log/">See the hand-worked examples in the verification log</Link>
       </p>
     </section>
   );

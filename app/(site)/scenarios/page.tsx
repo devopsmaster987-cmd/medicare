@@ -17,12 +17,12 @@ export const metadata: Metadata = {
   title: 'Medicare scenarios',
   description:
     'Three worked Medicare decisions: working past 65, a missed Special Enrollment Period, and a Roth conversion near the IRMAA cliff.',
-  alternates: { canonical: '/scenarios' },
+  alternates: { canonical: '/scenarios/' },
   openGraph: {
     title: 'Medicare scenarios | MedicareClear',
     description:
       'Three worked Medicare decisions with the numbers, the rule, and the next official step.',
-    url: '/scenarios',
+    url: '/scenarios/',
     images: [
       {
         url: '/og/scenarios.png',
@@ -75,7 +75,7 @@ export default function ScenariosPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Scenarios', href: '/scenarios' },
+            { name: 'Scenarios', href: '/scenarios/' },
           ]}
         />
       </div>
@@ -151,8 +151,8 @@ export default function ScenariosPage() {
           </p>
           <p>
             Next step: confirm the employer size and the creditable coverage notice, then use the{' '}
-            <Link href="/calculators/medicare-vs-aca">Medicare vs ACA tool</Link> with your own
-            dates. The <Link href="/guides/medicare-special-enrollment-period-while-working">working past 65 guide</Link>{' '}
+            <Link href="/calculators/medicare-vs-aca/">Medicare vs ACA tool</Link> with your own
+            dates. The <Link href="/guides/medicare-special-enrollment-period-while-working/">working past 65 guide</Link>{' '}
             lists the proof to keep.
           </p>
         </div>
@@ -210,8 +210,8 @@ export default function ScenariosPage() {
           <p>
             Next step: ask Social Security for the exact date the Special Enrollment Period ended
             and the months it counted. Then use the{' '}
-            <Link href="/calculators/part-b-late-enrollment-penalty">Part B penalty calculator</Link>{' '}
-            with those dates. The <Link href="/guides/medicare-special-enrollment-period-while-working">Special Enrollment Period guide</Link>{' '}
+            <Link href="/calculators/part-b-late-enrollment-penalty/">Part B penalty calculator</Link>{' '}
+            with those dates. The <Link href="/guides/medicare-special-enrollment-period-while-working/">Special Enrollment Period guide</Link>{' '}
             explains the eight-month window.
           </p>
         </div>
@@ -270,9 +270,9 @@ export default function ScenariosPage() {
           </p>
           <p>
             Next step: measure the conversion headroom before you convert. Use the{' '}
-            <Link href="/calculators/irmaa-cliff-checker">IRMAA cliff checker</Link> with the income
+            <Link href="/calculators/irmaa-cliff-checker/">IRMAA cliff checker</Link> with the income
             figure SSA actually used. The{' '}
-            <Link href="/guides/roth-conversion-irmaa">Roth conversion and IRMAA guide</Link>{' '}
+            <Link href="/guides/roth-conversion-irmaa/">Roth conversion and IRMAA guide</Link>{' '}
             explains the two-year trap.
           </p>
         </div>

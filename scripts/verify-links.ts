@@ -55,6 +55,14 @@ for (const file of pages) {
       errors.push(`${route}: relative link ${link}`);
       continue;
     }
+    const linkPath = link.split('#')[0].split('?')[0];
+    if (
+      linkPath.length > 1 &&
+      !path.posix.extname(linkPath) &&
+      !linkPath.endsWith('/')
+    ) {
+      errors.push(`${route}: link without trailing slash ${link}`);
+    }
     const key = `${route} -> ${link}`;
     if (checked.has(key)) continue;
     checked.add(key);

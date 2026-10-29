@@ -10,12 +10,12 @@ import { figureYears } from '@/data/verified';
 export const metadata: Metadata = {
   title: 'Sitemap',
   description: 'A human-readable index of MedicareClear calculators, glossary entries, and site pages.',
-  alternates: { canonical: '/sitemap-page' },
+  alternates: { canonical: '/sitemap-page/' },
   openGraph: {
     title: 'MedicareClear Sitemap',
     description:
       'A human-readable index of MedicareClear calculators, glossary entries, and site pages.',
-    url: '/sitemap-page',
+    url: '/sitemap-page/',
     images: [
       {
         url: '/og/sitemap-page.png',
@@ -32,44 +32,44 @@ export const metadata: Metadata = {
 };
 
 const calculatorLinks = [
-  { href: '/calculators', label: 'Medicare calculator hub' },
+  { href: '/calculators/', label: 'Medicare calculator hub' },
   {
-    href: '/calculators/employer-coverage-affordability',
+    href: '/calculators/employer-coverage-affordability/',
     label: 'Employer coverage affordability',
   },
   {
-    href: '/calculators/medicare-savings-program-extra-help',
+    href: '/calculators/medicare-savings-program-extra-help/',
     label: 'Medicare Savings Program and Extra Help',
   },
   {
-    href: '/calculators/part-b-late-enrollment-penalty',
+    href: '/calculators/part-b-late-enrollment-penalty/',
     label: 'Part B late enrollment penalty',
   },
-  { href: '/calculators/irmaa-cliff-checker', label: 'IRMAA cliff checker' },
-  { href: '/calculators/medicare-vs-aca', label: 'Medicare vs ACA' },
+  { href: '/calculators/irmaa-cliff-checker/', label: 'IRMAA cliff checker' },
+  { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
 ];
 
 const siteLinks = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
-  { href: '/authors/abdul-samad', label: 'Author: Abdul Samad' },
-  { href: '/glossary', label: 'Medicare glossary' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+  { href: '/authors/abdul-samad/', label: 'Author: Abdul Samad' },
+  { href: '/glossary/', label: 'Medicare glossary' },
   { href: `/what-changed-${figureYears.current}`, label: `What changed for ${figureYears.current}` },
-  { href: '/medicare-deadlines', label: 'Medicare deadlines' },
-  { href: '/scenarios', label: 'Medicare scenarios' },
-  { href: '/methodology', label: 'Methodology' },
-  { href: '/verification-log', label: 'Verification log' },
-  { href: '/editorial-policy', label: 'Editorial policy' },
-  { href: '/corrections', label: 'Corrections and change log' },
+  { href: '/medicare-deadlines/', label: 'Medicare deadlines' },
+  { href: '/scenarios/', label: 'Medicare scenarios' },
+  { href: '/methodology/', label: 'Methodology' },
+  { href: '/verification-log/', label: 'Verification log' },
+  { href: '/editorial-policy/', label: 'Editorial policy' },
+  { href: '/corrections/', label: 'Corrections and change log' },
 ];
 
 const legalLinks = [
-  { href: '/privacy-policy', label: 'Privacy policy' },
-  { href: '/terms-of-service', label: 'Terms of service' },
-  { href: '/disclaimer', label: 'Disclaimer' },
-  { href: '/cookie-policy', label: 'Cookie policy' },
-  { href: '/cookie-policy#cookie-settings', label: 'Cookie settings' },
+  { href: '/privacy-policy/', label: 'Privacy policy' },
+  { href: '/terms-of-service/', label: 'Terms of service' },
+  { href: '/disclaimer/', label: 'Disclaimer' },
+  { href: '/cookie-policy/', label: 'Cookie policy' },
+  { href: '/cookie-policy/#cookie-settings', label: 'Cookie settings' },
 ];
 
 const sortedGlossary = [...glossary].sort((a, b) => a.term.localeCompare(b.term));
@@ -81,7 +81,7 @@ export default function SitemapPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Sitemap', href: '/sitemap-page' },
+            { name: 'Sitemap', href: '/sitemap-page/' },
           ]}
         />
       </div>
@@ -115,7 +115,7 @@ export default function SitemapPage() {
             <h2 id="sitemap-guides">Guides</h2>
             <ul className="link-list">
               <li>
-                <Link href="/guides">All guides</Link>
+                <Link href="/guides/">All guides</Link>
               </li>
               {guides.map((guide) => (
                 <li key={guide.slug}>

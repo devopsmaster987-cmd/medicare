@@ -19,7 +19,7 @@ import { mspEligibilitySchema, parseMoneyInput } from '@/lib/validation';
 import { useHashState } from '@/lib/use-hash-state';
 import { formatMoney, formatPercent } from '@/lib/utils';
 
-const path = '/calculators/medicare-savings-program-extra-help';
+const path = '/calculators/medicare-savings-program-extra-help/';
 
 const defaults = {
   state: 'TX',

@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Methodology',
   description:
     'The sources, formula tests, boundary checks, update process, and known limits behind MedicareClear calculators.',
-  alternates: { canonical: '/methodology' },
+  alternates: { canonical: '/methodology/' },
   openGraph: {
     title: 'Methodology',
     description:
       'The sources, formula tests, boundary checks, update process, and known limits behind MedicareClear calculators.',
-    url: '/methodology',
+    url: '/methodology/',
     images: [
       {
         url: '/og/methodology.png',
@@ -32,7 +32,7 @@ export default function MethodologyPage() {
   return (
     <LegalPage
       title="Methodology"
-      path="/methodology"
+      path="/methodology/"
       eyebrow="Methodology"
       lede="A calculator is only as good as the rule behind it. This page explains where the figures come from, how the formulas are checked, and what the tools do not cover."
     >
@@ -58,7 +58,7 @@ export default function MethodologyPage() {
       </p>
       <p>
         Each formula also has hand-worked examples recorded in the{' '}
-        <Link href="/verification-log">public verification log</Link>. The examples use published
+        <Link href="/verification-log/">public verification log</Link>. The examples use published
         tables or official worked examples where one exists. Where no official worked example
         exists, the entry says so and shows the hand calculation from the published rule.
       </p>
@@ -100,7 +100,7 @@ export default function MethodologyPage() {
 
       <h2>How to reproduce a result</h2>
       <p>
-        Open the <Link href="/verification-log">verification log</Link>, find the formula, and use
+        Open the <Link href="/verification-log/">verification log</Link>, find the formula, and use
         the inputs in one of the worked examples. The expected result and the actual result are shown
         side by side. If the code and the log disagree, the log entry is the first place to check.
       </p>
@@ -137,7 +137,7 @@ export default function MethodologyPage() {
       <p>
         If a formula, source, or boundary test is wrong, send the page and the official source to{' '}
         <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>. The{' '}
-        <Link href="/corrections">corrections page</Link> explains what to include and how changes are
+        <Link href="/corrections/">corrections page</Link> explains what to include and how changes are
         recorded.
       </p>
     </LegalPage>

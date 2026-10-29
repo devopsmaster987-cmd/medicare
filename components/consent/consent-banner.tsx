@@ -140,7 +140,7 @@ export function ConsentBanner() {
             Close
           </button>
         )}
-        <Link className="consent-link" href="/cookie-policy">
+        <Link className="consent-link" href="/cookie-policy/">
           Read the cookie policy
         </Link>
       </div>

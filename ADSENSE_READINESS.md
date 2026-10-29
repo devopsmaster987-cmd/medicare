@@ -1,10 +1,27 @@
 # AdSense readiness report
 
-Date: 2026-10-28
+Date: 2026-10-29
 
 Site: MedicareClear, https://medicareclear.top
 
 Status: content, policy, technical SEO, and accessibility work is complete for the current data year. Ads and analytics remain off. The site is ready for an owner review and an AdSense application, but not for live ad serving until the owner supplies the AdSense publisher ID, slot ID, and consent setup.
+
+## What changed (2026-10-29)
+
+### Glossary depth (thin-content fix)
+
+- Rewrote all 60 glossary pages from short one-line definitions into full entries: definition, "Why it matters" paragraphs, the exact current figure or test with its official source, a worked example computed from `/data`, links to the calculators that use the term, related terms, and a sourced check-date row table.
+- Every entry cites at least one official .gov/.mil source and carries an ISO `updatedOn` date rendered as "Last updated".
+- Every glossary URL now exceeds 250 visible words (hub included); the admitted word counts range from roughly 360 to 600.
+- Added `scripts/verify-glossary.ts` (`verify:glossary`) to the production build and to `check:all`. It fails if any entry drops below 250 rendered words, loses its "Why it matters" / "Worked number" / "Related terms" sections, cites no official source, uses a non-URL source, or creates a duplicate slug. It also re-checks the built hub.
+- Expanded `tests/glossary.test.ts` to 10 tests (60 terms, unique slugs, source and worked-example presence, internal-link validity, tips API).
+- Glossary metadata descriptions are word-boundary truncated to 155 characters.
+- All glossary data lives in `data/glossary/` (typed entries, per-figure source objects from `data/sources.ts`) so yearly updates stay one-file edits.
+
+### URL consistency
+
+- Normalized trailing slashes on rendered internal links across guides, glossary, calculators, and policy pages; `verify:links` passes on 121 HTML files and 4,300 internal links.
+- Fixed `/cookie-policy#cookie-settings` footer links to `/cookie-policy/#cookie-settings`.
 
 ## What changed
 
