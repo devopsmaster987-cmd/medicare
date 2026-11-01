@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AnswerCapsule, KeyFacts, SourceTable } from '@/components/calc/content';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { ReportError } from '@/components/trust/report-error';
@@ -15,6 +16,7 @@ import { partD2025 } from '@/data/medicare-part-d-2025';
 import { partD2026 } from '@/data/medicare-part-d';
 import { sources } from '@/data/sources';
 import { dataVerifiedOn, figureYears } from '@/data/verified';
+import { webPageSchema } from '@/lib/schema';
 import { formatMoney, formatPercent } from '@/lib/utils';
 
 const year = partB2026.year;
@@ -27,6 +29,7 @@ export const metadata: Metadata = {
   description: `Medicare and ACA figures for ${year} compared with ${priorYear}: Part B, Part D, IRMAA, Part A, and Marketplace out-of-pocket limits, with official sources.`,
   alternates: { canonical: pagePath },
   openGraph: {
+    type: 'website',
     title: `What changed for ${year} | MedicareClear`,
     description: `Medicare and ACA figures for ${year} compared with ${priorYear}, with official sources and checked dates.`,
     url: pagePath,
@@ -64,6 +67,19 @@ const priorSeparateFirst = partB2025.irmaa.marriedSeparate[1];
 export default function WhatChangedPage() {
   return (
     <>
+      <JsonLd
+        data={webPageSchema({
+          name: `What changed for ${year}`,
+          description: `Medicare and ACA figures for ${year} compared with ${priorYear}: Part B, Part D, IRMAA, Part A, and Marketplace out-of-pocket limits, with official sources.`,
+          path: pagePath,
+          image: ogImage,
+          about: ['Medicare costs', 'ACA costs', 'IRMAA'],
+          breadcrumb: [
+            { name: 'Home', url: '/' },
+            { name: `What changed for ${year}`, url: pagePath },
+          ],
+        })}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

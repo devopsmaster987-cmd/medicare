@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     'Hand-worked examples for every MedicareClear formula, with the official source, expected result, actual result, and the date checked.',
   alternates: { canonical: '/verification-log/' },
   openGraph: {
+    type: 'website',
     title: 'MedicareClear verification log',
     description:
       'Hand-worked examples for every MedicareClear formula, with the official source and the date checked.',

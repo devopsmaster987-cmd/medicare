@@ -6,11 +6,11 @@ Every figure is stored with its year, an official source URL, and the date it wa
 
 ## Calculators
 
-- [Employer coverage affordability](https://medicareclear.top/calculators/employer-coverage-affordability/)
-- [Medicare Savings Program and Extra Help](https://medicareclear.top/calculators/medicare-savings-program-extra-help/)
-- [Part B late enrollment penalty](https://medicareclear.top/calculators/part-b-late-enrollment-penalty/)
-- [IRMAA cliff checker](https://medicareclear.top/calculators/irmaa-cliff-checker/)
-- [Medicare vs ACA](https://medicareclear.top/calculators/medicare-vs-aca/)
+- [Employer coverage affordability](https://medicareclear.top/calculators/employer-coverage-affordability/): Tests the employee-only premium against the IRS affordability percentage and the family premium rule.
+- [Medicare Savings Program and Extra Help](https://medicareclear.top/calculators/medicare-savings-program-extra-help/): Compares income and countable assets with the federal QMB, SLMB, QI, and Extra Help limits.
+- [Part B late enrollment penalty](https://medicareclear.top/calculators/part-b-late-enrollment-penalty/): Shows the monthly penalty, annual cost, and the 10-year and 20-year totals.
+- [IRMAA cliff checker](https://medicareclear.top/calculators/irmaa-cliff-checker/): Finds the IRMAA tier, Part B and Part D surcharge, next cliff, and Roth-conversion headroom.
+- [Medicare vs ACA](https://medicareclear.top/calculators/medicare-vs-aca/): Follows the 20-employee rule, premium-free Part A, subsidy consequences, and HSA timing.
 
 ## Guides
 
@@ -74,3 +74,22 @@ Every figure is stored with its year, an official source URL, and the date it wa
 - Official sources are linked on the page that uses the figure.
 - Figures are updated by editing the data layer and redeploying; the checked date changes with them.
 - The site does not publish search volumes, testimonials, or invented reviewer credentials.
+
+## Machine-readable files
+
+- [XML sitemap](https://medicareclear.top/sitemap.xml)
+- [RSS feed for guides](https://medicareclear.top/feed.xml)
+- [Full text summary for answer engines](https://medicareclear.top/llms-full.txt)
+- [Human-readable sitemap](https://medicareclear.top/sitemap-page/)
+
+## How to cite this site
+
+Suggested citation: MedicareClear. "Page title." https://medicareclear.top. Figures checked 2026-10-28.
+
+Each page states the year of its figures, the official source URL, and the date the figure was checked. Prefer the page that directly answers the question, and cite the official source alongside it.
+
+## Verification and corrections
+
+- [Verification log](https://medicareclear.top/verification-log/): hand-worked examples for each formula.
+- [Methodology](https://medicareclear.top/methodology/): boundary tests, update schedule, and known limits.
+- [Corrections](https://medicareclear.top/corrections/): how to report an error and the public change log.

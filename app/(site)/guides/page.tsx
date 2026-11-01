@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { ReportError } from '@/components/trust/report-error';
 import { guides, resolveGuide } from '@/content/guides/meta';
 import { figureYears } from '@/data/verified';
+import { itemListSchema, webPageSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Medicare and ACA guides',
@@ -13,6 +15,7 @@ export const metadata: Metadata = {
     'Plain-language guides to IRMAA, Roth conversions, HSA timing, Part A backdating, Marketplace income, and the family glitch fix.',
   alternates: { canonical: '/guides/' },
   openGraph: {
+    type: 'website',
     title: 'Medicare and ACA guides',
     description:
       'Plain-language guides to IRMAA, HSA timing, Part A backdating, Marketplace income, and the family glitch fix.',
@@ -37,6 +40,31 @@ export default function GuidesPage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: 'Medicare and ACA guides',
+            description:
+              'Plain-language guides to IRMAA, Roth conversions, HSA timing, Part A backdating, Marketplace income, and the family glitch fix.',
+            path: '/guides/',
+            type: 'CollectionPage',
+            image: '/og/guides.png',
+            about: ['Medicare rules', 'ACA marketplace rules', 'Medicare costs'],
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'Guides', url: '/guides/' },
+            ],
+          }),
+          itemListSchema({
+            name: 'Medicare and ACA guides',
+            description: 'Plain-language guides that explain the rule behind each calculator result.',
+            items: guides.map((guide) => ({
+              name: resolveGuide(guide.h1, year),
+              url: `/guides/${guide.slug}`,
+            })),
+          }),
+        ]}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

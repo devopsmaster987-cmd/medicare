@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     'How to report a MedicareClear error, what to include, and the visible change log for corrections.',
   alternates: { canonical: '/corrections/' },
   openGraph: {
+    type: 'website',
     title: 'Corrections',
     description:
       'How to report a MedicareClear error, what to include, and the visible change log for corrections.',

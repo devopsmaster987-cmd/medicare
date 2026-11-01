@@ -23,9 +23,8 @@ import { sources } from '@/data/sources';
 import { figureYears } from '@/data/verified';
 import { glossaryTipsFor } from '@/data/glossary';
 import { irmaaCalculator } from '@/lib/formulas/irmaa';
-import { calculatorSchema } from '@/lib/schema';
+import { calculatorSchema, medicalWebPageSchema } from '@/lib/schema';
 import { formatMoney } from '@/lib/utils';
-import { site } from '@/data/site';
 import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
@@ -39,12 +38,13 @@ export const metadata: Metadata = {
   description: clampMetaDescription( `IRMAA brackets ${year}: see the single, married, and married-filing-separately thresholds, your Part B and Part D surcharge, and the next cliff.`),
   alternates: { canonical: path },
   openGraph: {
+    type: 'website',
     title: `IRMAA brackets ${year}: Part B and Part D surcharge checker`,
     description: `Check your IRMAA tier, Part B and Part D surcharge, two-year lookback, and Roth-conversion headroom.`,
     url: path,
     images: [
       {
-        url: `/og${path}.png`,
+        url: `/og${path.replace(/\/$/, '')}.png`,
         width: 1200,
         height: 630,
         alt: `IRMAA brackets ${year}: Part B and Part D surcharge checker`,
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: [`/og${path}.png`],
+    images: [`/og${path.replace(/\/$/, '')}.png`],
   },
 };
 
@@ -106,12 +106,28 @@ export default function IrmaaPage() {
   return (
     <>
       <JsonLd
-        data={calculatorSchema({
-          name: `IRMAA brackets and surcharge calculator ${year}`,
-          description:
-            'Check the IRMAA tier, Part B and Part D surcharge, next bracket, two-year lookback, and married-filing-separately rules.',
-          url: `${site.siteUrl}${path}`,
-        })}
+        data={[
+          calculatorSchema({
+            name: `IRMAA brackets and surcharge calculator ${year}`,
+            description:
+              'Check the IRMAA tier, Part B and Part D surcharge, next bracket, two-year lookback, and married-filing-separately rules.',
+            url: path,
+            image: `/og${path.replace(/\/$/, '')}.png`,
+          }),
+          medicalWebPageSchema({
+            name: `IRMAA brackets ${year}`,
+            description:
+              'See the IRMAA thresholds, the Part B and Part D surcharge, the next income cliff, the two-year lookback, and the married-filing-separately rules.',
+            path,
+            image: `/og${path.replace(/\/$/, '')}.png`,
+            about: ['IRMAA', 'Medicare Part B premium', 'Medicare Part D costs'],
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'Calculators', url: '/calculators/' },
+              { name: 'IRMAA cliff checker', url: path },
+            ],
+          }),
+        ]}
       />
       <div className="wrap">
         <Breadcrumbs
@@ -488,6 +504,15 @@ export default function IrmaaPage() {
               <Link href="/calculators/medicare-savings-program-extra-help/">
                 Medicare Savings Program and Extra Help
               </Link>
+            </li>
+            <li>
+              <Link href="/guides/ssa-44-form-irmaa-appeal/">SSA 44 form IRMAA appeal</Link>
+            </li>
+            <li>
+              <Link href="/guides/how-to-lower-irmaa/">How to lower IRMAA</Link>
+            </li>
+            <li>
+              <Link href="/guides/roth-conversion-irmaa/">Roth conversion and IRMAA</Link>
             </li>
             <li>
               <a href={sources.ssaForm44} target="_blank" rel="noreferrer">

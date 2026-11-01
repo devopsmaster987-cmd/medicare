@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     'The sources, formula tests, boundary checks, update process, and known limits behind MedicareClear calculators.',
   alternates: { canonical: '/methodology/' },
   openGraph: {
+    type: 'website',
     title: 'Methodology',
     description:
       'The sources, formula tests, boundary checks, update process, and known limits behind MedicareClear calculators.',

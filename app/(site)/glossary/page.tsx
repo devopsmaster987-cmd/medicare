@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { ReportError } from '@/components/trust/report-error';
 import { glossary, glossarySlug } from '@/data/glossary';
+import { definedTermSetSchema, webPageSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Medicare Glossary',
@@ -12,6 +14,7 @@ export const metadata: Metadata = {
     'Plain-language definitions for Medicare, ACA, IRMAA, Medicare Savings Program, and enrollment terms used across MedicareClear calculators.',
   alternates: { canonical: '/glossary/' },
   openGraph: {
+    type: 'website',
     title: 'Medicare Glossary',
     description:
       'Plain-language definitions for Medicare, ACA, IRMAA, Medicare Savings Program, and enrollment terms.',
@@ -42,6 +45,31 @@ const letters = Object.keys(groups).sort();
 export default function GlossaryPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: 'Medicare glossary',
+            description:
+              'Plain-language definitions for Medicare, ACA, IRMAA, Medicare Savings Program, and enrollment terms used across MedicareClear calculators.',
+            path: '/glossary/',
+            type: 'CollectionPage',
+            image: '/og/glossary.png',
+            about: ['Medicare terminology', 'ACA terminology', 'Medicare costs'],
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'Glossary', url: '/glossary/' },
+            ],
+          }),
+          definedTermSetSchema({
+            name: `${glossary.length} Medicare and ACA terms`,
+            url: '/glossary/',
+            terms: sortedGlossary.map((entry) => ({
+              name: entry.term,
+              url: `/glossary/${glossarySlug(entry.term)}`,
+            })),
+          }),
+        ]}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

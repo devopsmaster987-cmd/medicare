@@ -50,6 +50,9 @@ for (const file of pages) {
   const lang = html.match(/<html[^>]*lang="([^"]+)"/)?.[1];
   const h1Count = (html.match(/<h1[\s>]/g) ?? []).length;
   const schemas = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)];
+  const hasRssLink = /rel="alternate"[^>]*application\/rss\+xml/i.test(html);
+  const hasManifest = /rel="manifest"[^>]*href="\/manifest\.webmanifest"/i.test(html);
+  const hasPreviewRobots = /name="googlebot"[^>]*max-image-preview:large/i.test(html);
 
   if (!title) errors.push(`${route}: missing title`);
   else if (title.length > 60) errors.push(`${route}: title is ${title.length} characters (max 60)`);
@@ -72,12 +75,64 @@ for (const file of pages) {
 
   if (lang !== 'en-US') errors.push(`${route}: html lang is ${lang ?? 'missing'}, expected en-US`);
   if (h1Count !== 1) errors.push(`${route}: expected one h1, found ${h1Count}`);
+  if (!hasRssLink) errors.push(`${route}: missing RSS alternate link`);
+  if (!hasManifest) errors.push(`${route}: missing web app manifest link`);
+  if (!hasPreviewRobots) errors.push(`${route}: missing googlebot max-image-preview directive`);
   if (schemas.length === 0) errors.push(`${route}: missing JSON-LD`);
   for (const schema of schemas) {
+    let parsed: unknown;
     try {
-      JSON.parse(schema[1]);
+      parsed = JSON.parse(schema[1]);
     } catch {
       errors.push(`${route}: invalid JSON-LD block`);
+      continue;
+    }
+    const nodes = Array.isArray(parsed) ? parsed : [parsed];
+    for (const node of nodes) {
+      if (typeof node !== 'object' || node === null) {
+        errors.push(`${route}: JSON-LD node is not an object`);
+        continue;
+      }
+      const record = node as Record<string, unknown>;
+      const type = record['@type'];
+      if (!record['@context'] || !type) {
+        errors.push(`${route}: JSON-LD node is missing @context or @type`);
+      }
+      if (type === 'Article') {
+        for (const field of ['headline', 'author', 'publisher', 'datePublished', 'dateModified', 'image', 'mainEntityOfPage']) {
+          if (!record[field]) errors.push(`${route}: Article JSON-LD is missing ${field}`);
+        }
+      }
+      if (type === 'WebApplication') {
+        for (const field of ['name', 'url', 'offers', 'isAccessibleForFree', 'publisher']) {
+          if (!record[field]) errors.push(`${route}: WebApplication JSON-LD is missing ${field}`);
+        }
+      }
+      const pageTypes = [
+        'WebPage',
+        'MedicalWebPage',
+        'AboutPage',
+        'ContactPage',
+        'CollectionPage',
+        'ProfilePage',
+      ];
+      if (pageTypes.includes(String(type))) {
+        for (const field of ['url', 'name', 'description', 'isPartOf', 'dateModified']) {
+          if (!record[field]) errors.push(`${route}: ${String(type)} JSON-LD is missing ${field}`);
+        }
+      }
+      if (type === 'BreadcrumbList') {
+        const items = record.itemListElement;
+        if (!Array.isArray(items) || items.length === 0) {
+          errors.push(`${route}: BreadcrumbList JSON-LD has no items`);
+        }
+      }
+      if (type === 'FAQPage') {
+        const items = record.mainEntity;
+        if (!Array.isArray(items) || items.length < 6) {
+          errors.push(`${route}: FAQPage JSON-LD has fewer than six questions`);
+        }
+      }
     }
   }
 }

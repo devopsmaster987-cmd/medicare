@@ -13,7 +13,7 @@ import { guideBySlug, guideSlugs, resolveGuide } from '@/content/guides/meta';
 import { guideContent } from '@/content/guides/registry';
 import { site } from '@/data/site';
 import { dataVerifiedOn, figureYears } from '@/data/verified';
-import { articleSchema } from '@/lib/schema';
+import { articleSchema, webPageSchema } from '@/lib/schema';
 import { formatDate } from '@/lib/utils';
 import { clampMetaDescription } from '@/lib/seo';
 
@@ -76,13 +76,31 @@ export default async function GuidePage({ params }: GuidePageProps) {
   return (
     <>
       <JsonLd
-        data={articleSchema({
-          headline: h1,
-          description: resolveGuide(guide.description, year),
-          url: `${site.siteUrl}/guides/${slug}`,
-          datePublished: guide.publishedOn,
-          dateModified: guide.updatedOn,
-        })}
+        data={[
+          articleSchema({
+            headline: h1,
+            description: resolveGuide(guide.description, year),
+            url: `/guides/${slug}`,
+            datePublished: guide.publishedOn,
+            dateModified: guide.updatedOn,
+            image: `/og/guides/${slug}.png`,
+            about: h1,
+          }),
+          webPageSchema({
+            name: h1,
+            description: resolveGuide(guide.description, year),
+            path: `/guides/${slug}`,
+            datePublished: guide.publishedOn,
+            dateModified: guide.updatedOn,
+            image: `/og/guides/${slug}.png`,
+            about: h1,
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'Guides', url: '/guides/' },
+              { name: h1, url: `/guides/${slug}` },
+            ],
+          }),
+        ]}
       />
 
       <div className="wrap">

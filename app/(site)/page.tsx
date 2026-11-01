@@ -13,7 +13,12 @@ import { partD2026 } from '@/data/medicare-part-d';
 import { sources } from '@/data/sources';
 import { figureYears } from '@/data/verified';
 import { formatMoney } from '@/lib/utils';
-import { organizationSchema, websiteSchema } from '@/lib/schema';
+import {
+  itemListSchema,
+  organizationSchema,
+  webPageSchema,
+  websiteSchema,
+} from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Free Medicare Calculator',
@@ -21,6 +26,7 @@ export const metadata: Metadata = {
     'Free Medicare calculator for costs, late penalties, IRMAA, Medicare Savings Programs, and ACA choices. Every figure links to a dated official source.',
   alternates: { canonical: '/' },
   openGraph: {
+    type: 'website',
     title: 'Free Medicare Calculator',
     description:
       "Use MedicareClear's free Medicare calculator to check Medicare costs, late penalties, IRMAA, Medicare Savings Programs, and ACA choices.",
@@ -134,7 +140,34 @@ const sourceCards = [
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={[websiteSchema(), organizationSchema()]} />
+      <JsonLd
+        data={[
+          websiteSchema(),
+          organizationSchema(),
+          webPageSchema({
+            name: 'Free Medicare calculator',
+            description:
+              'Free Medicare calculator for costs, late penalties, IRMAA, Medicare Savings Programs, and ACA choices. Every figure links to a dated official source.',
+            path: '/',
+            image: '/og/home.png',
+            about: [
+              'Medicare costs',
+              'Medicare late enrollment penalties',
+              'IRMAA',
+              'Medicare Savings Programs',
+              'Medicare versus ACA coverage',
+            ],
+          }),
+          itemListSchema({
+            name: 'MedicareClear calculators',
+            description: 'Five free Medicare and ACA calculators with dated official sources.',
+            items: calculators.map((calculator) => ({
+              name: calculator.title,
+              url: calculator.href,
+            })),
+          }),
+        ]}
+      />
       <section className="hero">
         <div className="wrap hero-grid">
           <div>

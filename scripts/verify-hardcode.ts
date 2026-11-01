@@ -14,6 +14,7 @@ for (const directory of directories) {
     lines.forEach((line, index) => {
       if (moduleSpecifierPattern.test(line)) return;
       if (line.includes('www.w3.org/2000/svg')) return;
+      if (line.includes('www.w3.org/2005/Atom')) return;
       const location = `${relative(file)}:${index + 1}`;
       if (dollarPattern.test(line)) {
         errors.push(`${location}: hardcoded dollar amount`);

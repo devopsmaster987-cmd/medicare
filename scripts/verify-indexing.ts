@@ -33,7 +33,15 @@ function urlToFile(rawUrl: string): string | null {
   return path.posix.join(relative, 'index.html');
 }
 
-const requiredFiles = ['robots.txt', 'sitemap.xml', 'ads.txt', 'llms.txt', '404.html'];
+const requiredFiles = [
+  'robots.txt',
+  'sitemap.xml',
+  'ads.txt',
+  'llms.txt',
+  'feed.xml',
+  'manifest.webmanifest',
+  '404.html',
+];
 for (const file of requiredFiles) {
   if (!exists(file)) errors.push(`missing out/${file}`);
 }
@@ -97,8 +105,21 @@ if (fs.existsSync(llmsPath)) {
   const llmsLinks = [...llms.matchAll(/\]\((https:\/\/[^)\s]+)\)/g)].map((match) => match[1]);
   for (const link of llmsLinks) {
     const parsed = new URL(link);
-    if (parsed.host === new URL(site.siteUrl).host && parsed.pathname.length > 1 && !parsed.pathname.endsWith('/')) {
+    const isFileLink = path.posix.extname(parsed.pathname) !== '';
+    if (
+      !isFileLink &&
+      parsed.host === new URL(site.siteUrl).host &&
+      parsed.pathname.length > 1 &&
+      !parsed.pathname.endsWith('/')
+    ) {
       errors.push(`llms.txt link is missing a trailing slash: ${link}`);
+    }
+    if (parsed.host === new URL(site.siteUrl).host) {
+      const relative = decodeURIComponent(parsed.pathname).replace(/^\/+/, '');
+      const target = relative === '' ? 'index.html' : path.posix.join(relative, isFileLink ? '' : 'index.html');
+      if (!exists(target)) {
+        errors.push(`llms.txt links to a file that was not exported: ${link}`);
+      }
     }
   }
 }

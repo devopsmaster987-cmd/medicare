@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     'The terms that apply when you use MedicareClear calculators, guides, and other pages.',
   alternates: { canonical: '/terms-of-service/' },
   openGraph: {
+    type: 'website',
     title: 'Terms of Service',
     description:
       'The terms that apply when you use MedicareClear calculators, guides, and other pages.',

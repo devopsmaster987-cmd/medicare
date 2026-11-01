@@ -67,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...glossary.map((entry) => ({
       url: withTrailingSlash(`${site.siteUrl}/glossary/${glossarySlug(entry.term)}`),
-      lastModified: dataVerifiedOn,
+      lastModified: entry.updatedOn,
       changeFrequency: 'yearly' as const,
       priority: 0.4,
     })),

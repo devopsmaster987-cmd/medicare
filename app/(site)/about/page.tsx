@@ -5,7 +5,7 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { IndependenceNote } from '@/components/trust/independence-note';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { site } from '@/data/site';
-import { personSchema } from '@/lib/schema';
+import { organizationSchema, personSchema, webPageSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     'MedicareClear is an independent publisher in Punjab, Pakistan, turning official US Medicare and ACA rules into free, source-linked calculators.',
   alternates: { canonical: '/about/' },
   openGraph: {
+    type: 'website',
     title: 'About MedicareClear',
     description:
       'An independent publisher in Punjab, Pakistan, turning official US Medicare and ACA rules into free, source-linked calculators.',
@@ -35,7 +36,25 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <JsonLd data={personSchema()} />
+      <JsonLd
+        data={[
+          organizationSchema(),
+          personSchema(),
+          webPageSchema({
+            name: 'About MedicareClear',
+            description:
+              'MedicareClear is an independent publisher in Punjab, Pakistan, turning official US Medicare and ACA rules into free, source-linked calculators.',
+            path: '/about/',
+            type: 'AboutPage',
+            image: '/og/about.png',
+            about: 'MedicareClear',
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'About', url: '/about/' },
+            ],
+          }),
+        ]}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

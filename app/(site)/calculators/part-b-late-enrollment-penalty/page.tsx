@@ -24,9 +24,8 @@ import { sources } from '@/data/sources';
 import { figureYears } from '@/data/verified';
 import { glossaryTipsFor } from '@/data/glossary';
 import { partBPenaltyCalculator } from '@/lib/formulas/part-b-penalty';
-import { calculatorSchema } from '@/lib/schema';
+import { calculatorSchema, medicalWebPageSchema } from '@/lib/schema';
 import { formatMoney } from '@/lib/utils';
-import { site } from '@/data/site';
 import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
@@ -39,12 +38,13 @@ export const metadata: Metadata = {
   description: clampMetaDescription( `Part B late enrollment penalty calculator: see the monthly penalty, total premium, and 10-year and 20-year cost from the ${year} standard premium.`),
   alternates: { canonical: path },
   openGraph: {
+    type: 'website',
     title: `Part B late enrollment penalty calculator (${year})`,
     description: `Estimate the monthly, annual, 10-year, and 20-year Part B penalty, then check the Special Enrollment Period and creditable coverage rules.`,
     url: path,
     images: [
       {
-        url: `/og${path}.png`,
+        url: `/og${path.replace(/\/$/, '')}.png`,
         width: 1200,
         height: 630,
         alt: `Part B late enrollment penalty calculator (${year})`,
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: [`/og${path}.png`],
+    images: [`/og${path.replace(/\/$/, '')}.png`],
   },
 };
 
@@ -99,12 +99,28 @@ export default function PartBPenaltyPage() {
   return (
     <>
       <JsonLd
-        data={calculatorSchema({
-          name: `Part B late enrollment penalty calculator ${year}`,
-          description:
-            'Estimate the Part B late enrollment penalty, the total monthly premium, and the 10-year and 20-year cost.',
-          url: `${site.siteUrl}${path}`,
-        })}
+        data={[
+          calculatorSchema({
+            name: `Part B late enrollment penalty calculator ${year}`,
+            description:
+              'Estimate the Part B late enrollment penalty, the total monthly premium, and the 10-year and 20-year cost.',
+            url: path,
+            image: `/og${path.replace(/\/$/, '')}.png`,
+          }),
+          medicalWebPageSchema({
+            name: 'Part B late enrollment penalty calculator',
+            description:
+              'See the monthly Part B penalty, the total premium, the 10-year and 20-year cost, and whether a Special Enrollment Period or creditable coverage can help.',
+            path,
+            image: `/og${path.replace(/\/$/, '')}.png`,
+            about: ['Medicare Part B', 'Late enrollment penalty', 'Special Enrollment Period'],
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'Calculators', url: '/calculators/' },
+              { name: 'Part B late enrollment penalty', url: path },
+            ],
+          }),
+        ]}
       />
       <div className="wrap">
         <Breadcrumbs
@@ -355,6 +371,16 @@ export default function PartBPenaltyPage() {
             <li>
               <Link href="/calculators/employer-coverage-affordability/">
                 Employer coverage affordability
+              </Link>
+            </li>
+            <li>
+              <Link href="/guides/medicare-special-enrollment-period-while-working/">
+                Medicare Special Enrollment Period while working
+              </Link>
+            </li>
+            <li>
+              <Link href="/guides/medicare-general-enrollment-period/">
+                Medicare General Enrollment Period
               </Link>
             </li>
             <li>

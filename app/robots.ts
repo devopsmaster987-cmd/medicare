@@ -6,11 +6,16 @@ export const dynamic = 'force-static';
 const searchAndCitationCrawlers = [
   'Googlebot',
   'Bingbot',
+  'DuckDuckBot',
+  'Applebot',
   'OAI-SearchBot',
   'ChatGPT-User',
   'PerplexityBot',
+  'Perplexity-User',
+  'DuckAssistBot',
   'Claude-SearchBot',
   'Claude-User',
+  'MistralAI-User',
 ];
 
 const trainingCrawlers = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended'];

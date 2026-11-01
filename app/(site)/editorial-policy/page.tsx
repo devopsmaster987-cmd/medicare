@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     'How MedicareClear chooses topics, checks official sources, handles corrections, and keeps advertising away from editorial decisions.',
   alternates: { canonical: '/editorial-policy/' },
   openGraph: {
+    type: 'website',
     title: 'Editorial Policy',
     description:
       'How MedicareClear chooses topics, checks official sources, handles corrections, and keeps advertising away from editorial decisions.',

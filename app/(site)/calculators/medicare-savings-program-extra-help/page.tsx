@@ -36,9 +36,8 @@ import { getState, states } from '@/data/states';
 import { figureYears } from '@/data/verified';
 import { glossaryTipsFor } from '@/data/glossary';
 import { mspEligibility } from '@/lib/formulas/msp-eligibility';
-import { calculatorSchema } from '@/lib/schema';
+import { calculatorSchema, medicalWebPageSchema } from '@/lib/schema';
 import { formatMoney, formatNumber, formatPercent } from '@/lib/utils';
-import { site } from '@/data/site';
 import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
@@ -51,12 +50,13 @@ export const metadata: Metadata = {
   description: clampMetaDescription( `Medicare Savings Program income limits ${year}: check QMB, SLMB, QI, and Extra Help income and asset limits for a single person or a married couple.`),
   alternates: { canonical: path },
   openGraph: {
+    type: 'website',
     title: `Medicare Savings Program income limits ${year}`,
     description: `Check QMB, SLMB, QI, and Extra Help income and resource limits with official sources and a state agency next step.`,
     url: path,
     images: [
       {
-        url: `/og${path}.png`,
+        url: `/og${path.replace(/\/$/, '')}.png`,
         width: 1200,
         height: 630,
         alt: `Medicare Savings Program income limits ${year}`,
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: [`/og${path}.png`],
+    images: [`/og${path.replace(/\/$/, '')}.png`],
   },
 };
 
@@ -128,12 +128,28 @@ export default function MedicareSavingsProgramPage() {
   return (
     <>
       <JsonLd
-        data={calculatorSchema({
-          name: `Medicare Savings Program income limits ${year}`,
-          description:
-            'Check QMB, SLMB, QI, and Extra Help income and resource limits for a single person or a married couple.',
-          url: `${site.siteUrl}${path}`,
-        })}
+        data={[
+          calculatorSchema({
+            name: `Medicare Savings Program income limits ${year}`,
+            description:
+              'Check QMB, SLMB, QI, and Extra Help income and resource limits for a single person or a married couple.',
+            url: path,
+            image: `/og${path.replace(/\/$/, '')}.png`,
+          }),
+          medicalWebPageSchema({
+            name: `Medicare Savings Program income limits ${year}`,
+            description:
+              'Compare household income and countable assets with the QMB, SLMB, QI, and Extra Help limits, then see the state next step.',
+            path,
+            image: `/og${path.replace(/\/$/, '')}.png`,
+            about: ['Medicare Savings Programs', 'Extra Help', 'QMB', 'SLMB', 'Qualified Individual'],
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'Calculators', url: '/calculators/' },
+              { name: 'Medicare Savings Program and Extra Help', url: path },
+            ],
+          }),
+        ]}
       />
       <div className="wrap">
         <Breadcrumbs
@@ -530,6 +546,14 @@ export default function MedicareSavingsProgramPage() {
             <li>
               <Link href="/calculators/employer-coverage-affordability/">
                 Employer coverage affordability
+              </Link>
+            </li>
+            <li>
+              <Link href="/guides/medicare-part-a-premium/">Medicare Part A premium</Link>
+            </li>
+            <li>
+              <Link href="/guides/medicare-part-b-premium-increase/">
+                Medicare Part B premium increase
               </Link>
             </li>
             <li>

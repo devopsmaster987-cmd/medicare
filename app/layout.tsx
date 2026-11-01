@@ -27,10 +27,16 @@ export const metadata: Metadata = {
   description:
     'Independent Medicare and ACA calculators with plain-language answers, dated official sources, and no lead form before your result.',
   applicationName: site.siteName,
-  authors: [{ name: site.ownerName }],
+  authors: [{ name: site.ownerName, url: '/authors/abdul-samad/' }],
   creator: site.ownerName,
   publisher: site.siteName,
   category: 'health',
+  manifest: '/manifest.webmanifest',
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
+  },
   openGraph: {
     type: 'website',
     siteName: site.siteName,
@@ -57,10 +63,6 @@ export const metadata: Metadata = {
       { url: '/favicon-32.png', type: 'image/png', sizes: '32x32' },
     ],
     apple: [{ url: '/apple-icon.png', type: 'image/png', sizes: '180x180' }],
-  },
-  robots: {
-    index: true,
-    follow: true,
   },
   verification: {
     google: site.integrations.googleSiteVerification || undefined,
@@ -90,6 +92,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       suppressHydrationWarning
     >
       <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${site.siteName} guides`}
+          href="/feed.xml"
+        />
+        <meta property="og:site_name" content={site.siteName} />
+        <meta property="og:locale" content="en_US" />
         <script dangerouslySetInnerHTML={{ __html: prefsInitScript }} />
       </head>
       <body>

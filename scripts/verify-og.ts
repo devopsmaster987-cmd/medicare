@@ -32,6 +32,25 @@ for (const file of pages) {
   if (twitter && twitter !== og) {
     errors.push(`${route}: twitter:image differs from og:image`);
   }
+  for (const [label, imageUrl] of [
+    ['og:image', og],
+    ['twitter:image', twitter],
+  ] as const) {
+    if (!imageUrl) continue;
+    let localPath: string | null = null;
+    try {
+      localPath = decodeURIComponent(new URL(imageUrl).pathname).replace(/^\/+/, '');
+    } catch {
+      errors.push(`${route}: ${label} is not a valid URL: ${imageUrl}`);
+      continue;
+    }
+    if (!fs.existsSync(path.join(out, localPath))) {
+      errors.push(`${route}: ${label} file does not exist in out/: ${localPath}`);
+    }
+  }
+  if (!html.match(/property="og:image:alt" content="[^"]+"/)) {
+    errors.push(`${route}: missing og:image:alt`);
+  }
   const existing = seen.get(og);
   if (existing) {
     if (!(og.endsWith('/og/default.png') && (route === '/404/' || existing === '/404/'))) {

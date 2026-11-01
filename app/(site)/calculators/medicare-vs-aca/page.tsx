@@ -28,9 +28,8 @@ import { sources } from '@/data/sources';
 import { figureYears } from '@/data/verified';
 import { glossaryTipsFor } from '@/data/glossary';
 import { medicareVsAca } from '@/lib/formulas/medicare-vs-aca';
-import { calculatorSchema } from '@/lib/schema';
+import { calculatorSchema, medicalWebPageSchema } from '@/lib/schema';
 import { formatMoney, formatNumber, formatPercent } from '@/lib/utils';
-import { site } from '@/data/site';
 import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
@@ -43,13 +42,14 @@ export const metadata: Metadata = {
   description: clampMetaDescription( `Medicare vs ACA: compare Medicare and Marketplace paths at 65 using the ${year} 20-employee rule, Part A work credits, HSA rules, and subsidy eligibility.`),
   alternates: { canonical: path },
   openGraph: {
+    type: 'website',
     title: 'Medicare vs ACA: Medicare or Marketplace at 65?',
     description:
       'Use the 20-employee rule, creditable coverage, Part A work credits, and HSA timing to choose a Medicare or Marketplace path.',
     url: path,
     images: [
       {
-        url: `/og${path}.png`,
+        url: `/og${path.replace(/\/$/, '')}.png`,
         width: 1200,
         height: 630,
         alt: 'Medicare vs ACA: Medicare or Marketplace at 65?',
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: [`/og${path}.png`],
+    images: [`/og${path.replace(/\/$/, '')}.png`],
   },
 };
 
@@ -111,12 +111,28 @@ export default function MedicareVsAcaPage() {
   return (
     <>
       <JsonLd
-        data={calculatorSchema({
-          name: 'Medicare vs ACA decision calculator',
-          description:
-            'Compare Medicare and Marketplace paths using age, the 20-employee rule, creditable coverage, Part A work credits, and HSA timing.',
-          url: `${site.siteUrl}${path}`,
-        })}
+        data={[
+          calculatorSchema({
+            name: 'Medicare vs ACA decision calculator',
+            description:
+              'Compare Medicare and Marketplace paths using age, the 20-employee rule, creditable coverage, Part A work credits, and HSA timing.',
+            url: path,
+            image: `/og${path.replace(/\/$/, '')}.png`,
+          }),
+          medicalWebPageSchema({
+            name: 'Medicare vs ACA',
+            description:
+              'Compare Medicare and Marketplace coverage using age, employer size, active versus retiree coverage, premium-free Part A, subsidies, and HSA timing.',
+            path,
+            image: `/og${path.replace(/\/$/, '')}.png`,
+            about: ['Medicare eligibility', 'ACA marketplace coverage', 'Premium tax credit'],
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'Calculators', url: '/calculators/' },
+              { name: 'Medicare vs ACA', url: path },
+            ],
+          }),
+        ]}
       />
       <div className="wrap">
         <Breadcrumbs
@@ -397,6 +413,17 @@ export default function MedicareVsAcaPage() {
               <Link href="/calculators/employer-coverage-affordability/">
                 Employer coverage affordability
               </Link>
+            </li>
+            <li>
+              <Link href="/guides/hsa-and-medicare-6-month-rule/">
+                HSA and Medicare 6 month rule
+              </Link>
+            </li>
+            <li>
+              <Link href="/guides/medicare-part-a-backdate/">When does Medicare Part A backdate</Link>
+            </li>
+            <li>
+              <Link href="/guides/400-fpl-subsidy-cliff/">400 FPL subsidy cliff</Link>
             </li>
             <li>
               <a href={sources.medicarePaysFirst} target="_blank" rel="noreferrer">

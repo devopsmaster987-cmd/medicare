@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { TakeHomePack } from '@/components/action/take-home-pack';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
 import { LastUpdated } from '@/components/trust/last-updated';
+import { itemListSchema, webPageSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Medicare Calculator',
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
     "MedicareClear's Medicare calculator hub covers employer affordability, Medicare Savings Programs, Part B penalties, IRMAA, and Medicare vs ACA decisions.",
   alternates: { canonical: '/calculators/' },
   openGraph: {
+    type: 'website',
     title: 'Medicare Calculator',
     description:
       "MedicareClear's Medicare calculator hub covers employer affordability, Medicare Savings Programs, Part B penalties, IRMAA, and Medicare vs ACA decisions.",
@@ -61,6 +64,28 @@ const tools = [
 export default function CalculatorsPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          webPageSchema({
+            name: 'Medicare calculator',
+            description:
+              "MedicareClear's Medicare calculator hub covers employer affordability, Medicare Savings Programs, Part B penalties, IRMAA, and Medicare vs ACA decisions.",
+            path: '/calculators/',
+            type: 'CollectionPage',
+            image: '/og/calculators.png',
+            about: ['Medicare calculators', 'Medicare costs', 'ACA marketplace coverage'],
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'Calculators', url: '/calculators/' },
+            ],
+          }),
+          itemListSchema({
+            name: 'Medicare and ACA calculators',
+            description: 'Five calculators that answer a specific Medicare or ACA cost question.',
+            items: tools.map((tool) => ({ name: tool.title, url: tool.href })),
+          }),
+        ]}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

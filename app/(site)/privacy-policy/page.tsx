@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     'How MedicareClear handles calculator inputs, local browser storage, contact messages, analytics, advertising, and privacy rights.',
   alternates: { canonical: '/privacy-policy/' },
   openGraph: {
+    type: 'website',
     title: 'Privacy Policy',
     description:
       'How MedicareClear handles calculator inputs, local browser storage, contact messages, analytics, advertising, and privacy rights.',

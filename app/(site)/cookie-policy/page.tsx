@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     'How MedicareClear uses cookies and local browser storage, and the current analytics, advertising, and email settings.',
   alternates: { canonical: '/cookie-policy/' },
   openGraph: {
+    type: 'website',
     title: 'Cookie Policy',
     description:
       'How MedicareClear uses cookies and local browser storage, and the current analytics, advertising, and email settings.',

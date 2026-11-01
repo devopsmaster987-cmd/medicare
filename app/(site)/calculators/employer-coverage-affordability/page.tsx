@@ -24,9 +24,8 @@ import { sources } from '@/data/sources';
 import { figureYears } from '@/data/verified';
 import { glossaryTipsFor } from '@/data/glossary';
 import { employerAffordability } from '@/lib/formulas/employer-affordability';
-import { calculatorSchema } from '@/lib/schema';
+import { calculatorSchema, medicalWebPageSchema } from '@/lib/schema';
 import { formatDate, formatMoney, formatNumber, formatPercent } from '@/lib/utils';
-import { site } from '@/data/site';
 import { clampMetaDescription } from '@/lib/seo';
 
 const year = figureYears.current;
@@ -39,12 +38,13 @@ export const metadata: Metadata = {
   description: clampMetaDescription( `Is employer health insurance affordable ${year}? Check the employee-only premium against the ${formatPercent(irs2026.employerAffordabilityPercentage.rate)} income test and the family glitch rule with dated IRS sources.`),
   alternates: { canonical: path },
   openGraph: {
+    type: 'website',
     title: `Is employer health insurance affordable ${year}?`,
     description: `Check the employee-only premium against the ${formatPercent(irs2026.employerAffordabilityPercentage.rate)} affordability test and see the Marketplace next step.`,
     url: path,
     images: [
       {
-        url: `/og${path}.png`,
+        url: `/og${path.replace(/\/$/, '')}.png`,
         width: 1200,
         height: 630,
         alt: `Is employer health insurance affordable ${year}?`,
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: [`/og${path}.png`],
+    images: [`/og${path.replace(/\/$/, '')}.png`],
   },
 };
 
@@ -102,12 +102,28 @@ export default function EmployerCoverageAffordabilityPage() {
   return (
     <>
       <JsonLd
-        data={calculatorSchema({
-          name: `Employer health insurance affordability calculator ${year}`,
-          description:
-            'Check the employee-only premium against the current IRS affordability percentage and the family glitch rule.',
-          url: `${site.siteUrl}${path}`,
-        })}
+        data={[
+          calculatorSchema({
+            name: `Employer health insurance affordability calculator ${year}`,
+            description:
+              'Check the employee-only premium against the current IRS affordability percentage and the family glitch rule.',
+            url: path,
+            image: `/og${path.replace(/\/$/, '')}.png`,
+          }),
+          medicalWebPageSchema({
+            name: `Is employer health insurance affordable ${year}?`,
+            description:
+              'Test the employee-only premium against the IRS affordability percentage, the family premium rule, and the minimum-value test.',
+            path,
+            image: `/og${path.replace(/\/$/, '')}.png`,
+            about: ['Employer health coverage', 'ACA premium tax credit', 'Affordability test'],
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'Calculators', url: '/calculators/' },
+              { name: 'Employer coverage affordability', url: path },
+            ],
+          }),
+        ]}
       />
       <div className="wrap">
         <Breadcrumbs
@@ -364,6 +380,14 @@ export default function EmployerCoverageAffordabilityPage() {
             <li>
               <Link href="/calculators/medicare-savings-program-extra-help/">
                 Medicare Savings Program and Extra Help limits
+              </Link>
+            </li>
+            <li>
+              <Link href="/guides/family-glitch-fix-explained/">Family glitch fix explained</Link>
+            </li>
+            <li>
+              <Link href="/guides/what-income-counts-for-marketplace-subsidies/">
+                What income is used for marketplace subsidies
               </Link>
             </li>
             <li>

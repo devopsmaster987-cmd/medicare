@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/json-ld';
 import { ContactForm } from '@/components/site/contact-form';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { officialContacts } from '@/data/contacts';
 import { site } from '@/data/site';
+import { organizationSchema, webPageSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -12,6 +14,7 @@ export const metadata: Metadata = {
     'Contact MedicareClear about a calculator result, a source, a correction, or a page that needs attention.',
   alternates: { canonical: '/contact/' },
   openGraph: {
+    type: 'website',
     title: 'Contact MedicareClear',
     description:
       'Contact MedicareClear about a calculator result, a source, a correction, or a page that needs attention.',
@@ -34,6 +37,24 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          organizationSchema(),
+          webPageSchema({
+            name: 'Contact MedicareClear',
+          description:
+            'Contact MedicareClear about a calculator result, a source, a correction, or a page that needs attention.',
+          path: '/contact/',
+          type: 'ContactPage',
+          image: '/og/contact.png',
+          about: 'Contact MedicareClear',
+          breadcrumb: [
+            { name: 'Home', url: '/' },
+            { name: 'Contact', url: '/contact/' },
+          ],
+          }),
+        ]}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/seo/json-ld';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { author } from '@/data/entities';
 import { site } from '@/data/site';
-import { personSchema } from '@/lib/schema';
+import { organizationSchema, personSchema, webPageSchema } from '@/lib/schema';
 
 export const dynamicParams = false;
 
@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
     description: author.description,
     alternates: { canonical: `/authors/${author.slug}` },
     openGraph: {
+      type: 'website',
       title: `${author.name} | ${site.siteName}`,
       description: author.description,
       url: `/authors/${author.slug}`,
@@ -52,7 +53,24 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
 
   return (
     <>
-      <JsonLd data={personSchema()} />
+      <JsonLd
+        data={[
+          organizationSchema(),
+          personSchema(),
+          webPageSchema({
+            name: author.name,
+            description: author.description,
+            path: `/authors/${author.slug}`,
+            type: 'ProfilePage',
+            image: `/og/authors/${author.slug}.png`,
+            about: author.name,
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: author.name, url: `/authors/${author.slug}` },
+            ],
+          }),
+        ]}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

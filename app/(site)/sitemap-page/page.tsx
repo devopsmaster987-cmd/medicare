@@ -1,17 +1,20 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/json-ld';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { ReportError } from '@/components/trust/report-error';
 import { guides, resolveGuide } from '@/content/guides/meta';
 import { glossary, glossarySlug } from '@/data/glossary';
 import { figureYears } from '@/data/verified';
+import { webPageSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Sitemap',
   description: 'A human-readable index of MedicareClear calculators, glossary entries, and site pages.',
   alternates: { canonical: '/sitemap-page/' },
   openGraph: {
+    type: 'website',
     title: 'MedicareClear Sitemap',
     description:
       'A human-readable index of MedicareClear calculators, glossary entries, and site pages.',
@@ -77,6 +80,20 @@ const sortedGlossary = [...glossary].sort((a, b) => a.term.localeCompare(b.term)
 export default function SitemapPage() {
   return (
     <>
+      <JsonLd
+        data={webPageSchema({
+          name: 'MedicareClear sitemap',
+          description:
+            'A human-readable index of MedicareClear calculators, glossary entries, and site pages.',
+          path: '/sitemap-page/',
+          image: '/og/sitemap-page.png',
+          about: 'MedicareClear site index',
+          breadcrumb: [
+            { name: 'Home', url: '/' },
+            { name: 'Sitemap', url: '/sitemap-page/' },
+          ],
+        })}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

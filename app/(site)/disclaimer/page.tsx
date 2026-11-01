@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     'MedicareClear provides general information and estimates. It is not affiliated with any government agency and does not provide professional advice.',
   alternates: { canonical: '/disclaimer/' },
   openGraph: {
+    type: 'website',
     title: 'Disclaimer',
     description:
       'MedicareClear provides general information and estimates. It is not affiliated with any government agency and does not provide professional advice.',

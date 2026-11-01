@@ -1,7 +1,9 @@
 import type { ReactNode } from 'react';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/json-ld';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { ReportError } from '@/components/trust/report-error';
+import { webPageSchema } from '@/lib/schema';
 
 type LegalPageProps = {
   title: string;
@@ -20,6 +22,18 @@ export function LegalPage({
 }: LegalPageProps) {
   return (
     <>
+      <JsonLd
+        data={webPageSchema({
+          name: title,
+          description: lede,
+          path,
+          about: title,
+          breadcrumb: [
+            { name: 'Home', url: '/' },
+            { name: title, url: path },
+          ],
+        })}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

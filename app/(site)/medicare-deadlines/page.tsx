@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AnswerCapsule, KeyFacts, SourceTable } from '@/components/calc/content';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { ReportError } from '@/components/trust/report-error';
@@ -10,6 +11,7 @@ import { irs2026 } from '@/data/irs';
 import { partB2026 } from '@/data/medicare-part-b';
 import { sources } from '@/data/sources';
 import { dataVerifiedOn } from '@/data/verified';
+import { webPageSchema } from '@/lib/schema';
 import { formatMoney } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -18,6 +20,7 @@ export const metadata: Metadata = {
     'The Medicare Initial Enrollment Period, General Enrollment Period, Special Enrollment Period, and annual window, with the dates and official sources.',
   alternates: { canonical: '/medicare-deadlines/' },
   openGraph: {
+    type: 'website',
     title: 'Medicare deadlines | MedicareClear',
     description:
       'The Medicare enrollment windows and the dates that matter, with official sources and checked dates.',
@@ -85,6 +88,20 @@ const acaWindow = windowLabel(
 export default function MedicareDeadlinesPage() {
   return (
     <>
+      <JsonLd
+        data={webPageSchema({
+          name: 'Medicare deadlines',
+          description:
+            'The Medicare Initial Enrollment Period, General Enrollment Period, Special Enrollment Period, and annual window, with the dates and official sources.',
+          path: '/medicare-deadlines/',
+          image: '/og/medicare-deadlines.png',
+          about: ['Medicare enrollment periods', 'Medicare deadlines'],
+          breadcrumb: [
+            { name: 'Home', url: '/' },
+            { name: 'Medicare deadlines', url: '/medicare-deadlines/' },
+          ],
+        })}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

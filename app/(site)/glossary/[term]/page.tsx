@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { SourceTable } from '@/components/calc/content';
-import { articleSchema } from '@/lib/schema';
+import { articleSchema, pageUrl, webPageSchema } from '@/lib/schema';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { AuthorLine } from '@/components/trust/author-line';
 import { ReportError } from '@/components/trust/report-error';
@@ -52,6 +52,7 @@ export async function generateMetadata({ params }: TermPageProps): Promise<Metad
     description: metaDescription(entry.term, entry.definition),
     alternates: { canonical: `/glossary/${term}` },
     openGraph: {
+      type: 'website',
       title: `${entry.term} Definition`,
       description: metaDescription(entry.term, entry.definition),
       url: `/glossary/${term}`,
@@ -106,28 +107,45 @@ export default async function GlossaryTermPage({ params }: TermPageProps) {
   return (
     <>
       <JsonLd
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'DefinedTerm',
-          name: entry.term,
-          description: entry.definition,
-          url: `${site.siteUrl}${href}`,
-          inDefinedTermSet: {
-            '@type': 'DefinedTermSet',
-            name: `${site.siteName} Medicare glossary`,
-            url: `${site.siteUrl}/glossary`,
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'DefinedTerm',
+            '@id': `${pageUrl(href)}#definedterm`,
+            name: entry.term,
+            description: entry.definition,
+            url: pageUrl(href),
+            inDefinedTermSet: {
+              '@type': 'DefinedTermSet',
+              name: `${site.siteName} Medicare glossary`,
+              url: pageUrl('/glossary'),
+            },
           },
-        }}
-      />
-      <JsonLd
-        data={articleSchema({
-          headline: `${entry.term} definition`,
-          description: entry.definition,
-          url: `${site.siteUrl}${href}`,
-          datePublished: entry.updatedOn,
-          dateModified: entry.updatedOn,
-          citation: entry.sources.map((sourceRow) => sourceRow.source),
-        })}
+          articleSchema({
+            headline: `${entry.term} definition`,
+            description: entry.definition,
+            url: href,
+            datePublished: entry.updatedOn,
+            dateModified: entry.updatedOn,
+            image: `/og/glossary/${term}.png`,
+            about: entry.term,
+            citation: entry.sources.map((sourceRow) => sourceRow.source),
+          }),
+          webPageSchema({
+            name: `${entry.term} definition`,
+            description: entry.definition,
+            path: href,
+            datePublished: entry.updatedOn,
+            dateModified: entry.updatedOn,
+            image: `/og/glossary/${term}.png`,
+            about: entry.term,
+            breadcrumb: [
+              { name: 'Home', url: '/' },
+              { name: 'Glossary', url: '/glossary/' },
+              { name: entry.term, url: href },
+            ],
+          }),
+        ]}
       />
 
       <div className="wrap">

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AnswerCapsule, SourceTable } from '@/components/calc/content';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { ReportError } from '@/components/trust/report-error';
@@ -11,6 +12,7 @@ import { dataVerifiedOn, figureYears } from '@/data/verified';
 import { partBPenaltyCalculator } from '@/lib/formulas/part-b-penalty';
 import { irmaaCalculator } from '@/lib/formulas/irmaa';
 import { medicareVsAca } from '@/lib/formulas/medicare-vs-aca';
+import { webPageSchema } from '@/lib/schema';
 import { formatMoney, formatPercent } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -19,6 +21,7 @@ export const metadata: Metadata = {
     'Three worked Medicare decisions: working past 65, a missed Special Enrollment Period, and a Roth conversion near the IRMAA cliff.',
   alternates: { canonical: '/scenarios/' },
   openGraph: {
+    type: 'website',
     title: 'Medicare scenarios | MedicareClear',
     description:
       'Three worked Medicare decisions with the numbers, the rule, and the next official step.',
@@ -71,6 +74,20 @@ const irmaaOneOver = irmaaCalculator({
 export default function ScenariosPage() {
   return (
     <>
+      <JsonLd
+        data={webPageSchema({
+          name: 'Medicare scenarios',
+          description:
+            'Three worked Medicare decisions: working past 65, a missed Special Enrollment Period, and a Roth conversion near the IRMAA cliff.',
+          path: '/scenarios/',
+          image: '/og/scenarios.png',
+          about: ['Medicare enrollment', 'IRMAA', 'Medicare versus ACA coverage'],
+          breadcrumb: [
+            { name: 'Home', url: '/' },
+            { name: 'Scenarios', url: '/scenarios/' },
+          ],
+        })}
+      />
       <div className="wrap">
         <Breadcrumbs
           items={[

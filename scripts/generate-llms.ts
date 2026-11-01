@@ -12,11 +12,31 @@ import { formatMoney } from '../lib/utils';
 import { root } from './file-walk';
 
 const calculators = [
-  ['Employer coverage affordability', '/calculators/employer-coverage-affordability'],
-  ['Medicare Savings Program and Extra Help', '/calculators/medicare-savings-program-extra-help'],
-  ['Part B late enrollment penalty', '/calculators/part-b-late-enrollment-penalty'],
-  ['IRMAA cliff checker', '/calculators/irmaa-cliff-checker'],
-  ['Medicare vs ACA', '/calculators/medicare-vs-aca'],
+  {
+    label: 'Employer coverage affordability',
+    href: '/calculators/employer-coverage-affordability',
+    summary: 'Tests the employee-only premium against the IRS affordability percentage and the family premium rule.',
+  },
+  {
+    label: 'Medicare Savings Program and Extra Help',
+    href: '/calculators/medicare-savings-program-extra-help',
+    summary: 'Compares income and countable assets with the federal QMB, SLMB, QI, and Extra Help limits.',
+  },
+  {
+    label: 'Part B late enrollment penalty',
+    href: '/calculators/part-b-late-enrollment-penalty',
+    summary: 'Shows the monthly penalty, annual cost, and the 10-year and 20-year totals.',
+  },
+  {
+    label: 'IRMAA cliff checker',
+    href: '/calculators/irmaa-cliff-checker',
+    summary: 'Finds the IRMAA tier, Part B and Part D surcharge, next cliff, and Roth-conversion headroom.',
+  },
+  {
+    label: 'Medicare vs ACA',
+    href: '/calculators/medicare-vs-aca',
+    summary: 'Follows the 20-employee rule, premium-free Part A, subsidy consequences, and HSA timing.',
+  },
 ] as const;
 
 function withTrailingSlash(url: string): string {
@@ -32,7 +52,10 @@ const lines = [
   '',
   '## Calculators',
   '',
-  ...calculators.map(([label, href]) => `- [${label}](${withTrailingSlash(`${site.siteUrl}${href}`)})`),
+  ...calculators.map(
+    (calculator) =>
+      `- [${calculator.label}](${withTrailingSlash(`${site.siteUrl}${calculator.href}`)}): ${calculator.summary}`,
+  ),
   '',
   '## Guides',
   '',
@@ -66,9 +89,76 @@ const lines = [
   '- Figures are updated by editing the data layer and redeploying; the checked date changes with them.',
   '- The site does not publish search volumes, testimonials, or invented reviewer credentials.',
   '',
+  '## Machine-readable files',
+  '',
+  `- [XML sitemap](${site.siteUrl}/sitemap.xml)`,
+  `- [RSS feed for guides](${site.siteUrl}/feed.xml)`,
+  `- [Full text summary for answer engines](${site.siteUrl}/llms-full.txt)`,
+  `- [Human-readable sitemap](${site.siteUrl}/sitemap-page/)`,
+  '',
+  '## How to cite this site',
+  '',
+  `Suggested citation: ${site.siteName}. "Page title." ${site.siteUrl}. Figures checked ${dataVerifiedOn}.`,
+  '',
+  'Each page states the year of its figures, the official source URL, and the date the figure was checked. Prefer the page that directly answers the question, and cite the official source alongside it.',
+  '',
+  '## Verification and corrections',
+  '',
+  `- [Verification log](${site.siteUrl}/verification-log/): hand-worked examples for each formula.`,
+  `- [Methodology](${site.siteUrl}/methodology/): boundary tests, update schedule, and known limits.`,
+  `- [Corrections](${site.siteUrl}/corrections/): how to report an error and the public change log.`,
+  '',
 ];
 
 const output = path.join(root, 'public/llms.txt');
 fs.mkdirSync(path.dirname(output), { recursive: true });
 fs.writeFileSync(output, lines.join('\n'), 'utf8');
 console.log(`generate:llms wrote ${path.relative(root, output).replaceAll('\\', '/')}`);
+
+const fullLines = [
+  `# ${site.siteName} full text index`,
+  '',
+  `> Independent Medicare and ACA calculators and plain-language guides. Operator: ${site.ownerName}, ${site.location}. Figures checked ${dataVerifiedOn}.`,
+  '',
+  '## Calculators',
+  '',
+  ...calculators.map((calculator) =>
+    [
+      `### ${calculator.label}`,
+      calculator.summary,
+      `URL: ${withTrailingSlash(`${site.siteUrl}${calculator.href}`)}`,
+      '',
+    ].join('\n'),
+  ),
+  '## Guides',
+  '',
+  ...guides.map((guide) => {
+    const title = resolveGuide(guide.h1, figureYears.current).replace(/\s+/g, ' ').trim();
+    const summary = resolveGuide(guide.summary, figureYears.current).replace(/\s+/g, ' ').trim();
+    const description = resolveGuide(guide.description, figureYears.current)
+      .replace(/\s+/g, ' ')
+      .trim();
+    return [
+      `### ${title}`,
+      `URL: ${withTrailingSlash(`${site.siteUrl}/guides/${guide.slug}/`)}`,
+      `Summary: ${summary}`,
+      `Answer: ${description}`,
+      `Last updated: ${guide.updatedOn}`,
+      '',
+    ].join('\n');
+  }),
+  '## Site pages',
+  '',
+  `- About: ${site.siteUrl}/about/`,
+  `- Contact: ${site.siteUrl}/contact/`,
+  `- Methodology: ${site.siteUrl}/methodology/`,
+  `- Verification log: ${site.siteUrl}/verification-log/`,
+  `- Editorial policy: ${site.siteUrl}/editorial-policy/`,
+  `- Corrections: ${site.siteUrl}/corrections/`,
+  `- Glossary: ${site.siteUrl}/glossary/`,
+  '',
+];
+
+const fullOutput = path.join(root, 'public/llms-full.txt');
+fs.writeFileSync(fullOutput, fullLines.join('\n'), 'utf8');
+console.log(`generate:llms wrote ${path.relative(root, fullOutput).replaceAll('\\', '/')}`);
