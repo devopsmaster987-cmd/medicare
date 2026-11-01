@@ -10,6 +10,7 @@ const exploreLinks = [
   { href: `/what-changed-${figureYears.current}`, label: `What changed for ${figureYears.current}` },
   { href: '/medicare-deadlines/', label: 'Medicare deadlines' },
   { href: '/scenarios/', label: 'Medicare scenarios' },
+  { href: '/data/', label: 'Data files' },
   { href: '/sitemap-page/', label: 'Sitemap' },
 ];
 
@@ -20,6 +21,8 @@ const aboutLinks = [
   { href: '/verification-log/', label: 'Verification log' },
   { href: '/editorial-policy/', label: 'Editorial policy' },
   { href: '/corrections/', label: 'Corrections' },
+  { href: '/link-to-us/', label: 'Link to us' },
+  { href: '/press/', label: 'Press kit' },
 ];
 
 const legalLinks = [

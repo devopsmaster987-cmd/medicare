@@ -5,6 +5,7 @@ export type AnalyticsEvent =
   | 'calculator_start'
   | 'calculator_complete'
   | 'copy_result'
+  | 'copy_citation'
   | 'calendar_download'
   | 'take_home_pack'
   | 'email_signup'

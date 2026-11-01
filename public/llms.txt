@@ -58,6 +58,9 @@ Every figure is stored with its year, an official source URL, and the date it wa
 - [Glossary](https://medicareclear.top/glossary/)
 - [Sitemap](https://medicareclear.top/sitemap-page/)
 - [Corrections](https://medicareclear.top/corrections/)
+- [Link to us and citation text](https://medicareclear.top/link-to-us/)
+- [Press and media kit](https://medicareclear.top/press/)
+- [Medicare and ACA data](https://medicareclear.top/data/)
 
 ## Key verified facts
 
@@ -80,6 +83,7 @@ Every figure is stored with its year, an official source URL, and the date it wa
 - [XML sitemap](https://medicareclear.top/sitemap.xml)
 - [RSS feed for guides](https://medicareclear.top/feed.xml)
 - [Full text summary for answer engines](https://medicareclear.top/llms-full.txt)
+- [Source-linked Medicare and ACA figures as JSON](https://medicareclear.top/data/medicare-figures-2026.json)
 - [Human-readable sitemap](https://medicareclear.top/sitemap-page/)
 
 ## How to cite this site

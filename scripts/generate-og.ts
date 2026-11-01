@@ -96,6 +96,21 @@ const sitePages: OgPage[] = [
     kicker: 'Every page in one place',
   },
   {
+    file: 'link-to-us.png',
+    title: 'Link to MedicareClear',
+    kicker: 'Citation text, anchor ideas, and pages to cite',
+  },
+  {
+    file: 'press.png',
+    title: 'Press and media kit',
+    kicker: 'Publisher facts, citable figures, and contact',
+  },
+  {
+    file: 'data.png',
+    title: 'Medicare and ACA data',
+    kicker: 'Source-linked JSON with checked dates',
+  },
+  {
     file: 'what-changed-2026.png',
     title: 'What changed for 2026',
     kicker: 'Part B, Part D, IRMAA, Part A, and ACA figures beside 2025',

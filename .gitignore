@@ -54,3 +54,6 @@ checkall*.err.log
 public/*.txt
 !public/llms.txt
 !public/ads.txt
+
+# generated data downloads
+public/data/

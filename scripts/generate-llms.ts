@@ -72,6 +72,9 @@ const lines = [
   `- [Glossary](${site.siteUrl}/glossary/)`,
   `- [Sitemap](${site.siteUrl}/sitemap-page/)`,
   `- [Corrections](${site.siteUrl}/corrections/)`,
+  `- [Link to us and citation text](${site.siteUrl}/link-to-us/)`,
+  `- [Press and media kit](${site.siteUrl}/press/)`,
+  `- [Medicare and ACA data](${site.siteUrl}/data/)`,
   '',
   '## Key verified facts',
   '',
@@ -94,6 +97,7 @@ const lines = [
   `- [XML sitemap](${site.siteUrl}/sitemap.xml)`,
   `- [RSS feed for guides](${site.siteUrl}/feed.xml)`,
   `- [Full text summary for answer engines](${site.siteUrl}/llms-full.txt)`,
+  `- [Source-linked Medicare and ACA figures as JSON](${site.siteUrl}/data/medicare-figures-${figureYears.current}.json)`,
   `- [Human-readable sitemap](${site.siteUrl}/sitemap-page/)`,
   '',
   '## How to cite this site',
@@ -156,6 +160,10 @@ const fullLines = [
   `- Editorial policy: ${site.siteUrl}/editorial-policy/`,
   `- Corrections: ${site.siteUrl}/corrections/`,
   `- Glossary: ${site.siteUrl}/glossary/`,
+  `- Link to us: ${site.siteUrl}/link-to-us/`,
+  `- Press and media kit: ${site.siteUrl}/press/`,
+  `- Medicare and ACA data: ${site.siteUrl}/data/`,
+  `- Source-linked JSON: ${site.siteUrl}/data/medicare-figures-${figureYears.current}.json`,
   '',
 ];
 

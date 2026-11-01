@@ -26,8 +26,9 @@ Run this checklist when CMS, SSA, HHS, or the IRS publish new figures. Do not ch
 8. Run `npm run typecheck`, `npm test`, `npm run verify:data`, and `npm run build`.
 9. Add two hand-worked examples to `docs/verification-log.md` for every changed formula.
 10. Change the visible "Last updated" date only through `dataVerifiedOn`; never type a new date into a page.
-11. Update `llms.txt`, the source tables, and any guide that quotes a changed figure.
-12. Ask the owner to sign off in writing before launch.
+11. Update `llms.txt`, the source tables, and any guide that quotes a changed figure. The build regenerates `llms.txt`, `llms-full.txt`, and `public/data/medicare-figures-<year>.json` from the data layer; do not edit those files by hand.
+12. Run `npm run check:all` after the build, then confirm the new data file is present in `out/data/`.
+13. Ask the owner to sign off in writing before launch.
 
 ## Do not
 

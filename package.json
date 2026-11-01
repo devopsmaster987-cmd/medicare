@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cross-env ALLOW_PLACEHOLDERS=1 npm run verify:data && npm run generate:llms && npm run generate:og && npm run generate:ads-txt && npm run verify:tokens && next build && npm run verify:og && npm run verify:seo && npm run verify:adsense && npm run verify:links && npm run verify:glossary && npm run verify:indexing",
+    "build": "cross-env ALLOW_PLACEHOLDERS=1 npm run verify:data && npm run generate:data && npm run generate:llms && npm run generate:og && npm run generate:ads-txt && npm run verify:tokens && next build && npm run verify:og && npm run verify:seo && npm run verify:adsense && npm run verify:links && npm run verify:glossary && npm run verify:indexing",
     "start": "serve out",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
@@ -14,6 +14,7 @@
     "verify": "npm run typecheck && npm run test && npm run lint && npm run verify:data && npm run verify:guides",
     "verify:data": "tsx scripts/verify-data.ts",
     "verify:guides": "tsx scripts/verify-guides.ts",
+    "generate:data": "tsx scripts/generate-data.ts",
     "generate:llms": "tsx scripts/generate-llms.ts",
     "generate:og": "tsx scripts/generate-og.ts",
     "generate:ads-txt": "tsx scripts/generate-ads-txt.ts",

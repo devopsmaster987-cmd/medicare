@@ -65,6 +65,9 @@ const siteLinks = [
   { href: '/verification-log/', label: 'Verification log' },
   { href: '/editorial-policy/', label: 'Editorial policy' },
   { href: '/corrections/', label: 'Corrections and change log' },
+  { href: '/link-to-us/', label: 'Link to us and citation text' },
+  { href: '/press/', label: 'Press and media kit' },
+  { href: '/data/', label: 'Medicare and ACA data files' },
 ];
 
 const legalLinks = [

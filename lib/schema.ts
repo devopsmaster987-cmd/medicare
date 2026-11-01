@@ -360,3 +360,36 @@ export function definedTermSetSchema(input: {
     })),
   };
 }
+
+export function datasetSchema(input: {
+  name: string;
+  description: string;
+  path: string;
+  downloadPath: string;
+  year: number;
+  keywords?: string[];
+}): Schema {
+  const url = pageUrl(input.path);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    '@id': `${url}#dataset`,
+    name: input.name,
+    description: input.description,
+    url,
+    creator: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+    isAccessibleForFree: true,
+    dateModified: dataVerifiedOn,
+    temporalCoverage: String(input.year),
+    inLanguage: 'en-US',
+    distribution: [
+      {
+        '@type': 'DataDownload',
+        contentUrl: assetUrl(input.downloadPath),
+        encodingFormat: 'application/json',
+      },
+    ],
+    ...(input.keywords && input.keywords.length > 0 ? { keywords: input.keywords } : {}),
+  };
+}
