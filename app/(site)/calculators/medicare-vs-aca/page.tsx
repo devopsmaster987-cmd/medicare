@@ -105,6 +105,15 @@ const faqItems = [
     answer:
       'With active coverage from an employer with fewer than 20 employees, Medicare generally pays first. Enrolling in Part B usually avoids gaps and penalty risk. Ask HR and Social Security to confirm the employer size rule for your plan.',
   },
+  {
+    question: `Medicare vs Marketplace for ${year}: which one should I choose?`,
+    answer: `If you have premium-free Part A, Marketplace premium tax credits generally end, so Medicare is usually the path even if you delay Part B. If you do not have premium-free Part A, compare the full Part A and Part B premium with a Marketplace plan and any premium tax credit before you decide.`,
+  },
+  {
+    question: 'What is the 20-employee rule for Medicare?',
+    answer:
+      'The 20-employee rule decides whether Medicare or an employer plan pays first. If the employer has 20 or more employees and you have active coverage, you can usually delay Part B without a penalty. If the employer has fewer than 20 employees, Medicare generally pays first and enrolling in Part B is usually the safer path.',
+  },
 ];
 
 export default function MedicareVsAcaPage() {

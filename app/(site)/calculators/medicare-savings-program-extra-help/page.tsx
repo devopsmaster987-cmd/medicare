@@ -122,6 +122,14 @@ const faqItems = [
     answer:
       'Bring your Medicare card, Social Security award letter, recent proof of income, and statements for the countable assets you reported. Ask the state agency and Social Security before sending originals or using a portal you have not verified.',
   },
+  {
+    question: `What are the Medicare Savings Program income limits for ${year} for a married couple?`,
+    answer: `For a married couple, the federal QMB monthly income limit is ${formatMoney(qmbCouple ?? 0)}, the SLMB limit is ${formatMoney(slmbCouple ?? 0)}, and the QI limit is ${formatMoney(qiCouple ?? 0)}. Extra Help uses an annual limit of ${formatMoney(extraHelpCouple)}. State rules and income disregards can raise the effective limit.`,
+  },
+  {
+    question: `What are the Medicare Savings Program asset limits for ${year}?`,
+    answer: `The federal QMB resource limit is ${formatMoney(mspResourceLimit(mspPrograms.qmb, 1))} for one person and ${formatMoney(mspResourceLimit(mspPrograms.qmb, 2))} for a couple. Some states use different or no asset tests; the state table on this page shows the rules we have verified.`,
+  },
 ];
 
 export default function MedicareSavingsProgramPage() {

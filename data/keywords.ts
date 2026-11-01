@@ -21,6 +21,38 @@ export const keywords: Keyword[] = [
   { keyword: 'medicare calculator', role: 'primary', page: '/calculators' },
 
   {
+    keyword: 'medicare enrollment deadlines',
+    role: 'primary',
+    page: '/medicare-deadlines',
+  },
+  {
+    keyword: 'medicare open enrollment {year}',
+    role: 'secondary',
+    page: '/medicare-deadlines',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'when is medicare open enrollment for {year}',
+    role: 'faq',
+    page: '/medicare-deadlines',
+  },
+  {
+    keyword: 'how long is the medicare special enrollment period',
+    role: 'faq',
+    page: '/medicare-deadlines',
+  },
+  {
+    keyword: 'what is the medicare annual enrollment period',
+    role: 'faq',
+    page: '/medicare-deadlines',
+  },
+  {
+    keyword: 'when does aca open enrollment start for {year}',
+    role: 'faq',
+    page: '/medicare-deadlines',
+  },
+
+  {
     keyword: 'is employer health insurance affordable {year}',
     role: 'primary',
     page: '/calculators/employer-coverage-affordability',
@@ -61,6 +93,16 @@ export const keywords: Keyword[] = [
   },
   {
     keyword: 'employer health insurance affordability test',
+    role: 'faq',
+    page: '/calculators/employer-coverage-affordability',
+  },
+  {
+    keyword: 'aca affordability percentage for {year}',
+    role: 'faq',
+    page: '/calculators/employer-coverage-affordability',
+  },
+  {
+    keyword: 'family glitch fix for {year}',
     role: 'faq',
     page: '/calculators/employer-coverage-affordability',
   },
@@ -147,6 +189,11 @@ export const keywords: Keyword[] = [
     page: '/calculators/medicare-savings-program-extra-help',
   },
   {
+    keyword: 'medicare savings program income limits for {year} for a married couple',
+    role: 'faq',
+    page: '/calculators/medicare-savings-program-extra-help',
+  },
+  {
     keyword: 'medicare extra help',
     role: 'synonym',
     page: '/calculators/medicare-savings-program-extra-help',
@@ -214,6 +261,11 @@ export const keywords: Keyword[] = [
   },
   {
     keyword: 'what is the part b penalty for {year}',
+    role: 'faq',
+    page: '/calculators/part-b-late-enrollment-penalty',
+  },
+  {
+    keyword: 'part b late enrollment penalty for {year}',
     role: 'faq',
     page: '/calculators/part-b-late-enrollment-penalty',
   },
@@ -293,6 +345,16 @@ export const keywords: Keyword[] = [
     page: '/calculators/irmaa-cliff-checker',
   },
   {
+    keyword: 'irmaa income limits for {year}',
+    role: 'faq',
+    page: '/calculators/irmaa-cliff-checker',
+  },
+  {
+    keyword: 'irmaa brackets for {year} for a single filer',
+    role: 'faq',
+    page: '/calculators/irmaa-cliff-checker',
+  },
+  {
     keyword: 'irmaa cliff checker',
     role: 'synonym',
     page: '/calculators/irmaa-cliff-checker',
@@ -331,6 +393,16 @@ export const keywords: Keyword[] = [
     headingLevel: 2,
   },
   { keyword: 'medicare vs aca subsidies', role: 'faq', page: '/calculators/medicare-vs-aca' },
+  {
+    keyword: 'medicare vs marketplace for {year}',
+    role: 'faq',
+    page: '/calculators/medicare-vs-aca',
+  },
+  {
+    keyword: 'what is the 20-employee rule for medicare',
+    role: 'faq',
+    page: '/calculators/medicare-vs-aca',
+  },
   {
     keyword: 'medicare vs aca calculator',
     role: 'synonym',

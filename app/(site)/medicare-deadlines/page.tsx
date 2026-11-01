@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { AnswerCapsule, KeyFacts, SourceTable } from '@/components/calc/content';
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
 import { Breadcrumbs } from '@/components/seo/breadcrumbs';
 import { JsonLd } from '@/components/seo/json-ld';
 import { AuthorLine } from '@/components/trust/author-line';
@@ -15,15 +15,15 @@ import { webPageSchema } from '@/lib/schema';
 import { formatMoney } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Medicare deadlines',
+  title: 'Medicare enrollment deadlines',
   description:
-    'The Medicare Initial Enrollment Period, General Enrollment Period, Special Enrollment Period, and annual window, with the dates and official sources.',
+    'Medicare enrollment deadlines for the Initial Enrollment Period, General Enrollment Period, Special Enrollment Period, Medicare open enrollment, and ACA dates.',
   alternates: { canonical: '/medicare-deadlines/' },
   openGraph: {
     type: 'website',
-    title: 'Medicare deadlines | MedicareClear',
+    title: 'Medicare enrollment deadlines | MedicareClear',
     description:
-      'The Medicare enrollment windows and the dates that matter, with official sources and checked dates.',
+      'The Medicare enrollment windows and the dates that matter, including Medicare open enrollment, with official sources and checked dates.',
     url: '/medicare-deadlines/',
     images: [
       {
@@ -85,20 +85,49 @@ const acaWindow = windowLabel(
   year,
 );
 
+const faqItems = [
+  {
+    question: `When is Medicare open enrollment for ${year}?`,
+    answer: `The annual Medicare open enrollment window runs from October 15 through December 7 each year. For ${year}, that is ${annualWindow}. It is for changing Part D or Medicare Advantage coverage for the next plan year, not for your first Part B enrollment.`,
+  },
+  {
+    question: 'How long is the Medicare Special Enrollment Period?',
+    answer:
+      'The Special Enrollment Period is generally eight months after active employer coverage or employment ends. It can let you delay Part B without a penalty if the employer has 20 or more employees and the coverage is creditable. Retiree coverage and COBRA generally do not create the same window.',
+  },
+  {
+    question: 'What is the Medicare annual enrollment period?',
+    answer:
+      'The annual enrollment period is the October 15 through December 7 window for changing Part D or Medicare Advantage coverage. It is not the same as the Initial Enrollment Period, and it does not replace a Special Enrollment Period.',
+  },
+  {
+    question: `When does ACA open enrollment start for ${year}?`,
+    answer: `The federal Marketplace open enrollment window is ${acaWindow}. State marketplaces can use different dates. A special enrollment period may apply after a qualifying life event, such as losing other coverage, moving, or a change in household size.`,
+  },
+  {
+    question: 'When is the Medicare General Enrollment Period?',
+    answer: `The General Enrollment Period runs from January 1 through March 31 each year. For ${year}, that is ${generalWindow}. It is for people who missed their first chance to enroll and do not qualify for a Special Enrollment Period.`,
+  },
+  {
+    question: 'What happens if I miss my Medicare enrollment deadline?',
+    answer: `If you miss your Initial Enrollment Period and do not qualify for a Special Enrollment Period, the General Enrollment Period from January 1 through March 31 is the next window. A Part B late-enrollment penalty can apply, and the penalty is generally permanent.`,
+  },
+];
+
 export default function MedicareDeadlinesPage() {
   return (
     <>
       <JsonLd
         data={webPageSchema({
-          name: 'Medicare deadlines',
+          name: 'Medicare enrollment deadlines',
           description:
-            'The Medicare Initial Enrollment Period, General Enrollment Period, Special Enrollment Period, and annual window, with the dates and official sources.',
+            'The Medicare Initial Enrollment Period, General Enrollment Period, Special Enrollment Period, Medicare open enrollment, and ACA dates, with official sources.',
           path: '/medicare-deadlines/',
           image: '/og/medicare-deadlines.png',
           about: ['Medicare enrollment periods', 'Medicare deadlines'],
           breadcrumb: [
             { name: 'Home', url: '/' },
-            { name: 'Medicare deadlines', url: '/medicare-deadlines/' },
+            { name: 'Medicare enrollment deadlines', url: '/medicare-deadlines/' },
           ],
         })}
       />
@@ -106,7 +135,7 @@ export default function MedicareDeadlinesPage() {
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
-            { name: 'Medicare deadlines', href: '/medicare-deadlines/' },
+            { name: 'Medicare enrollment deadlines', href: '/medicare-deadlines/' },
           ]}
         />
       </div>
@@ -114,9 +143,9 @@ export default function MedicareDeadlinesPage() {
       <section className="page-hero">
         <div className="wrap">
           <p className="eyebrow">Reference · {year}</p>
-          <h1 className="page-title">Medicare deadlines</h1>
+          <h1 className="page-title">Medicare enrollment deadlines</h1>
           <AnswerCapsule>
-            The main Medicare deadlines are your seven-month Initial Enrollment Period, the General
+            The main Medicare enrollment deadlines are your seven-month Initial Enrollment Period, the General
             Enrollment Period from January 1 through March 31, the eight-month Special Enrollment
             Period after active employer coverage ends, and the annual window from October 15
             through December 7. Confirm your own dates with Social Security before you act.
@@ -237,7 +266,7 @@ export default function MedicareDeadlinesPage() {
 
       <section className="section section-tight">
         <div className="wrap prose">
-          <h2>Annual enrollment window</h2>
+          <h2>Medicare open enrollment {year}</h2>
           <p>
             The annual Medicare window runs from October 15 through December 7. It is the time to
             change Part D or Medicare Advantage coverage for the next plan year. It is not the window
@@ -302,6 +331,12 @@ export default function MedicareDeadlinesPage() {
             <Link href="/calculators/irmaa-cliff-checker/">IRMAA tool</Link> covers a different
             deadline: the two-year income lookback.
           </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <Faq items={faqItems} />
         </div>
       </section>
 

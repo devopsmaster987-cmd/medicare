@@ -93,6 +93,15 @@ const faqItems = [
     answer:
       'Start with Social Security and ask for the dates and coverage information used in the decision. Provide the employer coverage end date, the creditable coverage notice, and any Special Enrollment Period proof. Ask what review or appeal step applies to your case.',
   },
+  {
+    question: `What is the Part B late enrollment penalty for ${year}?`,
+    answer: `The Part B late enrollment penalty is 10% of the standard premium for each full 12-month period without creditable coverage. At the ${year} standard premium of ${formatMoney(partB2026.standardPremium.amount)} a month, one full year adds ${formatMoney(oneYear.monthlyPenalty)} a month, or ${formatMoney(oneYear.annualPenalty)} a year.`,
+  },
+  {
+    question: 'What proof do I need for the Part B Special Enrollment Period?',
+    answer:
+      'Keep the employer plan summary, the written creditable coverage notice, and the exact dates your active coverage or employment ended. Social Security may ask for that proof when you enroll. Retiree coverage and COBRA generally do not create the same eight-month window.',
+  },
 ];
 
 export default function PartBPenaltyPage() {

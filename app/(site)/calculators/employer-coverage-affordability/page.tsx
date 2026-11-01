@@ -96,6 +96,14 @@ const faqItems = [
     answer:
       'A premium change or a plan change can change the result. Keep the plan year summary and rerun the calculator with the new employee-only premium. A qualifying event may also open a special enrollment period.',
   },
+  {
+    question: `What is the ACA affordability percentage for ${year}?`,
+    answer: `For ${year}, the IRS affordability percentage is ${formatPercent(irs2026.employerAffordabilityPercentage.rate)} of household income. The employee test uses the lowest-cost self-only premium, while the family glitch fix uses the family premium for a spouse and children.`,
+  },
+  {
+    question: `What is the family glitch fix for ${year}?`,
+    answer: `The family glitch fix tests a spouse and children against the annual premium for family coverage, not the employee-only premium. If that family premium is more than ${formatPercent(irs2026.employerAffordabilityPercentage.rate)} of household income, they may qualify for Marketplace help even when the employee-only plan is affordable.`,
+  },
 ];
 
 export default function EmployerCoverageAffordabilityPage() {

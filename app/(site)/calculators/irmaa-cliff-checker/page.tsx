@@ -100,6 +100,14 @@ const faqItems = [
     answer:
       'You can ask Social Security to review the decision if a life-changing event changed your income. File Form SSA-44 and provide the proof the office requests. This page is guidance, not tax or legal advice.',
   },
+  {
+    question: `What are the IRMAA income limits for ${year}?`,
+    answer: `For ${year}, the first IRMAA tier starts at ${formatMoney(singleFirst.min)} of MAGI for a single filer and at ${formatMoney(jointFirst.min)} for a married couple filing jointly. The married-filing-separately threshold is ${formatMoney(separateFirst.min)}.`,
+  },
+  {
+    question: `What are the IRMAA brackets for ${year} for a single filer?`,
+    answer: `The single-filer brackets for ${year} start at ${formatMoney(singleFirst.min)} of MAGI and rise by tier. The calculator shows the Part B and Part D surcharge at each tier and the dollars of headroom before the next cliff.`,
+  },
 ];
 
 export default function IrmaaPage() {
