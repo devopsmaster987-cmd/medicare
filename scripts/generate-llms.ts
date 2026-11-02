@@ -28,6 +28,11 @@ const calculators = [
     summary: 'Shows the monthly penalty, annual cost, and the 10-year and 20-year totals.',
   },
   {
+    label: 'Part D late enrollment penalty',
+    href: '/calculators/part-d-late-enrollment-penalty',
+    summary: 'Shows the monthly Part D penalty, the 63-day gap rule, and the creditable coverage review path.',
+  },
+  {
     label: 'IRMAA cliff checker',
     href: '/calculators/irmaa-cliff-checker',
     summary: 'Finds the IRMAA tier, Part B and Part D surcharge, next cliff, and Roth-conversion headroom.',

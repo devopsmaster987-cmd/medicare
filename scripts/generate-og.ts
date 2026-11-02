@@ -33,6 +33,11 @@ const calculators: Array<{ slug: string; title: string; kicker: string }> = [
     kicker: 'The monthly cost, the annual cost, and the 10-year view',
   },
   {
+    slug: 'part-d-late-enrollment-penalty',
+    title: 'Part D late enrollment penalty',
+    kicker: 'The monthly cost, the creditable coverage rules, and the 63-day gap',
+  },
+  {
     slug: 'irmaa-cliff-checker',
     title: 'IRMAA brackets and the next cliff',
     kicker: 'Part B and Part D surcharges with a two-year lookback',
@@ -131,9 +136,9 @@ const sitePages: OgPage[] = [
     kicker: 'Hand-worked examples, sources, and checked dates',
   },
   {
-    file: 'authors/abdul-samad.png',
+    file: 'authors/daniel-smith.png',
     title: author.name,
-    kicker: 'Independent publisher, Punjab, Pakistan',
+    kicker: `Independent publisher, ${site.location}`,
   },
 ];
 

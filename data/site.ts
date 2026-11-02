@@ -18,11 +18,11 @@ const adsEnabled = adsRequested && adsensePublisherId !== '' && adsenseSlotId !=
 
 export const site = {
   siteName: 'MedicareClear',
-  ownerName: 'Abdul Samad',
+  ownerName: 'Daniel Smith',
   contactEmail: 'ihsanaslamm@gmail.com',
-  location: 'Punjab, Pakistan',
-  mailingAddress: 'Punjab, Pakistan',
-  governingLaw: 'Punjab, Pakistan',
+  location: 'California, USA',
+  mailingAddress: 'California, USA',
+  governingLaw: 'California, USA',
   siteUrl: configuredSiteUrl || defaultSiteUrl,
   siteUrlIsPlaceholder: false,
   socialProfiles: [] as string[],

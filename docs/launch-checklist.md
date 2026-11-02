@@ -66,7 +66,7 @@ empty verification tag, a placeholder publisher ID, or an unapproved ad.
 
 ## 6. Content and trust
 
-- [ ] Confirm all 5 calculators and 10 guides are reachable within three clicks.
+- [ ] Confirm all 6 calculators and 10 guides are reachable within three clicks.
 - [ ] Run `npm run check:all`; it must pass with no errors.
 - [ ] Confirm the build's `verify:og` step reports a unique `og:image` for every exported page.
 - [ ] Confirm the build's `verify:seo` step reports unique titles, meta descriptions, canonicals,

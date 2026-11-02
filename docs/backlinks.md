@@ -24,7 +24,7 @@ low-quality ones, and a link scheme can undo months of work.
 - Do not ask a site to remove `nofollow`, `sponsored`, or `ugc` attributes. A normal link is enough.
 - Do not mass-email. Send a specific note to a specific page owner about a specific page.
 - If a site says no, record it and do not follow up more than once.
-- Keep outreach claims accurate: independent publisher in Punjab, Pakistan; not a US agency, agent,
+- Keep outreach claims accurate: independent publisher in California, USA; not a US agency, agent,
   attorney, CPA, or licensed adviser.
 
 ## Target list
@@ -152,7 +152,7 @@ I can explain [specific rule] with real numbers and the official source, without
 3. The mistake that costs the most.
 4. Where to check the current figure.
 
-I am an independent publisher in Punjab, Pakistan. I research US rules from official sources. I
+I am an independent publisher in California, USA. I research US rules from official sources. I
 am not a licensed US adviser.
 
 [Name]

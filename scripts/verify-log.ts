@@ -7,6 +7,7 @@ const requiredFormulas = [
   'employerAffordability',
   'mspEligibility',
   'partBPenaltyCalculator',
+  'partDPenaltyCalculator',
   'irmaaCalculator',
   'medicareVsAca',
 ];

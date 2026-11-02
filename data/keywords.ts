@@ -581,6 +581,38 @@ export const keywords: Keyword[] = [
     page: '/guides/medicare-part-a-premium',
   },
   {
+    keyword: 'part d late enrollment penalty calculator',
+    role: 'primary',
+    page: '/calculators/part-d-late-enrollment-penalty',
+  },
+  {
+    keyword: 'how is part d penalty calculated',
+    role: 'secondary',
+    page: '/calculators/part-d-late-enrollment-penalty',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'part d penalty {year} per month',
+    role: 'secondary',
+    page: '/calculators/part-d-late-enrollment-penalty',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'can part d penalty be waived',
+    role: 'faq',
+    page: '/calculators/part-d-late-enrollment-penalty',
+  },
+  {
+    keyword: 'creditable drug coverage gap days',
+    role: 'faq',
+    page: '/calculators/part-d-late-enrollment-penalty',
+  },
+  {
+    keyword: 'part d penalty calculator',
+    role: 'synonym',
+    page: '/calculators/part-d-late-enrollment-penalty',
+  },
+  {
     keyword: 'medicare part d late enrollment penalty',
     role: 'primary',
     page: '/guides/medicare-part-d-late-enrollment-penalty',

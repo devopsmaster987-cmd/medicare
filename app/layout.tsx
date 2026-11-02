@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   description:
     'Independent Medicare and ACA calculators with plain-language answers, dated official sources, and no lead form before your result.',
   applicationName: site.siteName,
-  authors: [{ name: site.ownerName, url: '/authors/abdul-samad/' }],
+  authors: [{ name: site.ownerName, url: '/authors/daniel-smith/' }],
   creator: site.ownerName,
   publisher: site.siteName,
   category: 'health',

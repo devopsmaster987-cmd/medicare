@@ -64,9 +64,9 @@ export function organizationSchema(): Schema {
       height: 180,
     },
     image: assetUrl('/og/default.png'),
-    foundingLocation: {
+    location: {
       '@type': 'Place',
-      name: 'Punjab, Pakistan',
+      name: organization.location,
     },
     areaServed: {
       '@type': 'Country',

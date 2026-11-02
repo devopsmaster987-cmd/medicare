@@ -70,13 +70,20 @@ const calculators = [
   },
   {
     number: '04',
+    title: 'Part D late enrollment penalty',
+    href: '/calculators/part-d-late-enrollment-penalty/',
+    question: 'What does a gap in drug coverage cost each month?',
+    detail: 'Check the 1% monthly penalty, the 63-day rule, and the creditable coverage review path.',
+  },
+  {
+    number: '05',
     title: 'IRMAA cliff checker',
     href: '/calculators/irmaa-cliff-checker/',
     question: 'Which income bracket applies, and how close is the next one?',
     detail: 'Check the two-year lookback, the Part B and Part D surcharges, and Roth conversion headroom.',
   },
   {
-    number: '05',
+    number: '06',
     title: 'Medicare vs ACA',
     href: '/calculators/medicare-vs-aca/',
     question: 'Should you take Medicare or keep Marketplace coverage?',
@@ -160,7 +167,7 @@ export default function HomePage() {
           }),
           itemListSchema({
             name: 'MedicareClear calculators',
-            description: 'Five free Medicare and ACA calculators with dated official sources.',
+            description: 'Six free Medicare and ACA calculators with dated official sources.',
             items: calculators.map((calculator) => ({
               name: calculator.title,
               url: calculator.href,
@@ -217,7 +224,7 @@ export default function HomePage() {
 
       <section className="section" id="calculators">
         <div className="wrap">
-          <h2 className="section-heading">Five questions, answered with the same facts</h2>
+          <h2 className="section-heading">Six questions, answered with the same facts</h2>
           <p className="section-intro">
             The calculators share one audited data layer. A limit changes in one place, and every
             result, table, and guide changes with it.
@@ -242,7 +249,7 @@ export default function HomePage() {
             ))}
           </ol>
           <p className="notice">
-            All five calculator screens are live. The data layer and formulas are tested, and every
+            All six calculator screens are live. The data layer and formulas are tested, and every
             result shows its source before you act.
           </p>
         </div>

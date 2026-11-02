@@ -56,7 +56,7 @@ const siteLinks = [
   { href: '/', label: 'Home' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
-  { href: '/authors/abdul-samad/', label: 'Author: Abdul Samad' },
+  { href: '/authors/daniel-smith/', label: 'Author: Daniel Smith' },
   { href: '/glossary/', label: 'Medicare glossary' },
   { href: `/what-changed-${figureYears.current}`, label: `What changed for ${figureYears.current}` },
   { href: '/medicare-deadlines/', label: 'Medicare deadlines' },

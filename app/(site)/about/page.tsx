@@ -10,13 +10,13 @@ import { organizationSchema, personSchema, webPageSchema } from '@/lib/schema';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'MedicareClear is an independent publisher in Punjab, Pakistan, turning official US Medicare and ACA rules into free, source-linked calculators.',
+              `MedicareClear is an independent publisher in ${site.location}, turning official US Medicare and ACA rules into free, source-linked calculators.`,
   alternates: { canonical: '/about/' },
   openGraph: {
     type: 'website',
     title: 'About MedicareClear',
     description:
-      'An independent publisher in Punjab, Pakistan, turning official US Medicare and ACA rules into free, source-linked calculators.',
+      `An independent publisher in ${site.location}, turning official US Medicare and ACA rules into free, source-linked calculators.`,
     url: '/about/',
     images: [
       {
@@ -43,7 +43,7 @@ export default function AboutPage() {
           webPageSchema({
             name: 'About MedicareClear',
             description:
-              'MedicareClear is an independent publisher in Punjab, Pakistan, turning official US Medicare and ACA rules into free, source-linked calculators.',
+    `MedicareClear is an independent publisher in ${site.location}, turning official US Medicare and ACA rules into free, source-linked calculators.`,
             path: '/about/',
             type: 'AboutPage',
             image: '/og/about.png',
@@ -69,7 +69,7 @@ export default function AboutPage() {
           <p className="eyebrow">Independent publisher</p>
           <h1 className="page-title">About MedicareClear</h1>
           <p className="page-lede">
-            I am Abdul Samad, an independent publisher based in Punjab, Pakistan. I research US
+            I am Daniel Smith, an independent publisher based in {site.location}. I research US
             Medicare and ACA rules from official government sources and turn them into free
             calculators.
           </p>
@@ -175,7 +175,7 @@ export default function AboutPage() {
           </p>
           <p>
             You can read more about the owner on the{' '}
-            <Link href="/authors/abdul-samad/">author page</Link>, or review the{' '}
+            <Link href="/authors/daniel-smith/">author page</Link>, or review the{' '}
             <Link href="/methodology/">methodology</Link> and{' '}
             <Link href="/editorial-policy/">editorial policy</Link>.
           </p>

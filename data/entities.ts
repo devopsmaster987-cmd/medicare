@@ -13,9 +13,9 @@ export const organization = {
 // Do not invent a license, degree, employer, or years of experience.
 export const author = {
   name: site.ownerName,
-  slug: 'abdul-samad',
+  slug: 'daniel-smith',
   description:
-    'Abdul Samad is an independent publisher in Punjab, Pakistan, who researches US Medicare and ACA rules from official government sources.',
-  url: `${site.siteUrl}/authors/abdul-samad`,
+    'Daniel Smith is an independent publisher in California, USA, who researches US Medicare and ACA rules from official government sources.',
+  url: `${site.siteUrl}/authors/daniel-smith`,
   location: site.location,
 } as const;

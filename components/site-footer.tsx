@@ -16,7 +16,7 @@ const exploreLinks = [
 
 const aboutLinks = [
   { href: '/about/', label: 'About' },
-  { href: '/authors/abdul-samad/', label: 'Author' },
+  { href: '/authors/daniel-smith/', label: 'Author' },
   { href: '/methodology/', label: 'Methodology' },
   { href: '/verification-log/', label: 'Verification log' },
   { href: '/editorial-policy/', label: 'Editorial policy' },

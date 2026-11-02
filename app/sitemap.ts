@@ -11,6 +11,7 @@ const calculatorRoutes = [
   '/calculators/employer-coverage-affordability/',
   '/calculators/medicare-savings-program-extra-help/',
   '/calculators/part-b-late-enrollment-penalty/',
+  '/calculators/part-d-late-enrollment-penalty/',
   '/calculators/irmaa-cliff-checker/',
   '/calculators/medicare-vs-aca/',
 ];
@@ -23,7 +24,7 @@ const siteRoutes = [
   '/scenarios/',
   '/about/',
   '/contact/',
-  '/authors/abdul-samad/',
+  '/authors/daniel-smith/',
   '/link-to-us/',
   '/press/',
   '/data/',
@@ -55,6 +56,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: dataVerifiedOn,
       changeFrequency: 'monthly' as const,
       priority: 0.9,
+      ...(route === '/calculators/part-d-late-enrollment-penalty/'
+        ? {
+            images: [
+              `${site.siteUrl}/og/calculators/part-d-late-enrollment-penalty.png`,
+            ],
+          }
+        : {}),
     })),
     ...siteRoutes.map((route) => ({
       url: withTrailingSlash(`${site.siteUrl}${route}`),

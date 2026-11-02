@@ -65,6 +65,7 @@ export const sources = {
   medicaidGovByState: 'https://www.medicaid.gov/medicaid/by-state/index.html',
   irsGov: 'https://www.irs.gov/',
   irsPub969: 'https://www.irs.gov/publications/p969',
+  irsPub502: 'https://www.irs.gov/publications/p502',
   irsRothFaq:
     'https://www.irs.gov/retirement-plans/retirement-plans-faqs-on-designated-roth-accounts',
   healthcareIncome:

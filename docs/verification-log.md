@@ -1,6 +1,6 @@
 # Verification log
 
-All figures were checked against the official source listed in each section on 2026-10-26. The employer family rule and the California, New York, and Arizona MSP rules were rechecked on 2026-10-28. The owner, Abdul Samad, still needs to sign off before launch. "Policy maths" means a hand-worked application of the published rule because the agency does not publish a worked example with these exact inputs.
+All figures were checked against the official source listed in each section on 2026-10-26. The employer family rule and the California, New York, and Arizona MSP rules were rechecked on 2026-10-28. The owner, Daniel Smith, still needs to sign off before launch. "Policy maths" means a hand-worked application of the published rule because the agency does not publish a worked example with these exact inputs.
 
 ## employerAffordability
 
@@ -116,6 +116,34 @@ Example 4 (creditable coverage, but the Special Enrollment Period was missed)
 - Expected: $40.58 monthly penalty; `monthsCounted: 24`; `monthsExcluded: 0`; `canAvoid` does not include creditable coverage.
 - Actual: `penaltyRate: 0.2`, `monthlyPenalty: 40.58`, `monthsCounted: 24`, `monthsExcluded: 0`.
 - Checked on: 2026-10-28
+
+## partDPenaltyCalculator
+
+Source: https://www.medicare.gov/health-drug-plans/part-d/basics/costs
+Supporting source: https://www.cms.gov/newsroom/fact-sheets/2026-medicare-part-d-bid-information-and-part-d-premium-stabilization-demonstration-parameters
+
+Example 1
+- Inputs: 12 full months without creditable prescription drug coverage; base beneficiary premium from /data.
+- Hand calculation: 1% of $38.99 = $0.3899 per month. 12 months x $0.3899 = $4.6788. Medicare rounds the monthly penalty to the nearest 10 cents, so $4.70. Annual penalty = $4.70 x 12 = $56.40.
+- Expected: `penaltyRate: 0.12`; `monthlyPenalty: 4.7`; `annualPenalty: 56.4`; 10-year total $564; 20-year total $1,128.
+- Actual: `penaltyRate: 0.12`; `monthlyPenalty: 4.7`; `annualPenalty: 56.4`; `tenYearPenalty: 564`; `twentyYearPenalty: 1128`.
+- Checked on: 2026-10-28
+
+Example 2
+- Inputs: 24 full months without creditable coverage; same base beneficiary premium.
+- Hand calculation: 24 months x $0.3899 = $9.3576. Rounded to the nearest 10 cents = $9.40. Annual penalty = $9.40 x 12 = $112.80.
+- Expected: `penaltyRate: 0.24`; `monthlyPenalty: 9.4`; `annualPenalty: 112.8`; 10-year total $1,128; 20-year total $2,256.
+- Actual: `penaltyRate: 0.24`; `monthlyPenalty: 9.4`; `annualPenalty: 112.8`; `tenYearPenalty: 1128`; `twentyYearPenalty: 2256`.
+- Checked on: 2026-10-28
+
+Example 3 (confirmed creditable coverage)
+- Inputs: 12 months without a Part D plan; written plan notice confirms creditable drug coverage for the same 12 months.
+- Hand calculation: months with confirmed creditable coverage are excluded, so `monthsCounted` is 0 and the penalty is $0. The plan notice must cover the whole gap.
+- Expected: no penalty; `monthsCounted: 0`; `monthsExcluded: 12`; `creditableCoverageStatus: 'confirmed'`; `canBeReviewed: true`.
+- Actual: `monthlyPenalty: 0`; `monthsCounted: 0`; `monthsExcluded: 12`; `creditableCoverageStatus: 'confirmed'`; `canBeReviewed: true`.
+- Checked on: 2026-10-28
+
+Policy note: the penalty counts full uncovered months, not days. A gap of a few days inside a month does not add a month by itself; the enrollment records decide the month count. The penalty is recalculated each year against the national base beneficiary premium and generally continues while the person has Part D.
 
 ## irmaaCalculator
 

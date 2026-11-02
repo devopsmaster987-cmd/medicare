@@ -3,6 +3,7 @@ import type { IrmaaInput } from './formulas/irmaa';
 import type { MedicareVsAcaInput } from './formulas/medicare-vs-aca';
 import type { MspInput } from './formulas/msp-eligibility';
 import type { PartBPenaltyInput } from './formulas/part-b-penalty';
+import type { PartDPenaltyInput } from './formulas/part-d-penalty';
 
 type ParseResult<T> = { success: true; data: T } | { success: false };
 
@@ -65,6 +66,18 @@ export const partBPenaltySchema = {
     if (!isOptionalBoolean(value.sepEligible)) return fail();
     if (!isOptionalBoolean(value.exceptionApplies)) return fail();
     return pass(value as PartBPenaltyInput);
+  },
+};
+
+export const partDPenaltySchema = {
+  safeParse(input: unknown): ParseResult<PartDPenaltyInput> {
+    const value = input as Partial<PartDPenaltyInput>;
+    if (!isIntegerInRange(value.monthsWithoutCoverage, 0, 600)) return fail();
+    if (!isOptionalMoney(value.basePremium)) return fail();
+    if (!isOptionalMoney(value.planPremium)) return fail();
+    if (!isOptionalBoolean(value.creditableCoverageConfirmed)) return fail();
+    if (!isOptionalBoolean(value.gapUnder63Days)) return fail();
+    return pass(value as PartDPenaltyInput);
   },
 };
 

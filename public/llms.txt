@@ -1,6 +1,6 @@
 # MedicareClear
 
-> Independent Medicare and ACA calculators and plain-language guides. Operator: Abdul Samad, Punjab, Pakistan.
+> Independent Medicare and ACA calculators and plain-language guides. Operator: Daniel Smith, California, USA.
 
 Every figure is stored with its year, an official source URL, and the date it was checked (2026-10-28). The site is not affiliated with CMS, SSA, Medicare.gov, or the IRS. Calculator inputs stay in the browser.
 
@@ -9,6 +9,7 @@ Every figure is stored with its year, an official source URL, and the date it wa
 - [Employer coverage affordability](https://medicareclear.top/calculators/employer-coverage-affordability/): Tests the employee-only premium against the IRS affordability percentage and the family premium rule.
 - [Medicare Savings Program and Extra Help](https://medicareclear.top/calculators/medicare-savings-program-extra-help/): Compares income and countable assets with the federal QMB, SLMB, QI, and Extra Help limits.
 - [Part B late enrollment penalty](https://medicareclear.top/calculators/part-b-late-enrollment-penalty/): Shows the monthly penalty, annual cost, and the 10-year and 20-year totals.
+- [Part D late enrollment penalty](https://medicareclear.top/calculators/part-d-late-enrollment-penalty/): Shows the monthly Part D penalty, the 63-day gap rule, and the creditable coverage review path.
 - [IRMAA cliff checker](https://medicareclear.top/calculators/irmaa-cliff-checker/): Finds the IRMAA tier, Part B and Part D surcharge, next cliff, and Roth-conversion headroom.
 - [Medicare vs ACA](https://medicareclear.top/calculators/medicare-vs-aca/): Follows the 20-employee rule, premium-free Part A, subsidy consequences, and HSA timing.
 

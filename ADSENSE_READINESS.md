@@ -48,7 +48,7 @@ Status: content, policy, technical SEO, and accessibility work is complete for t
 
 - Added a public verification log at `/verification-log` with 5 formulas, 18 worked examples, official source links, expected results, actual results, and checked dates.
 - Linked the verification log from every calculator source table, the methodology page, the footer, the sitemap, and every guide.
-- Added a publisher facts table to `/about` and `/authors/abdul-samad`.
+- Added a publisher facts table to `/about` and `/authors/daniel-smith`.
 - Added the research process to `/about` and a boundary-test table to `/methodology`.
 - Added six dated entries to the corrections change log.
 - Added a `TODO(owner)` code comment where professional credentials would go; the pages state plainly that no credentials, US license, or agency affiliation are claimed.

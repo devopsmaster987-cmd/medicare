@@ -6,6 +6,7 @@ const flagships = [
   'employer-coverage-affordability',
   'medicare-savings-program-extra-help',
   'part-b-late-enrollment-penalty',
+  'part-d-late-enrollment-penalty',
   'irmaa-cliff-checker',
   'medicare-vs-aca',
 ];

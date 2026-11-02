@@ -34,9 +34,15 @@ export const metadata: Metadata = {
 const changes = [
   {
     date: dataVerifiedOn,
+    title: 'Part D late enrollment penalty calculator published',
+    detail:
+      'Added a Part D penalty calculator with the 63-day gap rule, a creditable coverage review path, and hand-worked examples in the verification log.',
+  },
+  {
+    date: dataVerifiedOn,
     title: 'Public verification log published',
     detail:
-      'Added a public log with hand-worked examples, official source links, expected results, actual results, and the date checked for all five formulas.',
+      'Added a public log with hand-worked examples, official source links, expected results, actual results, and the date checked for all six formulas.',
   },
   {
     date: dataVerifiedOn,

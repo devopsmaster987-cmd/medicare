@@ -7,6 +7,7 @@ import {
   parseMoneyInput,
   parseOptionalMoneyInput,
   partBPenaltySchema,
+  partDPenaltySchema,
 } from '@/lib/validation';
 
 describe('input validation', () => {
@@ -60,6 +61,11 @@ describe('input validation', () => {
   it('validates Part B month ranges and ACA ages', () => {
     expect(partBPenaltySchema.safeParse({ monthsDelayed: 0 }).success).toBe(true);
     expect(partBPenaltySchema.safeParse({ monthsDelayed: 601 }).success).toBe(false);
+    expect(partDPenaltySchema.safeParse({ monthsWithoutCoverage: 0 }).success).toBe(true);
+    expect(partDPenaltySchema.safeParse({ monthsWithoutCoverage: 601 }).success).toBe(false);
+    expect(
+      partDPenaltySchema.safeParse({ monthsWithoutCoverage: 1.5 }).success,
+    ).toBe(false);
     expect(
       medicareVsAcaSchema.safeParse({ age: 64, coverageType: 'none' }).success,
     ).toBe(true);

@@ -50,6 +50,11 @@ const tools = [
     copy: 'Estimate the monthly penalty, annual cost, and the 10-year and 20-year totals.',
   },
   {
+    title: 'Part D late enrollment penalty',
+    href: '/calculators/part-d-late-enrollment-penalty/',
+    copy: 'Check the monthly drug coverage penalty, the 63-day gap rule, and the creditable coverage review path.',
+  },
+  {
     title: 'IRMAA cliff checker',
     href: '/calculators/irmaa-cliff-checker/',
     copy: 'Find the current bracket, the monthly surcharge, and the room before the next threshold.',
@@ -81,7 +86,7 @@ export default function CalculatorsPage() {
           }),
           itemListSchema({
             name: 'Medicare and ACA calculators',
-            description: 'Five calculators that answer a specific Medicare or ACA cost question.',
+            description: 'Six calculators that answer a specific Medicare or ACA cost question.',
             items: tools.map((tool) => ({ name: tool.title, url: tool.href })),
           }),
         ]}
@@ -129,7 +134,7 @@ export default function CalculatorsPage() {
             ))}
           </ol>
           <p className="notice">
-            All five calculator screens are live. Each one uses the same dated data layer, shows its
+            All six calculator screens are live. Each one uses the same dated data layer, shows its
             official source, and keeps the next step in plain language.
           </p>
           <p className="stat-note">

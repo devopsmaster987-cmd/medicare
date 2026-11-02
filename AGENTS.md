@@ -52,8 +52,9 @@ HARD RULES
 - Never invent people, reviewers, credentials, testimonials, ratings, usage
   stats, search volumes, social profiles, phone numbers, or addresses. Use only
   the owner details in section 1.
-- Never claim or imply the site owner is in the US, is a licensed US insurance
-  agent, attorney, CPA, or is affiliated with any government agency.
+- Never claim or imply the site owner is a licensed US insurance agent,
+  attorney, CPA, or is affiliated with any government agency. State the owner's
+  location only as recorded in section 1.
 - Never name or criticize competitors anywhere on the site. We win by being
   more accurate, more current, and more useful, not by comparison.
 - TypeScript strict. No `any` without a justifying comment.
@@ -85,11 +86,11 @@ checked the figure against the official source.
 
 SITE OWNER DETAILS (single source of truth: /data/site.ts)
   siteName:       MedicareClear
-  ownerName:      Abdul Samad
+  ownerName:      Daniel Smith
   contactEmail:   ihsanaslamm@gmail.com
-  location:       Punjab, Pakistan
-  mailingAddress: "Punjab, Pakistan"
-  governingLaw:   "Punjab, Pakistan"
+  location:       California, USA
+  mailingAddress: "California, USA"
+  governingLaw:   "California, USA"
   siteUrl:        "" (I will supply)
   socialProfiles: [] (real URLs only, supplied by me; empty until then)
   lastUpdated:    derived from the latest /data verifiedOn date
@@ -98,10 +99,10 @@ The email ihsanaslamm@gmail.com is the ONLY contact email. Define it once,
 import it everywhere, render it as a mailto: link. verify:emails proves it.
 
 HONESTY ABOUT THE OWNER
-The About page states plainly that this is an independent publisher in Punjab,
-Pakistan, who researches US rules from official US government sources, and that
-every figure links to its official source so readers can verify it. Do not hide
-the location or pretend to be US-based. Transparency is part of the trust design.
+The About page states plainly that this is an independent publisher in
+California, USA, who researches US rules from official US government sources,
+and that every figure links to its official source so readers can verify it. Do
+not hide the location. Transparency is part of the trust design.
 
 DEFAULT CHOICES (change only if I say so)
   Package manager: npm        Analytics: Plausible (cookieless)
@@ -325,7 +326,7 @@ app/
   calculators/[slug]/page.tsx        generateStaticParams
   guides/page.tsx  guides/[slug]/page.tsx
   glossary/page.tsx  glossary/[term]/page.tsx
-  authors/[slug]/page.tsx            author page for Abdul Samad (real details only)
+  authors/[slug]/page.tsx            author page for Daniel Smith (real details only)
   about/ contact/ privacy-policy/ terms-of-service/ disclaimer/
   cookie-policy/ editorial-policy/ methodology/ corrections/
   sitemap-page/                      human-readable HTML sitemap
@@ -386,23 +387,23 @@ Build ALL of these with real content. No lorem ipsum, no "coming soon".
 
 Routes: /about, /contact, /privacy-policy, /terms-of-service, /disclaimer,
 /cookie-policy, /editorial-policy, /methodology, /corrections, HTML sitemap,
-custom 404, author page for Abdul Samad.
+custom 404, author page for Daniel Smith.
 
 OWNER DETAILS IN THE PAGES
-- About: "I'm Abdul Samad, an independent publisher based in Punjab, Pakistan.
+- About: "I'm Daniel Smith, an independent publisher based in California, USA.
   I research US Medicare and ACA rules from official government sources and
   turn them into free calculators." Explain why the site exists, that it is
   funded by ads, and that every number links to its official source. State the
   site's purpose in plain words: to be genuinely useful, to check every
   calculation against official sources, and to explain complicated rules in
   original, plain-language content.
-- Contact: email ihsanaslamm@gmail.com, location "Punjab, Pakistan", form,
+- Contact: email ihsanaslamm@gmail.com, location "California, USA", form,
   response-time note (2 to 3 business days), links to official US help
   (1-800-MEDICARE, SSA, SHIP at shiphelp.org, Healthcare.gov).
-- Privacy Policy: name Abdul Samad as operator, based in Punjab, Pakistan; data
+- Privacy Policy: name Daniel Smith as operator, based in California, USA; data
   may be processed in other countries through hosting, analytics, and
   advertising providers. State that calculator inputs stay in the browser.
-- Terms of Service: governing law "Punjab, Pakistan".
+- Terms of Service: governing law "California, USA".
 - Author page: name, location, short factual bio. NO credentials, degrees,
   licenses, years of experience, or past employers unless I supply them.
 - Methodology: list the sources, update schedule, known limits, and how the
@@ -659,7 +660,7 @@ NAMING OFFICIAL SOURCES
 - Every factual claim links to the official .gov source. State key facts as
   quotable standalone sentences (subject, number, year, source) computed from
   /data.
-- Entity consistency: exact names "MedicareClear" and "Abdul Samad" and one
+- Entity consistency: exact names "MedicareClear" and "Daniel Smith" and one
   description, defined once in /data/entities.ts and reused everywhere.
 - Organization + Person JSON-LD with only real fields. `sameAs` ONLY from real
   socialProfiles I supply; omit if empty.
@@ -796,7 +797,7 @@ Phase 6: Consent banner, Plausible, ad slots behind the flag, a11y audit with
 - Every calculator and guide has an answer capsule, key facts table, six
   visible FAQs, worked example, source table, and Last updated date
 - Every section 7 page live with real copy and no leftover placeholders
-- Abdul Samad, Punjab, Pakistan, consistent on About, Contact, Privacy, Terms,
+- Daniel Smith, California, USA, consistent on About, Contact, Privacy, Terms,
   author page, and schema
 - check:all passes (including the keyword map: no duplicates, no excluded terms)
 - Zero hardcoded years, dollar figures, or phone numbers outside /data
