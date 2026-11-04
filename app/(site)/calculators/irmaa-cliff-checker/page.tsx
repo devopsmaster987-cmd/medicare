@@ -108,6 +108,10 @@ const faqItems = [
     question: `What are the IRMAA brackets for ${year} for a single filer?`,
     answer: `The single-filer brackets for ${year} start at ${formatMoney(singleFirst.min)} of MAGI and rise by tier. The calculator shows the Part B and Part D surcharge at each tier and the dollars of headroom before the next cliff.`,
   },
+  {
+    question: 'Medicare Part B premium based on income',
+    answer: `The Medicare Part B premium based on income is the standard ${formatMoney(partB2026.standardPremium.amount)} plus an IRMAA surcharge when modified adjusted gross income two years earlier was above ${formatMoney(singleFirst.min)} for a single filer or ${formatMoney(jointFirst.min)} for a married couple filing jointly. The surcharge is added to the premium, not subtracted, and each enrolled spouse can owe it.`,
+  },
 ];
 
 export default function IrmaaPage() {

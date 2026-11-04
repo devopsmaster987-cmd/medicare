@@ -1,4 +1,10 @@
 import type { ComponentType } from 'react';
+import MedicarePartADeductible from './medicare-part-a-deductible.mdx';
+import MedicarePartDDeductible from './medicare-part-d-deductible.mdx';
+import MedicareVsMedicaid from './medicare-vs-medicaid.mdx';
+import MedicareOpenEnrollment from './medicare-open-enrollment.mdx';
+import Turning65MedicareChecklist from './turning-65-medicare-checklist.mdx';
+import DoesMedicareCoverDentalVisionHearing from './does-medicare-cover-dental-vision-hearing.mdx';
 import Ssa44FormIrmaaAppeal from './ssa-44-form-irmaa-appeal.mdx';
 import HowToLowerIrmaa from './how-to-lower-irmaa.mdx';
 import RothConversionIrmaa from './roth-conversion-irmaa.mdx';
@@ -36,6 +42,12 @@ import AcaForm1095A from './aca-form-1095-a.mdx';
 import AcaDependentCoverageAge26 from './aca-dependent-coverage-age-26.mdx';
 
 export const guideContent: Record<string, ComponentType<Record<string, unknown>>> = {
+  'medicare-part-a-deductible': MedicarePartADeductible,
+  'medicare-part-d-deductible': MedicarePartDDeductible,
+  'medicare-vs-medicaid': MedicareVsMedicaid,
+  'medicare-open-enrollment': MedicareOpenEnrollment,
+  'turning-65-medicare-checklist': Turning65MedicareChecklist,
+  'does-medicare-cover-dental-vision-hearing': DoesMedicareCoverDentalVisionHearing,
   'ssa-44-form-irmaa-appeal': Ssa44FormIrmaaAppeal,
   'how-to-lower-irmaa': HowToLowerIrmaa,
   'roth-conversion-irmaa': RothConversionIrmaa,

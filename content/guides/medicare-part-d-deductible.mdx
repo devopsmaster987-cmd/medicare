@@ -1,0 +1,241 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partD2026 } from '@/data/medicare-part-d';
+import { partB2026 } from '@/data/medicare-part-b';
+import { sources } from '@/data/sources';
+import { dataVerifiedOn, figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const deductible = partD2026.deductible.amount;
+export const cap = partD2026.outOfPocketCap.amount;
+export const basePremium = partD2026.baseBeneficiaryPremium.amount;
+export const partDPremium = basePremium;
+export const partBPremium = partB2026.standardPremium.amount;
+export const dataVerifiedOnText = dataVerifiedOn;
+
+<AnswerCapsule>
+  The Medicare Part D deductible {year} can be no more than {formatMoney(deductible)}, and many plans
+  charge less or none. After the deductible, you pay 25 percent of covered drug costs until
+  out-of-pocket spending reaches {formatMoney(cap)}, then nothing more for covered drugs. The
+  average base Part D premium is {formatMoney(basePremium)} a month.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Part D deductible maximum',
+      value: formatMoney(deductible),
+      note: 'No plan may charge more than this for the deductible.',
+    },
+    {
+      label: 'Out-of-pocket cap',
+      value: formatMoney(cap),
+      note: 'After this, covered drugs cost nothing for the rest of the year.',
+    },
+    {
+      label: 'Cost sharing in the middle',
+      value: '25 percent coinsurance',
+      note: 'You pay 25 percent of covered drug costs after the deductible.',
+    },
+    {
+      label: 'Base beneficiary premium',
+      value: `${formatMoney(basePremium)} a month`,
+      note: 'The national average; actual plan premiums vary.',
+    },
+    {
+      label: 'Part B premium',
+      value: `${formatMoney(partBPremium)} a month`,
+      note: 'Paid separately from the Part D premium.',
+    },
+    {
+      label: 'Part D IRMAA',
+      value: 'Up to 91 dollars a month',
+      note: 'Added for higher-income beneficiaries, billed separately.',
+    },
+    {
+      label: 'Catastrophic coverage',
+      value: '0 dollars for covered drugs',
+      note: 'Begins once the out-of-pocket cap is reached.',
+    },
+  ]}
+/>
+
+## What the Part D deductible is
+
+The Part D deductible is the amount you pay for covered prescription drugs before your plan begins
+to share the cost. For {year}, no Medicare drug plan may charge a deductible higher than{' '}
+{formatMoney(deductible)}. Some plans charge less, and some charge no deductible at all. The
+deductible applies to the plan's covered drug list, so a drug that is not on the list does not
+count toward it.
+
+The deductible resets each calendar year. A person who meets it in January does not owe it again
+until January of the next year. A person who joins a plan mid-year owes the deductible for the
+remainder of that year, and it resets with the new plan year.
+
+## Medicare Part D premium {year}
+
+The Part D premium is what you pay each month for the drug plan. It varies by plan and by region,
+and it is separate from the Part B premium. The national base beneficiary premium, which is the
+figure Medicare uses for penalty and subsidy calculations, is {formatMoney(basePremium)} a month
+for {year}. A person's actual plan premium can be higher or lower than that.
+
+About two-thirds of beneficiaries pay the premium directly to the plan, and the rest have it
+deducted from their Social Security benefit. A person with a higher income can owe an
+income-related surcharge on top of the plan premium, and that surcharge is billed separately from
+the plan premium in many cases. The surcharge runs from 0 dollars up to 91 dollars a month for {year}.
+
+## Medicare Part D cost {year}
+
+The total cost of Part D for a person depends on four things: the plan premium, the deductible, the
+cost sharing on each prescription, and whether the out-of-pocket cap is reached. Cost sharing in
+the middle phase is 25 percent of the cost of covered drugs, both generic and brand-name, until
+out-of-pocket spending reaches {formatMoney(cap)}. At that point, catastrophic coverage begins and
+covered drugs cost nothing for the rest of the year.
+
+The cap counts the deductible, the coinsurance and copayments, and certain payments made on the
+person's behalf, such as through the Extra Help program. It does not count the monthly premium. A
+person who pays a high premium but uses few drugs can still spend less in total than a person with
+a low premium and heavy drug use, which is why the plan comparison should be based on the actual
+prescription list.
+
+## What counts toward the cap
+
+Payments that count toward the {formatMoney(cap)} cap include the deductible, coinsurance,
+copayments for covered drugs, and certain payments made on the person's behalf. Payments that do
+not count include the monthly premium, drugs not on the plan's formulary, and drugs bought outside
+the plan's network or without using the plan's card. A person who fills a prescription at a
+non-preferred pharmacy or buys a drug the plan does not cover can spend money that does not move
+them closer to the cap.
+
+The cap is per person and per calendar year. A married couple each has their own cap, and unused
+cap does not carry over. A person who reaches the cap in November pays nothing for covered drugs
+in December, and the counter resets in January.
+
+## How Extra Help changes the numbers
+
+Extra Help, also called the Low-Income Subsidy, pays the Part D premium up to a benchmark amount,
+the deductible, and most of the cost sharing. A person who qualifies for Extra Help pays a small
+copayment per prescription instead of the 25 percent coinsurance, and pays nothing once the
+catastrophic threshold is reached. Income and resource limits apply, and a person who qualifies
+for a Medicare Savings Program or Supplemental Security Income qualifies automatically.
+
+The limits and copayment amounts change each year. For {year}, the income limit is{' '}
+{formatMoney(23940)} for an individual and {formatMoney(32460)} for a married couple, with resource
+limits of {formatMoney(18090)} and {formatMoney(36100)}. The copayments are a few dollars per
+prescription for people who qualify, and 0 dollars for people with full Medicaid in the Qualified
+Medicare Beneficiary program.
+
+## How to choose a Part D plan
+
+A person choosing a Part D plan should compare three things: the premium, the deductible, and the
+cost sharing on the specific drugs the person takes. A plan with a low premium and a high deductible
+can cost more overall than a plan with a higher premium and no deductible, if the person takes
+expensive drugs early in the year. The plan finder on Medicare.gov compares the total annual cost
+for a given prescription list, which is more useful than comparing premiums alone.
+
+The pharmacy network matters too. A plan can have a lower cost at a preferred pharmacy and a higher
+cost at a standard one. A person who has a regular pharmacy should check whether it is preferred
+before enrolling, and whether mail order is available for maintenance medications.
+
+## Worked example
+
+Consider a person with a plan that has the full {formatMoney(deductible)} deductible and a 25
+percent coinsurance. In January, the person fills a prescription with a 400 dollars cost. The person pays
+the first {formatMoney(deductible)} of that, which is the deductible, and 25 percent of the
+remaining 215 dollars, which is 53.75 dollars. The person's out-of-pocket spending for January is{' '}
+{formatMoney(deductible)} plus 53.75 dollars.
+
+By October, the person's out-of-pocket spending has reached {formatMoney(cap)}. From that point, the
+person pays nothing more for covered drugs for the rest of the year. The plan and Medicare pay the
+rest. The monthly premium continued to be owed throughout the year, because the premium does not
+count toward the cap.
+
+A second person has Extra Help and the same prescription. The deductible is paid by the program, and
+the person pays a small copayment per prescription instead of the 25 percent coinsurance. The
+person reaches the catastrophic threshold faster, because payments made on the person's behalf
+count toward the cap, and pays nothing for covered drugs for the rest of the year.
+
+## What the Part D deductible does not decide
+
+1. The deductible is a plan feature within a federal maximum. A plan with no deductible usually
+   charges a higher premium, so the total cost depends on how the plan is structured.
+2. The cap applies to covered drugs only. Drugs not on the formulary, or bought outside the plan,
+   do not count toward it.
+3. The premium is separate from the cap. A person can reach the cap and still owe the monthly
+   premium.
+4. This page explains the standard figures. It does not recommend a specific plan, because the
+   right plan depends on the person's prescriptions, pharmacy, and budget.
+
+<Faq
+  items={[
+    {
+      question: 'What is the Medicare Part D deductible for {year}?',
+      answer: `The maximum Part D deductible for ${year} is ${formatMoney(deductible)}. Many plans charge less, and some charge no deductible at all.`,
+    },
+    {
+      question: 'What is the Part D out of pocket cap for {year}?',
+      answer: `The Part D out-of-pocket cap for ${year} is ${formatMoney(cap)}. After you reach it, you pay nothing more for covered drugs for the rest of the year.`,
+    },
+    {
+      question: 'Does the Part D cap include premiums?',
+      answer:
+        'No. The monthly premium is not counted toward the out-of-pocket cap. The cap counts the deductible, coinsurance, copayments, and certain payments made on your behalf.',
+    },
+    {
+      question: 'How much is the average Part D premium?',
+      answer: `The national base beneficiary premium for ${year} is ${formatMoney(basePremium)} a month. Actual plan premiums vary by plan and region, and higher-income beneficiaries can owe an additional surcharge.`,
+    },
+    {
+      question: 'What happens after I reach the Part D cap?',
+      answer:
+        'Catastrophic coverage begins. You pay nothing more for covered Part D drugs for the rest of the calendar year. The monthly premium is still owed.',
+    },
+    {
+      question: 'How does Extra Help change Part D costs?',
+      answer:
+        'Extra Help pays the premium up to a benchmark amount, the deductible, and most of the cost sharing. A person who qualifies pays a small copayment per prescription instead of the 25 percent coinsurance.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Part D deductible maximum',
+      value: formatMoney(deductible),
+      source: sources.medicarePartDCosts,
+      sourceLabel: `Medicare.gov Part D costs ${year}`,
+    },
+    {
+      label: 'Part D out-of-pocket cap',
+      value: formatMoney(cap),
+      source: sources.medicarePartDCosts,
+      sourceLabel: `Medicare.gov Part D costs ${year}`,
+    },
+    {
+      label: 'Base beneficiary premium',
+      value: `${formatMoney(basePremium)} a month`,
+      source: sources.cms2026PartD,
+      sourceLabel: `CMS ${year} Part D bid information`,
+    },
+    {
+      label: 'Extra Help income and resource limits',
+      value: `${formatMoney(23940)} / ${formatMoney(32460)} income`,
+      source: sources.medicareDrugCosts,
+      sourceLabel: `Medicare.gov Extra Help ${year}`,
+    },
+  ]}
+/>
+
+## Where to compare plans before you enroll
+
+The figures are the standard Medicare amounts for {year}, checked against Medicare.gov and CMS on{' '}
+{dataVerifiedOnText}. Plan premiums, deductibles, and formularies vary by region, so the comparison
+should be based on your own prescription list and pharmacy. Use Medicare's plan finder to compare
+the total annual cost of each plan, including the premium, deductible, and cost sharing on your
+specific drugs.
+
+For the surrounding costs, use the [Part D out-of-pocket cap guide](/guides/part-d-out-of-pocket-cap/)
+for what counts toward the cap, the [Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty/)
+if drug coverage timing is in question, and the [Medicare Savings Program and Extra Help calculator](/calculators/medicare-savings-program-extra-help/)
+if income is limited.

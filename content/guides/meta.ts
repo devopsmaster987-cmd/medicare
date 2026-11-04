@@ -18,6 +18,102 @@ export type GuideMeta = {
 
 export const guides: GuideMeta[] = [
   {
+    slug: 'medicare-open-enrollment',
+    h1: 'Medicare open enrollment dates {year}',
+    title: 'Medicare open enrollment dates {year}: windows and deadlines',
+    description:
+      'Medicare open enrollment dates {year}: the annual window runs October 15 to December 7. See the general and special enrollment periods and the deadlines.',
+    summary:
+      'The annual, general, and special enrollment periods, what you can change, and how to use the window well.',
+    related: [
+      { href: '/guides/part-d-out-of-pocket-cap/', label: 'Part D out of pocket cap' },
+      { href: '/calculators/part-d-late-enrollment-penalty/', label: 'Part D late enrollment penalty' },
+      { href: '/guides/medicare-general-enrollment-period/', label: 'Medicare general enrollment period' },
+    ],
+    publishedOn: dataVerifiedOn,
+    updatedOn: dataVerifiedOn,
+  },
+  {
+    slug: 'medicare-vs-medicaid',
+    h1: 'Medicare vs Medicaid',
+    title: 'Medicare vs Medicaid: the difference and how both work',
+    description:
+      'Medicare vs Medicaid: Medicare is federal insurance based on age or disability, Medicaid is state-run coverage based on income. See how both work and who qualifies.',
+    summary:
+      'The difference in eligibility, who runs each program, the cost to the beneficiary, and how having both works.',
+    related: [
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program and Extra Help' },
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
+      { href: '/guides/turning-65-medicare-checklist/', label: 'Turning 65 Medicare checklist' },
+    ],
+    publishedOn: dataVerifiedOn,
+    updatedOn: dataVerifiedOn,
+  },
+  {
+    slug: 'medicare-part-d-deductible',
+    h1: 'Medicare Part D deductible {year}',
+    title: 'Medicare Part D deductible {year}: cap, premium, and cost sharing',
+    description:
+      'The Medicare Part D deductible {year} has a federal maximum. See the out-of-pocket cap, the premium, the 25 percent coinsurance, and how Extra Help changes the numbers.',
+    summary:
+      'The deductible maximum, the out-of-pocket cap, the premium, the 25 percent coinsurance, and how Extra Help changes the numbers.',
+    related: [
+      { href: '/guides/part-d-out-of-pocket-cap/', label: 'Part D out of pocket cap' },
+      { href: '/calculators/part-d-late-enrollment-penalty/', label: 'Part D late enrollment penalty' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program and Extra Help' },
+    ],
+    publishedOn: dataVerifiedOn,
+    updatedOn: dataVerifiedOn,
+  },
+  {
+    slug: 'medicare-part-a-deductible',
+    h1: 'Medicare Part A deductible {year}',
+    title: 'Medicare Part A deductible {year}: per benefit period, not per year',
+    description:
+      'The Medicare Part A deductible {year} is charged per benefit period. See the daily coinsurance, lifetime reserve days, skilled nursing costs, and who pays a Part A premium.',
+    summary:
+      'The per-benefit-period deductible, the daily coinsurance after day 60, lifetime reserve days, skilled nursing costs, and the Part A premium by work quarters.',
+    related: [
+      { href: '/guides/medicare-part-a-premium/', label: 'Medicare Part A premium' },
+      { href: '/guides/medicare-part-b-premium-increase/', label: 'Medicare Part B premium increase' },
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program and Extra Help' },
+    ],
+    publishedOn: dataVerifiedOn,
+    updatedOn: dataVerifiedOn,
+  },
+  {
+    slug: 'turning-65-medicare-checklist',
+    h1: 'What do I need to do when I turn 65 for Medicare {year}',
+    title: 'What do I need to do when I turn 65 for Medicare {year}: the checklist',
+    description:
+      'What do I need to do when I turn 65 for Medicare {year}? Use the seven-month enrollment window, the employer-size rule, and the HSA stop date to sign up on time.',
+    summary:
+      'The seven-month window, automatic enrollment, the 20-employee rule, and the six-month HSA stop date, with a worked example for three situations.',
+    related: [
+      { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
+      { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
+      { href: '/calculators/employer-coverage-affordability/', label: 'Employer coverage affordability' },
+    ],
+    publishedOn: dataVerifiedOn,
+    updatedOn: dataVerifiedOn,
+  },
+  {
+    slug: 'does-medicare-cover-dental-vision-hearing',
+    h1: 'Does Medicare cover dental, vision, and hearing {year}',
+    title: 'Does Medicare cover dental, vision, and hearing {year}: what is covered',
+    description:
+      'Does Medicare cover dental, vision, and hearing {year}? Original Medicare excludes routine care but covers specific medically necessary services. See the exceptions and cost sharing.',
+    summary:
+      'What Original Medicare excludes, the narrow exceptions for dental, vision, and hearing, and the four routes people use to fill the gaps.',
+    related: [
+      { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program and Extra Help' },
+      { href: '/calculators/irmaa-cliff-checker/', label: 'IRMAA cliff checker' },
+      { href: '/guides/part-d-out-of-pocket-cap/', label: 'Part D out of pocket cap' },
+    ],
+    publishedOn: dataVerifiedOn,
+    updatedOn: dataVerifiedOn,
+  },
+  {
     slug: 'ssa-44-form-irmaa-appeal',
     h1: 'SSA 44 form IRMAA appeal',
     title: 'SSA 44 form IRMAA appeal: how to ask SSA to use newer income',

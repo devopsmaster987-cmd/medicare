@@ -15,6 +15,12 @@ Every figure is stored with its year, an official source URL, and the date it wa
 
 ## Guides
 
+- [Medicare open enrollment dates 2026](https://medicareclear.top/guides/medicare-open-enrollment/)
+- [Medicare vs Medicaid](https://medicareclear.top/guides/medicare-vs-medicaid/)
+- [Medicare Part D deductible 2026](https://medicareclear.top/guides/medicare-part-d-deductible/)
+- [Medicare Part A deductible 2026](https://medicareclear.top/guides/medicare-part-a-deductible/)
+- [What do I need to do when I turn 65 for Medicare 2026](https://medicareclear.top/guides/turning-65-medicare-checklist/)
+- [Does Medicare cover dental, vision, and hearing 2026](https://medicareclear.top/guides/does-medicare-cover-dental-vision-hearing/)
 - [SSA 44 form IRMAA appeal](https://medicareclear.top/guides/ssa-44-form-irmaa-appeal/)
 - [How to lower IRMAA](https://medicareclear.top/guides/how-to-lower-irmaa/)
 - [Roth conversion IRMAA](https://medicareclear.top/guides/roth-conversion-irmaa/)

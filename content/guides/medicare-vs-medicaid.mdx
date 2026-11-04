@@ -1,0 +1,242 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { sources } from '@/data/sources';
+import { dataVerifiedOn, figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const dataVerifiedOnText = dataVerifiedOn;
+
+<AnswerCapsule>
+  Medicare vs Medicaid: Medicare is federal health insurance based on age or disability, and most
+  people qualify at 65. Medicaid is a joint federal and state program based on income, with
+  different rules in every state. You can have both. Medicare pays first for covered services, and
+  Medicaid can help with premiums, deductibles, and costs Medicare does not cover.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Medicare basis',
+      value: 'Age 65, or disability, ALS, or kidney failure',
+      note: 'A federal program with the same rules nationwide.',
+    },
+    {
+      label: 'Medicaid basis',
+      value: 'Income and, in some cases, assets',
+      note: 'A state-run program with different rules in each state.',
+    },
+    {
+      label: 'Medicare Part A premium',
+      value: 'Usually 0 dollars',
+      note: 'Most people qualify for premium-free Part A with 40 work quarters.',
+    },
+    {
+      label: 'Medicaid premium',
+      value: 'Often 0 dollars',
+      note: 'Many beneficiaries pay no premium, but states set their own rules.',
+    },
+    {
+      label: 'Medicare drug coverage',
+      value: 'Part D, with an out-of-pocket cap',
+      note: 'A separate plan with its own premium and cost sharing.',
+    },
+    {
+      label: 'Medicaid drug coverage',
+      value: 'Varies by state',
+      note: 'Medicaid covers drugs Medicare does not, and cost sharing is low.',
+    },
+    {
+      label: 'Having both',
+      value: 'Dual eligible',
+      note: 'Medicare pays first, Medicaid pays after.',
+    },
+    {
+      label: 'Help with Medicare costs',
+      value: 'Medicare Savings Programs',
+      note: 'State programs that can pay Part B premiums and more.',
+    },
+  ]}
+/>
+
+## What Medicare is
+
+Medicare is federal health insurance. Most people become eligible at 65, and younger people can
+qualify through disability, ALS, or end-stage renal disease. The program has four parts. Part A
+covers hospital care, Part B covers physician and outpatient care, Part C is Medicare Advantage,
+and Part D covers prescription drugs. The rules, premiums, and deductibles are the same nationwide,
+and the program is run by the federal government.
+
+Medicare is not based on income. A person with a high income pays the same standard Part B premium
+as a person with a low income, although a higher income can trigger an income-related surcharge.
+A person with a low income does not pay less for Medicare itself, but can qualify for state
+programs that help with the cost.
+
+## What Medicaid is
+
+Medicaid is a joint federal and state program that helps pay health care costs for people with
+limited income and, in some cases, limited assets. The federal government sets minimum standards,
+and each state runs its own program with its own eligibility rules, covered benefits, and provider
+networks. That means a person who qualifies in one state might not qualify in another, and the
+benefits can differ.
+
+Medicaid covers services that Medicare does not, including long-term nursing home care, personal
+care, and some dental, vision, and hearing services. Medicaid cost sharing is low, and many
+beneficiaries pay nothing for covered services. Medicaid also pays Medicare premiums and other
+out-of-pocket costs for people who qualify for a Medicare Savings Program.
+
+## Medicare vs Medicaid at a glance
+
+The two programs differ in four ways that matter most. First, the basis of eligibility: age or
+disability for Medicare, income for Medicaid. Second, who runs it: the federal government for
+Medicare, the state for Medicaid. Third, the cost to the beneficiary: Medicare has premiums,
+deductibles, and coinsurance with no annual cap in Original Medicare, while Medicaid cost sharing
+is low or zero. Fourth, the scope of benefits: Medicare is acute and post-acute medical care,
+while Medicaid adds long-term care and services Medicare excludes.
+
+A person can qualify for both. People who have both are called dual eligible. Medicare pays first
+for any service it covers, and Medicaid pays after Medicare and any other insurance. Medicaid can
+pay the Part B premium, the deductible, and the coinsurance, and can cover drugs that Medicare does
+not. A person who is dual eligible usually has very low out-of-pocket costs.
+
+## Can you have both Medicare and Medicaid
+
+Yes. A person who qualifies for Medicare by age or disability and also meets the income and
+asset rules in their state can have both. Medicare is the primary payer and Medicaid is secondary.
+Medicaid can also pay the Part B premium through a Medicare Savings Program, which makes Medicare
+affordable even when the premium would otherwise be a burden.
+
+People who are dual eligible are often enrolled in a special plan that coordinates the two
+programs. These plans vary by state and by county, and the details should be checked with the
+state Medicaid office. The Medicare Savings Programs are the main route for people who are not
+fully dual eligible but still need help with Medicare costs.
+
+## Medicare Savings Programs
+
+Medicare Savings Programs are state programs that help pay Medicare costs for people with limited
+income. There are four tiers. The Qualified Medicare Beneficiary program pays the Part A and Part
+B premiums, deductibles, and coinsurance. The Specified Low-Income Medicare Beneficiary program
+pays the Part B premium. The Qualifying Individual program also pays the Part B premium. The
+Qualified Disabled Working Individual program pays the Part A premium for certain disabled workers.
+
+The income limits vary by state, and some states set them higher than the federal floor. A person
+who qualifies for any Medicare Savings Program also qualifies automatically for Extra Help with
+Part D costs. Applications go through the state Medicaid office, and the state can confirm which
+tier applies.
+
+## Who should apply for which program
+
+A person turning 65 should apply for Medicare regardless of income, because the enrollment window
+is time-limited and late enrollment carries a permanent penalty. The same person should apply for
+Medicaid or a Medicare Savings Program if income is limited, because the programs can remove or
+reduce the Medicare costs. Applying for both at the same time is common and is not a problem.
+
+A person under 65 with a disability should apply for Medicare after the required waiting period,
+and should apply for Medicaid in the meantime if income is limited. Medicaid can cover care during
+the Medicare waiting period, and can continue to help after Medicare starts.
+
+## Worked example
+
+Consider a person who turns 65 with a monthly income below the state Medicaid limit. The person
+enrolls in Medicare during the initial enrollment period, which gives Part A and Part B. The
+person also applies for Medicaid and qualifies for the Qualified Medicare Beneficiary program. As
+a result, Medicaid pays the Part B premium, the Part A and Part B deductibles, and the
+coinsurance. The person still needs drug coverage, so the person enrolls in Part D and qualifies
+for Extra Help, which pays the premium and most of the drug cost sharing.
+
+A second person has the same Medicare enrollment but an income slightly above the Medicaid limit.
+The person does not qualify for full Medicaid, but does qualify for the Specified Low-Income
+Medicare Beneficiary program, which pays the Part B premium. The person still pays the Part A and
+Part B deductibles and coinsurance, and must buy Part D or a Medicare Advantage plan. The
+difference between the two cases is the income relative to the state limit.
+
+A third person has an income well above the limits. The person pays the standard Medicare costs
+and has no Medicaid. The person still benefits from knowing the program exists, because a drop
+in income later, such as retirement or the death of a spouse, can change eligibility at any time.
+
+## Where the rules can surprise you
+
+1. Medicaid rules vary by state, so a figure or benefit that applies in one state may not apply
+   in another. The state Medicaid office is the reliable source.
+2. Medicare Savings Program income limits are not the same as Medicaid eligibility limits. A
+   person can qualify for one and not the other.
+3. Having both programs does not mean Medicare is free in every sense. The programs pay specific
+   costs, and some services may still have a small charge.
+4. This page is general information. It does not determine eligibility for any person, because
+   that depends on state rules and individual circumstances.
+
+<Faq
+  items={[
+    {
+      question: 'What is the difference between Medicare and Medicaid?',
+      answer:
+        'Medicare is federal health insurance based on age or disability, with the same rules nationwide. Medicaid is a joint federal and state program based on income, with different rules in each state. Medicare pays first for covered services when a person has both.',
+    },
+    {
+      question: 'Can you have both Medicare and Medicaid?',
+      answer:
+        'Yes. A person who qualifies for Medicare by age or disability and meets the income and asset rules in their state can have both. Medicare pays first, and Medicaid can pay premiums, deductibles, and coinsurance.',
+    },
+    {
+      question: 'Does Medicaid pay the Medicare Part B premium?',
+      answer:
+        'It can. Through a Medicare Savings Program, Medicaid can pay the Part B premium for people with limited income. The Qualified Medicare Beneficiary program also pays the deductible and coinsurance.',
+    },
+    {
+      question: 'Is Medicaid free?',
+      answer:
+        'Many Medicaid beneficiaries pay no premium and little or nothing for covered services, but the rules vary by state. Some states charge small premiums or copayments for certain groups.',
+    },
+    {
+      question: 'Does Medicare cover long-term nursing home care?',
+      answer:
+        'Medicare covers skilled nursing for up to 100 days after a qualifying hospital stay. Long-term custodial care is not covered by Medicare. Medicaid is the main source of payment for long-term nursing home care.',
+    },
+    {
+      question: 'How do I apply for Medicaid?',
+      answer:
+        'Apply through your state Medicaid office or through the Health Insurance Marketplace. Eligibility is based on income and, in some cases, assets, and the rules differ by state.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Medicare basics and costs',
+      value: 'Federal program, age or disability based',
+      source: sources.medicareGov,
+      sourceLabel: 'Medicare.gov',
+    },
+    {
+      label: 'Medicaid by state',
+      value: 'State-run program, income based',
+      source: sources.medicaidGovByState,
+      sourceLabel: 'Medicaid.gov: by state',
+    },
+    {
+      label: 'Medicare Savings Programs',
+      value: 'State programs that help pay Medicare costs',
+      source: sources.medicareMsp,
+      sourceLabel: 'Medicare.gov: Medicare Savings Programs',
+    },
+    {
+      label: 'Extra Help',
+      value: 'Help with Part D costs',
+      source: sources.medicareDrugCosts,
+      sourceLabel: 'Medicare.gov: Extra Help',
+    },
+  ]}
+/>
+
+## Where to check your own eligibility
+
+Medicare eligibility is determined by Social Security, and the application is made through Social
+Security. Medicaid and Medicare Savings Program eligibility is determined by the state, and the
+application goes through the state Medicaid office. A person who is unsure should contact the state
+SHIP program for free counseling, and can also use the official Medicare and Medicaid websites.
+
+For the Medicare side of the decision, use the [Medicare vs ACA calculator](/calculators/medicare-vs-aca/)
+if you are choosing between employer coverage and Medicare, the [Part B late enrollment penalty
+calculator](/calculators/part-b-late-enrollment-penalty/) if timing is in question, and the
+[Medicare Savings Program and Extra Help calculator](/calculators/medicare-savings-program-extra-help/)
+to test income against the program limits.

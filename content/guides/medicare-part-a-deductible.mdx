@@ -1,0 +1,253 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partA2026 } from '@/data/medicare-part-a';
+import { partB2026 } from '@/data/medicare-part-b';
+import { sources } from '@/data/sources';
+import { dataVerifiedOn, figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const deductible = partA2026.inpatientDeductible.amount;
+export const coinsurance61to90 = partA2026.hospitalCoinsuranceDays61to90.amount;
+export const lifetimeReserve = partA2026.lifetimeReserveDays.amount;
+export const snfCoinsurance = partA2026.skilledNursingDays21to100.amount;
+export const reducedPremium = partA2026.reducedPremium.amount;
+export const fullPremium = partA2026.fullPremium.amount;
+export const partBPremium = partB2026.standardPremium.amount;
+export const dataVerifiedOnText = dataVerifiedOn;
+
+<AnswerCapsule>
+  The Medicare Part A deductible {year} is {formatMoney(deductible)} per benefit period, not per year.
+  After you pay it, days 1 to 60 of a hospital stay cost nothing more. Days 61 to 90 cost{' '}
+  {formatMoney(coinsurance61to90)} a day, and lifetime reserve days cost {formatMoney(lifetimeReserve)} a
+  day. Skilled nursing days 21 to 100 cost {formatMoney(snfCoinsurance)} a day. Most people pay no Part
+  A premium.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Part A deductible',
+      value: `${formatMoney(deductible)} per benefit period`,
+      note: 'Paid for each benefit period, not once a year.',
+    },
+    {
+      label: 'Days 1 to 60',
+      value: '0 dollars after the deductible',
+      note: 'Medicare pays the rest of the approved amount.',
+    },
+    {
+      label: 'Days 61 to 90',
+      value: `${formatMoney(coinsurance61to90)} a day`,
+      note: 'You pay this coinsurance each day.',
+    },
+    {
+      label: 'Lifetime reserve days',
+      value: `${formatMoney(lifetimeReserve)} a day`,
+      note: '60 days total, used once in a lifetime.',
+    },
+    {
+      label: 'Skilled nursing days 21 to 100',
+      value: `${formatMoney(snfCoinsurance)} a day`,
+      note: 'Days 1 to 20 are covered at 0 dollars.',
+    },
+    {
+      label: 'Premium-free Part A',
+      value: '40 work quarters',
+      note: 'Most people pay no Part A premium.',
+    },
+    {
+      label: 'Part A premium if short of quarters',
+      value: `${formatMoney(reducedPremium)} or ${formatMoney(fullPremium)} a month`,
+      note: '30 to 39 quarters, or fewer than 30.',
+    },
+    {
+      label: 'Part B premium',
+      value: `${formatMoney(partBPremium)} a month`,
+      note: 'Separate from Part A and paid by almost everyone.',
+    },
+  ]}
+/>
+
+## What the Part A deductible is
+
+The Part A deductible is the amount you pay for inpatient hospital care before Medicare begins to
+pay its share. For {year}, it is {formatMoney(deductible)}. The important detail is the unit: it is
+charged per benefit period, not per calendar year. A benefit period starts on the day you are
+admitted as an inpatient and ends when you have been out of the hospital or skilled nursing facility
+for 60 consecutive days. If a second admission happens more than 60 days after discharge, a new
+benefit period begins and the deductible is owed again.
+
+That structure means a person with two hospital stays in the same year, separated by more than 60
+days, can owe the deductible twice. A person with a single long stay owes it once, plus the daily
+coinsurance for the later days. The deductible is not an annual cap on exposure; it is a per-stay
+threshold.
+
+## Medicare Part A coinsurance {year}
+
+## What Medicare pays after the deductible
+
+After the deductible is met, Medicare pays the full approved amount for days 1 through 60 of the
+hospital stay. You pay nothing more for the approved services during those days. For days 61
+through 90, you pay {formatMoney(coinsurance61to90)} per day. After day 90, you can draw on up to 60
+lifetime reserve days, each costing {formatMoney(lifetimeReserve)}. Those reserve days are not
+renewed; once they are used, they are gone.
+
+The daily amounts are per day, not per stay, so a 75-day stay costs 15 days at the{' '}
+{formatMoney(coinsurance61to90)} rate. A stay that runs past 150 days total puts you past the
+reserve days, and you pay all costs from that point. The daily coinsurance is not subject to any
+annual out-of-pocket limit in Original Medicare, which is one reason supplemental coverage matters
+for people with frequent or long hospitalizations.
+
+## Skilled nursing and the 100-day rule
+
+Part A also covers skilled nursing facility care after a qualifying hospital stay. Days 1 through 20
+are covered at 0 dollars. Days 21 through 100 cost {formatMoney(snfCoinsurance)} per day. After day 100,
+Medicare stops paying and you owe the full cost. The stay must be for skilled care, such as
+rehabilitation or skilled nursing, not custodial care, and the benefit period rules apply here too.
+
+The skilled nursing benefit is one of the most misunderstood parts of Medicare. A person who needs
+help with daily activities but not skilled care does not qualify, and a person who qualifies can
+lose the benefit if the care plan changes to custodial. The Part A deductible does not apply to
+skilled nursing, but the daily coinsurance does.
+
+## Medicare Part A cost {year}
+
+## Who pays a Part A premium
+
+Most people get Part A without a monthly premium because they or a spouse have at least 40 quarters
+of Medicare-covered work. A person with 30 to 39 quarters pays {formatMoney(reducedPremium)} a
+month for Part A. A person with fewer than 30 quarters pays {formatMoney(fullPremium)} a month.
+To buy Part A, you must also enroll in Part B and pay both premiums.
+
+The quarters are earned through work covered by Medicare taxes. A person can qualify on a spouse's
+record, including a deceased or divorced spouse's record in some cases, and a person who worked in
+a government job that paid Medicare taxes can qualify on that record. The work record should be
+checked before budgeting, because the difference between 0 dollars and {formatMoney(fullPremium)} a month
+is large over a year.
+
+## What Part A does not cover
+
+Part A does not cover most prescription drugs, physician services outside a hospital stay, routine
+dental, vision, hearing, or long-term custodial care. A person who needs those services relies on
+Part B, Part D, a Medicare Advantage plan, or out-of-pocket payment. Part A also does not cap
+out-of-pocket spending for the year, so a long or repeated hospitalization can be expensive even
+with Medicare.
+
+The deductible and coinsurance are the same nationwide. They do not vary by state, by hospital, or
+by the type of care. What varies is the amount of care a person uses and the supplemental coverage
+chosen to fill the gaps.
+
+## How to plan for the Part A costs
+
+A person preparing for a possible hospitalization should plan for three separate exposures: the
+deductible for each benefit period, the daily coinsurance for a long stay, and the Part A premium
+if work quarters are short. The deductible is the most predictable, because it is a fixed amount
+per benefit period. The daily coinsurance is the variable, because it depends on the length of the
+stay and whether lifetime reserve days are used. The premium is the one that can be avoided by
+checking the work record early, before the budget is set.
+
+Supplemental coverage changes the picture. A Medigap policy can pay the Part A deductible and the
+daily coinsurance, and a Medicare Advantage plan sets its own cost sharing with an annual
+out-of-pocket limit. A person with either type of coverage should still understand the underlying
+Medicare amounts, because the supplemental plan's cost sharing is usually built on top of them.
+
+## Worked example
+
+Consider a person admitted to the hospital for 8 days in March {year}. The person pays the{' '}
+{formatMoney(deductible)} deductible. Because the stay is under 60 days, Medicare pays the rest of
+the approved amount for the hospital care. The total out-of-pocket cost for the stay is{' '}
+{formatMoney(deductible)}, plus any Part B charges for physician services billed separately.
+
+Now suppose the same person is admitted again in August for 75 days, more than 60 days after the
+March discharge. A new benefit period begins, so the person pays another {formatMoney(deductible)}.
+Days 1 through 60 of the August stay are covered after that deductible. Days 61 through 75, which
+is 15 days, cost {formatMoney(coinsurance61to90)} each, or {formatMoney(coinsurance61to90 * 15)}
+for those 15 days. The total for the second stay is {formatMoney(deductible)} plus{' '}
+{formatMoney(coinsurance61to90 * 15)}.
+
+A third case: the person needs 30 days in a skilled nursing facility after the hospital stay. Days
+1 through 20 cost nothing. Days 21 through 30, which is 10 days, cost {formatMoney(snfCoinsurance)}
+each, or {formatMoney(snfCoinsurance * 10)}. That amount is separate from the hospital deductible
+and is owed in addition to it.
+
+## Where the Part A deductible can surprise you
+
+1. The deductible is per benefit period, not per year, so two stays 61 days apart cost two
+   deductibles.
+2. Lifetime reserve days do not renew. A person who uses them has fewer left for a later year.
+3. Skilled nursing coverage depends on the type of care. Custodial care is not covered even when
+   it follows a hospital stay.
+4. This page explains the standard figures. It does not estimate a specific person's hospital
+   costs, because those depend on the care used and any supplemental coverage.
+
+<Faq
+  items={[
+    {
+      question: 'What is the Medicare Part A deductible {year} amount?',
+      answer: `The Part A deductible for ${year} is ${formatMoney(deductible)} per benefit period. A benefit period begins on admission and ends after 60 consecutive days out of the hospital or skilled nursing facility.`,
+    },
+    {
+      question: 'Is Medicare Part A deductible per year or per stay?',
+      answer:
+        'Per benefit period. A new benefit period begins after 60 consecutive days without inpatient care, which means the deductible can be owed more than once in a year.',
+    },
+    {
+      question: 'How much does Medicare pay for hospital days 61 to 90?',
+      answer: `You pay ${formatMoney(coinsurance61to90)} per day for days 61 to 90 of a hospital stay. Medicare pays the rest of the approved amount.`,
+    },
+    {
+      question: 'What are lifetime reserve days?',
+      answer: `Lifetime reserve days are up to 60 additional hospital days Medicare can pay for after day 90 of a stay. Each costs ${formatMoney(lifetimeReserve)} per day, and they do not renew.`,
+    },
+    {
+      question: 'Does Medicare cover skilled nursing facility care?',
+      answer: `Yes, for up to 100 days after a qualifying hospital stay. Days 1 to 20 cost nothing, and days 21 to 100 cost ${formatMoney(snfCoinsurance)} per day. The care must be skilled, not custodial.`,
+    },
+    {
+      question: 'Who pays a Medicare Part A premium?',
+      answer: `Most people pay nothing. A person with 30 to 39 work quarters pays ${formatMoney(reducedPremium)} a month, and a person with fewer than 30 quarters pays ${formatMoney(fullPremium)} a month.`,
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Part A deductible and coinsurance',
+      value: `${formatMoney(deductible)} deductible; ${formatMoney(coinsurance61to90)} a day`,
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part A and B fact sheet`,
+    },
+    {
+      label: 'Skilled nursing coinsurance',
+      value: `${formatMoney(snfCoinsurance)} a day`,
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part A and B fact sheet`,
+    },
+    {
+      label: 'Part A premiums by work quarters',
+      value: `${formatMoney(reducedPremium)} / ${formatMoney(fullPremium)} a month`,
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part A and B fact sheet`,
+    },
+    {
+      label: 'Part B premium',
+      value: `${formatMoney(partBPremium)} a month`,
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part B fact sheet`,
+    },
+  ]}
+/>
+
+## Where to check a hospital or skilled nursing stay before it happens
+
+The figures are the standard Medicare amounts for {year}, checked against the CMS fact sheet on{' '}
+{dataVerifiedOnText}. Medicare pays the approved amount; the hospital's charges can be higher than
+the approved amount, so the setting and the provider matter. Before a planned stay, confirm whether
+the facility accepts assignment and whether your supplemental coverage fills the deductible and
+coinsurance.
+
+For the surrounding costs, use the [Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty/)
+if coverage timing is in question, the [Medicare Savings Program and Extra Help calculator](/calculators/medicare-savings-program-extra-help/)
+if income is limited, and the [Part D out-of-pocket cap guide](/guides/part-d-out-of-pocket-cap/) for
+drug costs during a stay.

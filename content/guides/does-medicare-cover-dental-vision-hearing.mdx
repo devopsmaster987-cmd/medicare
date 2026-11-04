@@ -1,0 +1,273 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partB2026 } from '@/data/medicare-part-b';
+import { partA2026 } from '@/data/medicare-part-a';
+import { sources } from '@/data/sources';
+import { dataVerifiedOn, figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const deductible = partB2026.deductible.amount;
+export const premium = partB2026.standardPremium.amount;
+export const partAInpatientDeductible = partA2026.inpatientDeductible.amount;
+export const partAHospitalDays61to90 = partA2026.hospitalCoinsuranceDays61to90.amount;
+export const dataVerifiedOnText = dataVerifiedOn;
+
+<AnswerCapsule>
+  Does Medicare cover dental, vision, and hearing {year}? Original Medicare does not cover routine
+  dental, vision, or hearing care. Part B covers specific medically necessary services tied to a
+  covered treatment, such as a cataract lens replacement and eye exams for diabetes or glaucoma
+  risk. Routine care is paid out of pocket unless another plan covers it.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Routine dental',
+      value: 'Not covered by Part A or Part B',
+      note: 'Cleanings, fillings, dentures, implants, and root canals are out of pocket.',
+    },
+    {
+      label: 'Routine vision',
+      value: 'Not covered',
+      note: 'Yearly eye exams, glasses, and contact lenses are out of pocket.',
+    },
+    {
+      label: 'Routine hearing',
+      value: 'Not covered',
+      note: 'Hearing exams for hearing aids and the hearing aids themselves are out of pocket.',
+    },
+    {
+      label: 'Cataract lens replacement',
+      value: 'Covered under Part B',
+      note: 'Medicare pays for the lens; glasses or contacts after surgery are covered.',
+    },
+    {
+      label: 'Eye exams for diabetes or glaucoma',
+      value: 'Covered annually under Part B',
+      note: 'A covered service with the Part B deductible and 20 percent coinsurance.',
+    },
+    {
+      label: 'Oral exam before certain treatments',
+      value: 'Covered when linked to treatment',
+      note: 'Heart valve replacement, organ or kidney transplant, head or neck cancer, and dialysis.',
+    },
+    {
+      label: 'Part B deductible',
+      value: `${formatMoney(deductible)} a year`,
+      note: 'Applies to covered Part B services before Medicare pays its share.',
+    },
+    {
+      label: 'Part B premium',
+      value: `${formatMoney(premium)} a month`,
+      note: `The standard amount for ${year}, before income surcharges.`,
+    },
+  ]}
+/>
+
+## What Original Medicare covers and does not cover
+
+Original Medicare is built around medically necessary care. Part A covers inpatient hospital care,
+skilled nursing, hospice, and some home health. Part B covers physician services, outpatient care,
+durable medical equipment, preventive services, and some medical supplies. Neither part was designed
+to pay for routine dental, vision, or hearing services, so those costs fall to the beneficiary
+unless another program or plan applies.
+
+The practical consequence is that most older adults pay for these three categories themselves, or
+through a Medicare Advantage plan, a standalone dental or vision plan, a retiree benefit, or a
+state program. The question is not whether Medicare will help; it is which of the narrow exceptions
+applies to a given situation.
+
+## Does Medicare cover dental
+
+In most cases, no. Routine oral health and dental care that keeps teeth and gums healthy is not
+covered. That includes cleanings, fillings, dentures, implants, root canals, and extractions done
+for dental reasons. Medicare does not cover the cost of dentures even when the extraction that
+preceded them was covered.
+
+Medicare can cover dental services in a limited set of cases, when the dental work is directly
+linked to the success of a covered medical treatment. The situations Medicare lists include an oral
+exam and treatment before a heart valve replacement, an organ or bone marrow transplant, or a kidney
+transplant; a procedure such as a tooth extraction to treat a mouth infection before chemotherapy
+or other cancer treatment; treatment for a complication during head or neck cancer care; and dental
+or oral exams before and during dialysis for end-stage renal disease, along with treatment of an
+oral or dental infection in that setting.
+
+Two more cases matter. Medicare covers some dental services when you are admitted as a hospital
+inpatient for a dental procedure because of an underlying medical condition or the severity of the
+procedure. And Medicare covers dental services that are an integral part of a covered procedure,
+such as reconstruction of the jaw after an accident. In each of these cases, Medicare pays for the
+dental service under Part A or Part B, but it does not cover follow-up dental care once the medical
+condition has been treated, and it does not cover implants or dentures even when the preparatory
+work was covered.
+
+The cost sharing on the covered cases follows the normal rules. Part B services are paid at 80
+percent of the Medicare-approved amount after the deductible, and an additional copayment applies
+when the service is delivered in a hospital outpatient setting. The deductible is{' '}
+{formatMoney(deductible)} for {year}.
+
+## Does Medicare cover vision
+
+Routine vision care is not covered. Original Medicare does not pay for yearly eye exams to check
+vision, glasses, or contact lenses, and it does not pay for the fitting or purchase of eyewear.
+
+Part B does cover specific vision services tied to a medical condition. An annual eye exam from a
+state-authorized doctor is covered to check for diabetic retinopathy when you have diabetes, and an
+annual eye exam is covered to check for glaucoma when you are at high risk, such as having a family
+history of glaucoma. Medicare also covers certain services related to a chronic eye condition,
+including surgery to remove a cataract and replace the lens with an intraocular lens. After that
+surgery, Medicare covers one pair of glasses or contact lenses. Medicare also covers an eye exam
+related to macular degeneration in certain cases.
+
+The cost sharing follows the Part B rules: the deductible, then 20 percent of the Medicare-approved
+amount, plus any hospital outpatient copayment. A person who needs only routine glasses or a
+prescription update will pay the full cost.
+
+## Does Medicare cover hearing aids
+
+Medicare does not cover hearing aids, and it does not cover the exams for fitting hearing aids.
+Hearing aids and fittings are paid out of pocket. Medicare Part B does cover diagnostic hearing
+and balance exams when a doctor orders them to diagnose or treat a medical condition, and it covers
+an audiologist visit without a physician referral when the hearing loss or balance problem has
+existed for 12 months or more, once every 12 months or more.
+
+The distinction that matters is medical diagnosis versus hearing correction. A test ordered to find
+the cause of dizziness or a sudden hearing loss can be covered. A test ordered to fit a hearing
+aid is not. The same test can be billed either way, so the reason for the visit should be clear
+before it is scheduled.
+
+## Does Medicare cover cataract surgery
+
+Medicare covers surgery to remove a cataract and replace the lens with an intraocular lens, and it
+covers one pair of glasses or contact lenses after the surgery. The normal Part B deductible and 20
+percent coinsurance apply. The surgery is covered because it restores function rather than being
+cosmetic, and the post-surgery eyewear is covered because it is part of the surgical recovery.
+
+## Does Medicare cover dentures
+
+Medicare does not cover dentures, even when the extraction that preceded them was covered. Dentures
+are paid out of pocket or through another plan. A person who needs dentures after an extraction that
+Medicare did cover still pays the full cost of the dentures themselves.
+
+Four routes are common. A Medicare Advantage plan often includes routine dental, vision, and
+hearing benefits, although the scope varies by plan and by county, so the benefit details in the
+plan documents matter more than the marketing summary. A standalone dental or vision plan can be
+bought separately, usually with its own premium, deductible, and annual maximum. A retiree or union
+benefit can fill the gaps, and the coordination rules with Medicare should be checked before
+enrolling. And some services are available without insurance: over-the-counter hearing aids for
+mild to moderate hearing loss, and low-cost dental and vision programs through community health
+centers and charitable foundations.
+
+Medigap does not fill these gaps. A Medicare Supplement policy pays the cost sharing on covered
+Medicare services. It does not create coverage where Medicare has none, so a person with Original
+Medicare plus Medigap still pays for routine dental, vision, and hearing out of pocket.
+
+## Worked example
+
+Consider a person on Original Medicare who needs a routine dental cleaning, new glasses, and a
+hearing aid in {year}. The cleaning is not covered, so the full cost is out of pocket. The eye
+exam for a new prescription is not covered, and neither are the glasses. The hearing exam for the
+aid and the aid itself are not covered. The person pays all of it.
+
+Now change one fact: the same person develops a cataract. Medicare covers the surgery to remove the
+cataract and replace the lens, and it covers one pair of glasses or contacts after the surgery. The
+person still pays the {formatMoney(deductible)} deductible and 20 percent of the Medicare-approved
+amount for the surgery, but the lens replacement and the post-surgery eyewear are Medicare benefits
+rather than out-of-pocket costs.
+
+A third case: the person has diabetes and a family history of glaucoma. Medicare covers an annual
+eye exam for diabetic retinopathy and an annual exam for glaucoma risk, both under Part B with the
+normal cost sharing. Those two exams are covered even though a routine vision exam for a new
+prescription would not be.
+
+## Where the rules leave room for judgment
+
+1. The phrase "medically necessary" is the hinge. A service that is routine when it stands alone
+   can be covered when it is part of a covered treatment, and the billing depends on how the visit
+   is documented.
+2. Medicare Advantage dental, vision, and hearing benefits vary by plan and by county. The plan
+   documents are the source of truth, not the summary of benefits.
+3. This page describes Medicare coverage. It does not recommend a plan, and it does not estimate
+   what a specific person will pay, because that depends on the provider, the setting, and other
+   insurance.
+
+<Faq
+  items={[
+    {
+      question: 'Does Medicare cover dental?',
+      answer:
+        'Original Medicare does not cover routine dental care such as cleanings, fillings, dentures, implants, or root canals. It can cover dental services directly linked to a covered medical treatment, such as an oral exam before a heart valve replacement, organ or kidney transplant, head or neck cancer treatment, or dialysis.',
+    },
+    {
+      question: 'Does Medicare cover hearing aids?',
+      answer:
+        'No. Medicare does not cover hearing aids or the exams for fitting them. It does cover diagnostic hearing and balance exams ordered by a doctor to diagnose or treat a medical condition, and an audiologist visit once every 12 months or more when the hearing loss or balance problem has lasted 12 months or more.',
+    },
+    {
+      question: 'Does Medicare cover vision?',
+      answer:
+        'Original Medicare does not cover routine eye exams, glasses, or contact lenses. It covers an annual eye exam for diabetic retinopathy when you have diabetes, an annual exam for glaucoma when you are at high risk, cataract surgery with an intraocular lens, and one pair of glasses or contacts after cataract surgery.',
+    },
+    {
+      question: 'Does Medicare cover cataract surgery?',
+      answer:
+        'Yes. Medicare covers surgery to remove a cataract and replace the lens with an intraocular lens, and it covers one pair of glasses or contact lenses after the surgery. The normal Part B deductible and 20 percent coinsurance apply.',
+    },
+    {
+      question: 'Does Medicare cover dentures?',
+      answer:
+        'No. Medicare does not cover dentures, even when the extraction that preceded them was covered. Dentures are paid out of pocket or through another plan.',
+    },
+    {
+      question: 'Does Medicare cover glasses?',
+      answer:
+        'Routine glasses and contact lenses are not covered. Medicare covers one pair of glasses or contact lenses after cataract surgery, and it covers glasses needed after certain other eye procedures.',
+    },
+    {
+      question: 'Does Medicare cover eye exams?',
+      answer:
+        'Routine eye exams for a new prescription are not covered. Medicare covers an annual exam for diabetic retinopathy when you have diabetes, an annual exam for glaucoma when you are at high risk, and exams related to certain chronic eye conditions.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Dental services coverage',
+      value: 'Routine dental excluded; limited medical-link exceptions',
+      source: sources.medicareGov,
+      sourceLabel: 'Medicare.gov: dental services',
+    },
+    {
+      label: 'Part B deductible and premium',
+      value: `${formatMoney(deductible)} deductible; ${formatMoney(premium)} premium`,
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part B fact sheet`,
+    },
+    {
+      label: 'Part A inpatient deductible',
+      value: formatMoney(partAInpatientDeductible),
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part A fact sheet`,
+    },
+    {
+      label: 'Medicare cost sharing',
+      value: '20 percent coinsurance after the deductible',
+      source: sources.medicareCosts,
+      sourceLabel: 'Medicare.gov: costs',
+    },
+  ]}
+/>
+
+## Where to check a specific service before you book
+
+Medicare's coverage is decided per service and per diagnosis, so a service that is excluded in one
+context can be covered in another. Before you schedule, confirm the coverage with Medicare.gov's
+"What's covered" tool and get the reason for the visit in writing from the provider. If a service
+is not covered, ask the provider for the cash price and whether a payment plan is available.
+
+For the surrounding costs, use the [Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty/)
+before delaying coverage, the [Medicare Savings Program and Extra Help calculator](/calculators/medicare-savings-program-extra-help/)
+if income is limited, and the [IRMAA cliff checker](/calculators/irmaa-cliff-checker/) if income is
+near a surcharge threshold. The [Part D out-of-pocket cap guide](/guides/part-d-out-of-pocket-cap/)
+covers drug costs, which are a separate budget line from dental, vision, and hearing.

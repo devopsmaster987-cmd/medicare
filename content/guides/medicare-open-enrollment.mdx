@@ -1,0 +1,247 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { irs2026 } from '@/data/irs';
+import { sources } from '@/data/sources';
+import { dataVerifiedOn, figureYears } from '@/data/verified';
+
+export const year = figureYears.current;
+export const aepStartMonth = irs2026.annualEnrollmentPeriod.startMonth;
+export const aepStartDay = irs2026.annualEnrollmentPeriod.startDay;
+export const aepEndMonth = irs2026.annualEnrollmentPeriod.endMonth;
+export const aepEndDay = irs2026.annualEnrollmentPeriod.endDay;
+export const gepStartMonth = irs2026.generalEnrollmentPeriod.startMonth;
+export const gepStartDay = irs2026.generalEnrollmentPeriod.startDay;
+export const gepEndMonth = irs2026.generalEnrollmentPeriod.endMonth;
+export const gepEndDay = irs2026.generalEnrollmentPeriod.endDay;
+export const sepMonths = irs2026.specialEnrollmentPeriodMonths;
+export const dataVerifiedOnText = dataVerifiedOn;
+
+<AnswerCapsule>
+  Medicare open enrollment dates {year}: the annual window runs October 15 through December 7, with
+  changes effective January 1. The general enrollment period runs January 1 through March 31.
+  Special enrollment periods apply after life events. The annual window is when most people can
+  switch Part D or Medicare Advantage plans.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Annual enrollment period',
+      value: 'October 15 to December 7',
+      note: 'For changing Part D or Medicare Advantage coverage.',
+    },
+    {
+      label: 'Effective date',
+      value: 'January 1',
+      note: 'Changes made during the annual window start January 1.',
+    },
+    {
+      label: 'General enrollment period',
+      value: 'January 1 to March 31',
+      note: 'For people who missed their initial enrollment period.',
+    },
+    {
+      label: 'Special enrollment period',
+      value: `${sepMonths} months after a qualifying event`,
+      note: 'For loss of coverage, a move, or other life events.',
+    },
+    {
+      label: 'Initial enrollment period',
+      value: '7 months around 65',
+      note: 'The first window, separate from the annual one.',
+    },
+    {
+      label: 'Medigap open enrollment',
+      value: '6 months from Part B start',
+      note: 'A one-time window with medical underwriting protections.',
+    },
+    {
+      label: 'Part D late penalty',
+      value: 'Permanent',
+      note: 'Applies after 63 days or more without creditable drug coverage.',
+    },
+  ]}
+/>
+
+## Medicare open enrollment dates {year}
+
+The annual enrollment period is the yearly window when a person with Medicare can change coverage.
+It runs from October 15 through December 7, and any change made during it takes effect January 1.
+During this window, a person can switch from one Medicare Advantage plan to another, switch from
+Medicare Advantage to Original Medicare, switch from Original Medicare to Medicare Advantage, or
+change Part D plans. A person can also drop drug coverage, although that can create a penalty if
+the person later wants coverage again.
+
+The annual window is the only time most people can make these changes without a qualifying event.
+A person who is happy with the current plan does not need to do anything; coverage continues. A
+person who wants to change should compare plans during the window, because premiums, formularies,
+and networks change each year.
+
+## What you can change during the window
+
+Four categories of change are allowed. First, Medicare Advantage plan changes: switching to a
+different Medicare Advantage plan, or switching between Medicare Advantage and Original Medicare.
+Second, Part D plan changes: switching to a different Part D plan, or adding Part D if you are
+in Original Medicare without it. Third, Medicare Advantage with drug coverage changes: switching
+between integrated plans. Fourth, dropping coverage: leaving Medicare Advantage for Original
+Medicare, or dropping Part D, which may trigger a penalty if you later re-enroll.
+
+The window does not change Part A or Part B enrollment. Those are handled through Social Security
+and are governed by the initial, general, and special enrollment periods. A person who wants to
+add Part B outside the initial window needs a special enrollment period or the general enrollment
+period.
+
+## Medicare open enrollment vs general enrollment
+
+The two windows are often confused. The annual enrollment period is for people who already have
+Medicare and want to change plans. The general enrollment period, from January 1 through March
+31, is for people who did not enroll in Part A or Part B when first eligible and do not have a
+special enrollment period. Coverage from the general enrollment period starts the month after
+enrollment, and a late enrollment penalty may apply.
+
+A person who is in the general enrollment period because of a missed window should also check
+whether a special enrollment period applies. The special enrollment period is usually better,
+because it avoids the penalty and starts coverage faster. The annual enrollment period is not a
+substitute for either one.
+
+## Medicare special enrollment periods
+
+A special enrollment period lets a person enroll in or change Medicare coverage outside the annual
+window after a qualifying life event. Common events include losing employer or union coverage,
+moving out of a plan's service area, moving into or out of a nursing home, and certain other
+changes in circumstances. The period usually lasts a limited number of months after the event,
+and the exact length depends on the event.
+
+Loss of employer coverage is the most common trigger. A person who loses coverage based on current
+employment has an eight-month window to enroll in Part B without a penalty, and a shorter window
+to enroll in Part D or a Medicare Advantage plan. The person should enroll the month before the
+coverage ends, so the start dates line up without a gap.
+
+## Medigap open enrollment
+
+The Medigap open enrollment period is a one-time six-month window that starts when Part B begins.
+During it, an insurer generally cannot refuse to sell a Medigap policy or charge more because of
+health status. After the window closes, medical underwriting can apply, and a policy can be
+harder or more expensive to buy. This is separate from the annual enrollment period, which does
+not reopen Medigap underwriting protections.
+
+A person who is turning 65 and choosing between Original Medicare with Medigap and a Medicare
+Advantage plan should make that choice with the Medigap window in mind. Delaying can close the
+window and limit options later.
+
+## How to use the annual window well
+
+Five habits make the annual window productive. First, review the annual notice of change that the
+plan sends in September, which lists the premium, deductible, and formulary changes for the coming
+year. Second, compare the total annual cost on your own prescription list, not just the premium.
+Third, check whether your doctors and pharmacy are still in the network. Fourth, confirm whether
+a drug you take has moved to a higher tier or off the formulary. Fifth, enroll before the
+December 7 deadline, because the system gets busy in the final days.
+
+A person who does nothing keeps the current plan. That is a valid choice when the plan still fits.
+The risk is not doing nothing; the risk is not checking, because a plan that fit last year may
+not fit this year.
+
+## Worked example
+
+Consider a person in Original Medicare with a Part D plan. In October, the person receives the
+annual notice of change and sees that the Part D premium rose and a drug moved to a higher tier.
+The person uses the plan finder to compare three other Part D plans on the same prescription list
+and finds one with a lower total annual cost. The person switches during the annual window, and
+the new plan starts January 1. No penalty applies because the person maintained creditable
+coverage.
+
+A second person is in a Medicare Advantage plan and learns that the primary care doctor is leaving
+the network. During the annual window, the person switches to a different Medicare Advantage plan
+that includes the doctor. The new plan starts January 1. If the person instead switched to
+Original Medicare, the person would need to buy a Part D plan during the same window to avoid a
+gap in drug coverage.
+
+A third person misses the December 7 deadline. The person stays in the current plan for another
+year and must wait for the next annual window or a qualifying event. The missed deadline is not
+fixable later, which is why the September notice and the October start date matter.
+
+## What the annual window does not cover
+
+1. The annual window changes plans, not Part A or Part B enrollment. Those are governed by
+   different periods.
+2. The window does not reopen Medigap underwriting protections. That is a separate one-time
+   window tied to Part B.
+3. A plan change during the window takes effect January 1. It does not take effect immediately.
+4. This page explains the windows and deadlines. It does not recommend a specific plan, because
+   the right plan depends on doctors, drugs, and budget.
+
+<Faq
+  items={[
+    {
+      question: 'When is Medicare open enrollment for {year}?',
+      answer:
+        'The annual enrollment period runs from October 15 through December 7, with changes effective January 1. It is the yearly window for changing Part D or Medicare Advantage coverage.',
+    },
+    {
+      question: 'What can I change during Medicare open enrollment?',
+      answer:
+        'You can switch Medicare Advantage plans, switch between Medicare Advantage and Original Medicare, change Part D plans, or drop coverage. Part A and Part B enrollment are not changed during this window.',
+    },
+    {
+      question: 'What happens if I miss the December 7 deadline?',
+      answer:
+        'You stay in your current plan for another year unless you have a qualifying event that triggers a special enrollment period. The missed deadline cannot be fixed later.',
+    },
+    {
+      question: 'What is the general enrollment period?',
+      answer:
+        'The general enrollment period runs from January 1 through March 31 each year. It is for people who missed their initial enrollment period. Coverage starts the month after enrollment, and a penalty may apply.',
+    },
+    {
+      question: 'When does a special enrollment period apply?',
+      answer:
+        'After a qualifying life event such as losing employer coverage, moving out of a plan area, or moving into a nursing home. The length depends on the event.',
+    },
+    {
+      question: 'Does Medicare open enrollment change Medigap?',
+      answer:
+        'No. The annual window does not reopen Medigap underwriting protections. Medigap has a separate six-month open enrollment period that starts when Part B begins.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Annual enrollment period',
+      value: 'October 15 to December 7',
+      source: sources.medicareEmployer,
+      sourceLabel: 'Medicare.gov: when can I sign up',
+    },
+    {
+      label: 'General enrollment period',
+      value: 'January 1 to March 31',
+      source: sources.medicareAvoidPenalties,
+      sourceLabel: 'Medicare.gov: avoid penalties',
+    },
+    {
+      label: 'Special enrollment period',
+      value: `${sepMonths} months after a qualifying event`,
+      source: sources.medicareEmployer,
+      sourceLabel: 'Medicare.gov: when can I sign up',
+    },
+    {
+      label: 'Medigap open enrollment',
+      value: '6 months from Part B start',
+      source: sources.medicareEmployer,
+      sourceLabel: 'Medicare.gov: when can I sign up',
+    },
+  ]}
+/>
+
+## Where to compare plans during the window
+
+The dates are the standard Medicare enrollment windows, checked against Medicare.gov on{' '}
+{dataVerifiedOnText}. The plan finder on Medicare.gov is the official comparison tool, and it uses
+your prescription list and zip code to estimate total annual cost. A state SHIP counselor can walk
+through the comparison for free.
+
+For the surrounding decisions, use the [Part D out-of-pocket cap guide](/guides/part-d-out-of-pocket-cap/)
+to understand drug costs, the [Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty/)
+if timing is in question, and the [Medicare Savings Program and Extra Help calculator](/calculators/medicare-savings-program-extra-help/)
+if income is limited.

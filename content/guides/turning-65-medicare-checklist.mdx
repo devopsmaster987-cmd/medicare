@@ -1,0 +1,262 @@
+import { AnswerCapsule, Faq, KeyFacts, SourceTable } from '@/components/calc/content';
+import { partB2026 } from '@/data/medicare-part-b';
+import { partA2026 } from '@/data/medicare-part-a';
+import { irs2026 } from '@/data/irs';
+import { sources } from '@/data/sources';
+import { dataVerifiedOn, figureYears } from '@/data/verified';
+import { formatMoney } from '@/lib/utils';
+
+export const year = figureYears.current;
+export const months = irs2026.initialEnrollmentPeriod.months;
+export const monthsBefore = irs2026.initialEnrollmentPeriod.monthsBeforeBirthdayMonth;
+export const monthsAfter = irs2026.initialEnrollmentPeriod.monthsAfterBirthdayMonth;
+export const employerSize = irs2026.employerSizeRule.employees;
+export const sepMonths = irs2026.specialEnrollmentPeriodMonths;
+export const hsaStopMonths = irs2026.hsaContributionStopMonthsBeforeMedicare;
+export const premium = partB2026.standardPremium.amount;
+export const deductible = partB2026.deductible.amount;
+export const partAFull = partA2026.fullPremium.amount;
+export const partAReduced = partA2026.reducedPremium.amount;
+export const dataVerifiedOnText = dataVerifiedOn;
+
+<AnswerCapsule>
+  What do I need to do when I turn 65 for Medicare {year}? Sign up during the {months}-month
+  initial enrollment period, which starts {monthsBefore} months before your birthday month. Check
+  whether enrollment is automatic, whether employer coverage lets you delay Part B, and whether HSA
+  contributions must stop first. The standard Part B premium is {formatMoney(premium)} a month.
+</AnswerCapsule>
+
+<KeyFacts
+  rows={[
+    {
+      label: 'Initial enrollment window',
+      value: `${months} months around 65`,
+      note: `${monthsBefore} months before the birthday month, the birthday month, and ${monthsAfter} months after.`,
+    },
+    {
+      label: 'Standard Part B premium',
+      value: `${formatMoney(premium)} a month`,
+      note: `The base amount for ${year}, before income surcharges.`,
+    },
+    {
+      label: 'Part B deductible',
+      value: `${formatMoney(deductible)} a year`,
+      note: 'What you pay for Part B services before Medicare pays its share.',
+    },
+    {
+      label: 'Premium-free Part A',
+      value: '40 work quarters',
+      note: `Most people pay nothing for Part A. With fewer quarters, the premium runs up to ${formatMoney(partAFull)} a month.`,
+    },
+    {
+      label: 'Employer coverage delay',
+      value: `${employerSize}+ employees`,
+      note: `Current employment coverage at that employer size can allow a later Part B sign-up through an ${sepMonths}-month window.`,
+    },
+    {
+      label: 'HSA rule',
+      value: `${hsaStopMonths} months before Part A`,
+      note: 'Stop contributions early, because Part A can be backdated.',
+    },
+  ]}
+/>
+
+## When should I sign up for Medicare at 65
+
+Sign up during the {months}-month initial enrollment period: the {monthsBefore} months before your
+birthday month, your birthday month, and the {monthsAfter} months after it. The month you turn 65 is
+the anchor, not the exact day of the month. Enrolling during the {monthsBefore} months before the
+birthday month is usually the safest choice, because coverage can begin on the first day of your
+birthday month with no gap.
+
+The exact months depend on your birthday month. A person with a June birthday has a window that
+runs from March through September. A person born on the first day of a month is treated as turning
+65 in the previous month for Medicare purposes, which moves the whole window one month earlier, so
+the dates should be confirmed with Social Security before relying on them.
+
+Signing up early in the window matters for more reason than one. The Medicare card, the Part D plan
+choice, and any Medigap application all run better with time in hand. A late sign-up can create a
+gap where you owe the full cost of care, and for Part B it can create a penalty that is permanent.
+
+## Do you automatically get enrolled in Medicare at 65
+
+Automatic enrollment depends on your Social Security status. People who already receive Social
+Security retirement benefits are generally enrolled in Part A and Part B without filing anything,
+and the Medicare card arrives by mail a few months before coverage starts. The same automatic path
+applies to people receiving Social Security disability benefits after the required waiting period.
+
+People who have not claimed Social Security are a different case. If you plan to keep working, delay
+the claim, or take benefits later, there is no automatic enrollment. You must apply during the
+initial enrollment period, usually online at the Social Security website. Missing the window is the
+mistake that produces coverage gaps and penalties, because nothing arrives in the mail to remind
+you when no benefit check exists.
+
+The split matters because automatic enrollment can be a trap of its own. Someone receiving Social
+Security at 65 is enrolled in Part B automatically and will start paying the{' '}
+{formatMoney(premium)} premium, even if an employer plan was going to be primary. A person in that
+situation who wants to rely on the employer plan needs to contact Social Security and decline Part
+B before the coverage starts, which is a call that should be made in the first {monthsBefore}{' '}
+months before the birthday month.
+
+## The checklist, step by step
+
+1. Confirm your enrollment window from your birthday month, and check the first-of-month rule.
+2. Ask your employer whether the plan counts as coverage based on current employment, and whether
+   the employer has {employerSize} or more employees, in writing.
+3. If you or a spouse claimed Social Security already, check whether enrollment is automatic and
+   whether Part B should be declined in favor of the employer plan.
+4. Stop HSA contributions at least {hsaStopMonths} months before any Part A start date, because
+   Part A can be backdated up to six months and a later contribution becomes an excess
+   contribution.
+5. Compare the standard Part B premium of {formatMoney(premium)} with what you pay for the employer
+   plan now, including the employer share that disappears at retirement.
+6. Choose drug coverage in the same window. A gap in creditable drug coverage of 63 days or more can
+   create a Part D penalty that is added to every future plan premium.
+7. If you take Original Medicare, look at Medigap during the six-month open enrollment that begins
+   when Part B starts, when insurers generally must sell you a policy without medical
+   underwriting.
+8. Confirm the Part A and Part B start dates in writing before you cancel any current coverage.
+
+## What turning 65 costs in {year}
+
+Part A is premium-free for people with 40 or more work quarters, and most people qualify through
+their own record or a spouse's record. A person with 30 to 39 quarters pays{' '}
+{formatMoney(partAReduced)} a month for Part A, and a person with fewer than 30 quarters pays{' '}
+{formatMoney(partAFull)} a month. Part B is never premium-free: the standard premium is{' '}
+{formatMoney(premium)} a month for {year}, and the deductible is {formatMoney(deductible)} for the
+year.
+
+Two adjustments can raise the Part B premium above the standard amount. The income-related
+surcharge applies when modified adjusted gross income two years earlier was above the first
+threshold, and the late enrollment penalty applies when a person delayed Part B without creditable
+coverage. A household budget for turning 65 should use the premium notice, not the standard figure,
+whenever either adjustment could apply.
+
+## If you are still working at 65
+
+Employer coverage based on current employment can justify delaying Part B. The employer size test
+is the {employerSize}-employee rule: at an employer with {employerSize} or more employees, the
+group plan generally pays first for an active worker, and Part B can be enrolled later without a
+penalty through the eight-month special enrollment period. Under {employerSize} employees, Medicare
+generally pays first, and delaying Part B can create both a coverage gap and a permanent penalty.
+
+COBRA and retiree coverage are not the same thing in this test. Neither counts as coverage based on
+current employment, so relying on either as a substitute for Part B is a common path to the late
+enrollment penalty. The exception is an employer of any size that is large enough to be exempt
+from COBRA, and the details should be confirmed with the plan administrator.
+
+The special enrollment period runs for {sepMonths} months after employment or coverage ends,
+whichever comes first. Enrollment within that window avoids the penalty. A person who wants
+Medicare to start as employer coverage ends should enroll the month before the ending month, so the
+start dates line up without a gap.
+
+## Worked example
+
+A person turns 65 in September {year} and works at an employer with 300 employees. The initial
+enrollment period runs from June through December. The person stays on the employer plan, enrolls
+in premium-free Part A during the window, and delays Part B. Two years later, the person retires in
+March. The eight-month special enrollment period runs from March, so Part B is enrolled in
+September, with coverage starting in October, one month after the enrollment paperwork. No penalty
+applies because the employer coverage was based on current employment at an employer above the
+{employerSize}-employee threshold.
+
+A second person turns 65 the same month at a firm with 12 employees. The employer plan is below the
+{employerSize}-employee mark, so Medicare pays first. The person enrolls in Part A and Part B during
+the initial window, pays the {formatMoney(premium)} standard premium from October onward, and keeps
+the employer plan as secondary coverage. Because the standard premium is less than the cost of most
+individual plans, the person keeps both, and Part B fills the gaps the small-group plan leaves.
+
+A third person turns 65, does nothing, and retires the following year without employer coverage.
+The person enrolls the next January during the general enrollment period. Coverage starts in
+February, after a one-month wait, and every full 12 months of delay adds 10 percent of the standard
+premium to the bill for life. The three examples turn on the same questions: employer size,
+employment status, and the window dates.
+
+## What to gather before you apply
+
+1. The Social Security number, birth certificate, and current address for the application.
+2. The employer plan documents, including the creditable-coverage notice, if you plan to delay
+   Part B.
+3. The list of current prescriptions, dosages, and pharmacies, for comparing Part D plans.
+4. The latest tax return, because the income surcharge is based on modified adjusted gross income
+   from two years earlier.
+
+## What the {months}-month window does not decide
+
+1. The window sets when you can enroll, not what you pay. The premium notice after enrollment is
+   the binding figure, because an income surcharge or penalty can change it.
+2. Delaying is only safe with qualifying employer coverage. A person without it should treat the
+   initial enrollment period as the deadline, not a suggestion.
+3. This page is about timing and enrollment, not plan choice. Original Medicare with Medigap and a
+   Medicare Advantage plan are different paths, and the choice should be made against your own
+   doctors, drugs, and budget.
+
+<Faq
+  items={[
+    {
+      question: 'What do I need to do when I turn 65 for Medicare?',
+      answer: `Sign up during the ${months}-month initial enrollment period, which starts ${monthsBefore} months before your birthday month. Check whether enrollment is automatic through Social Security, whether employer coverage lets you delay Part B, and whether HSA contributions must stop first.`,
+    },
+    {
+      question: 'Do I need to sign up for Medicare if I am still working?',
+      answer: `Possibly. With current employment coverage at an employer of ${employerSize} or more employees, you can generally delay Part B without a penalty and enroll later through the ${sepMonths}-month special enrollment period. At a smaller employer, Medicare generally pays first, and delaying can create a permanent penalty.`,
+    },
+    {
+      question: 'Is Medicare free at 65?',
+      answer: `Part A is premium-free for people with 40 or more work quarters, and most people qualify. Part B is not free: the standard premium is ${formatMoney(premium)} a month for ${year}, plus a ${formatMoney(deductible)} annual deductible.`,
+    },
+    {
+      question: 'What happens if I miss my initial enrollment period?',
+      answer: `You can enroll during the general enrollment period from January 1 through March 31, but coverage may not start immediately, and a Part B late enrollment penalty of 10 percent of the standard premium per full 12 months of delay applies for life. A special enrollment period is the alternative when qualifying employer coverage existed.`,
+    },
+    {
+      question: 'When does Medicare start after I sign up?',
+      answer: `Enrolling during the ${monthsBefore} months before your birthday month generally starts coverage on the first day of that month. Enrolling during the birthday month or later starts coverage later, which is why early enrollment inside the window is the common recommendation.`,
+    },
+    {
+      question: 'Do I need Part D if I take no prescriptions?',
+      answer:
+        'Most advisors say yes, because the Part D penalty is permanent and applies after 63 days or more without creditable drug coverage once eligibility begins. A low-cost plan is usually cheaper than a lifetime penalty if a prescription arrives later.',
+    },
+  ]}
+/>
+
+<SourceTable
+  rows={[
+    {
+      label: 'Standard Part B premium and deductible',
+      value: `${formatMoney(premium)} a month; ${formatMoney(deductible)} a year`,
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Part B premium fact sheet`,
+    },
+    {
+      label: 'Part A premiums by work quarters',
+      value: `${formatMoney(partAReduced)} / ${formatMoney(partAFull)} a month`,
+      source: sources.cms2026AB,
+      sourceLabel: `CMS ${year} Parts A and B fact sheet`,
+    },
+    {
+      label: 'Initial enrollment period and employer rules',
+      value: `${months}-month window; ${employerSize}-employee rule`,
+      source: sources.medicareEmployer,
+      sourceLabel: 'Medicare.gov: when can I sign up',
+    },
+    {
+      label: 'HSA timing before Part A',
+      value: `${hsaStopMonths}-month stop window`,
+      source: sources.medicareWorkingPast65,
+      sourceLabel: 'Medicare.gov: working past 65',
+    },
+  ]}
+/>
+
+## Where to check the date before you apply
+
+The figures on this page come from the CMS {year} premium fact sheet and Medicare.gov enrollment
+pages, checked on {dataVerifiedOnText}. The Social Security office handles the application, and the
+state SHIP program offers free counseling for the surrounding choices. Before you enroll, use the
+[Part B late enrollment penalty calculator](/calculators/part-b-late-enrollment-penalty/) to price a
+delayed sign-up, the [employer coverage affordability calculator](/calculators/employer-coverage-affordability/)
+to test the employer plan, and the [IRMAA cliff checker](/calculators/irmaa-cliff-checker/) if your
+income is near a surcharge threshold. The September-to-December Medicare open enrollment window is
+a separate yearly window that changes existing coverage after you are enrolled.
