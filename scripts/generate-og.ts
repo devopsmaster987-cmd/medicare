@@ -47,6 +47,21 @@ const calculators: Array<{ slug: string; title: string; kicker: string }> = [
     title: 'Medicare vs ACA',
     kicker: 'The 20-employee rule, work credits, and the subsidy decision',
   },
+  {
+    slug: 'part-a-premium',
+    title: 'Do I have to pay for Medicare Part A?',
+    kicker: `The ${year} quarters test, with the spouse and government-benefit rules`,
+  },
+  {
+    slug: 'medicare-enrollment-dates',
+    title: 'When can I sign up for Medicare?',
+    kicker: 'Your seven-month window, coverage start date, and the late sign-up paths',
+  },
+  {
+    slug: 'medicare-premium-calculator',
+    title: 'Medicare premium calculator',
+    kicker: `Part A, Part B, and Part D totals for ${year}, with the income surcharge`,
+  },
 ];
 
 const sitePages: OgPage[] = [

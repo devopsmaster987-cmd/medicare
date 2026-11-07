@@ -90,6 +90,7 @@ export const guides: GuideMeta[] = [
     summary:
       'The seven-month window, automatic enrollment, the 20-employee rule, and the six-month HSA stop date, with a worked example for three situations.',
     related: [
+      { href: '/calculators/medicare-enrollment-dates/', label: 'Medicare sign-up dates' },
       { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
       { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
       { href: '/calculators/employer-coverage-affordability/', label: 'Employer coverage affordability' },
@@ -304,6 +305,7 @@ export const guides: GuideMeta[] = [
     related: [
       { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
       { href: '/calculators/irmaa-cliff-checker/', label: 'IRMAA cliff checker' },
+      { href: '/calculators/medicare-premium-calculator/', label: 'Medicare premium calculator' },
       { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
     ],
     publishedOn: dataVerifiedOn,
@@ -334,6 +336,7 @@ export const guides: GuideMeta[] = [
     summary:
       'The 40-quarter rule, the reduced and full premiums, and the work records that decide which one applies.',
     related: [
+      { href: '/calculators/part-a-premium/', label: 'Part A premium calculator' },
       { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
       { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },
       { href: '/guides/medicare-part-b-premium-increase/', label: 'Medicare Part B premium increase' },
@@ -366,6 +369,7 @@ export const guides: GuideMeta[] = [
     summary:
       'The seven-month window, the first-of-month rule, and the employer coverage that can change the timing.',
     related: [
+      { href: '/calculators/medicare-enrollment-dates/', label: 'Medicare sign-up dates' },
       { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
       { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
       { href: '/calculators/employer-coverage-affordability/', label: 'Employer coverage affordability' },
@@ -382,6 +386,7 @@ export const guides: GuideMeta[] = [
     summary:
       'Who the yearly window is for, when coverage begins, and the penalties that do not disappear.',
     related: [
+      { href: '/calculators/medicare-enrollment-dates/', label: 'Medicare sign-up dates' },
       { href: '/guides/medicare-initial-enrollment-period/', label: 'Medicare initial enrollment period' },
       { href: '/calculators/part-b-late-enrollment-penalty/', label: 'Part B late enrollment penalty' },
       { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
@@ -414,6 +419,7 @@ export const guides: GuideMeta[] = [
     summary:
       'The employer size test, the eight-month window, and the coverage types that do not qualify.',
     related: [
+      { href: '/calculators/medicare-enrollment-dates/', label: 'Medicare sign-up dates' },
       { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
       { href: '/guides/medicare-initial-enrollment-period/', label: 'Medicare initial enrollment period' },
       { href: '/calculators/employer-coverage-affordability/', label: 'Employer coverage affordability' },
@@ -430,6 +436,7 @@ export const guides: GuideMeta[] = [
     summary:
       'How work quarters are earned, how the 40-quarter threshold works, and what to do if the record is short.',
     related: [
+      { href: '/calculators/part-a-premium/', label: 'Part A premium calculator' },
       { href: '/guides/medicare-part-a-premium/', label: 'Medicare Part A premium' },
       { href: '/guides/medicare-part-a-late-enrollment-penalty/', label: 'Part A late enrollment penalty' },
       { href: '/calculators/medicare-savings-program-extra-help/', label: 'Medicare Savings Program' },

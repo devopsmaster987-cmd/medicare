@@ -89,6 +89,27 @@ const calculators = [
     question: 'Should you take Medicare or keep Marketplace coverage?',
     detail: 'Follow the 20-employee rule, the premium-free Part A test, and the subsidy consequences.',
   },
+  {
+    number: '07',
+    title: 'Do I have to pay for Medicare Part A?',
+    href: '/calculators/part-a-premium/',
+    question: 'Do your work quarters make Part A free?',
+    detail: 'Check the 40-quarter rule, the monthly premium, and how a spouse or benefits can make it free.',
+  },
+  {
+    number: '08',
+    title: 'When can I sign up for Medicare?',
+    href: '/calculators/medicare-enrollment-dates/',
+    question: 'When is your sign-up window, and when does coverage start?',
+    detail: 'See your seven-month window, the exact coverage start date, and the late sign-up paths.',
+  },
+  {
+    number: '09',
+    title: 'Medicare premium calculator',
+    href: '/calculators/medicare-premium-calculator/',
+    question: 'What will Medicare cost you each month?',
+    detail: 'Add Part A, Part B, and Part D into one bill, including any income surcharge.',
+  },
 ];
 
 const steps = [

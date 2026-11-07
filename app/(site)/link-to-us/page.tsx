@@ -64,6 +64,21 @@ const calculatorLinks = [
     label: 'Medicare vs ACA',
     note: 'The 20-employee rule, premium-free Part A, and subsidy timing.',
   },
+  {
+    href: '/calculators/part-a-premium/',
+    label: 'Do I have to pay for Medicare Part A?',
+    note: 'The 40-quarter test, the monthly premium, and the spouse rule.',
+  },
+  {
+    href: '/calculators/medicare-enrollment-dates/',
+    label: 'When can I sign up for Medicare?',
+    note: 'Your seven-month window, coverage start dates, and the late sign-up paths.',
+  },
+  {
+    href: '/calculators/medicare-premium-calculator/',
+    label: 'Medicare premium calculator',
+    note: 'Part A, Part B, and Part D in one monthly and yearly bill.',
+  },
 ];
 
 const cornerstoneGuides = guides.slice(0, 10);

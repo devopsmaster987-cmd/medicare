@@ -91,4 +91,11 @@ export const sources = {
   healthcareYoungAdults: 'https://www.healthcare.gov/young-adults/children-under-26/',
   medicareAppeals: 'https://www.medicare.gov/claims-appeals',
   medicarePlanFinder: 'https://www.medicare.gov/plan-compare/',
+  medicareCoverageStarts:
+    'https://www.medicare.gov/basics/get-started-with-medicare/sign-up/when-does-medicare-coverage-start',
+  medicareSignUp: 'https://www.medicare.gov/basics/get-started-with-medicare/sign-up',
+  ssaWhenToSignUp: 'https://www.ssa.gov/medicare/plan/when-to-sign-up',
+  ssaEarningsRecord: 'https://www.ssa.gov/myaccount/',
+  ssaMedicareSignupForm:
+    'https://www.ssa.gov/forms/ssa-1.html',
 } as const;

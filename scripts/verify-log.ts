@@ -10,6 +10,9 @@ const requiredFormulas = [
   'partDPenaltyCalculator',
   'irmaaCalculator',
   'medicareVsAca',
+  'partAPremium',
+  'enrollmentDates',
+  'medicarePremium',
 ];
 
 if (!fs.existsSync(logPath)) {

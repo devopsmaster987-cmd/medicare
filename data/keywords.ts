@@ -410,6 +410,197 @@ export const keywords: Keyword[] = [
   },
 
   {
+    keyword: 'do i have to pay for medicare part a',
+    role: 'primary',
+    page: '/calculators/part-a-premium',
+  },
+  {
+    keyword: 'how much is medicare part a',
+    role: 'secondary',
+    page: '/calculators/part-a-premium',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'part a premium by quarters',
+    role: 'secondary',
+    page: '/calculators/part-a-premium',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'how to get free part a',
+    role: 'secondary',
+    page: '/calculators/part-a-premium',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'is medicare part a free at 65',
+    role: 'faq',
+    page: '/calculators/part-a-premium',
+  },
+  {
+    keyword: 'how many quarters to get free part a',
+    role: 'faq',
+    page: '/calculators/part-a-premium',
+  },
+  { keyword: 'can i delay part a enrollment', role: 'faq', page: '/calculators/part-a-premium' },
+  { keyword: 'can a spouse make part a free', role: 'faq', page: '/calculators/part-a-premium' },
+  {
+    keyword: 'how do i check my quarters of coverage',
+    role: 'faq',
+    page: '/calculators/part-a-premium',
+  },
+  {
+    keyword: 'is the part a premium deducted from social security',
+    role: 'faq',
+    page: '/calculators/part-a-premium',
+  },
+  {
+    keyword: 'part a premium calculator',
+    role: 'synonym',
+    page: '/calculators/part-a-premium',
+  },
+  { keyword: 'medicare part a cost', role: 'synonym', page: '/calculators/part-a-premium' },
+
+  {
+    keyword: 'when can i sign up for medicare',
+    role: 'primary',
+    page: '/calculators/medicare-enrollment-dates',
+  },
+  {
+    keyword: 'when does medicare coverage start',
+    role: 'secondary',
+    page: '/calculators/medicare-enrollment-dates',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'initial enrollment period dates',
+    role: 'secondary',
+    page: '/calculators/medicare-enrollment-dates',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'special enrollment period dates',
+    role: 'secondary',
+    page: '/calculators/medicare-enrollment-dates',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'general enrollment period dates',
+    role: 'secondary',
+    page: '/calculators/medicare-enrollment-dates',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'can i sign up for medicare before 65',
+    role: 'faq',
+    page: '/calculators/medicare-enrollment-dates',
+  },
+  {
+    keyword: 'how many months is the medicare enrollment period',
+    role: 'faq',
+    page: '/calculators/medicare-enrollment-dates',
+  },
+  {
+    keyword: 'how soon does medicare coverage start after i sign up',
+    role: 'faq',
+    page: '/calculators/medicare-enrollment-dates',
+  },
+  {
+    keyword: 'what happens if i miss medicare enrollment',
+    role: 'faq',
+    page: '/calculators/medicare-enrollment-dates',
+  },
+  {
+    keyword: 'do i have to sign up for medicare at 65',
+    role: 'faq',
+    page: '/calculators/medicare-enrollment-dates',
+  },
+  {
+    keyword: 'when does medicare start if i sign up late',
+    role: 'faq',
+    page: '/calculators/medicare-enrollment-dates',
+  },
+  {
+    keyword: 'medicare enrollment dates',
+    role: 'synonym',
+    page: '/calculators/medicare-enrollment-dates',
+  },
+  {
+    keyword: 'medicare enrollment calculator',
+    role: 'synonym',
+    page: '/calculators/medicare-enrollment-dates',
+  },
+  {
+    keyword: 'when to enroll in medicare',
+    role: 'synonym',
+    page: '/calculators/medicare-enrollment-dates',
+  },
+
+  {
+    keyword: 'medicare premium calculator',
+    role: 'primary',
+    page: '/calculators/medicare-premium-calculator',
+  },
+  {
+    keyword: 'how much is medicare part b premium',
+    role: 'secondary',
+    page: '/calculators/medicare-premium-calculator',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'what does medicare cost per month',
+    role: 'secondary',
+    page: '/calculators/medicare-premium-calculator',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'medicare part d plan premium',
+    role: 'secondary',
+    page: '/calculators/medicare-premium-calculator',
+    headingLevel: 2,
+  },
+  {
+    keyword: 'how much does medicare cost per month',
+    role: 'faq',
+    page: '/calculators/medicare-premium-calculator',
+  },
+  {
+    keyword: 'does everyone pay the part b premium',
+    role: 'faq',
+    page: '/calculators/medicare-premium-calculator',
+  },
+  {
+    keyword: 'does medicare include prescription drug coverage',
+    role: 'faq',
+    page: '/calculators/medicare-premium-calculator',
+  },
+  {
+    keyword: 'what income is used for medicare premiums',
+    role: 'faq',
+    page: '/calculators/medicare-premium-calculator',
+  },
+  {
+    keyword: 'can i pay medicare premiums monthly',
+    role: 'faq',
+    page: '/calculators/medicare-premium-calculator',
+  },
+  {
+    keyword: 'what is the medicare premium for a married couple',
+    role: 'faq',
+    page: '/calculators/medicare-premium-calculator',
+  },
+  {
+    keyword: 'medicare cost calculator',
+    role: 'synonym',
+    page: '/calculators/medicare-premium-calculator',
+  },
+  {
+    keyword: 'total medicare premium',
+    role: 'synonym',
+    page: '/calculators/medicare-premium-calculator',
+  },
+
+  {
     keyword: 'ssa 44 form irmaa appeal',
     role: 'primary',
     page: '/guides/ssa-44-form-irmaa-appeal',

@@ -9,6 +9,9 @@ const flagships = [
   'part-d-late-enrollment-penalty',
   'irmaa-cliff-checker',
   'medicare-vs-aca',
+  'part-a-premium',
+  'medicare-enrollment-dates',
+  'medicare-premium-calculator',
 ];
 
 const directories = flagships.map((slug) =>

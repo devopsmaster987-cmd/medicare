@@ -48,8 +48,15 @@ const calculatorLinks = [
     href: '/calculators/part-b-late-enrollment-penalty/',
     label: 'Part B late enrollment penalty',
   },
+  {
+    href: '/calculators/part-d-late-enrollment-penalty/',
+    label: 'Part D late enrollment penalty',
+  },
   { href: '/calculators/irmaa-cliff-checker/', label: 'IRMAA cliff checker' },
   { href: '/calculators/medicare-vs-aca/', label: 'Medicare vs ACA' },
+  { href: '/calculators/part-a-premium/', label: 'Do I have to pay for Medicare Part A?' },
+  { href: '/calculators/medicare-enrollment-dates/', label: 'When can I sign up for Medicare?' },
+  { href: '/calculators/medicare-premium-calculator/', label: 'Medicare premium calculator' },
 ];
 
 const siteLinks = [

@@ -64,6 +64,21 @@ const tools = [
     href: '/calculators/medicare-vs-aca/',
     copy: 'Compare the 20-employee rule, premium-free Part A, Marketplace subsidies, and enrollment timing.',
   },
+  {
+    title: 'Do I have to pay for Medicare Part A?',
+    href: '/calculators/part-a-premium/',
+    copy: 'Check your work quarters against the 40-quarter rule and see the monthly Part A premium, if any.',
+  },
+  {
+    title: 'When can I sign up for Medicare?',
+    href: '/calculators/medicare-enrollment-dates/',
+    copy: 'See your seven-month sign-up window, the first day coverage can start, and the late sign-up paths.',
+  },
+  {
+    title: 'Medicare premium calculator',
+    href: '/calculators/medicare-premium-calculator/',
+    copy: 'Add Part A, Part B, and Part D into one monthly and yearly bill, including any income surcharge.',
+  },
 ];
 
 export default function CalculatorsPage() {

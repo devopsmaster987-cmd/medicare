@@ -1,6 +1,6 @@
 # Verification log
 
-All figures were checked against the official source listed in each section on 2026-10-26. The employer family rule and the California, New York, and Arizona MSP rules were rechecked on 2026-10-28. The owner, Daniel Smith, still needs to sign off before launch. "Policy maths" means a hand-worked application of the published rule because the agency does not publish a worked example with these exact inputs.
+All figures were checked against the official source listed in each section on 2026-10-26. The employer family rule and the California, New York, and Arizona MSP rules were rechecked on 2026-10-28. The Part A premium, enrollment dates, and total Medicare premium formulas were added and checked on 2026-11-07. The owner, Daniel Smith, still needs to sign off before launch. "Policy maths" means a hand-worked application of the published rule because the agency does not publish a worked example with these exact inputs.
 
 ## employerAffordability
 
@@ -190,3 +190,98 @@ Example 3
 - Expected: `partAStatus: 'reduced'`; `premiumFreePartA: false`; annual Part A $3,732; annual total $6,166.80.
 - Actual: `partAStatus: 'reduced'`; `premiumFreePartA: false`; `annualPartAPremium: 3732`; `annualMedicarePremiumEstimate: 6166.8`.
 - Checked on: 2026-10-26
+
+## partAPremium
+
+Source: https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles
+Supporting sources: https://www.medicare.gov/basics/costs/medicare-costs/avoid-penalties and https://www.medicare.gov/publications/11579-medicare-costs.pdf
+Policy maths: CMS publishes the three premium amounts and the work-quarter bands; the agency does not publish a worked example with these exact inputs.
+
+Example 1
+- Inputs: 40 own quarters of coverage; no delay in signing up.
+- Hand calculation: 40 quarters meets the premium-free threshold, so the Part A premium is $0 a month and $0 a year.
+- Expected: tier `free`; `monthlyPremium: 0`; `annualPremium: 0`; `premiumFree: true`.
+- Actual: `tier: 'free'`, `monthlyPremium: 0`, `annualPremium: 0`, `premiumFree: true`.
+- Checked on: 2026-11-07
+
+Example 2
+- Inputs: 35 own quarters; signed up 2 full years late.
+- Hand calculation: 30 to 39 quarters uses the reduced premium CMS publishes for 2026, $311 a month ($3,732 a year). The late enrollment penalty is 10% of that premium, paid for twice the years delayed: 10% x $311 = $31.10 a month, for 2 x 2 = 4 years. Total during the penalty = $311 + $31.10 = $342.10 a month. Cost across the penalty = $31.10 x 12 x 4 = $1,492.80.
+- Expected: tier `reduced`; `monthlyPenalty: 31.1`; `penaltyDurationYears: 4`; `totalMonthlyDuringPenalty: 342.1`; `penaltyCostDuringDuration: 1492.8`.
+- Actual: `penaltyRate: 0.1`, `monthlyPenalty: 31.1`, `penaltyDurationYears: 4`, `totalMonthlyDuringPenalty: 342.1`, `penaltyCostDuringDuration: 1492.8`.
+- Checked on: 2026-11-07
+
+Example 3 (spouse's record)
+- Inputs: 20 own quarters; married; 40 spouse quarters.
+- Hand calculation: the calculator takes the higher of the two records, 40 quarters, which meets the premium-free threshold. Social Security requires the marriage generally to have lasted at least one year.
+- Expected: `quartersUsed: 40`; tier `free`; `monthlyPremium: 0`.
+- Actual: `quartersUsed: 40`, `tier: 'free'`, `monthlyPremium: 0`.
+- Checked on: 2026-11-07
+
+## enrollmentDates
+
+Source: https://www.medicare.gov/basics/get-started-with-medicare/sign-up/when-does-medicare-coverage-start
+Supporting sources: https://www.medicare.gov/basics/get-started-with-medicare/sign-up and https://secure.ssa.gov/poms.nsf/lnx/0600805275
+Policy maths: Medicare.gov publishes the window and coverage-start rules in words, not worked date examples for arbitrary birthdays; every date below was counted by hand from those rules. The Special Enrollment Period uses Medicare.gov's stated anchors (starts the first month after the Initial Enrollment Period ends; ends eight months after the group health plan coverage or employment ends) with POMS HI 00805.275 confirming the eight consecutive months after the last month of coverage.
+
+Example 1 (seven-month window and coverage start)
+- Inputs: born June 1961; today 2026-05-15.
+- Hand calculation: turns 65 in June 2026, so the window opens three months earlier on 2026-03-01 and closes three months after on 2026-09-30 (seven months). Days from 2026-05-15 to 2026-09-30 = 138. Signing up in March 2026 gives coverage on the birthday month, 2026-06-01; signing up in June 2026 gives coverage on 2026-07-01.
+- Expected: `windowStatus: 'open'`; `daysUntilIEPEnd: 138`; coverage start for a March 2026 sign-up = 2026-06-01; for a June 2026 sign-up = 2026-07-01.
+- Actual: `iepStart: '2026-03-01'`, `iepEnd: '2026-09-30'`, `windowStatus: 'open'`, `daysUntilIEPEnd: 138`; `coverageStartTable[0] = { signupMonth: 'March 2026', coverageStart: '2026-06-01' }`; `coverageStartTable[3] = { signupMonth: 'June 2026', coverageStart: '2026-07-01' }`.
+- Checked on: 2026-11-07
+
+Example 2 (birthday on the first of the month)
+- Inputs: born January 1, 1961; birthday on the first; today 2026-01-15.
+- Hand calculation: Medicare treats a first-of-month birthday as eligible the month before, so the eligibility month shifts from January 2026 back to December 2025. The seven-month window shifts with it: 2025-09-01 through 2026-03-31.
+- Expected: `firstOfMonthRuleApplied: true`; `eligibleMonthLabel: 'December 2025'`; `iepStart: '2025-09-01'`; `iepEnd: '2026-03-31'`.
+- Actual: `firstOfMonthRuleApplied: true`, `eligibleMonthLabel: 'December 2025'`, `iepStart: '2025-09-01'`, `iepEnd: '2026-03-31'`.
+- Checked on: 2026-11-07
+
+Example 3 (Special Enrollment Period)
+- Inputs: born June 1961; employer coverage ends 2026-08; today 2026-10-01.
+- Hand calculation: the Initial Enrollment Period ended 2026-09-30, so the Special Enrollment Period starts 2026-10-01. Coverage ended in August 2026, so it ends on the eighth month after that, 2027-04-30 (POMS counts the eight consecutive months after the last month of coverage: September 2026 through April 2027; the pre-October months were already inside the Initial Enrollment Period).
+- Expected: `sep = { start: '2026-10-01', end: '2027-04-30' }`.
+- Actual: `sep = { start: '2026-10-01', end: '2027-04-30' }`.
+- Checked on: 2026-11-07
+
+Example 4 (General Enrollment Period after a closed window)
+- Inputs: born June 1961; today 2026-11-07; no employer coverage.
+- Hand calculation: the Initial Enrollment Period closed on 2026-09-30. The next General Enrollment Period runs January 1 through March 31 of the following year, 2027-01-01 through 2027-03-31, and is not open on 2026-11-07.
+- Expected: `windowStatus: 'closed'`; `gep = { start: '2027-01-01', end: '2027-03-31', openNow: false }`.
+- Actual: `windowStatus: 'closed'`; `gep = { start: '2027-01-01', end: '2027-03-31', openNow: false }`.
+- Checked on: 2026-11-07
+
+## medicarePremium
+
+Source: https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles
+Supporting sources: https://www.cms.gov/newsroom/fact-sheets/2026-medicare-part-d-bid-information-and-part-d-premium-stabilization-demonstration-parameters and https://www.medicare.gov/basics/costs/medicare-costs/avoid-penalties
+Policy maths: the CMS fact sheets publish the standard premium, each IRMAA tier amount, and the national base beneficiary premium; the calculator adds them together, and the agency does not publish a combined monthly-bill worked example.
+
+Example 1 (single, under the IRMAA threshold)
+- Inputs: single; modified adjusted gross income $80,000 from two years ago; 40 quarters; Part D plan premium $38.99 (the CMS national base beneficiary premium for 2026).
+- Hand calculation: $80,000 is under the $109,001 first single bracket, so no surcharge. Part A $0 + Part B $202.90 + Part D $38.99 = $241.89 a month. Annual = $241.89 x 12 = $2,902.68.
+- Expected: `partA.monthlyPremium: 0`; `partB.monthlyWithIrmaa: 202.9`; `totalMonthly: 241.89`; `totalAnnual: 2902.68`.
+- Actual: `partA.monthlyPremium: 0`, `partB.monthlyWithIrmaa: 202.9`, `partD.monthlyPerPerson: 38.99`, `totalMonthly: 241.89`, `totalAnnual: 2902.68`.
+- Checked on: 2026-11-07
+
+Example 2 (single, IRMAA bracket three)
+- Inputs: single; $150,000 modified adjusted gross income from two years ago; 40 quarters; Part D plan premium $38.99.
+- Hand calculation: $150,000 falls between $137,001 and $171,000, where CMS publishes Part B $405.80 and a Part D adjustment of $37.50. Part B = $405.80. Part D = $38.99 + $37.50 = $76.49. Monthly = $482.29. Annual = $482.29 x 12 = $5,787.48. Headroom to the next bracket at $171,001 = $171,001 - $150,000 = $21,001.
+- Expected: `partB.monthlyWithIrmaa: 405.8`; `partD.monthlyPerPerson: 76.49`; `totalMonthly: 482.29`; `totalAnnual: 5787.48`; `headroomToNextBracket: 21001`.
+- Actual: `partB.monthlyWithIrmaa: 405.8`, `partB.irmaaAdjustment: 202.9`, `partD.irmaaAdjustment: 37.5`, `partD.monthlyPerPerson: 76.49`, `totalMonthly: 482.29`, `totalAnnual: 5787.48`, `headroomToNextBracket: 21001`.
+- Checked on: 2026-11-07
+
+Example 3 (married filing jointly, both spouses enrolled)
+- Inputs: married filing jointly; $250,000 modified adjusted gross income from two years ago; 40 quarters each; both spouses enrolled; Part D plan premium $38.99 each.
+- Hand calculation: $250,000 falls in the first joint bracket ($218,001 to $274,000), where each person pays Part B $284.10 and a Part D adjustment of $14.50. Part B for two = $568.20. Part D each = $38.99 + $14.50 = $53.49, so $106.98 for two. Monthly household bill = $675.18.
+- Expected: `persons: 2`; `partB.monthlyTotal: 568.2`; `partD.monthlyTotal: 106.98`; `totalMonthly: 675.18`.
+- Actual: `persons: 2`, `partB.monthlyPerPerson: 284.1`, `partB.monthlyTotal: 568.2`, `partD.monthlyPerPerson: 53.49`, `partD.monthlyTotal: 106.98`, `totalMonthly: 675.18`.
+- Checked on: 2026-11-07
+
+Example 4 (buying Part A)
+- Inputs: single; $40,000 modified adjusted gross income; 35 own quarters; no Part D plan.
+- Hand calculation: 35 quarters uses the reduced Part A premium of $311. Part B standard $202.90 (no surcharge at $40,000). Part D not enrolled = $0. Monthly = $311 + $202.90 = $513.90.
+- Expected: `partA.monthlyPremium: 311`; `partD.monthlyTotal: 0`; `totalMonthly: 513.9`.
+- Actual: `partA.monthlyPremium: 311`, `partD.monthlyTotal: 0`, `totalMonthly: 513.9`.
+- Checked on: 2026-11-07

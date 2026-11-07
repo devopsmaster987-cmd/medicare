@@ -1,7 +1,10 @@
 import type { EmployerAffordabilityInput } from './formulas/employer-affordability';
+import type { EnrollmentDatesInput } from './formulas/enrollment-dates';
 import type { IrmaaInput } from './formulas/irmaa';
+import type { MedicarePremiumInput } from './formulas/medicare-premium';
 import type { MedicareVsAcaInput } from './formulas/medicare-vs-aca';
 import type { MspInput } from './formulas/msp-eligibility';
+import type { PartAPremiumInput } from './formulas/part-a-premium';
 import type { PartBPenaltyInput } from './formulas/part-b-penalty';
 import type { PartDPenaltyInput } from './formulas/part-d-penalty';
 
@@ -106,6 +109,79 @@ export const medicareVsAcaSchema = {
     }
     if (!isOptionalBoolean(value.premiumFreePartA)) return fail();
     return pass(value as MedicareVsAcaInput);
+  },
+};
+
+export const partAPremiumSchema = {
+  safeParse(input: unknown): ParseResult<PartAPremiumInput> {
+    const value = input as Partial<PartAPremiumInput>;
+    if (typeof value.ownQuarters !== 'number' || !Number.isFinite(value.ownQuarters)) return fail();
+    if (value.ownQuarters < 0 || value.ownQuarters > 40) return fail();
+    if (value.spouseQuarters !== undefined) {
+      if (!Number.isFinite(value.spouseQuarters)) return fail();
+      if (value.spouseQuarters < 0 || value.spouseQuarters > 40) return fail();
+    }
+    if (value.yearsDelayed !== undefined) {
+      if (!Number.isFinite(value.yearsDelayed)) return fail();
+      if (value.yearsDelayed < 0 || value.yearsDelayed > 60) return fail();
+    }
+    if (value.married !== undefined && typeof value.married !== 'boolean') return fail();
+    return pass(value as PartAPremiumInput);
+  },
+};
+
+export const enrollmentDatesSchema = {
+  safeParse(input: unknown): ParseResult<EnrollmentDatesInput> {
+    const value = input as Partial<EnrollmentDatesInput>;
+    if (!Number.isInteger(value.birthMonth) || (value.birthMonth ?? 0) < 1) return fail();
+    if ((value.birthMonth ?? 0) > 12) return fail();
+    if (!Number.isInteger(value.birthYear)) return fail();
+    if ((value.birthYear ?? 0) < 1900 || (value.birthYear ?? 0) > 2100) return fail();
+    if (
+      value.situation !== undefined &&
+      !isOneOf(value.situation, [
+        'not-yet-eligible',
+        'within-iep',
+        'working-employer-coverage',
+        'missed-iep',
+      ])
+    ) {
+      return fail();
+    }
+    if (
+      value.coverageEndMonth !== undefined &&
+      !/^\d{4}-(0[1-9]|1[0-2])$/.test(value.coverageEndMonth)
+    ) {
+      return fail();
+    }
+    return pass(value as EnrollmentDatesInput);
+  },
+};
+
+export const medicarePremiumSchema = {
+  safeParse(input: unknown): ParseResult<MedicarePremiumInput> {
+    const value = input as Partial<MedicarePremiumInput>;
+    if (!isOneOf(value.filingStatus, filingStatuses)) return fail();
+    if (!isMoney(value.magiTwoYearsBack)) return fail();
+    if (value.ownQuarters !== undefined) {
+      if (!Number.isFinite(value.ownQuarters)) return fail();
+      if (value.ownQuarters < 0 || value.ownQuarters > 40) return fail();
+    }
+    if (value.spouseQuarters !== undefined) {
+      if (!Number.isFinite(value.spouseQuarters)) return fail();
+      if (value.spouseQuarters < 0 || value.spouseQuarters > 40) return fail();
+    }
+    if (value.partDPlanPremium !== undefined && !isMoney(value.partDPlanPremium)) return fail();
+    if (value.partBPenaltyMonths !== undefined) {
+      if (!isIntegerInRange(value.partBPenaltyMonths, 0, 600)) return fail();
+    }
+    if (value.partDPenaltyMonths !== undefined) {
+      if (!isIntegerInRange(value.partDPenaltyMonths, 0, 600)) return fail();
+    }
+    if (value.married !== undefined && typeof value.married !== 'boolean') return fail();
+    if (value.bothEnrolled !== undefined && typeof value.bothEnrolled !== 'boolean') return fail();
+    if (value.partDEnrolled !== undefined && typeof value.partDEnrolled !== 'boolean') return fail();
+    return pass(value as MedicarePremiumInput);
   },
 };
 

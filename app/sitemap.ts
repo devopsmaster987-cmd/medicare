@@ -14,6 +14,9 @@ const calculatorRoutes = [
   '/calculators/part-d-late-enrollment-penalty/',
   '/calculators/irmaa-cliff-checker/',
   '/calculators/medicare-vs-aca/',
+  '/calculators/part-a-premium/',
+  '/calculators/medicare-enrollment-dates/',
+  '/calculators/medicare-premium-calculator/',
 ];
 
 const siteRoutes = [

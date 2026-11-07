@@ -518,6 +518,11 @@ export default function IrmaaPage() {
               </Link>
             </li>
             <li>
+              <Link href="/calculators/medicare-premium-calculator/">
+                Medicare premium calculator: the full monthly bill
+              </Link>
+            </li>
+            <li>
               <Link href="/guides/ssa-44-form-irmaa-appeal/">SSA 44 form IRMAA appeal</Link>
             </li>
             <li>
