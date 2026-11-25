@@ -1,10 +1,21 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
   "redirects": [
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "www.medicareclear.top" }],
       "destination": "https://medicareclear.top/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/authors/abdul-samad",
+      "destination": "https://medicareclear.top/authors/daniel-smith/",
+      "permanent": true
+    },
+    {
+      "source": "/authors/abdul-samad/",
+      "destination": "https://medicareclear.top/authors/daniel-smith/",
       "permanent": true
     }
   ],
@@ -25,6 +36,21 @@
         },
         { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" }
       ]
+    },
+    {
+      "source": "/feed.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/cdn-cgi/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },
     {
       "source": "/_next/static/(.*)",
