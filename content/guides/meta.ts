@@ -708,6 +708,29 @@ export const guideBySlug: Record<string, GuideMeta> = Object.fromEntries(
 
 export const guideSlugs = guides.map((guide) => guide.slug);
 
+// Guides published after the initial launch. The home page links these directly
+// so they do not depend on the guides hub alone for internal discovery.
+const newerGuideSlugs = [
+  'medicare-and-cobra',
+  'medicare-and-retiree-health-coverage',
+  'medicare-and-va-benefits',
+  'medicare-and-fehb',
+  'medicare-and-tricare',
+  'medicare-for-people-with-disabilities',
+  'medicare-and-end-stage-renal-disease',
+  'medicare-and-als',
+  'medicare-part-d-formulary-exception',
+  'medicare-part-d-prior-authorization',
+  'medicare-part-d-pharmacy-network',
+  'aca-open-enrollment-dates',
+  'aca-special-enrollment-period',
+  'aca-cost-sharing-reduction',
+  'aca-form-1095-a',
+  'aca-dependent-coverage-age-26',
+];
+
+export const newGuides = guides.filter((guide) => newerGuideSlugs.includes(guide.slug));
+
 export function resolveGuide(text: string, year: number): string {
   return text.replaceAll('{year}', String(year));
 }

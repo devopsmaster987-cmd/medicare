@@ -7,7 +7,7 @@ import { IndependenceNote } from '@/components/trust/independence-note';
 import { LastUpdated } from '@/components/trust/last-updated';
 import { ReportError } from '@/components/trust/report-error';
 import { SourceLine } from '@/components/trust/source-line';
-import { guides, resolveGuide } from '@/content/guides/meta';
+import { guides, newGuides, resolveGuide } from '@/content/guides/meta';
 import { partB2026 } from '@/data/medicare-part-b';
 import { partD2026 } from '@/data/medicare-part-d';
 import { sources } from '@/data/sources';
@@ -295,6 +295,25 @@ export default function HomePage() {
           <p className="stat-note">
             <Link href="/guides/">Read all {guides.length} guides</Link>
           </p>
+        </div>
+      </section>
+
+      <section className="section section-tight" id="new-guides">
+        <div className="wrap">
+          <h2 className="section-heading">New guides added this year</h2>
+          <p className="section-intro">
+            These guides cover the coverage situations that fall outside the main calculators: other
+            insurance, disability, and the ACA rules that decide what you pay.
+          </p>
+          <ul className="related-list">
+            {newGuides.map((guide) => (
+              <li key={guide.slug}>
+                <Link href={`/guides/${guide.slug}/`}>
+                  {resolveGuide(guide.h1, figureYears.current)}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
