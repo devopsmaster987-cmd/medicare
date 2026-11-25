@@ -55,6 +55,41 @@ if (fs.existsSync(robotsPath)) {
   if (!/user-agent:\s*googlebot/i.test(robots)) {
     errors.push('robots.txt does not list Googlebot explicitly');
   }
+  if (!/disallow:\s*\/cdn-cgi\//i.test(robots)) {
+    errors.push('robots.txt does not disallow the Cloudflare /cdn-cgi/ email-protection path');
+  }
+}
+
+const vercelPath = path.resolve('vercel.json');
+if (fs.existsSync(vercelPath)) {
+  let vercel: {
+    trailingSlash?: boolean;
+    redirects?: Array<{ source?: string; destination?: string; permanent?: boolean }>;
+    headers?: Array<{ source?: string; headers?: Array<{ key?: string; value?: string }> }>;
+  } = {};
+  try {
+    vercel = JSON.parse(fs.readFileSync(vercelPath, 'utf8'));
+  } catch {
+    errors.push('vercel.json is not valid JSON');
+  }
+  if (vercel.trailingSlash !== true) {
+    errors.push('vercel.json does not set trailingSlash: true');
+  }
+  const abdulRedirect = (vercel.redirects ?? []).find((redirect) =>
+    (redirect.source ?? '').includes('/authors/abdul-samad'),
+  );
+  if (!abdulRedirect || !(abdulRedirect.destination ?? '').includes('/authors/daniel-smith/')) {
+    errors.push('vercel.json is missing the /authors/abdul-samad/ -> /authors/daniel-smith/ redirect');
+  }
+  for (const file of ['/feed.xml', '/sitemap.xml']) {
+    const rule = (vercel.headers ?? []).find((header) => header.source === file);
+    const hasNoindex = (rule?.headers ?? []).some(
+      (header) =>
+        header.key?.toLowerCase() === 'x-robots-tag' &&
+        (header.value ?? '').toLowerCase().includes('noindex'),
+    );
+    if (!hasNoindex) errors.push(`vercel.json is missing X-Robots-Tag: noindex for ${file}`);
+  }
 }
 
 const sitemapPath = path.join(outDir, 'sitemap.xml');
@@ -93,8 +128,17 @@ if (fs.existsSync(sitemapPath)) {
       continue;
     }
     const html = read(relative);
-    if (!/<link[^>]+rel=["']canonical["']/i.test(html)) {
+    const canonical = html.match(/<link[^>]+rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1];
+    if (!canonical) {
       errors.push(`${relative}: missing canonical link`);
+    } else if (canonical !== rawUrl) {
+      errors.push(`${relative}: canonical ${canonical} does not match sitemap URL ${rawUrl}`);
+    }
+    const ogUrl = html.match(/<meta[^>]+property=["']og:url["'][^>]*content=["']([^"']+)["']/i)?.[1];
+    if (!ogUrl) {
+      errors.push(`${relative}: missing og:url meta tag`);
+    } else if (ogUrl !== rawUrl) {
+      errors.push(`${relative}: og:url ${ogUrl} does not match sitemap URL ${rawUrl}`);
     }
   }
 }
