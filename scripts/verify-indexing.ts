@@ -41,6 +41,8 @@ const requiredFiles = [
   'feed.xml',
   'manifest.webmanifest',
   '404.html',
+  '_redirects',
+  '_headers',
 ];
 for (const file of requiredFiles) {
   if (!exists(file)) errors.push(`missing out/${file}`);
@@ -60,35 +62,73 @@ if (fs.existsSync(robotsPath)) {
   }
 }
 
-const vercelPath = path.resolve('vercel.json');
-if (fs.existsSync(vercelPath)) {
-  let vercel: {
-    trailingSlash?: boolean;
-    redirects?: Array<{ source?: string; destination?: string; permanent?: boolean }>;
-    headers?: Array<{ source?: string; headers?: Array<{ key?: string; value?: string }> }>;
-  } = {};
-  try {
-    vercel = JSON.parse(fs.readFileSync(vercelPath, 'utf8'));
-  } catch {
-    errors.push('vercel.json is not valid JSON');
+function parseHeaders(contents: string): Map<string, Array<{ key: string; value: string }>> {
+  const rules = new Map<string, Array<{ key: string; value: string }>>();
+  let current: string | null = null;
+  for (const rawLine of contents.split(/\r?\n/)) {
+    const trimmed = rawLine.trim();
+    if (trimmed === '' || trimmed.startsWith('#')) continue;
+    if (!/^\s/.test(rawLine)) {
+      current = trimmed;
+      rules.set(current, []);
+      continue;
+    }
+    if (current === null) continue;
+    const colon = trimmed.indexOf(':');
+    if (colon === -1) continue;
+    rules.get(current)?.push({
+      key: trimmed.slice(0, colon).trim(),
+      value: trimmed.slice(colon + 1).trim(),
+    });
   }
-  if (vercel.trailingSlash !== true) {
-    errors.push('vercel.json does not set trailingSlash: true');
+  return rules;
+}
+
+if (exists('_redirects')) {
+  const redirectLines = read('_redirects').split(/\r?\n/);
+  for (const source of ['/authors/abdul-samad', '/authors/abdul-samad/']) {
+    const found = redirectLines.some((line) => {
+      const trimmed = line.trim();
+      if (trimmed === '' || trimmed.startsWith('#')) return false;
+      const [from, to, code] = trimmed.split(/\s+/);
+      return (
+        from === source &&
+        (to ?? '').includes('/authors/daniel-smith/') &&
+        code === '301'
+      );
+    });
+    if (!found) {
+      errors.push(`_redirects is missing a 301 from ${source} to /authors/daniel-smith/`);
+    }
   }
-  const abdulRedirect = (vercel.redirects ?? []).find((redirect) =>
-    (redirect.source ?? '').includes('/authors/abdul-samad'),
+}
+
+if (exists('_headers')) {
+  const headers = parseHeaders(read('_headers'));
+  const feedType = (headers.get('/feed.xml') ?? []).find(
+    (header) => header.key.toLowerCase() === 'content-type',
   );
-  if (!abdulRedirect || !(abdulRedirect.destination ?? '').includes('/authors/daniel-smith/')) {
-    errors.push('vercel.json is missing the /authors/abdul-samad/ -> /authors/daniel-smith/ redirect');
-  }
-  for (const file of ['/feed.xml', '/sitemap.xml']) {
-    const rule = (vercel.headers ?? []).find((header) => header.source === file);
-    const hasNoindex = (rule?.headers ?? []).some(
-      (header) =>
-        header.key?.toLowerCase() === 'x-robots-tag' &&
-        (header.value ?? '').toLowerCase().includes('noindex'),
+  if (feedType?.value !== 'application/rss+xml; charset=utf-8') {
+    errors.push(
+      '_headers does not set Content-Type: application/rss+xml; charset=utf-8 for /feed.xml',
     );
-    if (!hasNoindex) errors.push(`vercel.json is missing X-Robots-Tag: noindex for ${file}`);
+  }
+  for (const file of ['/feed.xml', '/sitemap.xml', '/cdn-cgi/*']) {
+    const hasNoindex = (headers.get(file) ?? []).some(
+      (header) =>
+        header.key.toLowerCase() === 'x-robots-tag' &&
+        header.value.toLowerCase().includes('noindex'),
+    );
+    if (!hasNoindex) errors.push(`_headers is missing X-Robots-Tag: noindex for ${file}`);
+  }
+  const rootHeaders = (headers.get('/*') ?? []).map((header) => header.key.toLowerCase());
+  for (const key of [
+    'x-content-type-options',
+    'x-frame-options',
+    'referrer-policy',
+    'strict-transport-security',
+  ]) {
+    if (!rootHeaders.includes(key)) errors.push(`_headers /* block is missing ${key}`);
   }
 }
 
