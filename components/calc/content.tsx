@@ -80,7 +80,7 @@ export function WhatChanged({
         </table>
       </div>
       <p className="stat-note">
-        <Link href={`/what-changed-${year}`}>See every figure that changed for {year}</Link>
+        <Link href={`/what-changed-${year}/`}>See every figure that changed for {year}</Link>
       </p>
     </section>
   );

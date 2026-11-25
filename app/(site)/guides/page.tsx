@@ -92,7 +92,7 @@ export default function GuidesPage() {
           <ol className="calculator-index">
             {guides.map((guide, index) => (
               <li key={guide.slug}>
-                <Link className="calculator-entry" href={`/guides/${guide.slug}`}>
+                <Link className="calculator-entry" href={`/guides/${guide.slug}/`}>
                   <span className="calculator-entry-number" aria-hidden="true">
                     {String(index + 1).padStart(2, '0')}
                   </span>

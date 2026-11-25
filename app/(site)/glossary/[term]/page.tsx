@@ -202,7 +202,7 @@ export default async function GlossaryTermPage({ params }: TermPageProps) {
           <ul>
             {relatedTerms.map((related) => (
               <li key={related.term}>
-                <Link href={`/glossary/${glossarySlug(related.term)}`}>{related.term}</Link>
+                <Link href={`/glossary/${glossarySlug(related.term)}/`}>{related.term}</Link>
               </li>
             ))}
           </ul>

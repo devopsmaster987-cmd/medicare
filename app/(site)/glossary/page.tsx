@@ -121,7 +121,7 @@ export default function GlossaryPage() {
                 {groups[letter].map((entry) => (
                   <div className="glossary-entry" key={entry.term}>
                     <dt>
-                      <Link href={`/glossary/${glossarySlug(entry.term)}`}>{entry.term}</Link>
+                      <Link href={`/glossary/${glossarySlug(entry.term)}/`}>{entry.term}</Link>
                     </dt>
                     <dd>{entry.definition}</dd>
                   </div>

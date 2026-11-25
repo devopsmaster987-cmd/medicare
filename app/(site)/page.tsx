@@ -286,7 +286,7 @@ export default function HomePage() {
           <ul className="related-list">
             {guides.slice(0, 6).map((guide) => (
               <li key={guide.slug}>
-                <Link href={`/guides/${guide.slug}`}>
+                <Link href={`/guides/${guide.slug}/`}>
                   {resolveGuide(guide.h1, figureYears.current)}
                 </Link>
               </li>
@@ -307,7 +307,7 @@ export default function HomePage() {
           </p>
           <ul className="related-list">
             <li>
-              <Link href={`/what-changed-${figureYears.current}`}>What changed for {figureYears.current}</Link>
+              <Link href={`/what-changed-${figureYears.current}/`}>What changed for {figureYears.current}</Link>
             </li>
             <li>
               <Link href="/medicare-deadlines/">Medicare deadlines</Link>

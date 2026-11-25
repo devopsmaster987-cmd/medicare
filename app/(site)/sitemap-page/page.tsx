@@ -146,7 +146,7 @@ export default function SitemapPage() {
               </li>
               {guides.map((guide) => (
                 <li key={guide.slug}>
-                  <Link href={`/guides/${guide.slug}`}>
+                  <Link href={`/guides/${guide.slug}/`}>
                     {resolveGuide(guide.h1, figureYears.current)}
                   </Link>
                 </li>
@@ -184,7 +184,7 @@ export default function SitemapPage() {
             <ul className="link-list link-list-compact">
               {sortedGlossary.map((entry) => (
                 <li key={entry.term}>
-                  <Link href={`/glossary/${glossarySlug(entry.term)}`}>{entry.term}</Link>
+                  <Link href={`/glossary/${glossarySlug(entry.term)}/`}>{entry.term}</Link>
                 </li>
               ))}
             </ul>

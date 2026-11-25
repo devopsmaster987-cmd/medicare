@@ -7,7 +7,7 @@ const exploreLinks = [
   { href: '/calculators/', label: 'All calculators' },
   { href: '/guides/', label: 'Guides' },
   { href: '/glossary/', label: 'Medicare glossary' },
-  { href: `/what-changed-${figureYears.current}`, label: `What changed for ${figureYears.current}` },
+  { href: `/what-changed-${figureYears.current}/`, label: `What changed for ${figureYears.current}` },
   { href: '/medicare-deadlines/', label: 'Medicare deadlines' },
   { href: '/scenarios/', label: 'Medicare scenarios' },
   { href: '/data/', label: 'Data files' },
